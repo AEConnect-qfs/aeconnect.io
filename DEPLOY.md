@@ -137,6 +137,19 @@ npx tsx verify-site.mts   # 12 end-to-end checks
 
 ---
 
+## File ingestion (client-side)
+
+The workspace extracts text from uploads **in the browser** (PHI never leaves the
+user's machine until the extracted text is submitted): plain text/email/CSV directly,
+PDF via pdf.js, Word via mammoth, and images / scanned PDFs via tesseract.js OCR.
+These libraries load lazily from public CDNs (cdnjs, jsDelivr) only when a matching
+file is chosen.
+
+> **If you add a Content-Security-Policy** to the site, allowlist `cdnjs.cloudflare.com`
+> and `cdn.jsdelivr.net` (script/worker/wasm/connect) or OCR/PDF extraction will break.
+> There is no CSP today, so it works out of the box. First OCR downloads the ~10 MB
+> English model (cached thereafter).
+
 ## Not yet wired (intentional stubs)
 
 - **Payments** — wired via Stripe Checkout + webhook (§5b). Until you set the

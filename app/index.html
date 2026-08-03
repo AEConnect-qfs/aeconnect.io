@@ -150,7 +150,7 @@
   // ── API helper ────────────────────────────────────────────────
   const API = '';
   let token = localStorage.getItem('ae_token') || '';
-  let user = null, usage = null, cases = [], current = null, mode = 'login';
+  let user = null, usage = null, cases = [], current = null, mode = 'login', ncSourceType = 'text';
 
   async function api(path, method = 'GET', body) {
     const res = await fetch(API + path, {
@@ -252,15 +252,21 @@
   }
 
   function newCase() {
-    current = null; renderCaseList();
+    current = null; ncSourceType = 'text'; renderCaseList();
     mainPanel.innerHTML = `
       <div class="card">
         <h2>New case</h2>
-        <p class="hint">Paste the adverse-event source text. The AI will draft a structured assessment you can review.</p>
+        <p class="hint">Upload a source document — PDF, Word, image/scan, email or text — or paste the text. Files are read in your browser; only the extracted text is sent. The AI then drafts a structured assessment you review.</p>
+        <label>Source document</label>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <input type="file" id="nc_file" accept=".pdf,.doc,.docx,.txt,.eml,.csv,.md,.json,.png,.jpg,.jpeg,.webp,.gif,.tif,.tiff" onchange="onFileChosen(this.files[0])" style="display:none" />
+          <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nc_file').click()">📎 Choose file…</button>
+          <span id="nc_filestatus" style="font-size:12.5px;color:var(--slate)"></span>
+        </div>
+        <label>Extracted / pasted text</label>
+        <textarea id="nc_text" placeholder="Paste the narrative, or upload a file above to auto-extract..."></textarea>
         <label>Case title (optional)</label>
         <input id="nc_title" placeholder="e.g. Headache after Cardizem XL" />
-        <label>Source document text</label>
-        <textarea id="nc_text" placeholder="Paste the narrative / intake / email text describing the adverse event..."></textarea>
         <button class="btn btn-primary full" onclick="createCase()">Create case</button>
         <div class="err" id="nc_err"></div>
       </div>`;
@@ -268,8 +274,8 @@
   async function createCase() {
     const title = document.getElementById('nc_title').value.trim();
     const sourceText = document.getElementById('nc_text').value.trim();
-    if (!sourceText) { document.getElementById('nc_err').textContent = 'Source text is required.'; return; }
-    const r = await api('/api/cases', 'POST', { title, sourceText });
+    if (!sourceText) { document.getElementById('nc_err').textContent = 'Source text is required — upload a file or paste text.'; return; }
+    const r = await api('/api/cases', 'POST', { title, sourceText, sourceType: ncSourceType });
     if (!r.ok) { document.getElementById('nc_err').textContent = r.data.error || 'Failed'; return; }
     await loadCases(); await selectCase(r.data.id);
   }
@@ -402,6 +408,90 @@
     const r = await api('/api/signoff', 'POST', { caseId: current.id, pin });
     if (r.ok) { await selectCase(current.id); await loadCases(); }
     else document.getElementById('signErr').textContent = r.data.error || 'Sign-off failed';
+  }
+
+  // ── File ingestion (client-side; PHI stays in the browser) ────
+  const CDN = {
+    pdfjs: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+    pdfWorker: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js',
+    mammoth: 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js',
+    tesseract: 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js',
+  };
+  const _scripts = {};
+  function loadScript(url) {
+    if (_scripts[url]) return _scripts[url];
+    _scripts[url] = new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = url; s.onload = res; s.onerror = () => rej(new Error('Could not load ' + url));
+      document.head.appendChild(s);
+    });
+    return _scripts[url];
+  }
+  function fstatus(msg) { const el = document.getElementById('nc_filestatus'); if (el) el.textContent = msg; }
+
+  async function onFileChosen(file) {
+    if (!file) return;
+    const name = file.name, ext = (name.split('.').pop() || '').toLowerCase();
+    const titleEl = document.getElementById('nc_title');
+    if (titleEl && !titleEl.value.trim()) titleEl.value = name.replace(/\.[^.]+$/, '');
+    try {
+      let text = '';
+      if (['txt', 'eml', 'csv', 'md', 'json'].includes(ext) || (file.type || '').startsWith('text/')) {
+        fstatus('Reading ' + name + '…'); text = await file.text(); ncSourceType = ext === 'eml' ? 'email' : 'text';
+      } else if (ext === 'pdf') {
+        text = await extractPdf(file); ncSourceType = 'pdf';
+      } else if (ext === 'docx' || ext === 'doc') {
+        fstatus('Extracting Word document…'); await loadScript(CDN.mammoth);
+        text = (await window.mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() })).value || ''; ncSourceType = 'word';
+      } else if (['png', 'jpg', 'jpeg', 'webp', 'gif', 'tif', 'tiff'].includes(ext) || (file.type || '').startsWith('image/')) {
+        text = await ocrImage(file); ncSourceType = 'image';
+      } else { fstatus('Unsupported file type — paste the text instead.'); return; }
+      text = (text || '').trim();
+      document.getElementById('nc_text').value = text;
+      fstatus(text ? `✓ Extracted ${text.length} characters from ${name}` : 'No text found — if this is a scan, upload it as an image for OCR.');
+    } catch (e) { fstatus('Extraction failed: ' + (e.message || e)); }
+  }
+
+  async function extractPdf(file) {
+    fstatus('Loading PDF engine…'); await loadScript(CDN.pdfjs);
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = CDN.pdfWorker;
+    const pdf = await window.pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+    const parts = [];
+    for (let p = 1; p <= pdf.numPages; p++) {
+      fstatus(`Reading PDF page ${p}/${pdf.numPages}…`);
+      const tc = await (await pdf.getPage(p)).getTextContent();
+      parts.push(tc.items.map((i) => i.str).join(' '));
+    }
+    let text = parts.join('\n').trim();
+    if (text.length < 20) { fstatus('No embedded text — running OCR on scanned pages…'); text = await ocrPdf(pdf); }
+    return text;
+  }
+
+  async function ocrPdf(pdf) {
+    await loadScript(CDN.tesseract);
+    const worker = await window.Tesseract.createWorker('eng');
+    const out = [];
+    try {
+      for (let p = 1; p <= pdf.numPages; p++) {
+        fstatus(`OCR page ${p}/${pdf.numPages}…`);
+        const page = await pdf.getPage(p);
+        const viewport = page.getViewport({ scale: 2 });
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width; canvas.height = viewport.height;
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+        out.push((await worker.recognize(canvas)).data.text);
+      }
+    } finally { await worker.terminate(); }
+    return out.join('\n').trim();
+  }
+
+  async function ocrImage(file) {
+    fstatus('Loading OCR engine…'); await loadScript(CDN.tesseract);
+    const worker = await window.Tesseract.createWorker('eng', 1, {
+      logger: (m) => { if (m.status === 'recognizing text') fstatus('OCR… ' + Math.round(m.progress * 100) + '%'); },
+    });
+    try { return (await worker.recognize(file)).data.text || ''; }
+    finally { await worker.terminate(); }
   }
 
   // init
