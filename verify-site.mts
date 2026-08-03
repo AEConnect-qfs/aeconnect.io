@@ -64,8 +64,8 @@ async function main() {
   check('locked case: assess/field/re-signoff all rejected', lockAssess.status === 400 && lockField.status === 409 && reSign.status === 409);
 
   // subscribe → core, then overage past included limit
-  const sub = await api('/api/subscribe', 'POST', token);
-  check('subscribe → core plan', sub.status === 200 && sub.body.plan === 'core');
+  const sub = await api('/api/create-checkout-session', 'POST', token);
+  check('subscribe (dev activate) → core plan', sub.status === 200 && sub.body.plan === 'core');
 
   // simulate month already at included limit, then assess the previously-blocked case 6
   const userId = su.body.user.id;

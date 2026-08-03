@@ -22,6 +22,10 @@ model User {
   plan              String        @default("trial") // "trial" | "core"
   trialCasesUsed    Int           @default(0)
   subscribedAt      DateTime?
+  // Stripe billing linkage (set by the checkout webhook).
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  subscriptionStatus   String? // active | past_due | canceled | ...
   esignaturePinHash String?
   createdAt         DateTime      @default(now())
   cases             Case[]

@@ -193,6 +193,12 @@
     authView.classList.add('hidden');
     appView.classList.remove('hidden');
     await refreshUsage();
+    // Returning from Stripe Checkout — the webhook activates Core; reflect it.
+    const params = new URLSearchParams(location.search);
+    if (params.get('checkout')) {
+      history.replaceState({}, '', '/app');
+      if (params.get('checkout') === 'success') setTimeout(refreshUsage, 1500);
+    }
     await loadCases();
     if (cases.length) selectCase(cases[0].id); else showEmpty();
   }
@@ -216,9 +222,12 @@
 
   async function refreshUsage() { const r = await api('/api/usage'); if (r.ok) usage = r.data; renderTop(); }
   async function subscribe() {
-    const r = await api('/api/subscribe', 'POST', {});
-    if (r.ok) { usage = r.data; renderTop(); if (current) renderCase(); }
-    else alert(r.data.error || 'Subscription failed');
+    const r = await api('/api/create-checkout-session', 'POST', {});
+    if (!r.ok) { alert(r.data.error || 'Subscription failed'); return; }
+    if (r.data.url) { window.location.href = r.data.url; return; } // → Stripe Checkout
+    // Dev fallback / already subscribed: plan activated server-side.
+    if (r.data.plan) usage = r.data;
+    await refreshUsage(); if (current) renderCase();
   }
 
   // ── Cases ─────────────────────────────────────────────────────

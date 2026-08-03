@@ -91,10 +91,32 @@ Site configuration → Environment variables. Add:
 | `JWT_SECRET` | a long random string — generate with `openssl rand -hex 32` |
 | `ANTHROPIC_API_KEY` | your Anthropic key (server-side only; never shipped to the browser) |
 | `ANTHROPIC_MODEL` | *(optional)* defaults to `claude-sonnet-4-20250514` |
+| `STRIPE_SECRET_KEY` | Stripe secret key (`sk_live_...`) |
+| `STRIPE_PRICE_ID` | the recurring Core price id (`price_...`) |
+| `STRIPE_WEBHOOK_SECRET` | signing secret of your webhook endpoint (`whsec_...`) |
+| `SITE_URL` | `https://aeconnect.io` (Checkout redirect base) |
 
 `NODE_VERSION` is already pinned to 20 in `netlify.toml`.
 
+> If the Stripe vars are omitted, the Subscribe button **activates Core directly**
+> (dev convenience) instead of charging — so don't ship to production without them.
+
 Trigger a redeploy after setting these.
+
+## 5b. Configure Stripe (payments)
+
+1. **Product + price:** Stripe Dashboard → Products → create "AE Connect Core",
+   add a **recurring $20/month** price. Copy its id (`price_...`) → `STRIPE_PRICE_ID`.
+2. **Secret key:** Developers → API keys → copy the secret key → `STRIPE_SECRET_KEY`.
+3. **Webhook:** Developers → Webhooks → Add endpoint:
+   - URL: `https://aeconnect.io/api/stripe-webhook`
+   - Events: `checkout.session.completed`, `customer.subscription.updated`,
+     `customer.subscription.deleted`
+   - Copy the signing secret (`whsec_...`) → `STRIPE_WEBHOOK_SECRET`.
+4. Set `SITE_URL=https://aeconnect.io` so Checkout redirects back correctly.
+
+The Subscribe button → `create-checkout-session` → Stripe Checkout → on success the
+webhook flips the account to Core. Cancellations/expiries downgrade it back to trial.
 
 ## 6. Verify the live deploy
 
@@ -117,11 +139,8 @@ npx tsx verify-site.mts   # 12 end-to-end checks
 
 ## Not yet wired (intentional stubs)
 
-- **Payments** — `POST /api/subscribe` flips the account to the Core plan and starts
-  overage metering, but there is **no Stripe charge** yet. Add Stripe Checkout before
-  taking real money, or hide the Subscribe button until then.
-- **File upload / OCR** — the workspace accepts pasted **text**. PDF/Word/email/scan
-  parsing + OCR (spec §6 ingestion) is a later module.
+- **Payments** — wired via Stripe Checkout + webhook (§5b). Until you set the
+  `STRIPE_*` env vars, Subscribe activates Core directly without charging.
 - **Data retention / backups** — Neon handles Postgres durability; PV records often need
   ~25-year retention (spec §7). Plan a backup/retention policy before real cases.
 
