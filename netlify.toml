@@ -1,6 +1,10 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+  command = "npx prisma generate"
+
+[build.environment]
+  NODE_VERSION = "20"
 
 [functions]
   # Prisma query engine must be bundled with each function.
