@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Workspace | AE Connect</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:#0a1628; --navy-mid:#112240; --teal:#00d4c8; --teal-dark:#00a896;
+      --teal-muted:rgba(0,212,200,0.1); --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff;
+      --border:rgba(255,255,255,0.08); --card-bg:rgba(255,255,255,0.03);
+      --amber:#f5c842; --red:#ff6b6b; --green:#4ade80;
+    }
+    body { font-family:'Inter',sans-serif; background:var(--navy); color:var(--light); line-height:1.6; min-height:100vh; }
+    a { color:var(--teal); text-decoration:none; }
+    button { font-family:inherit; cursor:pointer; }
+    .hidden { display:none !important; }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between;
+      padding:0 28px; height:60px; background:rgba(10,22,40,0.95); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .brand { font-size:17px; font-weight:700; color:var(--white); letter-spacing:-0.3px; }
+    .brand span { color:var(--teal); }
+    .brand .sub { font-size:12px; font-weight:500; color:var(--slate); margin-left:10px; padding-left:10px; border-left:1px solid var(--border); }
+    .top-right { display:flex; align-items:center; gap:16px; font-size:13px; }
+    .usage-pill { display:flex; align-items:center; gap:8px; padding:5px 12px; border-radius:20px; background:var(--card-bg); border:1px solid var(--border); font-size:12.5px; }
+    .usage-pill .dot { width:7px; height:7px; border-radius:50%; background:var(--teal); }
+    .usage-pill.warn { border-color:rgba(245,200,66,0.4); background:rgba(245,200,66,0.08); }
+    .usage-pill.warn .dot { background:var(--amber); }
+    .btn { border:none; border-radius:6px; padding:8px 16px; font-size:13px; font-weight:600; transition:opacity .15s, transform .1s; }
+    .btn:active { transform:translateY(1px); }
+    .btn-primary { background:var(--teal); color:var(--navy); }
+    .btn-primary:hover { opacity:.9; }
+    .btn-ghost { background:transparent; color:var(--slate); border:1px solid var(--border); }
+    .btn-ghost:hover { color:var(--white); }
+    .btn-amber { background:linear-gradient(135deg,#e8a910,#f5c842); color:var(--navy); font-weight:700; }
+    .btn-sm { padding:5px 11px; font-size:12px; }
+    .btn:disabled { opacity:.4; cursor:not-allowed; }
+
+    /* Auth */
+    .auth-wrap { max-width:400px; margin:8vh auto; padding:0 20px; }
+    .auth-card { background:var(--card-bg); border:1px solid var(--border); border-radius:14px; padding:32px; }
+    .auth-card h1 { font-size:22px; color:var(--white); margin-bottom:6px; }
+    .auth-card p.sub { font-size:13.5px; color:var(--slate); margin-bottom:22px; }
+    .tabs { display:flex; gap:4px; background:rgba(0,0,0,0.25); padding:4px; border-radius:8px; margin-bottom:20px; }
+    .tabs button { flex:1; padding:8px; border:none; background:transparent; color:var(--slate); font-size:13px; font-weight:600; border-radius:6px; }
+    .tabs button.active { background:var(--teal); color:var(--navy); }
+    label { display:block; font-size:12px; font-weight:600; color:var(--slate); margin:14px 0 6px; }
+    input, textarea, select { width:100%; padding:10px 12px; background:rgba(0,0,0,0.25); border:1px solid var(--border);
+      border-radius:7px; color:var(--white); font-size:13.5px; font-family:inherit; }
+    input:focus, textarea:focus { outline:none; border-color:var(--teal); }
+    textarea { resize:vertical; min-height:120px; line-height:1.55; }
+    .err { color:var(--red); font-size:12.5px; margin-top:12px; min-height:16px; }
+    .full { width:100%; margin-top:20px; }
+
+    /* App layout */
+    .layout { display:grid; grid-template-columns:300px 1fr; min-height:calc(100vh - 60px); }
+    .sidebar { border-right:1px solid var(--border); padding:18px; overflow-y:auto; }
+    .sidebar h3 { font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--slate); margin-bottom:12px; }
+    .case-item { padding:11px 12px; border:1px solid var(--border); border-radius:8px; margin-bottom:8px; cursor:pointer; transition:border-color .15s, background .15s; }
+    .case-item:hover { border-color:var(--teal-dark); }
+    .case-item.active { border-color:var(--teal); background:var(--teal-muted); }
+    .case-item .ref { font-size:11px; color:var(--slate); font-weight:600; letter-spacing:0.03em; }
+    .case-item .ttl { font-size:13.5px; color:var(--white); margin:2px 0 4px; }
+    .main { padding:26px 32px; overflow-y:auto; max-width:960px; }
+
+    .badge { display:inline-block; font-size:10.5px; font-weight:700; padding:2px 9px; border-radius:11px; letter-spacing:0.04em; text-transform:uppercase; }
+    .b-pending { background:rgba(136,146,164,0.18); color:var(--slate); }
+    .b-review  { background:rgba(0,212,200,0.14); color:var(--teal); }
+    .b-cleared { background:rgba(74,222,128,0.15); color:var(--green); }
+    .conf { font-size:10px; font-weight:700; padding:1px 7px; border-radius:9px; text-transform:uppercase; letter-spacing:0.03em; }
+    .conf-high { background:rgba(74,222,128,0.15); color:var(--green); }
+    .conf-medium { background:rgba(245,200,66,0.15); color:var(--amber); }
+    .conf-low { background:rgba(255,107,107,0.16); color:var(--red); }
+
+    .card { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:18px; }
+    .card h2 { font-size:15px; color:var(--white); margin-bottom:4px; }
+    .card .hint { font-size:12.5px; color:var(--slate); margin-bottom:14px; }
+
+    /* Field rows */
+    .field { border:1px solid var(--border); border-radius:9px; padding:13px 15px; margin-bottom:10px; }
+    .field.needs { border-color:rgba(255,107,107,0.35); }
+    .field.decided { border-color:rgba(74,222,128,0.3); }
+    .field-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .field-label { font-size:12px; font-weight:600; color:var(--slate); }
+    .field-val { font-size:14px; color:var(--white); margin-top:5px; word-break:break-word; }
+    .field-actions { display:flex; gap:7px; margin-top:11px; align-items:center; }
+    .field-status { font-size:11.5px; font-weight:600; }
+    .field-status.ok { color:var(--green); }
+    .field-status.over { color:var(--amber); }
+    .override-box { margin-top:9px; display:none; }
+    .override-box textarea { min-height:60px; }
+
+    .signoff-cleared { background:rgba(74,222,128,0.07); border:1px solid rgba(74,222,128,0.3); border-radius:12px; padding:20px; }
+    .signoff-cleared .chk { font-size:15px; color:var(--green); font-weight:700; margin-bottom:8px; }
+    .mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; color:var(--slate); word-break:break-all; }
+    .empty { color:var(--slate); font-size:14px; text-align:center; margin-top:80px; }
+    .row { display:flex; gap:10px; align-items:center; }
+    .banner { padding:12px 16px; border-radius:9px; font-size:13px; margin-bottom:16px; }
+    .banner-warn { background:rgba(245,200,66,0.1); border:1px solid rgba(245,200,66,0.35); color:var(--amber); }
+    .disclaimer { font-size:11.5px; color:var(--slate); background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:8px; padding:9px 12px; margin-bottom:16px; }
+    @media (max-width:760px){ .layout{ grid-template-columns:1fr; } .sidebar{ border-right:none; border-bottom:1px solid var(--border);} }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="row">
+      <a href="/" class="brand">AE <span>Connect</span><span class="sub">AI Workspace</span></a>
+    </div>
+    <div class="top-right" id="topRight"></div>
+  </div>
+
+  <!-- AUTH VIEW -->
+  <div id="authView" class="auth-wrap">
+    <div class="auth-card">
+      <h1>AI Case Processing</h1>
+      <p class="sub">Upload an adverse-event source document; the AI drafts a structured assessment for you to review and sign off. First 5 cases free — no card.</p>
+      <div class="tabs">
+        <button id="tabLogin" class="active" onclick="setMode('login')">Log in</button>
+        <button id="tabSignup" onclick="setMode('signup')">Sign up</button>
+      </div>
+      <div id="nameField" class="hidden">
+        <label>Full name</label>
+        <input id="f_name" placeholder="Dr. Jane Doe" />
+      </div>
+      <label>Email</label>
+      <input id="f_email" type="email" placeholder="you@company.com" />
+      <label>Password</label>
+      <input id="f_password" type="password" placeholder="••••••••" />
+      <button class="btn btn-primary full" id="authBtn" onclick="submitAuth()">Log in</button>
+      <div class="err" id="authErr"></div>
+    </div>
+  </div>
+
+  <!-- APP VIEW -->
+  <div id="appView" class="layout hidden">
+    <aside class="sidebar">
+      <button class="btn btn-primary" style="width:100%;margin-bottom:16px" onclick="newCase()">+ New case</button>
+      <h3>Your cases</h3>
+      <div id="caseList"></div>
+    </aside>
+    <main class="main" id="mainPanel"></main>
+  </div>
+
+  <script>
+  // ── API helper ────────────────────────────────────────────────
+  const API = '';
+  let token = localStorage.getItem('ae_token') || '';
+  let user = null, usage = null, cases = [], current = null, mode = 'login';
+
+  async function api(path, method = 'GET', body) {
+    const res = await fetch(API + path, {
+      method,
+      headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: 'Bearer ' + token } : {}) },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    let data = {};
+    try { data = await res.json(); } catch {}
+    return { status: res.status, ok: res.ok, data };
+  }
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+
+  // ── Auth ──────────────────────────────────────────────────────
+  function setMode(m) {
+    mode = m;
+    tabLogin.classList.toggle('active', m === 'login');
+    tabSignup.classList.toggle('active', m === 'signup');
+    nameField.classList.toggle('hidden', m !== 'signup');
+    authBtn.textContent = m === 'login' ? 'Log in' : 'Create account';
+    authErr.textContent = '';
+  }
+  async function submitAuth() {
+    authErr.textContent = '';
+    const email = f_email.value.trim(), password = f_password.value, name = f_name.value.trim();
+    if (!email || !password) { authErr.textContent = 'Email and password are required.'; return; }
+    const path = mode === 'login' ? '/api/login' : '/api/signup';
+    const r = await api(path, 'POST', mode === 'login' ? { email, password } : { email, password, name });
+    if (!r.ok) { authErr.textContent = r.data.error || 'Something went wrong.'; return; }
+    token = r.data.token; localStorage.setItem('ae_token', token);
+    await boot();
+  }
+  function logout() { token = ''; localStorage.removeItem('ae_token'); location.reload(); }
+
+  // ── Boot ──────────────────────────────────────────────────────
+  async function boot() {
+    const me = await api('/api/me');
+    if (!me.ok) { showAuth(); return; }
+    user = me.data;
+    authView.classList.add('hidden');
+    appView.classList.remove('hidden');
+    await refreshUsage();
+    await loadCases();
+    if (cases.length) selectCase(cases[0].id); else showEmpty();
+  }
+  function showAuth() { appView.classList.add('hidden'); authView.classList.remove('hidden'); renderTop(); }
+
+  function renderTop() {
+    if (!user) { topRight.innerHTML = ''; return; }
+    let pill = '';
+    if (usage) {
+      if (usage.plan === 'trial') {
+        const rem = usage.trial.remaining;
+        pill = `<div class="usage-pill ${rem <= 1 ? 'warn' : ''}"><span class="dot"></span>Free trial · ${usage.trial.used}/${usage.trial.limit} used</div>`;
+      } else {
+        pill = `<div class="usage-pill"><span class="dot"></span>Core · ${usage.casesProcessed}/${usage.includedPerMonth} this month${usage.overageCases ? ' · +' + usage.overageCases + ' overage' : ''} · ${usage.estimatedAmountDue}</div>`;
+      }
+    }
+    const sub = usage && usage.plan === 'trial'
+      ? `<button class="btn btn-amber btn-sm" onclick="subscribe()">Subscribe · $20/mo</button>` : '';
+    topRight.innerHTML = `${pill}${sub}<span style="color:var(--slate)">${esc(user.name)}</span><button class="btn btn-ghost btn-sm" onclick="logout()">Log out</button>`;
+  }
+
+  async function refreshUsage() { const r = await api('/api/usage'); if (r.ok) usage = r.data; renderTop(); }
+  async function subscribe() {
+    const r = await api('/api/subscribe', 'POST', {});
+    if (r.ok) { usage = r.data; renderTop(); if (current) renderCase(); }
+    else alert(r.data.error || 'Subscription failed');
+  }
+
+  // ── Cases ─────────────────────────────────────────────────────
+  async function loadCases() {
+    const r = await api('/api/cases'); cases = r.ok ? r.data.cases : []; renderCaseList();
+  }
+  function renderCaseList() {
+    caseList.innerHTML = cases.map((c) => `
+      <div class="case-item ${current && current.id === c.id ? 'active' : ''}" onclick="selectCase('${c.id}')">
+        <div class="ref">${esc(c.caseRef)}</div>
+        <div class="ttl">${esc(c.title)}</div>
+        <span class="badge b-${badgeClass(c.status)}">${statusLabel(c.status)}</span>
+      </div>`).join('') || `<p style="color:var(--slate);font-size:13px">No cases yet.</p>`;
+  }
+  const badgeClass = (s) => s === 'cleared' ? 'cleared' : s === 'in_review' || s === 'ai_drafted' ? 'review' : 'pending';
+  const statusLabel = (s) => ({ pending:'Pending', ai_drafted:'AI drafted', in_review:'In review', cleared:'Cleared' }[s] || s);
+
+  async function selectCase(id) {
+    const r = await api('/api/cases?id=' + id);
+    if (!r.ok) return;
+    current = r.data; renderCaseList(); renderCase();
+  }
+
+  function newCase() {
+    current = null; renderCaseList();
+    mainPanel.innerHTML = `
+      <div class="card">
+        <h2>New case</h2>
+        <p class="hint">Paste the adverse-event source text. The AI will draft a structured assessment you can review.</p>
+        <label>Case title (optional)</label>
+        <input id="nc_title" placeholder="e.g. Headache after Cardizem XL" />
+        <label>Source document text</label>
+        <textarea id="nc_text" placeholder="Paste the narrative / intake / email text describing the adverse event..."></textarea>
+        <button class="btn btn-primary full" onclick="createCase()">Create case</button>
+        <div class="err" id="nc_err"></div>
+      </div>`;
+  }
+  async function createCase() {
+    const title = document.getElementById('nc_title').value.trim();
+    const sourceText = document.getElementById('nc_text').value.trim();
+    if (!sourceText) { document.getElementById('nc_err').textContent = 'Source text is required.'; return; }
+    const r = await api('/api/cases', 'POST', { title, sourceText });
+    if (!r.ok) { document.getElementById('nc_err').textContent = r.data.error || 'Failed'; return; }
+    await loadCases(); await selectCase(r.data.id);
+  }
+  function showEmpty() { mainPanel.innerHTML = `<div class="empty">Select a case, or create your first one.</div>`; }
+
+  // ── Case detail / assessment ──────────────────────────────────
+  const FIELDS = [
+    ['seriousness','Seriousness'], ['meddraPt','MedDRA Preferred Term'], ['meddraCode','MedDRA Code'],
+    ['soc','System Organ Class'], ['causality','Causality'], ['expectedness','Expectedness'],
+    ['regulatoryRequired','Regulatory Reporting Required'], ['regulatoryTimeline','Reporting Timeline'], ['narrative','Narrative'],
+  ];
+
+  function decisionFor(fieldKey) {
+    if (!current) return null;
+    const d = (current.fieldDecisions || []).filter((x) => x.fieldKey === fieldKey);
+    return d.length ? d[0] : null; // most recent first (ordered desc by API)
+  }
+
+  function renderCase() {
+    const c = current; if (!c) return;
+    const a = c.assessment;
+    const locked = !!c.lockedAt;
+    let html = `
+      <div class="row" style="justify-content:space-between;margin-bottom:8px">
+        <div><div style="font-size:12px;color:var(--slate);font-weight:600">${esc(c.caseRef)}</div>
+        <h2 style="font-size:19px;color:var(--white)">${esc(c.title)}</h2></div>
+        <span class="badge b-${badgeClass(c.status)}">${statusLabel(c.status)}</span>
+      </div>
+      <div class="disclaimer">⚠ Decision support only — the AI draft is not a regulatory action. A qualified reviewer must sign off before any downstream use.</div>
+      <div class="card"><h2>Source document</h2><div class="hint" style="margin:0">${esc(c.sourceText)}</div></div>`;
+
+    if (!a) {
+      const blocked = usage && usage.plan === 'trial' && usage.trial.remaining <= 0;
+      html += `<div class="card"><h2>AI assessment</h2>
+        <p class="hint">Run the AI engine to draft the structured assessment.</p>
+        ${blocked ? `<div class="banner banner-warn">Your free trial is used up. Subscribe to Core to process this case.</div>
+          <button class="btn btn-amber" onclick="subscribe()">Subscribe · $20/mo</button>`
+          : `<button class="btn btn-primary" id="assessBtn" onclick="runAssess()">🚀 Run AI assessment</button>`}
+        <div class="err" id="assessErr"></div></div>`;
+      mainPanel.innerHTML = html;
+      return;
+    }
+
+    // Assessment present → field review
+    const allDecided = FIELDS.every(([k]) => decisionFor(k));
+    html += `<div class="card"><h2>AI-drafted assessment · <span style="color:var(--slate);font-weight:500">${esc(a.confidence ? '' : '')}model ${esc(currentModelVersion())}</span></h2>
+      <p class="hint">Review each field. Accept the AI value or override it. ${locked ? '' : 'All fields must be decided before sign-off.'} Low-confidence fields are flagged.</p>`;
+
+    for (const [key, label] of FIELDS) {
+      const aiVal = key === 'authorities' ? (a.authorities || []).join(', ') : a[key];
+      const conf = (a.confidence && a.confidence[key]) || null;
+      const dec = decisionFor(key);
+      const needs = conf === 'low' && !dec;
+      html += `<div class="field ${dec ? 'decided' : ''} ${needs ? 'needs' : ''}">
+        <div class="field-top">
+          <span class="field-label">${label}</span>
+          ${conf ? `<span class="conf conf-${conf}">${conf} confidence</span>` : ''}
+        </div>
+        <div class="field-val">${esc(dec ? dec.finalValue : aiVal)}</div>`;
+      if (!locked) {
+        if (dec) {
+          html += `<div class="field-actions"><span class="field-status ${dec.decisionType === 'override' ? 'over' : 'ok'}">
+            ${dec.decisionType === 'override' ? '✎ Overridden' : '✓ Accepted'}</span>
+            <button class="btn btn-ghost btn-sm" onclick="startOverride('${key}')">Change</button></div>`;
+        } else {
+          html += `<div class="field-actions">
+            <button class="btn btn-primary btn-sm" onclick="accept('${key}', ${JSON.stringify(aiVal).replace(/"/g,'&quot;')})">Accept</button>
+            <button class="btn btn-ghost btn-sm" onclick="startOverride('${key}')">Override</button></div>`;
+        }
+        html += `<div class="override-box" id="ov_${key}">
+          <textarea id="ovval_${key}">${esc(dec ? dec.finalValue : aiVal)}</textarea>
+          <input id="ovreason_${key}" placeholder="Reason for override (optional)" style="margin-top:7px" />
+          <button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="saveOverride('${key}', ${JSON.stringify(aiVal).replace(/"/g,'&quot;')})">Save override</button>
+        </div>`;
+      }
+      html += `</div>`;
+    }
+    html += `</div>`;
+
+    // Sign-off
+    if (locked) {
+      const sig = c.esignature || {};
+      html += `<div class="signoff-cleared">
+        <div class="chk">✓ Case cleared &amp; locked</div>
+        <div style="font-size:13px">Signed by <strong style="color:var(--white)">${esc(sig.signerName)}</strong> · ${new Date(sig.signedAt).toLocaleString()}</div>
+        <div style="font-size:12.5px;color:var(--slate);margin:8px 0">${esc(sig.statement)}</div>
+        <div class="mono">audit hash: ${esc(sig.boundAuditHash)}</div>
+      </div>`;
+    } else {
+      html += `<div class="card"><h2>Sign-off (e-signature)</h2>
+        <p class="hint">${allDecided ? 'Enter your e-signature PIN to certify and clear this case. This locks the record.' : 'Decide every field above to enable sign-off.'}</p>
+        ${!user.hasEsignaturePin ? `<div class="banner banner-warn">Set an e-signature PIN first.</div>
+          <div class="row"><input id="setpin" type="password" placeholder="Choose a PIN (min 4)" style="max-width:220px" />
+          <button class="btn btn-ghost btn-sm" onclick="savePin()">Set PIN</button></div><div class="err" id="pinErr"></div>`
+          : `<div class="row"><input id="signpin" type="password" placeholder="e-signature PIN" style="max-width:220px" ${allDecided ? '' : 'disabled'} />
+          <button class="btn btn-primary" ${allDecided ? '' : 'disabled'} onclick="signOff()">Sign off &amp; clear</button></div><div class="err" id="signErr"></div>`}
+      </div>`;
+    }
+    mainPanel.innerHTML = html;
+  }
+  function currentModelVersion() { return (current && current.assessment && current.assessment.__mv) || 'ai'; }
+
+  async function runAssess() {
+    const btn = document.getElementById('assessBtn'); if (btn) { btn.disabled = true; btn.textContent = 'Assessing…'; }
+    const r = await api('/api/assess', 'POST', { caseId: current.id });
+    if (r.status === 402) { await refreshUsage(); document.getElementById('assessErr').textContent = r.data.error; renderCase(); return; }
+    if (!r.ok) { document.getElementById('assessErr').textContent = r.data.error || 'Assessment failed'; if (btn){btn.disabled=false;btn.textContent='🚀 Run AI assessment';} return; }
+    await refreshUsage(); await selectCase(current.id); await loadCases();
+  }
+
+  async function accept(key, aiVal) {
+    const r = await api('/api/field-decision', 'POST', { caseId: current.id, fieldKey: key, decisionType: 'accept', aiValue: String(aiVal) });
+    if (r.ok) await selectCase(current.id); else alert(r.data.error || 'Failed');
+  }
+  function startOverride(key) { const box = document.getElementById('ov_' + key); if (box) box.style.display = box.style.display === 'block' ? 'none' : 'block'; }
+  async function saveOverride(key, aiVal) {
+    const finalValue = document.getElementById('ovval_' + key).value;
+    const reason = document.getElementById('ovreason_' + key).value;
+    const r = await api('/api/field-decision', 'POST', { caseId: current.id, fieldKey: key, decisionType: 'override', aiValue: String(aiVal), finalValue, reason });
+    if (r.ok) await selectCase(current.id); else alert(r.data.error || 'Failed');
+  }
+
+  async function savePin() {
+    const pin = document.getElementById('setpin').value;
+    const r = await api('/api/set-pin', 'POST', { pin });
+    if (r.ok) { user.hasEsignaturePin = true; renderCase(); } else document.getElementById('pinErr').textContent = r.data.error || 'Failed';
+  }
+  async function signOff() {
+    const pin = document.getElementById('signpin').value;
+    const r = await api('/api/signoff', 'POST', { caseId: current.id, pin });
+    if (r.ok) { await selectCase(current.id); await loadCases(); }
+    else document.getElementById('signErr').textContent = r.data.error || 'Sign-off failed';
+  }
+
+  // init
+  if (token) boot(); else showAuth();
+  </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | AE Connect by QORO Intelligence</title>
+  <meta name="description" content="AE Connect is an AI-powered adverse event intake platform built by QORO Intelligence for small and mid-size biotech IND sponsors." />
+  <link rel="canonical" href="https://aeconnect.io/about" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    
+    :root {
+      --navy:       #0a1628;
+      --navy-mid:   #112240;
+      --teal:       #00d4c8;
+      --teal-dark:  #00a896;
+      --teal-muted: rgba(0, 212, 200, 0.1);
+      --gold:       #e8a910;
+      --slate:      #8892a4;
+      --light:      #ccd6f6;
+      --white:      #e6f1ff;
+      --border:     rgba(255,255,255,0.07);
+      --card-bg:    rgba(255,255,255,0.03);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--navy); color:var(--light); line-height:1.7; min-height:100vh; display:flex; flex-direction:column; }
+    a { color:var(--teal); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 18px; font-weight: 700; color: var(--white); letter-spacing: -0.3px; text-decoration: none; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--slate); transition: color 0.2s; text-decoration: none; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--teal); color: var(--navy) !important; padding: 8px 18px; border-radius: 6px; font-weight: 600 !important; font-size: 13px !important; transition: opacity 0.2s !important; }
+    .nav-cta:hover { opacity: 0.88; }
+    .nav-beta { background: linear-gradient(135deg, #e8a910, #f5c842); color: #0a1628 !important; padding: 7px 15px; border-radius: 6px; font-weight: 700 !important; font-size: 12px !important; animation: beta-glow 2.5s infinite; white-space: nowrap; transition: opacity 0.2s, transform 0.15s !important; }
+    .nav-beta:hover { opacity: 0.9 !important; transform: translateY(-1px); color: #0a1628 !important; }
+    .nav-beta::before { content: "\25CF"; font-size: 0.45rem; margin-right: 5px; vertical-align: middle; opacity: 0.8; animation: beta-pulse 2s infinite; }
+    @keyframes beta-glow { 0%,100% { box-shadow: 0 0 0 0 rgba(232,169,16,0.5); } 50% { box-shadow: 0 0 0 7px rgba(232,169,16,0); } }
+    @keyframes beta-pulse { 0%,100% { opacity: 0.8; } 50% { opacity: 0.3; } }
+    .page-header { max-width:1100px; margin:0 auto; padding:72px 24px 56px; border-bottom:1px solid var(--border); }
+    .eyebrow { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:16px; }
+    .page-header h1 { font-size:clamp(32px,4vw,48px); font-weight:700; color:var(--white); letter-spacing:-0.5px; margin-bottom:14px; line-height:1.15; }
+    .page-header p { font-size:17px; color:var(--slate); max-width:580px; line-height:1.65; font-weight:300; }
+    main { flex:1; max-width:1100px; margin:0 auto; width:100%; padding:64px 24px 100px; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; margin-bottom:72px; }
+    .about-grid h2 { font-size:clamp(22px,2.5vw,30px); font-weight:700; color:var(--white); letter-spacing:-0.3px; margin-bottom:16px; line-height:1.2; }
+    .about-grid p { font-size:15px; color:var(--slate); line-height:1.75; font-weight:300; margin-bottom:14px; }
+    .about-grid p:last-child { margin-bottom:0; }
+    .divider { border:none; border-top:1px solid var(--border); margin:64px 0; }
+    .team-section h2 { font-size:clamp(22px,2.5vw,30px); font-weight:700; color:var(--white); letter-spacing:-0.3px; margin-bottom:8px; }
+    .team-section .sub { font-size:15px; color:var(--slate); font-weight:300; margin-bottom:40px; }
+    .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+    .team-card { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:28px; }
+    .team-card .avatar { width:48px; height:48px; border-radius:50%; background:var(--teal-muted); border:1px solid rgba(0,212,200,0.2); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:var(--teal); margin-bottom:16px; }
+    .team-card h3 { font-size:16px; font-weight:600; color:var(--white); margin-bottom:4px; }
+    .team-card .role { font-size:12px; font-weight:600; color:var(--teal); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px; }
+    .team-card p { font-size:13px; color:var(--slate); line-height:1.65; }
+    .mission-block { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:40px 48px; margin-bottom:72px; display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+    .mission-block h2 { font-size:clamp(20px,2vw,26px); font-weight:700; color:var(--white); letter-spacing:-0.3px; margin-bottom:14px; }
+    .mission-block p { font-size:15px; color:var(--slate); line-height:1.75; font-weight:300; }
+    .stat-row { display:flex; gap:40px; margin-top:32px; }
+    .stat-item .num { font-size:28px; font-weight:700; color:var(--white); letter-spacing:-0.5px; }
+    .stat-item .num span { color:var(--teal); }
+    .stat-item .lbl { font-size:12px; color:var(--slate); margin-top:2px; }
+    @media(max-width:900px) { main { padding:40px 20px 60px; } .about-grid { grid-template-columns:1fr; gap:32px; } .team-grid { grid-template-columns:1fr; } .mission-block { grid-template-columns:1fr; gap:28px; padding:28px 24px; } .stat-row { flex-wrap:wrap; gap:24px; } }
+    
+    footer { border-top: 1px solid var(--border); padding: 56px 48px 32px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding-bottom: 32px; }
+    .footer-brand p { font-size: 13px; color: var(--slate); margin-top: 12px; max-width: 280px; line-height: 1.6; }
+    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--slate); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 13px; color: var(--slate); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); text-decoration: none; }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--slate); }
+    @media (max-width: 900px) { nav { padding: 0 20px; } .nav-links { display: none; } .footer-inner { grid-template-columns: 1fr; gap: 28px; } .footer-bottom { flex-direction: column; gap: 8px; text-align: center; } footer { padding: 40px 20px; } }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    .page-header { animation: fadeUp 0.5s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features">Features</a></li>
+    <li><a href="https://aeconnect.io/blog">Blog</a></li>
+    <li><a href="https://aeconnect.io/about" class="active">About</a></li>
+    <li><a href="https://aeconnect.io/contact">Contact</a></li>
+    <li><a href="https://aeconnect.io/beta" class="nav-beta">Beta Program</a></li>
+    <li><a href="/app" class="nav-cta">Try the AI Workspace →</a></li>
+    <li><a href="https://app.aeconnect.io" style="font-size:13px;font-weight:500;color:var(--slate)">Launch App</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">About AE Connect</div>
+  <h1>Built by PV practitioners, for PV practitioners</h1>
+  <p>AE Connect is a product of QORO Intelligence Inc. — a quality and pharmacovigilance technology company founded by industry veterans who spent years building GxP infrastructure at biotech companies and saw the same gap everywhere.</p>
+</div>
+
+<main>
+
+  <div class="mission-block">
+    <div>
+      <h2>The problem we're solving</h2>
+      <p>Small and mid-size IND sponsors are caught between two bad options: sprawling enterprise safety databases built for large MAHs, or ad-hoc spreadsheet and email processes that don't scale and can't pass an FDA inspection.</p>
+      <p>AE Connect is the intake layer that sits in between — purpose-built for teams running one to ten studies, with AI-assisted triage, a validated case workflow, and E2B(R3)-compliant output. Right-sized for where you are, ready for where you're going.</p>
+    </div>
+    <div>
+      <h2>Why we built it</h2>
+      <p>Our founders have collectively spent 15+ years building pharmacovigilance programs at Gilead Sciences, Prothena Biosciences, Kura Oncology, and Geron Corporation. Every engagement involved the same manual, error-prone AE intake process.</p>
+      <p>We built AE Connect to solve the problem we lived.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="num">15<span>+</span></div><div class="lbl">Years PV experience</div></div>
+        <div class="stat-item"><div class="num"><span>4</span></div><div class="lbl">Biotech programs built</div></div>
+        <div class="stat-item"><div class="num">2026</div><div class="lbl">Founded</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-section">
+    <h2>The team</h2>
+    <p class="sub">QORO Intelligence is a small, focused team. We work closely with every customer.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">DS</div>
+        <h3>Daman Singh</h3>
+        <div class="role">Founder &amp; CEO</div>
+        <p>15+ years in pharmaceutical quality assurance and pharmacovigilance. Previously at Gilead Sciences, Prothena Biosciences, Kura Oncology, and Geron Corporation. ASQ Certified Quality Auditor. Veeva Vault Certified Admin.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">RG</div>
+        <h3>Raman Gill</h3>
+        <div class="role">Director, Business Development &amp; Operations</div>
+        <p>Leads business development, partner relationships, and operational infrastructure at QORO Intelligence. Focused on bringing AE Connect to small and mid-size biotech programs across North America.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="about-grid">
+    <div>
+      <h2>Delaware corporation. California team.</h2>
+      <p>QORO Intelligence Inc. is incorporated in Delaware and operates out of the San Francisco Bay Area. Our engineering, product, and customer teams are all based in California.</p>
+      <p>We build in the open with our customers — beta participants work directly with our founders, not a support queue.</p>
+    </div>
+    <div>
+      <h2>What's next</h2>
+      <p>AE Connect is in active beta through June 30, 2026. We're working with a small cohort of IND sponsors to validate the platform against real production workflows before full commercial launch in Q3 2026.</p>
+      <p>If you're running an IND-stage program and want to shape what we build, the beta program is open. <a href="https://aeconnect.io/beta">Apply here.</a></p>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="font-size:18px;font-weight:700;color:var(--white);">AE <span style="color:var(--teal);">Connect</span></div>
+      <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <ul>
+        <li><a href="https://aeconnect.io/features">Features</a></li>
+        <li><a href="https://aeconnect.io/beta">Beta Program</a></li>
+        <li><a href="https://app.aeconnect.io">Launch App</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="https://qorosystems.com">QORO Intelligence</a></li>
+        <li><a href="https://aeconnect.io/about">About</a></li>
+        <li><a href="https://aeconnect.io/contact">Contact</a></li>
+        <li><a href="https://aeconnect.io/blog">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 QORO Intelligence Inc. All rights reserved.</span>
+    <span>Made in California</span>
+  </div>
+</footer>
+
+</body>
+</html>

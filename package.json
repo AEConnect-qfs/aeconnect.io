@@ -1,0 +1,31 @@
+{
+  "name": "aeconnect-site",
+  "version": "1.0.0",
+  "description": "aeconnect.io — public site + self-serve AI case-processing interface (Netlify Functions backend)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx dev-server.mts",
+    "prisma:push": "prisma db push",
+    "prisma:generate": "prisma generate",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.74.0",
+    "@prisma/client": "5.22.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.8.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.10.0",
+    "express": "^4.21.2",
+    "prisma": "5.22.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

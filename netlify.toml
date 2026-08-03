@@ -1,0 +1,28 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  # Prisma query engine must be bundled with each function.
+  node_bundler = "esbuild"
+  included_files = ["node_modules/.prisma/client/*", "prisma/schema.prisma"]
+
+[template.environment]
+  EMAIL_OBFUSCATION = "off"
+
+# Self-serve AI workspace API → Netlify Functions.
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Clean URL for the workspace app.
+[[redirects]]
+  from = "/app"
+  to = "/app/index.html"
+  status = 200
+
+[[headers]]
+  for = "/blog/veeva-argus-overkill-early-phase-biotech"
+  [headers.values]
+    Content-Type = "text/html; charset=UTF-8"

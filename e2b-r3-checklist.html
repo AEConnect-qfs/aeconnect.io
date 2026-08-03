@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICH E2B(R3) Readiness Checklist | AE Connect by QORO Intelligence</title>
+<meta name="description" content="Free checklist for IND sponsors. Verify your adverse event intake and ICSR submission process is ready for the FDA April 1, 2026 mandatory E2B(R3) deadline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1F3A;
+    --navy-mid: #162E50;
+    --teal: #00A896;
+    --teal-light: #00C9B4;
+    --teal-muted: rgba(0,168,150,0.12);
+    --slate: #8A9BB0;
+    --off-white: #F6F8FA;
+    --white: #ffffff;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,168,150,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,168,150,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Glow blob */
+  .glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,168,150,0.12) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* NAV */
+  nav {
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    color: var(--slate);
+    font-weight: 300;
+  }
+
+  .deadline-badge {
+    background: rgba(0,168,150,0.15);
+    border: 1px solid rgba(0,168,150,0.3);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal-light);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 60px 40px 80px;
+    align-items: center;
+  }
+
+  /* LEFT COLUMN */
+  .left-col {
+    padding-right: 60px;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  h1 span { color: var(--teal); }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--slate);
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .checklist-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+  }
+
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--teal-muted);
+    border: 1.5px solid var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .check-icon svg { width: 10px; height: 10px; }
+
+  .section-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pill {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: var(--slate);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* RIGHT COLUMN — FORM CARD */
+  .form-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+  }
+
+  .form-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .form-card p {
+    font-size: 13px;
+    color: var(--slate);
+    margin-bottom: 28px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 7px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  input, select {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--white);
+    font-family: 'Sora', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    appearance: none;
+  }
+
+  input::placeholder { color: rgba(255,255,255,0.25); }
+
+  input:focus, select:focus {
+    border-color: var(--teal);
+    background: rgba(0,168,150,0.06);
+  }
+
+  select option { background: var(--navy-mid); color: var(--white); }
+
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--teal);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: -0.2px;
+  }
+
+  .submit-btn:hover {
+    background: var(--teal-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,168,150,0.3);
+  }
+
+  .submit-btn svg { width: 16px; height: 16px; }
+
+  .trust-line {
+    text-align: center;
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 14px;
+    font-weight: 300;
+  }
+
+  /* SUCCESS STATE */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--teal-muted);
+    border: 2px solid var(--teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .success-icon svg { width: 28px; height: 28px; color: var(--teal); }
+
+  .success-state h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .success-state p {
+    font-size: 13px;
+    color: var(--slate);
+    margin-bottom: 24px;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--teal);
+    border-radius: 10px;
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .download-btn:hover {
+    background: var(--teal-light);
+    transform: translateY(-1px);
+  }
+
+  /* BOTTOM STRIP */
+  .bottom-strip {
+    border-top: 1px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--slate);
+    z-index: 1;
+    position: relative;
+  }
+
+  .bottom-strip a { color: var(--teal); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    main { grid-template-columns: 1fr; padding: 40px 20px 60px; }
+    .left-col { padding-right: 0; margin-bottom: 40px; }
+    .bottom-strip { flex-direction: column; gap: 8px; text-align: center; padding: 16px 20px; }
+  }
+
+  /* Fade-in animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .left-col { animation: fadeUp 0.6s ease both; }
+  .form-card { animation: fadeUp 0.6s ease 0.15s both; }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="page-wrap">
+
+  <!-- NAV -->
+<nav>
+  <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features">Features</a></li>
+    <li><a href="https://aeconnect.io/blog">Blog</a></li>
+    <li><a href="https://aeconnect.io/about">About</a></li>
+    <li><a href="https://aeconnect.io/contact">Contact</a></li>
+    <li><a href="https://aeconnect.io/beta" class="nav-beta">Beta Program</a></li>
+    <li><a href="/app" class="nav-cta">Try the AI Workspace →</a></li>
+    <li><a href="https://app.aeconnect.io" style="font-size:13px;font-weight:500;color:var(--slate)">Launch App</a></li>
+  </ul>
+</nav>
+
+  <!-- MAIN -->
+  <main>
+    <!-- LEFT -->
+    <div class="left-col">
+      <div class="eyebrow">Free Resource</div>
+      <h1>Is Your Biotech Ready for<br><span>ICH E2B(R3)?</span></h1>
+      <p class="hero-desc">
+        The FDA mandatory deadline for electronic ICSR submission in E2B(R3) format is April 1, 2026.
+        This checklist walks IND sponsors and PV teams through every readiness requirement, from
+        submission infrastructure to adverse event intake to documentation.
+      </p>
+
+      <div class="checklist-preview">
+        <div class="check-item">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#00A896" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          26 specific compliance checkpoints across 4 domains
+        </div>
+        <div class="check-item">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#00A896" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          Mapped to 21 CFR 312.32 and FDA April 2024 final guidance
+        </div>
+        <div class="check-item">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#00A896" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          Covers intake, case management, ESG setup, SOPs, and training
+        </div>
+        <div class="check-item">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#00A896" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          Written by a pharmacovigilance QA director with 15 years in biotech
+        </div>
+      </div>
+
+      <div class="section-pills">
+        <span class="pill">Submission Infrastructure</span>
+        <span class="pill">AE Intake</span>
+        <span class="pill">Case Management</span>
+        <span class="pill">SOPs + Training</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM CARD -->
+    <div class="form-card">
+      <div id="form-view">
+        <h2>Download the Checklist</h2>
+        <p>Free PDF. No credit card. Sent instantly to your inbox.</p>
+
+        <form id="lead-form" name="checklist-download" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="checklist-download">
+          <input type="hidden" name="bot-field" style="display:none">
+
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="Priya" required>
+          </div>
+
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Sharma" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" name="email" placeholder="priya@yourbiotech.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Acme Therapeutics" required>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Your Role</label>
+            <select id="role" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option value="PV Director / Drug Safety Lead">PV Director / Drug Safety Lead</option>
+              <option value="Head of Regulatory Affairs">Head of Regulatory Affairs</option>
+              <option value="VP / Head of Quality">VP / Head of Quality</option>
+              <option value="CEO / COO">CEO / COO</option>
+              <option value="Clinical Operations">Clinical Operations</option>
+              <option value="CRO / Consultant">CRO / Consultant</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v9M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download Free Checklist
+          </button>
+        </form>
+
+        <p class="trust-line">No spam. We respect your inbox. Unsubscribe anytime.</p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="success-state" id="success-view">
+        <div class="success-icon">
+          <svg viewBox="0 0 28 28" fill="none"><path d="M5 14L10.5 19.5L23 7" stroke="#00A896" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Your checklist is ready.</h3>
+        <p>Click below to download your ICH E2B(R3) Readiness Checklist PDF.<br>Check your inbox too, we sent a copy to your email.</p>
+        <a href="/downloads/ICH_E2BR3_Readiness_Checklist_AEConnect.pdf" class="download-btn" download>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v9M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- BOTTOM STRIP -->
+  <div class="bottom-strip">
+    <span>© 2026 QORO Intelligence Inc. All rights reserved.</span>
+    <span>Questions? <a href="mailto:hello@aeconnect.io">hello@aeconnect.io</a></span>
+    <span><a href="https://aeconnect.io">aeconnect.io</a></span>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('lead-form');
+  const formView = document.getElementById('form-view');
+  const successView = document.getElementById('success-view');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    // Submit to Netlify Forms
+    const formData = new FormData(form);
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      });
+    } catch(err) {
+      // Still show success even if network hiccup
+      console.error(err);
+    }
+
+    // Show success state
+    formView.style.display = 'none';
+    successView.style.display = 'block';
+  });
+</script>
+</body>
+</html>

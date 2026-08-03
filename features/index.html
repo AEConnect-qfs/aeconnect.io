@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features | AE Connect by QORO Intelligence</title>
+  <meta name="description" content="AI-powered adverse event intake, MedDRA coding, ICSR narrative generation, multi-language support, and GxP-validated case workflow, built for small and mid-size biotech." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Features | AE Connect by QORO Intelligence" />
+  <meta property="og:description" content="Everything you need to run compliant AE intake: AI triage, MedDRA coding, E2B narrative generation, and a 7-state validated case workflow." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aeconnect.io/features" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0a1628;
+      --navy-mid:   #112240;
+      --teal:       #00d4c8;
+      --teal-dark:  #00a896;
+      --teal-muted: rgba(0, 212, 200, 0.1);
+      --gold:       #e8a910;
+      --slate:      #8892a4;
+      --light:      #ccd6f6;
+      --white:      #e6f1ff;
+      --border:     rgba(255,255,255,0.07);
+      --card-bg:    rgba(255,255,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--light);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--teal); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate);
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--navy) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.88; text-decoration: none; }
+
+    .nav-beta {
+      background: linear-gradient(135deg, #e8a910, #f5c842);
+      color: #0a1628 !important;
+      padding: 7px 15px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      font-size: 12px !important;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s, transform 0.15s !important;
+      animation: beta-glow 2.5s infinite;
+      white-space: nowrap;
+    }
+    .nav-beta:hover { opacity: 0.9 !important; transform: translateY(-1px); color: #0a1628 !important; text-decoration: none; }
+    .nav-beta::before {
+      content: "\25CF";
+      font-size: 0.45rem;
+      margin-right: 5px;
+      vertical-align: middle;
+      opacity: 0.8;
+      animation: beta-pulse 2s infinite;
+    }
+    @keyframes beta-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232,169,16,0.5); }
+      50%       { box-shadow: 0 0 0 7px rgba(232,169,16,0); }
+    }
+    @keyframes beta-pulse {
+      0%, 100% { opacity: 0.8; }
+      50%       { opacity: 0.3; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 64px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 18px;
+      line-height: 1.1;
+      max-width: 720px;
+    }
+
+    .hero h1 span { color: var(--teal); }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--slate);
+      max-width: 580px;
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      padding: 12px 26px;
+      border-radius: 7px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+    .btn-primary:hover { opacity: 0.88; text-decoration: none; }
+
+    .btn-ghost {
+      color: var(--slate);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--white); text-decoration: none; }
+
+    /* ── STAT BAR ── */
+    .stat-bar {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 64px 24px 0;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 28px 32px;
+      border-right: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-num span { color: var(--teal); }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--slate);
+      font-weight: 400;
+    }
+
+    /* ── SECTIONS ── */
+    .features-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    .feature-block {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-block:last-child { border-bottom: none; }
+
+    .block-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .block-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 48px;
+    }
+
+    .block-header h2 {
+      font-size: clamp(24px, 2.5vw, 34px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.4px;
+      line-height: 1.2;
+    }
+
+    .block-header p {
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.7;
+      font-weight: 300;
+      padding-top: 6px;
+    }
+
+    /* Feature cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feat-card:hover {
+      border-color: rgba(0,212,200,0.2);
+      transform: translateY(-2px);
+    }
+
+    .feat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+      background: var(--teal-muted);
+      border: 1px solid rgba(0,212,200,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .feat-icon.gold-bg {
+      background: rgba(232,169,16,0.1);
+      border-color: rgba(232,169,16,0.2);
+    }
+
+    .feat-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .feat-card p {
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    /* Wide card — spans 2 cols */
+    .feat-card.wide {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .feat-card.wide .feat-icon { margin-bottom: 0; }
+
+    /* Workflow states strip */
+    .workflow-strip {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 24px;
+    }
+
+    .wf-state {
+      flex: 1;
+      padding: 14px 10px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      background: var(--card-bg);
+      position: relative;
+    }
+    .wf-state:last-child { border-right: none; }
+
+    .wf-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+    }
+    .wf-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Language grid */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .lang-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--light);
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .lang-pill:hover { border-color: rgba(0,212,200,0.25); }
+    .lang-pill .flag { display: block; font-size: 18px; margin-bottom: 4px; }
+
+    /* Compliance badges */
+    .compliance-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .comp-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--light);
+    }
+    .comp-badge .check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--teal-muted);
+      border: 1px solid rgba(0,212,200,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* Role table */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .role-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .role-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .role-perms {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .role-perms li {
+      font-size: 12px;
+      color: var(--slate);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .role-perms li::before {
+      content: '✓';
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      margin: 0 24px 80px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(135deg, var(--navy-mid) 0%, rgba(0,168,150,0.12) 100%);
+      border: 1px solid rgba(0,212,200,0.15);
+      border-radius: 16px;
+      padding: 56px 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+    .cta-section p {
+      font-size: 15px;
+      color: var(--slate);
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    .cta-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      min-width: 180px;
+    }
+
+    .btn-cta-primary {
+      background: var(--teal);
+      color: var(--navy);
+      padding: 13px 28px;
+      border-radius: 7px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      width: 100%;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+    .btn-cta-primary:hover { opacity: 0.88; text-decoration: none; }
+
+    .btn-cta-ghost {
+      color: var(--slate);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-cta-ghost:hover { color: var(--white); text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 56px 48px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 32px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--slate);
+      margin-top: 12px;
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    .footer-col h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 13px; color: var(--slate); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); text-decoration: none; }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--slate);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 56px 20px 48px; }
+      .block-header { grid-template-columns: 1fr; gap: 16px; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .feat-card.wide { grid-column: span 2; }
+      .lang-grid { grid-template-columns: repeat(3, 1fr); }
+      .role-grid { grid-template-columns: 1fr 1fr; }
+      .stat-bar { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .cta-section { grid-template-columns: 1fr; gap: 28px; padding: 36px 24px; }
+      .cta-btns { flex-direction: row; min-width: auto; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      footer { padding: 40px 20px; }
+      .features-wrap { padding: 0 20px 60px; }
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .feat-card.wide { grid-column: span 1; grid-template-columns: 1fr; }
+      .lang-grid { grid-template-columns: repeat(2, 1fr); }
+      .role-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero { animation: fadeUp 0.5s ease both; }
+    .stat-bar { animation: fadeUp 0.5s ease 0.1s both; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features" class="active">Features</a></li>
+    <li><a href="https://aeconnect.io/blog">Blog</a></li>
+    <li><a href="https://aeconnect.io/about">About</a></li>
+    <li><a href="https://aeconnect.io/contact">Contact</a></li>
+    <li><a href="https://aeconnect.io/beta" class="nav-beta">Beta Program</a></li>
+    <li><a href="/app" class="nav-cta">Try the AI Workspace →</a></li>
+    <li><a href="https://app.aeconnect.io" style="font-size:13px;font-weight:500;color:var(--slate)">Launch App</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Product Features</div>
+  <h1>Everything you need for <span>compliant AE intake</span></h1>
+  <p class="hero-sub">
+    AE Connect handles the intake layer end-to-end: AI-assisted triage, MedDRA coding, E2B narrative generation, and a validated 7-state case workflow. Your PV team can focus on science, not paperwork.
+  </p>
+  <div class="hero-actions">
+    <a href="https://app.aeconnect.io" class="btn-primary">Launch App →</a>
+    <a href="https://aeconnect.io/beta" class="btn-ghost">Join the Beta Program →</a>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-item">
+    <div class="stat-num"><span>7</span>-State</div>
+    <div class="stat-label">Validated case workflow</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span>10</span></div>
+    <div class="stat-label">Languages supported with RTL</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">E2B<span>(R3)</span></div>
+    <div class="stat-label">ICH-compliant narrative output</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">GAMP<span> 5</span></div>
+    <div class="stat-label">Category 5 validated system</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span>21</span> CFR</div>
+    <div class="stat-label">Part 11 electronic records</div>
+  </div>
+</div>
+
+<!-- FEATURES CONTENT -->
+<div class="features-wrap">
+
+  <!-- ── 1. AI TRIAGE ── -->
+  <div class="feature-block">
+    <div class="block-tag">AI-Assisted Triage</div>
+    <div class="block-header">
+      <h2>Intelligent case processing from first receipt</h2>
+      <p>The moment a case enters AE Connect, the AI triage engine runs a full analysis before a human reviewer touches it. Every assessment is auditable and reviewer-editable.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="feat-card wide">
+        <div class="feat-icon">🧠</div>
+        <div>
+          <h3>Automated MedDRA Coding</h3>
+          <p>AI maps reported symptoms and events to the correct MedDRA Preferred Term and System Organ Class using the current MedDRA dictionary. Suggestions are presented with confidence indicators. Reviewers confirm, override, or add additional terms directly in the case record.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⚖️</div>
+        <h3>Causality Assessment</h3>
+        <p>Automated assessment using WHO-UMC criteria. The engine evaluates temporal relationship, dechallenge/rechallenge data, and alternative explanations to generate an initial causality rating.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🚨</div>
+        <h3>Seriousness &amp; Expectedness</h3>
+        <p>Each case is automatically classified as serious or non-serious per ICH E2A criteria and expected or unexpected against the current Reference Safety Information on file.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⏱️</div>
+        <h3>Regulatory Timeline Alerts</h3>
+        <p>15-day and 7-day clock alerts are triggered automatically based on seriousness and expectedness classification. Your team sees submission deadlines the moment a case is triaged.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📡</div>
+        <h3>Signal Detection Flagging</h3>
+        <p>Cases involving potential signals, including disproportionality patterns and cluster events, are flagged for PV team review before entering the submission queue.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📝</div>
+        <h3>E2B Narrative Generation</h3>
+        <p>The AI generates a structured ICH E2B(R3)-compliant case narrative automatically. Reviewers edit inline and approve. No manual drafting from scratch.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. CASE WORKFLOW ── -->
+  <div class="feature-block">
+    <div class="block-tag">Case Workflow</div>
+    <div class="block-header">
+      <h2>A validated 7-state workflow built for GxP</h2>
+      <p>Every case moves through a defined, auditable lifecycle. State transitions are role-gated, timestamped, and logged, satisfying 21 CFR Part 11 and GAMP 5 requirements out of the box.</p>
+    </div>
+    <div class="workflow-strip">
+      <div class="wf-state">
+        <div class="wf-dot" style="background:#8892a4;"></div>
+        <div class="wf-label">New</div>
+      </div>
+      <div class="wf-state">
+        <div class="wf-dot" style="background:#00d4c8;"></div>
+        <div class="wf-label">In Triage</div>
+      </div>
+      <div class="wf-state">
+        <div class="wf-dot" style="background:#e8a910;"></div>
+        <div class="wf-label">Under Review</div>
+      </div>
+      <div class="wf-state">
+        <div class="wf-dot" style="background:#5080ff;"></div>
+        <div class="wf-label">Pending Info</div>
+      </div>
+      <div class="wf-state">
+        <div class="wf-dot" style="background:#c060e0;"></div>
+        <div class="wf-label">Ready to Submit</div>
+      </div>
+      <div class="wf-state">
+        <div class="wf-dot" style="background:#20c060;"></div>
+        <div class="wf-label">Submitted</div>
+      </div>
+      <div class="wf-state">
+        <div class="wf-dot" style="background:#404060;"></div>
+        <div class="wf-label">Closed</div>
+      </div>
+    </div>
+    <div class="cards-grid" style="margin-top:24px;">
+      <div class="feat-card">
+        <div class="feat-icon">🔒</div>
+        <h3>Role-Gated Transitions</h3>
+        <p>State changes require the appropriate role. Reporters can submit; only Reviewers and above can approve. Admins can override with a documented reason.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📋</div>
+        <h3>Full Audit Trail</h3>
+        <p>Every action including field edits, state transitions, comments, and attachments is logged with user identity and timestamp. Audit logs are immutable and exportable.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📄</div>
+        <h3>Case PDF Export</h3>
+        <p>Generate a formatted case summary PDF at any workflow stage. Suitable for regulatory submission packages, sponsor review, and archive.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. MULTI-LANGUAGE INTAKE ── -->
+  <div class="feature-block">
+    <div class="block-tag">Global Intake</div>
+    <div class="block-header">
+      <h2>Collect reports in any language, process in one</h2>
+      <p>AE Connect supports 10 languages with full RTL rendering. Reporters in any geography can submit in their native language while your PV team works in English.</p>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-pill"><span class="flag">🇺🇸</span>English</div>
+      <div class="lang-pill"><span class="flag">🇪🇸</span>Spanish</div>
+      <div class="lang-pill"><span class="flag">🇫🇷</span>French</div>
+      <div class="lang-pill"><span class="flag">🇩🇪</span>German</div>
+      <div class="lang-pill"><span class="flag">🇵🇹</span>Portuguese</div>
+      <div class="lang-pill"><span class="flag">🇯🇵</span>Japanese</div>
+      <div class="lang-pill"><span class="flag">🇨🇳</span>Mandarin</div>
+      <div class="lang-pill"><span class="flag">🇸🇦</span>Arabic (RTL)</div>
+      <div class="lang-pill"><span class="flag">🇮🇱</span>Hebrew (RTL)</div>
+      <div class="lang-pill"><span class="flag">🇮🇳</span>Hindi</div>
+    </div>
+    <div class="cards-grid" style="margin-top:24px;">
+      <div class="feat-card">
+        <div class="feat-icon">🌐</div>
+        <h3>Auto-Translation to English</h3>
+        <p>Submitted reports in non-English languages are auto-translated into English for PV team review, with the original preserved in the case record.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">↔️</div>
+        <h3>Full RTL Layout Support</h3>
+        <p>Arabic and Hebrew intake forms render with proper right-to-left layout, bidirectional text handling, and correct punctuation mirroring.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔗</div>
+        <h3>Language-Specific Intake Links</h3>
+        <p>Generate unique intake URLs per language for distribution to site staff, patients, or HCPs. Each link opens a pre-configured intake form in the correct language.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. ACCESS CONTROL ── -->
+  <div class="feature-block">
+    <div class="block-tag">Access &amp; Administration</div>
+    <div class="block-header">
+      <h2>Role-based access designed for small PV teams</h2>
+      <p>Six user roles map to real PV team structures, from external reporters to QORO super admins. Permissions are granular, auditable, and configurable per workspace.</p>
+    </div>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-name">Reporter</div>
+        <ul class="role-perms">
+          <li>Submit new AE reports</li>
+          <li>View own submissions</li>
+          <li>Upload attachments</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-name">Reviewer</div>
+        <ul class="role-perms">
+          <li>All Reporter permissions</li>
+          <li>Review &amp; triage cases</li>
+          <li>Edit MedDRA coding</li>
+          <li>Approve state transitions</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-name">PV Manager</div>
+        <ul class="role-perms">
+          <li>All Reviewer permissions</li>
+          <li>Manage team members</li>
+          <li>Access case analytics</li>
+          <li>Configure intake forms</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-name">Admin</div>
+        <ul class="role-perms">
+          <li>All PV Manager permissions</li>
+          <li>Workspace configuration</li>
+          <li>Integrations management</li>
+          <li>Audit log access</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-name">Read Only</div>
+        <ul class="role-perms">
+          <li>View all cases</li>
+          <li>View audit logs</li>
+          <li>Export reports</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-name">Super Admin</div>
+        <ul class="role-perms">
+          <li>All Admin permissions</li>
+          <li>Multi-workspace access</li>
+          <li>Platform-level config</li>
+          <li>QORO team only</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. COMPLIANCE & VALIDATION ── -->
+  <div class="feature-block">
+    <div class="block-tag">Compliance &amp; Validation</div>
+    <div class="block-header">
+      <h2>GxP-ready out of the box</h2>
+      <p>AE Connect is validated as GAMP 5 Category 5 by QORO. Clients qualify it as Category 3 (COTS). A complete validation documentation package is included with every account.</p>
+    </div>
+    <div class="compliance-badges">
+      <div class="comp-badge"><span class="check">✓</span>ICH E2B(R3) Compliant</div>
+      <div class="comp-badge"><span class="check">✓</span>21 CFR Part 11</div>
+      <div class="comp-badge"><span class="check">✓</span>GAMP 5 Category 5</div>
+      <div class="comp-badge"><span class="check">✓</span>ICH E6(R3) GCP</div>
+      <div class="comp-badge"><span class="check">✓</span>ICH E2A Safety Reporting</div>
+      <div class="comp-badge"><span class="check">✓</span>FDA 21 CFR 312.32</div>
+      <div class="comp-badge"><span class="check">✓</span>EMA GVP Module VI</div>
+      <div class="comp-badge"><span class="check">✓</span>MedDRA Current Version</div>
+    </div>
+    <div class="cards-grid" style="margin-top:24px;">
+      <div class="feat-card">
+        <div class="feat-icon gold-bg">📦</div>
+        <h3>Validation Documentation Package</h3>
+        <p>12 GxP documents included: URS, TDD, FRS, IQ/OQ Protocol with 70 test cases, RTM, Supplier Qualification Package, Customer Validation Toolkit, Change Control SOP, and Regulatory Compliance Assessment.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon gold-bg">🔐</div>
+        <h3>Electronic Signatures &amp; Records</h3>
+        <p>All approvals and sign-offs are captured as compliant electronic signatures with user identity, timestamp, and meaning, meeting 21 CFR Part 11 Subpart C requirements.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon gold-bg">🏗️</div>
+        <h3>AWS Infrastructure &amp; Security Controls</h3>
+        <p>Hosted on AWS with encrypted data at rest (AES-256) and in transit (TLS 1.3). PostgreSQL on RDS with automated backups, isolated by workspace. SOC 2 audit in planning.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. INTEGRATIONS ── -->
+  <div class="feature-block">
+    <div class="block-tag">Integrations</div>
+    <div class="block-header">
+      <h2>Connects to the tools your PV program already uses</h2>
+      <p>AE Connect is designed as the intake layer. It feeds into your safety database rather than replacing it. Native and API-based integrations available.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🔌</div>
+        <h3>Safety Database Export</h3>
+        <p>Export cases in E2B(R3) XML format for import into Oracle Argus, Veeva Vault Safety, or any ICH-compliant safety database. No rekeying, no data loss.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📧</div>
+        <h3>Email Intake Channel</h3>
+        <p>Dedicated intake email address converts inbound AE reports into draft cases automatically, ready for triage review, even if your reporters prefer email over a web form.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔗</div>
+        <h3>API Access</h3>
+        <p>REST API available for enterprise-grade integrations. Connect AE Connect to your EDC, CTMS, or safety database programmatically. Documentation available in the admin dashboard.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📊</div>
+        <h3>Admin Dashboard &amp; Analytics</h3>
+        <p>Real-time case pipeline view, submission deadline tracker, volume trends by study and product, and role-based access to operational reporting, all in a single dashboard.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🧩</div>
+        <h3>Embeddable Intake Forms</h3>
+        <p>Embed the AE intake form directly into your sponsor or site portal via iframe or hosted link. Reporters submit without needing an AE Connect account.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔔</div>
+        <h3>Notification &amp; Escalation Rules</h3>
+        <p>Configurable email and in-app alerts for deadline approaching, case state changes, and pending review items. Route by role, study, or product.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /features-wrap -->
+
+<!-- CTA -->
+<div class="cta-section">
+  <div>
+    <h2>Ready to run compliant AE intake?</h2>
+    <p>Join the AE Connect Beta Program starting April 1, 2026 and get full platform access at no cost, monthly check-ins with the QORO team, and Founding Customer pricing if you convert.</p>
+  </div>
+  <div class="cta-btns">
+    <a href="https://aeconnect.io/beta" class="btn-cta-primary">Apply for Beta Access</a>
+    <a href="https://app.aeconnect.io" class="btn-cta-ghost">Launch App →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="font-size:18px;font-weight:700;color:var(--white);">AE <span style="color:var(--teal);">Connect</span></div>
+      <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <ul>
+        <li><a href="https://aeconnect.io/features">Features</a></li>
+        <li><a href="https://aeconnect.io/beta">Beta Program</a></li>
+        <li><a href="https://app.aeconnect.io">Launch App</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="https://qorosystems.com">QORO Intelligence</a></li>
+        <li><a href="https://aeconnect.io/about">About</a></li>
+        <li><a href="https://aeconnect.io/contact">Contact</a></li>
+        <li><a href="https://aeconnect.io/blog">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 QORO Intelligence Inc. All rights reserved.</span>
+    <span>Made in California</span>
+  </div>
+</footer>
+
+</body>
+</html>

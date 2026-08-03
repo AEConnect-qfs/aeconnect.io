@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building a Pharmacovigilance Plan for Your First IND: What Small Biotechs Get Wrong | AE Connect</title>
+  <meta name="description" content="Most first-time IND sponsors make the same pharmacovigilance plan mistakes. A 15-year PV veteran breaks down what regulators actually expect and where small biotechs fall short." />
+  <meta name="author" content="DJ Singh" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Building a Pharmacovigilance Plan for Your First IND: What Small Biotechs Get Wrong" />
+  <meta property="og:description" content="Most first-time IND sponsors make the same pharmacovigilance plan mistakes. A 15-year PV veteran breaks down what regulators actually expect and where small biotechs fall short." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Building a Pharmacovigilance Plan for Your First IND: What Small Biotechs Get Wrong",
+    "description": "Most first-time IND sponsors make the same pharmacovigilance plan mistakes. A 15-year PV veteran breaks down what regulators actually expect and where small biotechs fall short.",
+    "url": "https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/",
+    "datePublished": "2026-03-27",
+    "dateModified": "2026-03-27",
+    "author": {
+      "@type": "Person",
+      "name": "DJ Singh",
+      "jobTitle": "Founder and CEO, QORO Intelligence Inc.",
+      "knowsAbout": [
+        "Pharmacovigilance",
+        "Drug Safety",
+        "IND Safety Reporting",
+        "ICH E2B(R3)",
+        "GxP Compliance",
+        "GAMP 5",
+        "21 CFR Part 11"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "QORO Intelligence Inc.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://aeconnect.io/logo.png",
+        "width": 400,
+        "height": 120
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/"
+    },
+    "articleSection": "Pharmacovigilance",
+    "keywords": [
+      "pharmacovigilance plan",
+      "IND safety reporting",
+      "first IND",
+      "small biotech pharmacovigilance",
+      "21 CFR 312.32",
+      "drug safety plan",
+      "adverse event reporting",
+      "ICSR compliance"
+    ],
+    "wordCount": 850,
+    "inLanguage": "en-US"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0a1628;
+      --navy-mid:   #112240;
+      --teal:       #00d4c8;
+      --teal-dark:  #00a896;
+      --teal-muted: rgba(0, 212, 200, 0.1);
+      --slate:      #8892a4;
+      --light:      #ccd6f6;
+      --white:      #e6f1ff;
+      --border:     rgba(255,255,255,0.07);
+      --card-bg:    rgba(255,255,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--light);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo { font-size: 18px; font-weight: 700; color: var(--white); letter-spacing: -0.3px; }
+    .nav-logo span { color: var(--teal); }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--slate); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); text-decoration: none; }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--navy) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* HERO */
+    .article-hero {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 72px 24px 48px;
+    }
+
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--slate);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .breadcrumb span { color: var(--border); }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .badge-topic {
+      background: var(--teal-muted);
+      border: 1px solid rgba(0, 212, 200, 0.2);
+      color: var(--teal);
+    }
+
+    .article-hero h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+
+    .article-hero .subtitle {
+      font-size: 18px;
+      color: var(--slate);
+      font-weight: 400;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .author-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-dark), var(--navy-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .author-info { flex: 1; }
+    .author-name { font-size: 14px; font-weight: 600; color: var(--white); }
+    .author-title { font-size: 12px; color: var(--slate); }
+    .read-time { font-size: 12px; color: var(--slate); white-space: nowrap; }
+
+    /* LAYOUT */
+    .article-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 100px;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* BODY */
+    .article-body p {
+      color: rgba(204, 214, 246, 0.85);
+      margin-bottom: 24px;
+      font-size: 16.5px;
+      line-height: 1.8;
+    }
+
+    .article-body strong { color: var(--white); font-weight: 600; }
+
+    .article-body h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--white);
+      margin: 48px 0 16px;
+      letter-spacing: -0.3px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-body ul, .article-body ol {
+      margin: 0 0 24px 24px;
+      color: rgba(204, 214, 246, 0.85);
+    }
+
+    .article-body li {
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .article-body .lead {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      padding: 20px 24px;
+      border-left: 3px solid var(--teal);
+      background: var(--teal-muted);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .callout {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+
+    .callout-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .callout p { margin-bottom: 8px !important; font-size: 15px !important; }
+    .callout p:last-child { margin-bottom: 0 !important; }
+
+    .callout ul { margin: 8px 0 0 20px !important; }
+    .callout li { font-size: 15px !important; margin-bottom: 6px !important; }
+
+    /* SIDEBAR */
+    .article-sidebar { position: sticky; top: 84px; }
+
+    .sidebar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-card h4 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
+
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+    .toc-list a {
+      font-size: 13px;
+      color: var(--slate);
+      display: block;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: all 0.15s;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover { color: var(--white); background: var(--teal-muted); text-decoration: none; }
+
+    .cta-card {
+      background: linear-gradient(135deg, rgba(0,168,150,0.15), rgba(0,212,200,0.05));
+      border: 1px solid rgba(0,212,200,0.2);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .cta-card h4 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.4; }
+    .cta-card p { font-size: 13px; color: var(--slate); margin-bottom: 16px; line-height: 1.5; }
+
+    .cta-btn {
+      display: block;
+      text-align: center;
+      background: var(--teal);
+      color: var(--navy) !important;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: opacity 0.2s;
+      text-decoration: none !important;
+    }
+    .cta-btn:hover { opacity: 0.88; }
+
+    .cta-secondary {
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      color: var(--teal) !important;
+      margin-top: 10px;
+    }
+
+    /* BOTTOM CTA */
+    .bottom-cta {
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px;
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .bottom-cta h2 { font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 12px; letter-spacing: -0.3px; }
+    .bottom-cta p { font-size: 16px; color: var(--slate); margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    .bottom-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; text-decoration: none; }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--teal); text-decoration: none; }
+
+    /* FOOTER */
+    footer { background: var(--navy); border-top: 1px solid var(--border); padding: 48px; }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p { font-size: 13px; color: var(--slate); margin-top: 10px; line-height: 1.6; max-width: 280px; }
+    .footer-brand a { color: var(--teal); }
+
+    .footer-col h5 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--slate); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 13px; color: var(--slate); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); text-decoration: none; }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--slate);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .article-layout { grid-template-columns: 1fr; gap: 40px; }
+      .article-sidebar { position: static; }
+      footer { padding: 40px 20px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features">Features</a></li>
+    <li><a href="https://aeconnect.io/blog" class="active">Blog</a></li>
+    <li><a href="https://aeconnect.io/about">About</a></li>
+    <li><a href="https://aeconnect.io/contact">Contact</a></li>
+    <li><a href="https://qorosystems.com">QORO Intelligence</a></li>
+    <li><a href="https://aeconnect.io/beta" class="nav-beta">Beta Program</a></li>
+    <li><a href="/app" class="nav-cta">Try the AI Workspace →</a></li>
+    <li><a href="https://app.aeconnect.io" style="font-size:13px;font-weight:500;color:var(--slate)">Launch App</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="breadcrumb">
+    <a href="https://aeconnect.io">Home</a>
+    <span>/</span>
+    <a href="https://aeconnect.io/blog">Blog</a>
+    <span>/</span>
+    PV Plan for Your First IND
+  </div>
+
+  <div class="badge-row">
+    <span class="badge badge-topic">Pharmacovigilance</span>
+    <span class="badge badge-topic">IND Safety</span>
+    <span class="badge badge-topic">Drug Safety Planning</span>
+  </div>
+
+  <h1>Building a Pharmacovigilance Plan for Your First IND: What Small Biotechs Get Wrong</h1>
+  <p class="subtitle">Most first-time IND sponsors approach pharmacovigilance planning as a documentation exercise. It isn't. Here is what regulators actually expect and where small biotech programs consistently fall short.</p>
+
+  <div class="author-row">
+    <div class="author-avatar">DS</div>
+    <div class="author-info">
+      <div class="author-name">DJ Singh</div>
+      <div class="author-title">Founder and CEO, QORO Intelligence Inc.</div>
+    </div>
+    <div class="read-time">5 min read &nbsp;·&nbsp; March 2026</div>
+  </div>
+</div>
+
+<!-- ARTICLE + SIDEBAR -->
+<div class="article-layout">
+
+  <article class="article-body">
+
+    <p class="lead">After 15 years in pharmaceutical quality and drug safety across oncology, hematology, and rare disease programs, I can tell you that most first-time IND sponsors make the same five mistakes in their pharmacovigilance plans. The documents look complete on the surface. The gaps show up during inspections and, more importantly, when the first serious adverse event comes in and the team has to actually execute the plan they wrote.</p>
+
+    <h2 id="mistake-1">Mistake 1: Treating the PV Plan as a Template Exercise</h2>
+
+    <p>The most common mistake is downloading a pharmacovigilance plan template, filling in the blanks, and filing it with the IND. The document checks a box but describes a program that does not actually exist in the organization.</p>
+
+    <p>A PV plan is an operational commitment. It should describe exactly how your team will receive an adverse event report, who is responsible for triage, how cases will be documented, what system will serve as the system of record, how 7-day and 15-day reporting timelines under 21 CFR 312.32 will be tracked, and who has the authority to make the causality and expectedness determinations that drive those timelines.</p>
+
+    <p>If you cannot walk an FDA investigator through the actual workflow described in your plan using your actual systems and your actual team, the plan is not finished.</p>
+
+    <h2 id="mistake-2">Mistake 2: No System of Record for Adverse Events</h2>
+
+    <p>Small biotechs frequently handle adverse event intake through a combination of email inboxes, shared spreadsheets, and paper forms. None of these constitute a validated system of record under GAMP 5 or 21 CFR Part 11. When an FDA inspection includes a review of your ICSR handling, the investigator will ask to see an audit trail. A shared Excel file does not have one.</p>
+
+    <p>Your PV plan needs to designate a specific, validated system for adverse event case management. That system needs to support electronic audit trails, access controls, and data integrity controls consistent with 21 CFR Part 11. For small programs without the case volume to justify an enterprise platform like Veeva Vault Safety or Oracle Argus, a purpose-built intake and case management platform like AE Connect is purpose-built for exactly this situation: GAMP 5 Category 5 validated, 21 CFR Part 11 compliant, and sized for programs with active INDs rather than large post-marketing portfolios.</p>
+
+    <h2 id="mistake-3">Mistake 3: Vague Reporting Timeline Language</h2>
+
+    <p>PV plans for first-time sponsors frequently include language like "serious adverse events will be reported to the FDA in accordance with 21 CFR 312.32." That sentence is true but operationally useless.</p>
+
+    <p>Your plan should specify:</p>
+    <ul>
+      <li>How clock-start is defined and documented for every case (Day 0 = date of first receipt of minimum valid ICSR criteria)</li>
+      <li>Who is responsible for making the seriousness determination and when</li>
+      <li>How the expectedness assessment against the current Investigator Brochure is conducted and documented</li>
+      <li>Who is responsible for submission and through which pathway (FDA ESG, Safety Reporting Portal)</li>
+      <li>What the escalation path is if the responsible person is unavailable on Day 5 of a 7-day case</li>
+    </ul>
+
+    <p>Vague language around timelines is not just a documentation gap. It is an operational gap that will surface on the first expedited report your team has to process under pressure.</p>
+
+    <h2 id="mistake-4">Mistake 4: Ignoring the Aggregate Reporting Obligations</h2>
+
+    <p>Expedited 7-day and 15-day reports get most of the attention from first-time sponsors. Aggregate safety reporting obligations get overlooked.</p>
+
+    <p>Under 21 CFR 312.33, IND sponsors are required to submit an Annual Report that includes a summary of IND safety information, including a line listing of serious adverse events and a narrative summary of significant safety findings from the reporting period. If your program has global reach, a Development Safety Update Report (DSUR) under ICH E2F may also apply.</p>
+
+    <p>Your PV plan should address both expedited and aggregate reporting, including who is responsible for compiling the annual safety summary, what data sources feed into it, and what the internal review and approval process looks like before submission.</p>
+
+    <h2 id="mistake-5">Mistake 5: Writing the Plan in Isolation from the Clinical Team</h2>
+
+    <p>Pharmacovigilance plans written entirely by the drug safety or regulatory team without input from clinical operations tend to have a critical gap: they do not account for how adverse events will actually reach the safety desk from clinical sites.</p>
+
+    <p>Your plan needs to describe the full chain of custody from the site level to the safety database. How will site staff report an adverse event? What is the expected timeframe from site awareness to sponsor awareness? How does that interface with your clock-start definition? Are investigators trained on your specific reporting requirements, or are they relying on the general instructions in the protocol?</p>
+
+    <p>These questions need to be answered in the PV plan and in investigator training materials, not left to informal understanding. When an event occurs at a site at 4pm on a Friday, your team should not be improvising the intake process.</p>
+
+    <div class="callout" style="border-color: rgba(0,212,200,0.25); background: linear-gradient(135deg, rgba(0,168,150,0.08), rgba(0,212,200,0.04));">
+      <div class="callout-title">What a Defensible PV Plan Actually Contains</div>
+      <ul>
+        <li>Named roles and backups for every safety function, not just job titles</li>
+        <li>A validated, designated system of record for all ICSR case management</li>
+        <li>Explicit clock-start definition and timeline tracking process</li>
+        <li>Expectedness assessment process tied to the current version of the IB</li>
+        <li>Both expedited and aggregate reporting obligations addressed</li>
+        <li>Site-level to sponsor intake pathway documented and tested</li>
+        <li>ESG account established and test submissions validated before the first report</li>
+        <li>Version-controlled document with a defined review frequency</li>
+      </ul>
+    </div>
+
+    <h2 id="the-bottom-line">The Bottom Line</h2>
+
+    <p>A pharmacovigilance plan that cannot be executed is a liability, not an asset. Regulators are not looking for beautiful documents. They are looking for evidence that your organization understands its obligations and has built a real operational structure to meet them.</p>
+
+    <p>If you are building your first IND safety program and are not sure whether your current PV plan meets that bar, AE Connect was designed to give small biotech teams a validated, compliant foundation for adverse event intake and case management from day one. The system of record problem, the audit trail problem, and the E2B(R3) submission problem are all solved in one platform, so your PV plan can describe a real workflow rather than an aspirational one.</p>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="article-sidebar">
+
+    <div class="sidebar-card">
+      <h4>In This Article</h4>
+      <ul class="toc-list">
+        <li><a href="#mistake-1">Treating PV as a Template Exercise</a></li>
+        <li><a href="#mistake-2">No System of Record</a></li>
+        <li><a href="#mistake-3">Vague Timeline Language</a></li>
+        <li><a href="#mistake-4">Aggregate Reporting Gaps</a></li>
+        <li><a href="#mistake-5">Written in Isolation</a></li>
+        <li><a href="#the-bottom-line">The Bottom Line</a></li>
+      </ul>
+    </div>
+
+    <div class="cta-card">
+      <h4>Ready to Build a PV Program That Can Actually Be Executed?</h4>
+      <p>AE Connect gives small biotech teams a validated adverse event intake and case management platform from day one.</p>
+      <a href="https://qorosystems.com#demo" class="cta-btn">Request a Demo</a>
+      <a href="https://aeconnect.io/e2b-r3-checklist" class="cta-secondary">Download Free E2B(R3) Checklist →</a>
+    </div>
+
+    <div class="sidebar-card" style="margin-top: 20px;">
+      <h4>Related Reading</h4>
+      <ul class="toc-list">
+        <li><a href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/">ICH E2B(R3) Deadline Guide</a></li>
+        <li><a href="https://aeconnect.io/blog/ae-intake-vs-pharmacovigilance/">AE Intake vs. Full PV: What's the Difference?</a></li>
+        <li><a href="https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/">Why Veeva and Argus Are Overkill for Early-Phase Biotech</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <h2>Build your PV program on a real foundation.</h2>
+  <p>AE Connect is validated, E2B(R3) compliant, and purpose-built for small biotech IND sponsors.</p>
+  <div class="bottom-cta-btns">
+    <a href="https://qorosystems.com#demo" class="btn-primary">Request a Demo</a>
+    <a href="https://aeconnect.io/blog" class="btn-secondary">Read More Articles</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="font-size:18px; font-weight:700; color:var(--white);">AE <span style="color:var(--teal);">Connect</span></div>
+      <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <ul>
+        <li><a href="https://aeconnect.io#features">Features</a></li>
+        <li><a href="https://aeconnect.io#compliance">Security</a></li>
+        <li><a href="https://app.aeconnect.io">Launch App</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="https://qorosystems.com">QORO Intelligence</a></li>
+        <li><a href="https://aeconnect.io/about">About</a></li>
+        <li><a href="https://aeconnect.io/contact">Contact</a></li>
+        <li><a href="https://aeconnect.io/blog">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 QORO Intelligence Inc. All rights reserved.</span>
+    <span>Made in California</span>
+  </div>
+</footer>
+
+</body>
+</html>
