@@ -28,7 +28,9 @@ export interface AssessmentResult {
   confidence: FieldConfidence;
 }
 
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-20250514';
+// Current Sonnet-tier model (the old claude-sonnet-4-* is being retired).
+// Override with ANTHROPIC_MODEL (e.g. "claude-opus-5") if you want a different tier.
+const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-5';
 
 const SYSTEM = `You are a pharmacovigilance specialist producing a STRUCTURED DRAFT assessment of an adverse-event source document. Your output is a draft for a qualified PV reviewer to accept or override — it is never a final regulatory action. Respond with ONLY a JSON object, no prose.`;
 
@@ -99,9 +101,10 @@ export async function generateAssessment(sourceText: string): Promise<Assessment
     system: SYSTEM,
     messages: [{ role: 'user', content: buildPrompt(sourceText) }],
   });
-  const block = msg.content[0];
-  if (block.type !== 'text') throw new Error('Unexpected AI response');
-  const parsed = extractJson(block.text);
+  // Find the text block (the response may lead with a thinking block).
+  const textBlock = msg.content.find((b: any) => b.type === 'text') as { type: 'text'; text: string } | undefined;
+  if (!textBlock) throw new Error('No text content in AI response');
+  const parsed = extractJson(textBlock.text);
   return {
     modelVersion: MODEL,
     seriousness: String(parsed.seriousness ?? ''),
