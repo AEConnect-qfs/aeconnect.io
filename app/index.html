@@ -104,6 +104,20 @@
     .banner { padding:12px 16px; border-radius:9px; font-size:13px; margin-bottom:16px; }
     .banner-warn { background:rgba(245,200,66,0.1); border:1px solid rgba(245,200,66,0.35); color:var(--amber); }
     .disclaimer { font-size:11.5px; color:var(--slate); background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:8px; padding:9px 12px; margin-bottom:16px; }
+    /* Guest landing hero */
+    .landing { max-width:900px; margin:0 auto; }
+    .hero { text-align:center; padding:16px 0 4px; }
+    .eyebrow { display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--teal); background:var(--teal-muted); border:1px solid rgba(0,212,200,0.25); padding:5px 13px; border-radius:20px; margin-bottom:16px; }
+    .hero h1 { font-size:30px; line-height:1.2; color:var(--white); max-width:730px; margin:0 auto 14px; letter-spacing:-0.5px; }
+    .hero .lede { font-size:15px; color:var(--light); max-width:660px; margin:0 auto; line-height:1.65; }
+    .features { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:26px 0 12px; }
+    .feature { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:16px; text-align:left; }
+    .feature .fi { font-size:20px; margin-bottom:8px; }
+    .feature h4 { font-size:13.5px; color:var(--white); margin-bottom:5px; }
+    .feature p { font-size:12px; color:var(--slate); line-height:1.5; }
+    .engine-note { text-align:center; font-size:12.5px; color:var(--slate); margin:4px auto 22px; max-width:660px; line-height:1.55; }
+    .engine-note strong { color:var(--light); }
+    @media (max-width:760px){ .features{ grid-template-columns:1fr 1fr; } .hero h1{ font-size:24px; } }
     /* Site nav in the workspace topbar */
     .site-nav { display:flex; gap:18px; }
     .site-nav a { font-size:13px; color:var(--slate); }
@@ -309,22 +323,34 @@
   function guestLanding() {
     current = null; ncSourceType = 'text'; renderCaseList();
     mainPanel.innerHTML = `
-      <div class="card" style="max-width:720px;margin:8px auto 0">
-        <h2 style="font-size:20px">AI adverse-event case processing</h2>
-        <p class="hint">Paste an adverse-event source document — or upload a PDF, Word, image/scan or email — and the AI drafts a structured assessment: seriousness, MedDRA coding, causality, expectedness, and regulatory timeline. You review and sign off. <strong>First 5 cases free — no card.</strong></p>
-        <label>Source document</label>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-          <input type="file" id="nc_file" accept=".pdf,.doc,.docx,.txt,.eml,.csv,.md,.json,.png,.jpg,.jpeg,.webp,.gif,.tif,.tiff" onchange="onFileChosen(this.files[0])" style="display:none" />
-          <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nc_file').click()">📎 Choose file…</button>
-          <span id="nc_filestatus" style="font-size:12.5px;color:var(--slate)"></span>
+      <div class="landing">
+        <div class="hero">
+          <div class="eyebrow">✦ AI-assisted pharmacovigilance</div>
+          <h1>From an adverse-event source document to a structured assessment — in seconds.</h1>
+          <p class="lede">Paste or upload an adverse-event report and the engine drafts a complete ICSR-style assessment — seriousness, MedDRA coding, causality, expectedness and reporting timeline — each with its clinical reasoning and guideline references. You review and approve every field. <strong>First 5 cases free, no card.</strong></p>
         </div>
-        <label>Extracted / pasted text</label>
-        <textarea id="nc_text" placeholder="Paste the adverse-event narrative, or upload a file above to auto-extract..."></textarea>
-        <label>Case title (optional)</label>
-        <input id="nc_title" placeholder="e.g. Headache after Cardizem XL" />
-        <button class="btn btn-primary full" onclick="guestRun()">🚀 Run AI assessment</button>
-        <div class="err" id="nc_err"></div>
-        <p style="font-size:11.5px;color:var(--slate);margin-top:12px">Files are read in your browser — only the extracted text is sent. Decision support only: the AI draft is not a regulatory action; a qualified reviewer signs off every case.</p>
+        <div class="features">
+          <div class="feature"><div class="fi">🧬</div><h4>Structured PV draft</h4><p>Seriousness, MedDRA (LLT→PT→SOC), WHO-UMC causality, expectedness & the reporting clock.</p></div>
+          <div class="feature"><div class="fi">📚</div><h4>Guideline-referenced</h4><p>Decisions cite ICH E2A / E2B(R3) / E2D, 21 CFR 314.80, EU GVP Module VI, WHO-UMC.</p></div>
+          <div class="feature"><div class="fi">🧑‍⚕️</div><h4>Human-in-the-loop</h4><p>Decision support only — you accept or override each field; the AI never files a report.</p></div>
+          <div class="feature"><div class="fi">🔒</div><h4>Private by design</h4><p>Files are parsed in your browser; only the extracted text is sent for assessment.</p></div>
+        </div>
+        <div class="engine-note"><strong>What's under the hood:</strong> a frontier large language model (Anthropic's Claude) prompted as a pharmacovigilance specialist — it produces a structured draft and its reasoning, and a qualified reviewer signs off. It is decision support, not an autonomous system.</div>
+        <div class="card" style="max-width:760px;margin:0 auto">
+          <h2>Try it — process a case</h2>
+          <label>Source document</label>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+            <input type="file" id="nc_file" accept=".pdf,.doc,.docx,.txt,.eml,.csv,.md,.json,.png,.jpg,.jpeg,.webp,.gif,.tif,.tiff" onchange="onFileChosen(this.files[0])" style="display:none" />
+            <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nc_file').click()">📎 Choose file…</button>
+            <span id="nc_filestatus" style="font-size:12.5px;color:var(--slate)"></span>
+          </div>
+          <label>Extracted / pasted text</label>
+          <textarea id="nc_text" placeholder="Paste the adverse-event narrative, or upload a file above to auto-extract..."></textarea>
+          <label>Case title (optional)</label>
+          <input id="nc_title" placeholder="e.g. Headache after Cardizem XL" />
+          <button class="btn btn-primary full" onclick="guestRun()">🚀 Run AI assessment</button>
+          <div class="err" id="nc_err"></div>
+        </div>
       </div>`;
   }
   function guestRun() {
