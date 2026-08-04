@@ -371,14 +371,13 @@
   function renderCase() {
     const c = current; if (!c) return;
     const a = c.assessment;
-    const locked = !!c.lockedAt;
     let html = `
       <div class="row" style="justify-content:space-between;margin-bottom:8px">
         <div><div style="font-size:12px;color:var(--slate);font-weight:600">${esc(c.caseRef)}</div>
         <h2 style="font-size:19px;color:var(--white)">${esc(c.title)}</h2></div>
         <span class="badge b-${badgeClass(c.status)}">${statusLabel(c.status)}</span>
       </div>
-      <div class="disclaimer">⚠ Decision support only — the AI draft is not a regulatory action. A qualified reviewer must sign off before any downstream use.</div>
+      <div class="disclaimer">⚠ Decision support only — the AI draft is not a regulatory action. A qualified reviewer reviews and approves every case before any downstream use.</div>
       <div class="card"><h2>Source document</h2><div class="hint" style="margin:0">${esc(c.sourceText)}</div></div>`;
 
     if (!a) {
@@ -394,9 +393,8 @@
     }
 
     // Assessment present → field review
-    const allDecided = FIELDS.every(([k]) => decisionFor(k));
-    html += `<div class="card"><h2>AI-drafted assessment · <span style="color:var(--slate);font-weight:500">${esc(a.confidence ? '' : '')}model ${esc(currentModelVersion())}</span></h2>
-      <p class="hint">Review each field. Accept the AI value or override it. ${locked ? '' : 'All fields must be decided before sign-off.'} Low-confidence fields are flagged.</p>`;
+    html += `<div class="card"><h2>AI-drafted assessment · <span style="color:var(--slate);font-weight:500">model ${esc(currentModelVersion())}</span></h2>
+      <p class="hint">Review each field. Accept the AI value or override it. Low-confidence fields are flagged.</p>`;
 
     for (const [key, label] of FIELDS) {
       const aiVal = key === 'authorities' ? (a.authorities || []).join(', ') : a[key];
@@ -409,48 +407,67 @@
           ${conf ? `<span class="conf conf-${conf}">${conf} confidence</span>` : ''}
         </div>
         <div class="field-val">${esc(dec ? dec.finalValue : aiVal)}</div>`;
-      if (!locked) {
-        if (dec) {
-          html += `<div class="field-actions"><span class="field-status ${dec.decisionType === 'override' ? 'over' : 'ok'}">
-            ${dec.decisionType === 'override' ? '✎ Overridden' : '✓ Accepted'}</span>
-            <button class="btn btn-ghost btn-sm" onclick="startOverride('${key}')">Change</button></div>`;
-        } else {
-          html += `<div class="field-actions">
-            <button class="btn btn-primary btn-sm" onclick="accept('${key}', ${JSON.stringify(aiVal).replace(/"/g,'&quot;')})">Accept</button>
-            <button class="btn btn-ghost btn-sm" onclick="startOverride('${key}')">Override</button></div>`;
-        }
-        html += `<div class="override-box" id="ov_${key}">
-          <textarea id="ovval_${key}">${esc(dec ? dec.finalValue : aiVal)}</textarea>
-          <input id="ovreason_${key}" placeholder="Reason for override (optional)" style="margin-top:7px" />
-          <button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="saveOverride('${key}', ${JSON.stringify(aiVal).replace(/"/g,'&quot;')})">Save override</button>
-        </div>`;
+      if (dec) {
+        html += `<div class="field-actions"><span class="field-status ${dec.decisionType === 'override' ? 'over' : 'ok'}">
+          ${dec.decisionType === 'override' ? '✎ Overridden' : '✓ Accepted'}</span>
+          <button class="btn btn-ghost btn-sm" onclick="startOverride('${key}')">Change</button></div>`;
+      } else {
+        html += `<div class="field-actions">
+          <button class="btn btn-primary btn-sm" onclick="accept('${key}', ${JSON.stringify(aiVal).replace(/"/g,'&quot;')})">Accept</button>
+          <button class="btn btn-ghost btn-sm" onclick="startOverride('${key}')">Override</button></div>`;
       }
-      html += `</div>`;
+      html += `<div class="override-box" id="ov_${key}">
+        <textarea id="ovval_${key}">${esc(dec ? dec.finalValue : aiVal)}</textarea>
+        <input id="ovreason_${key}" placeholder="Reason for override (optional)" style="margin-top:7px" />
+        <button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="saveOverride('${key}', ${JSON.stringify(aiVal).replace(/"/g,'&quot;')})">Save override</button>
+      </div></div>`;
     }
     html += `</div>`;
 
-    // Sign-off
-    if (locked) {
-      const sig = c.esignature || {};
-      html += `<div class="signoff-cleared">
-        <div class="chk">✓ Case cleared &amp; locked</div>
-        <div style="font-size:13px">Signed by <strong style="color:var(--white)">${esc(sig.signerName)}</strong> · ${new Date(sig.signedAt).toLocaleString()}</div>
-        <div style="font-size:12.5px;color:var(--slate);margin:8px 0">${esc(sig.statement)}</div>
-        <div class="mono">audit hash: ${esc(sig.boundAuditHash)}</div>
-      </div>`;
-    } else {
-      html += `<div class="card"><h2>Sign-off (e-signature)</h2>
-        <p class="hint">${allDecided ? 'Enter your e-signature PIN to certify and clear this case. This locks the record.' : 'Decide every field above to enable sign-off.'}</p>
-        ${!user.hasEsignaturePin ? `<div class="banner banner-warn">Set an e-signature PIN first.</div>
-          <div class="row"><input id="setpin" type="password" placeholder="Choose a PIN (min 4)" style="max-width:220px" />
-          <button class="btn btn-ghost btn-sm" onclick="savePin()">Set PIN</button></div><div class="err" id="pinErr"></div>`
-          : `<div class="row"><input id="signpin" type="password" placeholder="e-signature PIN" style="max-width:220px" ${allDecided ? '' : 'disabled'} />
-          <button class="btn btn-primary" ${allDecided ? '' : 'disabled'} onclick="signOff()">Sign off &amp; clear</button></div><div class="err" id="signErr"></div>`}
-      </div>`;
-    }
+    // Download
+    html += `<div class="card"><h2>Download</h2>
+      <p class="hint">Download the reviewed case — source document, the AI-drafted assessment, and your accept/override decisions — as a printable file (open it and print to PDF if you like).</p>
+      <button class="btn btn-primary" onclick="downloadCase()">⬇ Download case</button></div>`;
+
     mainPanel.innerHTML = html;
   }
-  function currentModelVersion() { return (current && current.assessment && current.assessment.__mv) || 'ai'; }
+  function currentModelVersion() { return (current && current.assessment && current.assessment.modelVersion) || 'ai'; }
+
+  function downloadCase() {
+    const c = current; if (!c || !c.assessment) return;
+    const a = c.assessment;
+    const rows = FIELDS.map(([key, label]) => {
+      const aiVal = key === 'authorities' ? (a.authorities || []).join(', ') : a[key];
+      const dec = decisionFor(key);
+      const finalVal = dec ? dec.finalValue : aiVal;
+      const review = dec ? (dec.decisionType === 'override' ? 'Overridden' + (dec.reason ? ' — ' + dec.reason : '') : 'Accepted') : 'AI draft (not yet reviewed)';
+      const conf = (a.confidence && a.confidence[key]) || '';
+      return `<tr><th>${esc(label)}</th><td>${esc(finalVal)}</td><td>${esc(review)}${conf ? ' · ' + esc(conf) + ' conf' : ''}</td></tr>`;
+    }).join('');
+    const doc = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(c.caseRef)} — AE Connect</title>
+<style>body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1a202c;max-width:760px;margin:32px auto;padding:0 20px;line-height:1.5}
+h1{font-size:20px;margin:0 0 2px}.ref{color:#718096;font-size:12px;font-weight:700;letter-spacing:.03em}
+.meta{color:#718096;font-size:12px;margin-bottom:18px}h2{font-size:14px;margin:22px 0 6px}
+.src{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;white-space:pre-wrap;font-size:13px}
+table{width:100%;border-collapse:collapse;margin-top:8px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #e2e8f0;font-size:13px;vertical-align:top}
+thead th{color:#4a5568}tbody th{width:210px;color:#4a5568;font-weight:600}
+.disc{color:#718096;font-size:11px;margin-top:22px;border-top:1px solid #e2e8f0;padding-top:10px}</style></head>
+<body>
+<div class="ref">${esc(c.caseRef)}</div>
+<h1>${esc(c.title)}</h1>
+<div class="meta">AE Connect · AI-assisted assessment · model ${esc(a.modelVersion || currentModelVersion())} · generated ${new Date().toLocaleString()}</div>
+<h2>Source document</h2>
+<div class="src">${esc(c.sourceText)}</div>
+<h2>Structured assessment</h2>
+<table><thead><tr><th>Field</th><th>Final value</th><th>Review</th></tr></thead><tbody>${rows}</tbody></table>
+<div class="disc">Decision support only — this AI-assisted draft is not a regulatory action; it was reviewed and approved by a qualified user. AE Connect by QORO Intelligence.</div>
+</body></html>`;
+    const url = URL.createObjectURL(new Blob([doc], { type: 'text/html' }));
+    const link = document.createElement('a');
+    link.href = url; link.download = `${c.caseRef}.html`;
+    document.body.appendChild(link); link.click(); document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
 
   async function runAssess() {
     const btn = document.getElementById('assessBtn'); if (btn) { btn.disabled = true; btn.textContent = 'Assessing…'; }
@@ -470,18 +487,6 @@
     const reason = document.getElementById('ovreason_' + key).value;
     const r = await api('/api/field-decision', 'POST', { caseId: current.id, fieldKey: key, decisionType: 'override', aiValue: String(aiVal), finalValue, reason });
     if (r.ok) await selectCase(current.id); else alert(r.data.error || 'Failed');
-  }
-
-  async function savePin() {
-    const pin = document.getElementById('setpin').value;
-    const r = await api('/api/set-pin', 'POST', { pin });
-    if (r.ok) { user.hasEsignaturePin = true; renderCase(); } else document.getElementById('pinErr').textContent = r.data.error || 'Failed';
-  }
-  async function signOff() {
-    const pin = document.getElementById('signpin').value;
-    const r = await api('/api/signoff', 'POST', { caseId: current.id, pin });
-    if (r.ok) { await selectCase(current.id); await loadCases(); }
-    else document.getElementById('signErr').textContent = r.data.error || 'Sign-off failed';
   }
 
   // ── File ingestion (client-side; PHI stays in the browser) ────
