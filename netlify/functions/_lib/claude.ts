@@ -15,6 +15,10 @@ export interface FieldConfidence {
 export interface FieldText {
   [fieldKey: string]: string;
 }
+export interface Reference {
+  citation: string; // e.g. "ICH E2D §2.3", "21 CFR 314.80", "EU GVP Module VI"
+  relevance: string; // which decision(s) it supports
+}
 export interface AssessmentResult {
   modelVersion: string;
   seriousness: string;
@@ -32,6 +36,8 @@ export interface AssessmentResult {
   // Short per-field explanation of WHY the AI assigned that value (incl. the
   // full MedDRA hierarchy for meddraPt). Keyed by field.
   rationale: FieldText;
+  // Guideline / regulatory references supporting the decisions.
+  references: Reference[];
 }
 
 // Current Sonnet-tier model (the old claude-sonnet-4-* is being retired).
@@ -63,12 +69,16 @@ function buildPrompt(sourceText: string): string {
     "expectedness": "Whether the event is in the product's reference safety information (label), and why expected or unexpected.",
     "regulatoryRequired": "Why it is (or isn't) an expedited-reportable case and to which authorities.",
     "regulatoryTimeline": "Why this reporting clock (e.g. fatal/life-threatening = 7-day, other serious/unexpected = 15-day)."
-  }
+  },
+  "references": [
+    { "citation": "The specific guideline/regulation, with section where possible", "relevance": "Which decision(s) above it supports" }
+  ]
 }
 
 GUIDELINES:
 - Use real MedDRA terms and codes (LLT, PT, SOC). If uncertain, pick the closest valid term and note the uncertainty in the rationale.
 - Each rationale value is 1-3 concise sentences of clinical reasoning — this is the reviewer's explanation of WHY.
+- "references": list 3-6 specific pharmacovigilance guidelines/regulations your assessment relies on — drawn from ICH E2A / E2B(R3) / E2D, FDA 21 CFR 314.80 & 600.80, EU GVP Module VI, the WHO-UMC causality system, CIOMS, and the MedDRA version — citing the specific section where possible and stating which decision each supports.
 - This is a decision-support DRAFT; a qualified reviewer confirms every field.
 
 SOURCE DOCUMENT:
@@ -120,6 +130,13 @@ function mockAssessment(sourceText: string): AssessmentResult {
       regulatoryRequired: serious ? 'Serious + unexpected suggests an expedited report to FDA/EMA. (mock)' : 'Non-serious — routine/periodic reporting. (mock)',
       regulatoryTimeline: serious ? 'Other serious/unexpected → 15-day expedited clock. (mock)' : 'Not expedited. (mock)',
     },
+    references: [
+      { citation: 'ICH E2D — Post-Approval Safety Data Management', relevance: 'Definitions of seriousness, expectedness and expedited reporting (mock)' },
+      { citation: 'ICH E2B(R3)', relevance: 'ICSR data elements and electronic reporting format (mock)' },
+      { citation: 'WHO-UMC causality assessment system', relevance: 'Causality categorization (mock)' },
+      { citation: serious ? '21 CFR 314.80 / EU GVP Module VI' : 'EU GVP Module VI', relevance: serious ? 'Expedited (15-day) reporting obligations (mock)' : 'Collection and reporting of ICSRs (mock)' },
+      { citation: 'MedDRA (current version)', relevance: 'Coding of the adverse event term (mock)' },
+    ],
   };
 }
 
@@ -130,7 +147,7 @@ export async function generateAssessment(sourceText: string): Promise<Assessment
   const anthropic = new Anthropic({ apiKey });
   const msg = await anthropic.messages.create({
     model: MODEL,
-    max_tokens: 2500,
+    max_tokens: 3000,
     system: SYSTEM,
     messages: [{ role: 'user', content: buildPrompt(sourceText) }],
   });
@@ -153,6 +170,9 @@ export async function generateAssessment(sourceText: string): Promise<Assessment
     narrative: String(parsed.narrative ?? ''),
     confidence: (parsed.confidence ?? {}) as FieldConfidence,
     rationale: (parsed.rationale ?? {}) as FieldText,
+    references: Array.isArray(parsed.references)
+      ? parsed.references.map((r: any) => ({ citation: String(r?.citation ?? ''), relevance: String(r?.relevance ?? '') })).filter((r: Reference) => r.citation)
+      : [],
   };
 }
 

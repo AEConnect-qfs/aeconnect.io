@@ -27,7 +27,8 @@ export async function handler(event: FnEvent) {
         const detail: any = safeObj(row.confidenceJson);
         const confidence = detail && typeof detail.confidence === 'object' ? detail.confidence : detail;
         const rationale = detail && typeof detail.rationale === 'object' ? detail.rationale : {};
-        assessment = { ...row, authorities: safeArr(row.authorities), confidence, rationale };
+        const references = detail && Array.isArray(detail.references) ? detail.references : [];
+        assessment = { ...row, authorities: safeArr(row.authorities), confidence, rationale, references };
       }
       return ok({
         id: c.id, caseRef: c.caseRef, title: c.title, status: c.status,

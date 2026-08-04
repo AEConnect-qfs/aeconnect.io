@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AE Connect — AI adverse-event case processing</title>
   <meta name="description" content="Paste or upload an adverse-event source document and AI drafts a structured pharmacovigilance assessment — seriousness, MedDRA coding, causality, regulatory timeline — for you to review. First 5 cases free." />
-  <link rel="canonical" href="https://aeconnect.io/" />
+  <link rel="canonical" href="https://aeconnect.io/app" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -104,6 +104,11 @@
     .banner { padding:12px 16px; border-radius:9px; font-size:13px; margin-bottom:16px; }
     .banner-warn { background:rgba(245,200,66,0.1); border:1px solid rgba(245,200,66,0.35); color:var(--amber); }
     .disclaimer { font-size:11.5px; color:var(--slate); background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:8px; padding:9px 12px; margin-bottom:16px; }
+    /* Site nav in the workspace topbar */
+    .site-nav { display:flex; gap:18px; }
+    .site-nav a { font-size:13px; color:var(--slate); }
+    .site-nav a:hover { color:var(--white); text-decoration:none; }
+    @media (max-width:820px){ .site-nav { display:none; } }
     /* Field help + rationale */
     .info-i { display:inline-block; width:15px; height:15px; line-height:15px; text-align:center; border-radius:50%; background:rgba(255,255,255,0.08); color:var(--slate); font-size:10px; font-style:italic; font-weight:700; margin-left:6px; cursor:help; user-select:none; }
     .field .why { margin-top:8px; }
@@ -125,8 +130,15 @@
 </head>
 <body>
   <div class="topbar">
-    <div class="row">
-      <a href="/" class="brand">AE <span>Connect</span><span class="sub">AI Workspace</span></a>
+    <div class="row" style="gap:24px">
+      <a href="/app" class="brand">AE <span>Connect</span></a>
+      <nav class="site-nav">
+        <a href="/features">Features</a>
+        <a href="/blog">Blog</a>
+        <a href="/beta">Beta</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
     </div>
     <div class="top-right" id="topRight"></div>
   </div>
@@ -414,8 +426,12 @@
     }
 
     // Assessment present → field review
-    html += `<div class="card"><h2>AI-drafted assessment · <span style="color:var(--slate);font-weight:500">model ${esc(currentModelVersion())}</span></h2>
-      <p class="hint">Review each field. Accept the AI value or override it. Low-confidence fields are flagged.</p>`;
+    html += `<div class="card">
+      <div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px">
+        <h2 style="border:0;margin:0">AI-drafted assessment · <span style="color:var(--slate);font-weight:500">model ${esc(currentModelVersion())}</span></h2>
+        <button class="btn btn-ghost btn-sm" id="rerunBtn" onclick="runAssess()">↻ Re-run</button>
+      </div>
+      <p class="hint">Review each field. Accept the AI value or override it. Low-confidence fields are flagged. Re-run to regenerate the AI draft — free, doesn't use a trial case.</p>`;
 
     for (const [key, label] of FIELDS) {
       const aiVal = key === 'authorities' ? (a.authorities || []).join(', ') : a[key];
@@ -446,6 +462,18 @@
       </div></div>`;
     }
     html += `</div>`;
+
+    // Guideline & regulatory references
+    const refs = (a.references || []);
+    if (refs.length) {
+      html += `<div class="card"><h2>Guideline &amp; regulatory references</h2>
+        <p class="hint">Standards the AI drew on for these decisions — verify against current versions.</p>
+        <ul style="list-style:none;padding:0;margin:0">` +
+        refs.map((r) => `<li style="padding:9px 0;border-bottom:1px solid var(--border)">
+          <div style="font-size:13.5px;color:var(--white);font-weight:600">${esc(r.citation)}</div>
+          <div style="font-size:12px;color:var(--slate);margin-top:2px">${esc(r.relevance)}</div></li>`).join('') +
+        `</ul></div>`;
+    }
 
     // Download & regulatory export
     html += `<div class="card"><h2>Download &amp; export</h2>
@@ -491,6 +519,7 @@ thead th{color:#4a5568}tbody th{width:210px;color:#4a5568;font-weight:600}
 <div class="src">${esc(c.sourceText)}</div>
 <h2>Structured assessment</h2>
 <table><thead><tr><th>Field</th><th>Final value</th><th>Review</th></tr></thead><tbody>${rows}</tbody></table>
+${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory references</h2><ul>${a.references.map(function(r){return '<li><strong>' + esc(r.citation) + '</strong> — ' + esc(r.relevance) + '</li>';}).join('')}</ul>` : ''}
 <div class="disc">Decision support only — this AI-assisted draft is not a regulatory action; it was reviewed and approved by a qualified user. AE Connect by QORO Intelligence.</div>
 </body></html>`;
     const url = URL.createObjectURL(new Blob([doc], { type: 'text/html' }));
@@ -507,10 +536,13 @@ thead th{color:#4a5568}tbody th{width:210px;color:#4a5568;font-weight:600}
   }
 
   async function runAssess() {
-    const btn = document.getElementById('assessBtn'); if (btn) { btn.disabled = true; btn.textContent = 'Assessing…'; }
+    const btn = document.getElementById('assessBtn') || document.getElementById('rerunBtn');
+    const rerun = btn && btn.id === 'rerunBtn';
+    if (btn) { btn.disabled = true; btn.textContent = rerun ? 'Re-running…' : 'Assessing…'; }
+    const setErr = (t) => { const e = document.getElementById('assessErr'); if (e) e.textContent = t; else alert(t); };
     const r = await api('/api/assess', 'POST', { caseId: current.id });
-    if (r.status === 402) { await refreshUsage(); document.getElementById('assessErr').textContent = r.data.error; renderCase(); return; }
-    if (!r.ok) { document.getElementById('assessErr').textContent = r.data.error || 'Assessment failed'; if (btn){btn.disabled=false;btn.textContent='🚀 Run AI assessment';} return; }
+    if (r.status === 402) { await refreshUsage(); setErr(r.data.error); renderCase(); return; }
+    if (!r.ok) { setErr(r.data.error || 'Assessment failed'); if (btn) { btn.disabled = false; btn.textContent = rerun ? '↻ Re-run' : '🚀 Run AI assessment'; } return; }
     await refreshUsage(); await selectCase(current.id); await loadCases();
   }
 
