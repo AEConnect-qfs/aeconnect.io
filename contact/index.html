@@ -241,6 +241,23 @@ function handleContactSubmit(e) {
       document.getElementById('form-success').style.display = 'block';
     });
 }
+
+// Prefill when routed here from the AI Workspace export buttons (/contact?export=...)
+(function () {
+  var exp = new URLSearchParams(location.search).get('export');
+  if (!exp) return;
+  var sel = document.querySelector('select[name="topic"]');
+  if (sel) {
+    var opt = document.createElement('option');
+    opt.textContent = 'Regulatory export / add-on module';
+    opt.selected = true;
+    sel.appendChild(opt);
+  }
+  var msg = document.querySelector('textarea[name="message"]');
+  if (msg && !msg.value) {
+    msg.value = "I'd like to generate " + exp + " reports from AE Connect. Please tell me about enabling this export in the full platform.";
+  }
+})();
 </script>
 </body>
 </html>
