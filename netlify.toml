@@ -26,6 +26,14 @@
   to = "/app/index.html"
   status = 200
 
+# AI Workspace is the homepage — serve it at the root (URL stays aeconnect.io).
+# `force` overrides the static index.html. Other pages (/features, /blog, …) are unaffected.
+[[redirects]]
+  from = "/"
+  to = "/app/index.html"
+  status = 200
+  force = true
+
 [[headers]]
   for = "/blog/veeva-argus-overkill-early-phase-biotech"
   [headers.values]
