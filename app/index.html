@@ -103,6 +103,14 @@
     .banner { padding:12px 16px; border-radius:9px; font-size:13px; margin-bottom:16px; }
     .banner-warn { background:rgba(245,200,66,0.1); border:1px solid rgba(245,200,66,0.35); color:var(--amber); }
     .disclaimer { font-size:11.5px; color:var(--slate); background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:8px; padding:9px 12px; margin-bottom:16px; }
+    /* Auth modal overlay */
+    .modal-overlay { position:fixed; inset:0; background:rgba(5,12,24,0.74); backdrop-filter:blur(5px); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; }
+    .modal-overlay.hidden { display:none; }
+    .modal-card { background:var(--navy-mid); border:1px solid var(--border); border-radius:14px; padding:28px; width:100%; max-width:410px; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+    .modal-card h1 { font-size:20px; color:var(--white); margin-bottom:4px; }
+    .modal-card .sub { font-size:13px; color:var(--slate); margin-bottom:18px; line-height:1.5; }
+    .modal-close { position:absolute; top:10px; right:14px; background:none; border:none; color:var(--slate); font-size:22px; line-height:1; cursor:pointer; }
+    .modal-close:hover { color:var(--white); }
     @media (max-width:760px){ .layout{ grid-template-columns:1fr; } .sidebar{ border-right:none; border-bottom:1px solid var(--border);} }
   </style>
 </head>
@@ -114,16 +122,17 @@
     <div class="top-right" id="topRight"></div>
   </div>
 
-  <!-- AUTH VIEW -->
-  <div id="authView" class="auth-wrap">
-    <div class="auth-card">
-      <h1>AI Case Processing</h1>
-      <p class="sub">Upload an adverse-event source document; the AI drafts a structured assessment for you to review and sign off. First 5 cases free — no card.</p>
+  <!-- AUTH MODAL (shown on demand) -->
+  <div id="authModal" class="modal-overlay hidden" onclick="if(event.target===this)closeAuth()">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeAuth()" aria-label="Close">×</button>
+      <h1>Save your assessment</h1>
+      <p class="sub" id="authSubtitle">Create your free account to see the AI assessment. First 5 cases free — no card.</p>
       <div class="tabs">
-        <button id="tabLogin" class="active" onclick="setMode('login')">Log in</button>
-        <button id="tabSignup" onclick="setMode('signup')">Sign up</button>
+        <button id="tabSignup" class="active" onclick="setMode('signup')">Sign up</button>
+        <button id="tabLogin" onclick="setMode('login')">Log in</button>
       </div>
-      <div id="nameField" class="hidden">
+      <div id="nameField">
         <label>Full name</label>
         <input id="f_name" placeholder="Dr. Jane Doe" />
       </div>
@@ -131,13 +140,13 @@
       <input id="f_email" type="email" placeholder="you@company.com" />
       <label>Password</label>
       <input id="f_password" type="password" placeholder="••••••••" />
-      <button class="btn btn-primary full" id="authBtn" onclick="submitAuth()">Log in</button>
+      <button class="btn btn-primary full" id="authBtn" onclick="submitAuth()">Create account</button>
       <div class="err" id="authErr"></div>
     </div>
   </div>
 
-  <!-- APP VIEW -->
-  <div id="appView" class="layout hidden">
+  <!-- APP VIEW (always shown — workspace is the landing page) -->
+  <div id="appView" class="layout">
     <aside class="sidebar">
       <button class="btn btn-primary" style="width:100%;margin-bottom:16px" onclick="newCase()">+ New case</button>
       <h3>Your cases</h3>
@@ -150,7 +159,7 @@
   // ── API helper ────────────────────────────────────────────────
   const API = '';
   let token = localStorage.getItem('ae_token') || '';
-  let user = null, usage = null, cases = [], current = null, mode = 'login', ncSourceType = 'text';
+  let user = null, usage = null, cases = [], current = null, mode = 'signup', ncSourceType = 'text', pendingSource = null;
 
   async function api(path, method = 'GET', body) {
     const res = await fetch(API + path, {
@@ -173,14 +182,24 @@
     authBtn.textContent = m === 'login' ? 'Log in' : 'Create account';
     authErr.textContent = '';
   }
+  function openAuth(m, subtitle) {
+    authModal.classList.remove('hidden');
+    document.getElementById('authSubtitle').textContent = subtitle || 'Log in or create your free account. First 5 cases free — no card.';
+    setMode(m || 'signup');
+    setTimeout(() => { (mode === 'signup' ? f_name : f_email).focus(); }, 60);
+  }
+  function closeAuth() { authModal.classList.add('hidden'); if (authErr) authErr.textContent = ''; }
+
   async function submitAuth() {
     authErr.textContent = '';
     const email = f_email.value.trim(), password = f_password.value, name = f_name.value.trim();
     if (!email || !password) { authErr.textContent = 'Email and password are required.'; return; }
+    if (mode === 'signup' && !name) { authErr.textContent = 'Please enter your name.'; return; }
     const path = mode === 'login' ? '/api/login' : '/api/signup';
     const r = await api(path, 'POST', mode === 'login' ? { email, password } : { email, password, name });
     if (!r.ok) { authErr.textContent = r.data.error || 'Something went wrong.'; return; }
     token = r.data.token; localStorage.setItem('ae_token', token);
+    closeAuth();
     await boot();
   }
   function logout() { token = ''; localStorage.removeItem('ae_token'); location.reload(); }
@@ -188,28 +207,38 @@
   // ── Boot ──────────────────────────────────────────────────────
   async function boot() {
     const me = await api('/api/me');
-    if (!me.ok) { showAuth(); return; }
-    user = me.data;
-    authView.classList.add('hidden');
-    appView.classList.remove('hidden');
-    await refreshUsage();
-    // Returning from Stripe Checkout — confirm the session server-side, then reflect it.
-    const params = new URLSearchParams(location.search);
-    if (params.get('checkout')) {
-      const sid = params.get('session_id');
-      history.replaceState({}, '', '/app');
-      if (params.get('checkout') === 'success' && sid) {
-        await api('/api/checkout-confirm', 'POST', { sessionId: sid });
-      }
-      await refreshUsage();
+    if (!me.ok) {
+      // Guest: workspace is the landing page; auth is deferred until they run an assessment.
+      token = ''; localStorage.removeItem('ae_token'); user = null; usage = null;
+      renderTop(); guestLanding();
+      return;
     }
+    user = me.data;
+    renderTop();
+    await refreshUsage();
+    await handleCheckoutReturn();
     await loadCases();
-    if (cases.length) selectCase(cases[0].id); else showEmpty();
+    if (pendingSource) { const s = pendingSource; pendingSource = null; await createAndAssess(s); }
+    else if (cases.length) selectCase(cases[0].id);
+    else showEmpty();
   }
-  function showAuth() { appView.classList.add('hidden'); authView.classList.remove('hidden'); renderTop(); }
+
+  async function handleCheckoutReturn() {
+    const params = new URLSearchParams(location.search);
+    if (!params.get('checkout')) return;
+    const sid = params.get('session_id');
+    history.replaceState({}, '', '/app');
+    if (params.get('checkout') === 'success' && sid) {
+      await api('/api/checkout-confirm', 'POST', { sessionId: sid });
+    }
+    await refreshUsage();
+  }
 
   function renderTop() {
-    if (!user) { topRight.innerHTML = ''; return; }
+    if (!user) {
+      topRight.innerHTML = `<button class="btn btn-ghost btn-sm" onclick="openAuth('login')">Log in</button><button class="btn btn-primary btn-sm" onclick="openAuth('signup')">Sign up</button>`;
+      return;
+    }
     let pill = '';
     if (usage) {
       if (usage.plan === 'trial') {
@@ -255,7 +284,48 @@
     current = r.data; renderCaseList(); renderCase();
   }
 
+  // ── Guest landing (anonymous) ─────────────────────────────────
+  function guestLanding() {
+    current = null; ncSourceType = 'text'; renderCaseList();
+    mainPanel.innerHTML = `
+      <div class="card" style="max-width:720px;margin:8px auto 0">
+        <h2 style="font-size:20px">AI adverse-event case processing</h2>
+        <p class="hint">Paste an adverse-event source document — or upload a PDF, Word, image/scan or email — and the AI drafts a structured assessment: seriousness, MedDRA coding, causality, expectedness, and regulatory timeline. You review and sign off. <strong>First 5 cases free — no card.</strong></p>
+        <label>Source document</label>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <input type="file" id="nc_file" accept=".pdf,.doc,.docx,.txt,.eml,.csv,.md,.json,.png,.jpg,.jpeg,.webp,.gif,.tif,.tiff" onchange="onFileChosen(this.files[0])" style="display:none" />
+          <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nc_file').click()">📎 Choose file…</button>
+          <span id="nc_filestatus" style="font-size:12.5px;color:var(--slate)"></span>
+        </div>
+        <label>Extracted / pasted text</label>
+        <textarea id="nc_text" placeholder="Paste the adverse-event narrative, or upload a file above to auto-extract..."></textarea>
+        <label>Case title (optional)</label>
+        <input id="nc_title" placeholder="e.g. Headache after Cardizem XL" />
+        <button class="btn btn-primary full" onclick="guestRun()">🚀 Run AI assessment</button>
+        <div class="err" id="nc_err"></div>
+        <p style="font-size:11.5px;color:var(--slate);margin-top:12px">Files are read in your browser — only the extracted text is sent. Decision support only: the AI draft is not a regulatory action; a qualified reviewer signs off every case.</p>
+      </div>`;
+  }
+  function guestRun() {
+    const title = document.getElementById('nc_title').value.trim();
+    const sourceText = document.getElementById('nc_text').value.trim();
+    if (!sourceText) { document.getElementById('nc_err').textContent = 'Add a source document or paste text first.'; return; }
+    pendingSource = { title, sourceText, sourceType: ncSourceType };
+    openAuth('signup', 'Create your free account to run this assessment and see the result. First 5 cases free — no card.');
+  }
+  async function createAndAssess(s) {
+    mainPanel.innerHTML = `<div class="empty">🧠 Running AI assessment…</div>`;
+    const c = await api('/api/cases', 'POST', { title: s.title, sourceText: s.sourceText, sourceType: s.sourceType });
+    if (!c.ok) { showEmpty(); alert(c.data.error || 'Failed to create case'); return; }
+    const a = await api('/api/assess', 'POST', { caseId: c.data.id });
+    await refreshUsage();
+    await loadCases();
+    await selectCase(c.data.id);
+    if (a.status === 402) alert(a.data.error || 'Trial exhausted — subscribe to continue.');
+  }
+
   function newCase() {
+    if (!user) { guestLanding(); return; }
     current = null; ncSourceType = 'text'; renderCaseList();
     mainPanel.innerHTML = `
       <div class="card">
@@ -498,8 +568,8 @@
     finally { await worker.terminate(); }
   }
 
-  // init
-  if (token) boot(); else showAuth();
+  // init — workspace is always the landing page; boot() decides guest vs. signed-in.
+  boot();
   </script>
 </body>
 </html>
