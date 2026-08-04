@@ -429,7 +429,7 @@
     html += `<div class="card">
       <div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px">
         <h2 style="border:0;margin:0">AI-drafted assessment · <span style="color:var(--slate);font-weight:500">model ${esc(currentModelVersion())}</span></h2>
-        <button class="btn btn-ghost btn-sm" id="rerunBtn" onclick="runAssess()">↻ Re-run</button>
+        <button class="btn btn-primary" id="rerunBtn" onclick="runAssess()" style="white-space:nowrap;box-shadow:0 0 0 1px var(--teal)">↻ Re-run AI analysis</button>
       </div>
       <p class="hint">Review each field. Accept the AI value or override it. Low-confidence fields are flagged. Re-run to regenerate the AI draft — free, doesn't use a trial case.</p>`;
 
@@ -542,7 +542,7 @@ ${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory refere
     const setErr = (t) => { const e = document.getElementById('assessErr'); if (e) e.textContent = t; else alert(t); };
     const r = await api('/api/assess', 'POST', { caseId: current.id });
     if (r.status === 402) { await refreshUsage(); setErr(r.data.error); renderCase(); return; }
-    if (!r.ok) { setErr(r.data.error || 'Assessment failed'); if (btn) { btn.disabled = false; btn.textContent = rerun ? '↻ Re-run' : '🚀 Run AI assessment'; } return; }
+    if (!r.ok) { setErr(r.data.error || 'Assessment failed'); if (btn) { btn.disabled = false; btn.textContent = rerun ? '↻ Re-run AI analysis' : '🚀 Run AI assessment'; } return; }
     await refreshUsage(); await selectCase(current.id); await loadCases();
   }
 
