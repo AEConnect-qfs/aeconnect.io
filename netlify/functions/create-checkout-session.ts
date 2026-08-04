@@ -1,6 +1,7 @@
 import { prisma } from './_lib/prisma.js';
-import { stripe, STRIPE_PRICE_ID, siteUrl } from './_lib/stripe.js';
+import { stripe, siteUrl } from './_lib/stripe.js';
 import { subscribeToCore, getUsage } from './_lib/billing.js';
+import { PRICING } from './_lib/pricing.js';
 import { writeAudit } from './_lib/audit.js';
 import { getSession, requireMethod, ok, unauthorized, serverError, notFound, type FnEvent } from './_lib/http.js';
 
@@ -27,8 +28,8 @@ export async function handler(event: FnEvent) {
   if (!user) return notFound('Account not found');
   if (user.plan === 'core') return ok({ alreadySubscribed: true, ...(await getUsage(userId)) });
 
-  // Dev fallback — no Stripe keys: activate directly.
-  if (!stripe || !STRIPE_PRICE_ID) {
+  // Dev fallback — no Stripe key: activate directly.
+  if (!stripe) {
     await subscribeToCore(userId);
     await writeAudit({ userId, action: 'SUBSCRIBED_CORE', detail: { plan: 'core', via: 'dev-activate' } });
     return ok({ activated: true, ...(await getUsage(userId)) });
@@ -47,8 +48,17 @@ export async function handler(event: FnEvent) {
       mode: 'subscription',
       customer: customerId,
       client_reference_id: userId,
-      line_items: [{ price: STRIPE_PRICE_ID, quantity: 1 }],
-      success_url: `${base}/app?checkout=success`,
+      // Price defined inline from the locked PRICING config — no dashboard price id needed.
+      line_items: [{
+        quantity: 1,
+        price_data: {
+          currency: 'usd',
+          product_data: { name: 'AE Connect Core', description: 'AI case processing — 25 cases/month included, then $1/case' },
+          unit_amount: PRICING.coreMonthlyCents,
+          recurring: { interval: 'month' },
+        },
+      }],
+      success_url: `${base}/app?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${base}/app?checkout=cancel`,
       metadata: { userId },
     });

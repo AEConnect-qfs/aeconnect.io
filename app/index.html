@@ -193,11 +193,15 @@
     authView.classList.add('hidden');
     appView.classList.remove('hidden');
     await refreshUsage();
-    // Returning from Stripe Checkout — the webhook activates Core; reflect it.
+    // Returning from Stripe Checkout — confirm the session server-side, then reflect it.
     const params = new URLSearchParams(location.search);
     if (params.get('checkout')) {
+      const sid = params.get('session_id');
       history.replaceState({}, '', '/app');
-      if (params.get('checkout') === 'success') setTimeout(refreshUsage, 1500);
+      if (params.get('checkout') === 'success' && sid) {
+        await api('/api/checkout-confirm', 'POST', { sessionId: sid });
+      }
+      await refreshUsage();
     }
     await loadCases();
     if (cases.length) selectCase(cases[0].id); else showEmpty();
