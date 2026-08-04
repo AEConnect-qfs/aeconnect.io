@@ -50,7 +50,8 @@ export async function handler(event: FnEvent) {
       regulatoryTimeline: result.regulatoryTimeline,
       authorities: JSON.stringify(result.authorities),
       narrative: result.narrative,
-      confidenceJson: JSON.stringify(result.confidence),
+      // Store confidence + per-field rationale together (no extra column needed).
+      confidenceJson: JSON.stringify({ confidence: result.confidence, rationale: result.rationale }),
     },
   });
 
@@ -81,6 +82,7 @@ export async function handler(event: FnEvent) {
       authorities: result.authorities,
       narrative: result.narrative,
       confidence: result.confidence,
+      rationale: result.rationale,
     },
   });
 }

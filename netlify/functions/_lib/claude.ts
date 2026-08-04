@@ -12,6 +12,9 @@ import Anthropic from '@anthropic-ai/sdk';
 export interface FieldConfidence {
   [fieldKey: string]: 'high' | 'medium' | 'low';
 }
+export interface FieldText {
+  [fieldKey: string]: string;
+}
 export interface AssessmentResult {
   modelVersion: string;
   seriousness: string;
@@ -26,6 +29,9 @@ export interface AssessmentResult {
   authorities: string[];
   narrative: string;
   confidence: FieldConfidence;
+  // Short per-field explanation of WHY the AI assigned that value (incl. the
+  // full MedDRA hierarchy for meddraPt). Keyed by field.
+  rationale: FieldText;
 }
 
 // Current Sonnet-tier model (the old claude-sonnet-4-* is being retired).
@@ -39,7 +45,7 @@ function buildPrompt(sourceText: string): string {
 {
   "seriousness": "Serious | Non-serious",
   "meddraPt": "MedDRA Preferred Term",
-  "meddraCode": "MedDRA PT code",
+  "meddraCode": "MedDRA PT numeric code",
   "soc": "System Organ Class",
   "causality": "unassessable | unlikely | possible | probable | certain",
   "causalityMethod": "e.g. WHO-UMC",
@@ -48,8 +54,22 @@ function buildPrompt(sourceText: string): string {
   "regulatoryTimeline": "e.g. 15-day | 7-day | Not required",
   "authorities": ["FDA", "EMA"],
   "narrative": "2-4 sentence clinical narrative",
-  "confidence": { "seriousness": "high|medium|low", "meddraPt": "...", "causality": "...", "expectedness": "...", "regulatoryRequired": "..." }
+  "confidence": { "seriousness": "high|medium|low", "meddraPt": "...", "soc": "...", "causality": "...", "expectedness": "...", "regulatoryRequired": "...", "regulatoryTimeline": "..." },
+  "rationale": {
+    "seriousness": "State which ICH serious criterion applies (death / life-threatening / hospitalization or prolongation / persistent or significant disability / congenital anomaly / other medically important), or why non-serious.",
+    "meddraPt": "Give the full MedDRA hierarchy with codes: LLT (Lowest Level Term) + code -> PT + code -> HLT (High Level Term) -> HLGT -> SOC + code. Note the verbatim reporter text you coded from.",
+    "soc": "One sentence: why this System Organ Class.",
+    "causality": "WHO-UMC reasoning: temporal relationship, dechallenge/rechallenge if known, plausible alternative causes, and known drug profile.",
+    "expectedness": "Whether the event is in the product's reference safety information (label), and why expected or unexpected.",
+    "regulatoryRequired": "Why it is (or isn't) an expedited-reportable case and to which authorities.",
+    "regulatoryTimeline": "Why this reporting clock (e.g. fatal/life-threatening = 7-day, other serious/unexpected = 15-day)."
+  }
 }
+
+GUIDELINES:
+- Use real MedDRA terms and codes (LLT, PT, SOC). If uncertain, pick the closest valid term and note the uncertainty in the rationale.
+- Each rationale value is 1-3 concise sentences of clinical reasoning — this is the reviewer's explanation of WHY.
+- This is a decision-support DRAFT; a qualified reviewer confirms every field.
 
 SOURCE DOCUMENT:
 """
@@ -83,9 +103,22 @@ function mockAssessment(sourceText: string): AssessmentResult {
     confidence: {
       seriousness: serious ? 'high' : 'medium',
       meddraPt: /headache|nausea/.test(s) ? 'high' : 'low',
+      soc: 'medium',
       causality: 'medium',
       expectedness: 'low',
       regulatoryRequired: serious ? 'high' : 'medium',
+      regulatoryTimeline: serious ? 'medium' : 'high',
+    },
+    rationale: {
+      seriousness: serious
+        ? 'Meets an ICH serious criterion (e.g. hospitalization or life-threatening) based on the reported course. (mock)'
+        : 'No death, life-threatening, hospitalization, disability, or congenital anomaly reported. (mock)',
+      meddraPt: 'MedDRA hierarchy (mock): LLT → PT (code shown) → HLT → SOC. Coded from the reporter’s verbatim event description. Reviewer to confirm the exact term/code.',
+      soc: 'System Organ Class inferred from the event type. (mock)',
+      causality: 'WHO-UMC: temporal association present; alternative causes not excluded; possible pending more information. (mock)',
+      expectedness: 'Expectedness cannot be confirmed without the product’s reference safety information; flagged Unexpected pending label check. (mock)',
+      regulatoryRequired: serious ? 'Serious + unexpected suggests an expedited report to FDA/EMA. (mock)' : 'Non-serious — routine/periodic reporting. (mock)',
+      regulatoryTimeline: serious ? 'Other serious/unexpected → 15-day expedited clock. (mock)' : 'Not expedited. (mock)',
     },
   };
 }
@@ -97,7 +130,7 @@ export async function generateAssessment(sourceText: string): Promise<Assessment
   const anthropic = new Anthropic({ apiKey });
   const msg = await anthropic.messages.create({
     model: MODEL,
-    max_tokens: 1500,
+    max_tokens: 2500,
     system: SYSTEM,
     messages: [{ role: 'user', content: buildPrompt(sourceText) }],
   });
@@ -119,6 +152,7 @@ export async function generateAssessment(sourceText: string): Promise<Assessment
     authorities: Array.isArray(parsed.authorities) ? parsed.authorities.map(String) : [],
     narrative: String(parsed.narrative ?? ''),
     confidence: (parsed.confidence ?? {}) as FieldConfidence,
+    rationale: (parsed.rationale ?? {}) as FieldText,
   };
 }
 

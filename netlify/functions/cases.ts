@@ -20,9 +20,15 @@ export async function handler(event: FnEvent) {
         },
       });
       if (!c) return notFound('Case not found');
-      const assessment = c.assessments[0]
-        ? { ...c.assessments[0], authorities: safeArr(c.assessments[0].authorities), confidence: safeObj(c.assessments[0].confidenceJson) }
-        : null;
+      let assessment = null;
+      if (c.assessments[0]) {
+        const row = c.assessments[0];
+        // confidenceJson holds either the new { confidence, rationale } shape or an old flat confidence map.
+        const detail: any = safeObj(row.confidenceJson);
+        const confidence = detail && typeof detail.confidence === 'object' ? detail.confidence : detail;
+        const rationale = detail && typeof detail.rationale === 'object' ? detail.rationale : {};
+        assessment = { ...row, authorities: safeArr(row.authorities), confidence, rationale };
+      }
       return ok({
         id: c.id, caseRef: c.caseRef, title: c.title, status: c.status,
         sourceType: c.sourceType, sourceText: c.sourceText,
