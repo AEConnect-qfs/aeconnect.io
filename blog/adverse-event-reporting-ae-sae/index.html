@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adverse event reporting: AE and SAE | AE Connect</title>
+  <meta name="description" content="AE versus SAE for drug-safety teams, which events are expedited, and what a draft assessment covers. AE Connect does not file the adverse event report." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/" />
+  <meta property="og:title" content="Adverse event reporting: AE and SAE" />
+  <meta property="og:description" content="AE versus SAE for drug-safety teams, which events are expedited, and what a draft assessment covers. AE Connect does not file the adverse event report." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Adverse event reporting: AE and SAE | AE Connect" />
+  <meta name="twitter:description" content="AE versus SAE for drug-safety teams, which events are expedited, and what a draft assessment covers. AE Connect does not file the adverse event report." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Adverse event reporting: AE, SAE, and what the sponsor actually sends",
+  "description": "AE versus SAE for drug-safety teams, which events are expedited, and what a draft assessment covers. AE Connect does not file the adverse event report.",
+  "url": "https://aeconnect.io/blog/adverse-event-reporting-ae-sae/",
+  "datePublished": "2026-10-23",
+  "dateModified": "2026-10-23",
+  "author": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "mainEntityOfPage": "https://aeconnect.io/blog/adverse-event-reporting-ae-sae/"
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between an AE and an SAE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An adverse event is any untoward medical occurrence in a person given a product. It does not have to be caused by the product. An SAE is an adverse event that meets a seriousness criterion, such as death, a life-threatening event, hospitalization, persistent disability, a congenital anomaly, or a medically important event. Seriousness is not the same as severity, and it is not the same as relatedness."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does every AE have to be reported to FDA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Sponsors collect adverse events. Expedited IND safety reports to FDA are for suspected adverse reactions that are both serious and unexpected, on the clocks in 21 CFR 312.32. Non-serious events and expected events are handled in the sponsor's safety file and, when required, in aggregate reports. The exact path depends on whether the product is investigational or marketed, and on the region."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AE Connect submit adverse event reports?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The workspace drafts seriousness, a suggested MedDRA term, causality, expectedness, and a timeline from the source text. A person accepts or overrides those fields. Nothing is transmitted to FDA, EMA, or any other authority."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where should AE and SAE intake happen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a PV case intake form that keeps the reporter's words, the receipt date, and the product. The AE Connect workspace is one place to do that. A safety database, if you run one, remains the system of record."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0a1628; --teal:#00d4c8; --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff; --border:rgba(255,255,255,0.08); }
+    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/about/">About</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / AE and SAE reporting</p>
+  <h1>Adverse event reporting: AE, SAE, and what the sponsor actually sends</h1>
+  <p class="by">QORO Team · 23 October 2026 · about 6 minutes</p>
+  <p>Adverse event reporting is two different jobs that teams collapse into one phrase. The first job is recognizing an adverse event and keeping it. The second is deciding whether a regulator, an investigator, or an ethics committee must hear about it on a clock. An AE is not automatically an SAE. An SAE is not automatically a report that leaves the building today.</p>
+  <h2>What an adverse event is</h2>
+  <p>An adverse event is any untoward medical occurrence in a patient or clinical-trial subject given a pharmaceutical product. It does not have to have a causal relationship with the treatment. A headache, a lab shift, a fall, a rash: if it happened after the product was given and someone reported it, it is an AE until a reviewer says otherwise. Lack of effect is usually handled as a separate concept. Your protocol should say so rather than leaving it to inbox custom.</p>
+  <p>Severity is how bad the event felt or how it was graded. Seriousness is whether it met a regulatory criterion. A severe headache can be non-serious. A short hospitalization for a mild event can be serious. Intake forms that use one checkbox for both create bad cases. The <a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake form</a> should store the verbatim and leave seriousness as a reviewed field.</p>
+  <h2>What makes an event an SAE</h2>
+  <p>ICH E2A seriousness criteria are the ones drug-safety teams actually use. An event is serious when it results in any of the following:</p>
+  <ul>
+    <li>Death.</li>
+    <li>A life-threatening event. Life-threatening means the patient was at immediate risk of death, not that a worse outcome was theoretically possible.</li>
+    <li>Inpatient hospitalization or prolongation of existing hospitalization.</li>
+    <li>Persistent or significant disability or incapacity.</li>
+    <li>A congenital anomaly or birth defect.</li>
+    <li>A medically important event that may jeopardize the patient or require intervention to prevent one of the outcomes above.</li>
+  </ul>
+  <p>Hospitalization for a planned procedure, or an emergency-room visit that does not become an admission, is a frequent argument. The criterion is the one in your SOP, aligned to ICH and to the region of the trial. The intake record should quote what the reporter said about admission, not a paraphrase that already assumes the answer.</p>
+  <h2>What actually gets reported, and when</h2>
+  <p>Collection is broader than expedited reporting. On an IND, the sponsor's expedited duty under 21 CFR 312.32 is aimed at suspected adverse reactions that are both serious and unexpected. Unexpected fatal or life-threatening suspected adverse reactions are reported as soon as possible and no later than 7 calendar days after the sponsor's initial receipt of the information. Other serious and unexpected suspected adverse reactions are reported as soon as possible and no later than 15 calendar days after the sponsor determines the information qualifies for reporting. Those are US IND clocks. Marketed-product clocks and EU clinical-trial clocks are related and not identical.</p>
+  <p>"Suspected" means there is a reasonable possibility the product caused the event. "Unexpected" means it is not listed in the investigator's brochure, or for a marketed product in the reference safety information, at the specificity the event actually has. A listed headache does not make an unexpected liver failure expected. The document and its version belong in the case. AE Connect does not author the company core data sheet or the brochure.</p>
+  <p>When the event is serious, unexpected, and suspected in a clinical trial, teams often call it a <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR</a>. The US rule uses the longer name. The intake work is the same: do not lose the receipt date while you decide.</p>
+  <h2>What the workspace drafts, and what it refuses to do</h2>
+  <p>In the <a href="https://aeconnect.io/app/">AE Connect workspace</a>, a reviewer pastes or uploads the source. The draft proposes seriousness against those ICH criteria, a MedDRA preferred term and system organ class to confirm, WHO-UMC causality, expectedness as a check against the brochure or core data sheet, and a timeline such as 7-day, 15-day, or not required. Each field has a short rationale. You accept or override it.</p>
+  <p>That draft is decision support inside drug-safety case processing. It is not the IND safety report, not an E2B(R3) message, and not a letter to investigators. Transmission is covered in <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a>. Events that are not expedited still have to be findable later for <a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">aggregate reports</a>.</p>
+  <p>If the narrative is really a quality defect, or a defect plus an event, read it against <a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">product quality complaint reporting</a> before you force it into an SAE template.</p>
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. The workspace does not submit an ICSR.</p>
+    <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
+  </div>
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What is the difference between an AE and an SAE?</h3>
+    <p>An adverse event is any untoward medical occurrence in a person given a product. It does not have to be caused by the product. An SAE is an adverse event that meets a seriousness criterion, such as death, a life-threatening event, hospitalization, persistent disability, a congenital anomaly, or a medically important event. Seriousness is not the same as severity, and it is not the same as relatedness.</p>
+    <h3>Does every AE have to be reported to FDA?</h3>
+    <p>No. Sponsors collect adverse events. Expedited IND safety reports to FDA are for suspected adverse reactions that are both serious and unexpected, on the clocks in 21 CFR 312.32. Non-serious events and expected events are handled in the sponsor&#x27;s safety file and, when required, in aggregate reports. The exact path depends on whether the product is investigational or marketed, and on the region.</p>
+    <h3>Does AE Connect submit adverse event reports?</h3>
+    <p>No. The workspace drafts seriousness, a suggested MedDRA term, causality, expectedness, and a timeline from the source text. A person accepts or overrides those fields. Nothing is transmitted to FDA, EMA, or any other authority.</p>
+    <h3>Where should AE and SAE intake happen?</h3>
+    <p>On a PV case intake form that keeps the reporter&#x27;s words, the receipt date, and the product. The AE Connect workspace is one place to do that. A safety database, if you run one, remains the system of record.</p>
+  </section>
+  <div class="related">
+    <h2>In this series</h2>
+    <ul>
+<li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+<li>Adverse event reporting: AE and SAE (this page)</li>
+<li><a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a></li>
+<li><a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">Product quality complaint reporting</a></li>
+<li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+<li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
+<li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
+<li><a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus alternative</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere alternative</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety alternative</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a></span>
+</footer>
+</body>
+</html>

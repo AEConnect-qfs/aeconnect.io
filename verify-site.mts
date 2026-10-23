@@ -52,7 +52,7 @@ async function main() {
     check(`301 ${from}`, r.status === 301 && r.loc === to, r.loc);
   }
 
-  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/privacy/', '/terms/', '/app/']) {
+  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus-alternative/', '/privacy/', '/terms/', '/app/']) {
     const r = await page(p);
     const canon = `https://aeconnect.io${p}`;
     check(`200 ${p}`, r.status === 200 && r.text.includes(`rel="canonical" href="${canon}"`));
@@ -62,7 +62,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 16 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 16);
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 26 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 26);
 
   const weak = await api('/api/signup', 'POST', undefined, { email: 'not-an-email', password: 'short', name: 'A' });
   check('signup weak password + bad email → 400', weak.status === 400 && !!weak.body.fields?.password && !!weak.body.fields?.email && weak.robots.includes('noindex'));

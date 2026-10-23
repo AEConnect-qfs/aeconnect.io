@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E2B(R3) ICSR submissions, explained | AE Connect</title>
+  <meta name="description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, and why AE Connect does not transmit E2B(R3) XML." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/" />
+  <meta property="og:title" content="E2B(R3) ICSR submissions, explained" />
+  <meta property="og:description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, and why AE Connect does not transmit E2B(R3) XML." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/e2b-r3-icsr-submissions/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="E2B(R3) ICSR submissions, explained | AE Connect" />
+  <meta name="twitter:description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, and why AE Connect does not transmit E2B(R3) XML." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "E2B(R3) ICSR submissions start with a complete case",
+  "description": "What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, and why AE Connect does not transmit E2B(R3) XML.",
+  "url": "https://aeconnect.io/blog/e2b-r3-icsr-submissions/",
+  "datePublished": "2026-10-23",
+  "dateModified": "2026-10-23",
+  "author": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "mainEntityOfPage": "https://aeconnect.io/blog/e2b-r3-icsr-submissions/"
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an E2B(R3) ICSR submission?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "E2B(R3) is the ICH standard for the electronic message that carries an individual case safety report. An E2B(R3) submission is that message, validated and sent to an authority such as FDA through the path the authority requires. It is the transport format of a case, not the medical judgment inside the case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AE Connect submit E2B(R3) files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. AE Connect does not create E2B(R3) XML, does not connect to an ESG or other gateway, and does not transmit ICSRs. It drafts a human-reviewed assessment from the source narrative. A safety database, a CRO, or a publishing tool sends the file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What has to be in the case before an E2B(R3) file is worth building?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A valid case: identifiable reporter, identifiable patient, suspect product, and event, plus the seriousness, coding, causality, and expectedness decisions a reviewer has accepted. A narrative still sitting in a PDF will fail validation or, worse, pass validation with the wrong facts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where should a small sponsor start on E2B(R3)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Read the intake and the deadline notes, then use a checklist for the operational pieces: accounts, identifiers, and who actually sends the file. AE Connect is only the intake and draft step. The longer guide and the checklist on this site cover the filing side."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0a1628; --teal:#00d4c8; --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff; --border:rgba(255,255,255,0.08); }
+    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/about/">About</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / E2B(R3) submissions</p>
+  <h1>E2B(R3) ICSR submissions start with a complete case</h1>
+  <p class="by">QORO Team · 23 October 2026 · about 6 minutes</p>
+  <p>E2B(R3) ICSR submission is the sentence sponsors use when they mean "the electronic file the authority will accept." ICH E2B(R3) is a message standard. An individual case safety report is the medical and administrative content. Submission is the act of sending a valid message to the authority. Those are three layers. Tools that advertise E2B(R3) sometimes only mean they can export a file shaped like the standard. A file that never leaves the building is not a submission.</p>
+  <h2>What the message is for</h2>
+  <p>Regulators moved individual case exchange off paper and off older E2B releases onto E2B(R3). The message carries reporter, patient, reaction, drug, and narrative sections in a fixed structure so a receiving system can read them. FDA's electronic submissions gateway, and the equivalent paths in other regions, are how the message travels. The gateway checks that a sender is allowed to send. It does not check that the causality call was wise.</p>
+  <p>Small IND sponsors felt this when electronic IND safety reports stopped being optional. The operational guide on this site, <a href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/">what IND sponsors need for E2B(R3)</a>, walks through that change. The <a href="https://aeconnect.io/e2b-r3-checklist/">readiness checklist</a> is the accompanying list. This page is the concept: what you are submitting, and what has to exist first.</p>
+  <h2>The case is the product. The XML is the packaging.</h2>
+  <p>E2B(R3) validation will reject a message with missing required elements. It will not reject a message whose serious box was guessed from a subject line. The elements that make a case worth sending are the same ones <a href="https://aeconnect.io/blog/pv-case-intake-forms/">intake</a> is supposed to capture, plus the decisions a qualified person has made:</p>
+  <ul>
+    <li>Reporter and patient, identifiable enough for a valid case, with the privacy limits your process already uses.</li>
+    <li>Suspect product, dose, and dates.</li>
+    <li>Reaction in the reporter's words, and a MedDRA term a coder is willing to stand behind.</li>
+    <li>Seriousness, expectedness against a named reference document, and causality.</li>
+    <li>The receipt date that starts the <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">7-day or 15-day</a> discussion, if this is an expedited case.</li>
+    <li>A narrative that matches the structured fields. When they disagree, the authority sees both.</li>
+  </ul>
+  <p>Teams stall on the packaging because the case is still in email. Buying a gateway login does not create the case. The <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">inbox</a> is still the bottleneck at a lot of small biotechs.</p>
+  <h2>Who actually sends it</h2>
+  <p>A company that runs Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety often sends from that system, or from a safety CRO that runs one of them. That is a reason to have the database, and it is also a reason not to pretend an intake workspace is the database. AE Connect does not configure those products and does not hand them a case. If they are your system of record, someone still types or reconciles the official case there before the message exists.</p>
+  <p>A sponsor that has outsourced submissions should be able to name the vendor, the account, and the person who confirms a file was acknowledged. "We use a gateway" is not a control. The checklist is the blunter version of that question.</p>
+  <h2>What AE Connect does with E2B(R3) concepts</h2>
+  <p>The <a href="https://aeconnect.io/app/">AE Connect workspace</a> organizes a source document into the judgments an ICSR depends on: seriousness, a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness, whether reporting looks required, and a timeline. You accept or override each one. The output is a reviewed draft and a short narrative. It is not E2B(R3) XML. It is not transmitted. It will not show an acknowledgment from FDA or EMA.</p>
+  <p>Use it so the person who does build the message is not inventing seriousness from a PDF at midnight. Do not describe it, internally or to a partner, as E2B(R3) submission software. It is not. <a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI case processing</a> on this site means that draft, with a person on every field.</p>
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. The workspace does not submit an ICSR.</p>
+    <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
+  </div>
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What is an E2B(R3) ICSR submission?</h3>
+    <p>E2B(R3) is the ICH standard for the electronic message that carries an individual case safety report. An E2B(R3) submission is that message, validated and sent to an authority such as FDA through the path the authority requires. It is the transport format of a case, not the medical judgment inside the case.</p>
+    <h3>Does AE Connect submit E2B(R3) files?</h3>
+    <p>No. AE Connect does not create E2B(R3) XML, does not connect to an ESG or other gateway, and does not transmit ICSRs. It drafts a human-reviewed assessment from the source narrative. A safety database, a CRO, or a publishing tool sends the file.</p>
+    <h3>What has to be in the case before an E2B(R3) file is worth building?</h3>
+    <p>A valid case: identifiable reporter, identifiable patient, suspect product, and event, plus the seriousness, coding, causality, and expectedness decisions a reviewer has accepted. A narrative still sitting in a PDF will fail validation or, worse, pass validation with the wrong facts.</p>
+    <h3>Where should a small sponsor start on E2B(R3)?</h3>
+    <p>Read the intake and the deadline notes, then use a checklist for the operational pieces: accounts, identifiers, and who actually sends the file. AE Connect is only the intake and draft step. The longer guide and the checklist on this site cover the filing side.</p>
+  </section>
+  <div class="related">
+    <h2>In this series</h2>
+    <ul>
+<li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+<li><a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">Adverse event reporting: AE and SAE</a></li>
+<li><a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a></li>
+<li><a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">Product quality complaint reporting</a></li>
+<li>E2B(R3) ICSR submissions (this page)</li>
+<li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
+<li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
+<li><a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus alternative</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere alternative</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety alternative</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a></span>
+</footer>
+</body>
+</html>

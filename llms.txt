@@ -8,7 +8,7 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 
 - PV case intake: an intake form where you paste a narrative or upload PDF, Word, text, email, CSV, or an image. Files are parsed in the browser. Only the extracted text is sent for assessment.
 - The draft covers seriousness, a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness, whether regulatory reporting looks required, and a reporting timeline, each with a short rationale.
-- A reviewer accepts or overrides every field and can sign off. The draft is decision support. It does not file an AE, SAE, or SUSAR report.
+- A reviewer accepts or overrides every field. The draft is decision support. It does not file an AE, SAE, or SUSAR report. This workspace has no e-signature sign-off.
 - Expectedness is a suggestion to check against the current company core data sheet or Investigator's Brochure. AE Connect does not author or version the CCDS.
 - Product quality complaint (PQC) narratives that include an adverse event can be pasted into the same intake. This is not a QMS or a complaint-handling system.
 - Aggregate reports (IND annual report, DSUR, PSUR, PBRER) are out of scope. Those stay with the safety database or the PV partner.
@@ -18,7 +18,7 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 - It does not transmit E2B(R3) ICSR XML to FDA, EMA, or any gateway. E2B(R3) here means the draft is organized around ICSR concepts (seriousness, coding, causality, expectedness, timeline), not that the product is certified submission software.
 - It is not Oracle Argus, not ArisGlobal Safety One, and not Veeva Vault Safety. It works alongside those systems when a team already runs one. It is not a certified integration, and it does not configure them.
 - It is not positioned as an "AI governance and compliance layer" inside Argus or Veeva. Teams comparing those databases can read https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/.
-- It does not claim GAMP 5 certification, 21 CFR Part 11 certification, SOC 2, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail and a human sign-off. Validation status is a question for QORO, not a claim on this page.
+- It does not claim GAMP 5 certification, 21 CFR Part 11 certification, SOC 2, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail. Validation status is a question for QORO, not a claim on this page.
 
 ## Pricing
 
@@ -36,6 +36,21 @@ First 5 AI-processed cases are free, no card. Core is $20 per month and includes
 - [AE intake vs full pharmacovigilance](https://aeconnect.io/blog/ae-intake-vs-pharmacovigilance/)
 - [First-IND PV plan, CCDS, and aggregate reports](https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/)
 - [The drug safety inbox](https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/)
+
+## Guides
+
+Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQPage JSON-LD, and a link to the workspace. Comparison pages are factual. They are not certified alternatives and they do not claim an integration.
+
+- [PV case intake forms](https://aeconnect.io/blog/pv-case-intake-forms/): what an intake form captures before the clock starts
+- [Adverse event reporting: AE and SAE](https://aeconnect.io/blog/adverse-event-reporting-ae-sae/)
+- [SUSAR reporting](https://aeconnect.io/blog/susar-reporting-ind-sponsors/)
+- [Product quality complaint reporting](https://aeconnect.io/blog/product-quality-complaint-reporting/): not a QMS, and not a Field Alert Report
+- [E2B(R3) ICSR submissions](https://aeconnect.io/blog/e2b-r3-icsr-submissions/): the message standard, which this product does not transmit
+- [AI pharmacovigilance case processing](https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/)
+- [PSUR, PBRER, and DSUR](https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/): aggregate-report basics the workspace does not write
+- [Oracle Argus alternative](https://aeconnect.io/blog/oracle-argus-alternative/): fair comparison, not a replacement database
+- [ArisGlobal LifeSphere alternative](https://aeconnect.io/blog/arisglobal-lifesphere-alternative/): LifeSphere Safety and the Safety One name
+- [Veeva Vault Safety alternative](https://aeconnect.io/blog/veeva-vault-safety-alternative/)
 - [Privacy Policy (draft)](https://aeconnect.io/privacy/)
 - [Terms of Service (draft)](https://aeconnect.io/terms/)
 - [About](https://aeconnect.io/about/)

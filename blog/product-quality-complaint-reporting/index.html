@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product quality complaint reporting and adverse events | AE Connect</title>
+  <meta name="description" content="When a product quality complaint is also an adverse event, and why a QMS and a drug-safety case are different. AE Connect is not a complaint-handling system." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/product-quality-complaint-reporting/" />
+  <meta property="og:title" content="Product quality complaint reporting and adverse events" />
+  <meta property="og:description" content="When a product quality complaint is also an adverse event, and why a QMS and a drug-safety case are different. AE Connect is not a complaint-handling system." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/product-quality-complaint-reporting/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Product quality complaint reporting and adverse events | AE Connect" />
+  <meta name="twitter:description" content="When a product quality complaint is also an adverse event, and why a QMS and a drug-safety case are different. AE Connect is not a complaint-handling system." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Product quality complaint reporting when a patient is also involved",
+  "description": "When a product quality complaint is also an adverse event, and why a QMS and a drug-safety case are different. AE Connect is not a complaint-handling system.",
+  "url": "https://aeconnect.io/blog/product-quality-complaint-reporting/",
+  "datePublished": "2026-10-23",
+  "dateModified": "2026-10-23",
+  "author": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "mainEntityOfPage": "https://aeconnect.io/blog/product-quality-complaint-reporting/"
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a product quality complaint?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A product quality complaint is a report that the product itself is defective or not what it should be: appearance, packaging, labeling, particles, a device that did not operate, a wrong strength. It is a quality-system record. It is not, by itself, an adverse event report."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is a PQC also an adverse event?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When a person had an untoward medical occurrence and the defective product is a suspect. Fever after a cloudy vial, an infection after a suspected non-sterile lot, or injury from a device malfunction can be both a complaint and an AE. Quality and drug safety both need the story. One inbox does not make them one process."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AE Connect run product quality complaint reporting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. AE Connect is not a QMS. It does not manage deviations, batch records, returns, or complaint trending. If the narrative includes an adverse event, you can paste that text into the workspace and review a draft assessment. The quality file still lives in the quality system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a product quality complaint the same as a Field Alert Report?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A Field Alert Report is a specific notice certain NDA and ANDA holders must send FDA about distributed product with a quality problem, on a short clock under 21 CFR 314.81. It is not an ICSR and it is not something AE Connect files."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0a1628; --teal:#00d4c8; --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff; --border:rgba(255,255,255,0.08); }
+    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/about/">About</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / PQC reporting</p>
+  <h1>Product quality complaint reporting when a patient is also involved</h1>
+  <p class="by">QORO Team · 23 October 2026 · about 6 minutes</p>
+  <p>Product quality complaint reporting and adverse event reporting meet in the same inbox and then have to leave on different paths. A pharmacist calls about a cracked vial. A site writes that the infusion pump alarmed and the subject later had chills. Quality wants the lot. Drug safety wants to know whether a person was harmed. If both teams assume the other one opened the case, nobody owns Day 0.</p>
+  <h2>What a product quality complaint is</h2>
+  <p>A product quality complaint, often shortened to PQC, is a report that something is wrong with the product as a product. Typical complaints:</p>
+  <ul>
+    <li>Appearance: discoloration, particles, cloudiness, a leaking container.</li>
+    <li>Packaging or labeling: wrong carton, missing warning, illegible lot.</li>
+    <li>Identity or strength: a tablet that does not match the description, a suspected mix-up.</li>
+    <li>Device or delivery: a pen or pump that did not fire, a kinked line, a sterile barrier that arrived open.</li>
+  </ul>
+  <p>The quality system records the complaint, holds the lot if needed, checks batch records, and looks for a trend. That work is complaint handling. It is not pharmacovigilance case processing, even when the same person is on call for both because the company has twelve employees.</p>
+  <h2>When the complaint is also an adverse event</h2>
+  <p>Add a patient outcome and the quality complaint can also be an <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">adverse event</a>. The test is the usual one. Is there an identifiable patient, an identifiable reporter, a suspect product, and an untoward occurrence? A cracked vial found in the warehouse has no patient. A cracked vial that was administered, followed by a fever, has an event until a clinician shows the fever had another cause.</p>
+  <p>Both files should point at each other. The complaint record holds the lot, the returned sample, and the batch. The safety case holds seriousness, coding, causality, and expectedness. Copying the safety narrative into the complaint, or the batch record into the safety case, without saying which system owns which decision, is how the two files drift.</p>
+  <p>Seriousness still uses the ICH criteria. A device malfunction that could have killed someone may be medically important even if this patient recovered in an hour. That call is a drug-safety call. The decision to quarantine a lot is a quality call. They can be true on the same afternoon.</p>
+  <h2>What intake has to capture so both teams can start</h2>
+  <p>The <a href="https://aeconnect.io/blog/pv-case-intake-forms/">intake form</a> for a mixed report needs the event verbatim, the receipt date, and the product identifiers quality will ask for: lot or batch, expiry if stated, and a description of the defect in the reporter's words. Photos belong with the quality file. The safety case needs to say that a defect was alleged, not to become the photo archive.</p>
+  <p>Do not wait for the batch investigation to decide whether the event is an SAE. The safety clock, if there is one, runs on the event. The investigation explains it later. Follow-up can correct causality. It cannot invent a receipt date you failed to write down. The <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">inbox note</a> is the version of this failure that happens in email.</p>
+  <h2>Field alerts and other quality notices are a third path</h2>
+  <p>Some marketed-product quality problems trigger a Field Alert Report. Under 21 CFR 314.81, NDA and ANDA holders notify FDA about certain issues with distributed drug product, including labeling mix-ups and significant chemical, physical, or other change, on a clock measured in working days. That notice is not an ICSR, and it is not the complaint form. Biologics and devices have their own defect and malfunction duties. If you are the holder of the application, your quality lead should own the decision. A case-intake tool should not be where that decision is improvised.</p>
+  <h2>What AE Connect will and will not do with a PQC</h2>
+  <p>If the text in front of you describes an adverse event, the <a href="https://aeconnect.io/app/">AE Connect workspace</a> can draft seriousness, a suggested MedDRA term, causality, expectedness, and a timeline for a person to review. Paste the narrative. Mention the defect in the text so the draft can see it. The workspace still does not know your batch record, and it will not trend complaints, issue a recall, or file a Field Alert Report.</p>
+  <p>A complaint with no patient is out of scope. Put it in the quality system. Do not create a fake adverse event so the safety tool has something to code.</p>
+  <p>PQC reports also do not become aggregate safety reports by accumulation. A cluster of quality defects may belong in a signal discussion or a <a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">periodic safety report</a> if patients were involved. The complaint log itself is not a PSUR.</p>
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. The workspace does not submit an ICSR.</p>
+    <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
+  </div>
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What is a product quality complaint?</h3>
+    <p>A product quality complaint is a report that the product itself is defective or not what it should be: appearance, packaging, labeling, particles, a device that did not operate, a wrong strength. It is a quality-system record. It is not, by itself, an adverse event report.</p>
+    <h3>When is a PQC also an adverse event?</h3>
+    <p>When a person had an untoward medical occurrence and the defective product is a suspect. Fever after a cloudy vial, an infection after a suspected non-sterile lot, or injury from a device malfunction can be both a complaint and an AE. Quality and drug safety both need the story. One inbox does not make them one process.</p>
+    <h3>Does AE Connect run product quality complaint reporting?</h3>
+    <p>No. AE Connect is not a QMS. It does not manage deviations, batch records, returns, or complaint trending. If the narrative includes an adverse event, you can paste that text into the workspace and review a draft assessment. The quality file still lives in the quality system.</p>
+    <h3>Is a product quality complaint the same as a Field Alert Report?</h3>
+    <p>No. A Field Alert Report is a specific notice certain NDA and ANDA holders must send FDA about distributed product with a quality problem, on a short clock under 21 CFR 314.81. It is not an ICSR and it is not something AE Connect files.</p>
+  </section>
+  <div class="related">
+    <h2>In this series</h2>
+    <ul>
+<li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+<li><a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">Adverse event reporting: AE and SAE</a></li>
+<li><a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a></li>
+<li>Product quality complaint reporting (this page)</li>
+<li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+<li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
+<li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
+<li><a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus alternative</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere alternative</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety alternative</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a></span>
+</footer>
+</body>
+</html>
