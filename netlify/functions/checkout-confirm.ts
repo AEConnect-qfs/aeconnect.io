@@ -2,25 +2,23 @@ import { prisma } from './_lib/prisma.js';
 import { stripe } from './_lib/stripe.js';
 import { subscribeToCore, getUsage } from './_lib/billing.js';
 import { writeAudit } from './_lib/audit.js';
-import { getSession, parseBody, requireMethod, ok, bad, unauthorized, forbidden, serverError, type FnEvent } from './_lib/http.js';
+import { requireSession, isResponse, parseBody, requireMethod, ok, bad, forbidden, serverError, type FnEvent } from './_lib/http.js';
 
 /**
- * Confirm a completed Stripe Checkout on return to /app (belt-and-suspenders with
- * the webhook, so activation works even without a webhook secret configured).
- * Retrieves the Checkout Session, verifies it belongs to the caller and is paid,
- * then activates Core.
+ * Confirm a completed Stripe Checkout on return to /app. Retrieves the session
+ * with the secret key, checks it belongs to the caller and is paid, then
+ * activates Core. Does nothing when Stripe is not configured.
  */
 export async function handler(event: FnEvent) {
   const m = requireMethod(event, 'POST');
   if (m) return m;
-  const session = getSession(event);
-  if (!session) return unauthorized();
+  const session = await requireSession(event);
+  if (isResponse(session)) return session;
   const userId = session.id;
 
   const { sessionId } = parseBody<{ sessionId?: string }>(event);
   if (!sessionId) return bad('sessionId is required');
 
-  // Dev (no Stripe): nothing to confirm — the dev checkout already activated.
   if (!stripe) return ok(await getUsage(userId));
 
   try {
@@ -47,6 +45,7 @@ export async function handler(event: FnEvent) {
     }
     return ok({ paid, ...(await getUsage(userId)) });
   } catch (e: any) {
-    return serverError('Checkout confirm failed: ' + (e?.message || 'unknown'));
+    console.error('[checkout-confirm]', e instanceof Error ? e.message : e);
+    return serverError('Checkout confirm failed');
   }
 }

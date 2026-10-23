@@ -38,3 +38,22 @@
   for = "/blog/veeva-argus-overkill-early-phase-biotech"
   [headers.values]
     Content-Type = "text/html; charset=UTF-8"
+
+# Workspace only. Marketing pages keep their own inline scripts.
+# Keep this value identical to CONTENT_SECURITY_POLICY in netlify/functions/_lib/csp.ts.
+[[headers]]
+  for = "/app"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' blob: data:; connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://tessdata.projectnaptha.com; worker-src 'self' blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/app/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' blob: data:; connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://tessdata.projectnaptha.com; worker-src 'self' blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/app/reset.html"
+  [headers.values]
+    Referrer-Policy = "no-referrer"
