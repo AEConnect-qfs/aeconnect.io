@@ -96,7 +96,7 @@
             "name": "Does AE Connect replace Oracle Argus, ArisGlobal, or Veeva Vault Safety?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. It works alongside those safety systems when you already run one. It is not a certified integration, and it does not configure Argus, ArisGlobal Safety One, or Veeva Vault Safety. Early-phase teams sometimes use the workspace for intake before they are ready to operate a full safety database. Submission stays outside AE Connect."
+              "text": "No. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the safety database. AE Connect is the intake and AI case-processing layer in front of them. There is no certified connector, and submission stays in the safety database."
             }
           },
           {
@@ -189,7 +189,9 @@
     <li><a href="https://aeconnect.io/about/">About</a></li>
     <li><a href="https://aeconnect.io/contact/">Contact</a></li>
     <li><a href="https://aeconnect.io/beta/">Beta</a></li>
-    <li><a class="nav-cta" href="https://aeconnect.io/app/">Open the workspace</a></li>
+    <li><a href="https://aeconnect.io/pricing/">Pricing</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+    <li><a class="nav-cta" href="https://aeconnect.io/app/">Start 5 free cases</a></li>
   </ul>
 </nav>
 
@@ -198,10 +200,10 @@
   <h1>AI pharmacovigilance case processing for the source document in front of you.</h1>
   <p class="lede">Paste or upload an adverse-event report. AE Connect drafts seriousness, MedDRA coding, causality, expectedness, and the reporting timeline. A person accepts or overrides every field. First 5 cases are free.</p>
   <div class="hero-actions">
-    <a class="btn" href="https://aeconnect.io/app/">Process a case</a>
-    <a class="btn btn-ghost" href="#intake">How intake works</a>
+    <a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a>
+    <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a>
   </div>
-  <p class="note">It works alongside Oracle Argus, ArisGlobal, and Veeva Vault Safety. It does not replace them, and it does not submit an ICSR.</p>
+  <p class="note">It works with Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety as the intake layer in front of the safety database. It does not replace them, and it does not submit an ICSR. <a href="#intake">How intake works</a>.</p>
 </header>
 
 <div class="wrap">
@@ -244,8 +246,8 @@
   <section id="alongside">
     <h2>Argus, Safety One, and Veeva Vault Safety</h2>
     <div class="prose">
-      <p>People searching for an AI governance layer on top of Oracle Argus, ArisGlobal Safety One, or Veeva Vault Safety are usually trying to get a messy front door under control. Those products are safety databases. AE Connect does not configure them and it is not a certified add-on.</p>
-      <p>Use it beside them when the case still lives in email, or when an early-phase team is not ready to run a full database for a handful of reports. The comparison is practical, not a feature checklist: <a href="https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/">when Argus and Veeva are more system than the program needs</a>, and <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">what the drug safety inbox actually looks like</a>.</p>
+      <p>Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety are safety databases. AE Connect does not configure them and it is not a certified connector. It is the intake and AI case-processing layer in front of them: a reviewer accepts the draft here, then books the official case there.</p>
+      <p>The tables are <a href="https://aeconnect.io/integrations/oracle-argus/">Argus</a>, <a href="https://aeconnect.io/integrations/arisglobal/">LifeSphere</a>, and <a href="https://aeconnect.io/integrations/veeva-vault-safety/">Vault Safety</a>. The inbox those cases still arrive in is described in <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">the drug safety inbox</a>.</p>
       <p>A product quality complaint that describes an adverse event can go through the same intake. PQC reporting as a quality system — complaints, batches, returns — is a different job. Aggregate reports, including the IND annual report and a DSUR, are not produced here. <a href="https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/">The first-IND PV plan note</a> covers the company core data sheet, expectedness, and those aggregate duties.</p>
     </div>
   </section>
@@ -261,7 +263,7 @@
       <article class="card">
         <p>Core</p>
         <strong>$20/month</strong>
-        <p>Includes 25 AI-processed cases in the month, then $1 per additional case. Checkout is Stripe. The <a href="https://aeconnect.io/terms/">Terms</a> and <a href="https://aeconnect.io/privacy/">Privacy Policy</a> are drafts pending legal review.</p>
+        <p>Includes 25 AI-processed cases in the month, then $1 per additional case. Checkout is Stripe. <a href="https://aeconnect.io/pricing/">Full pricing</a>. The <a href="https://aeconnect.io/terms/">Terms</a> and <a href="https://aeconnect.io/privacy/">Privacy Policy</a> are drafts pending legal review.</p>
       </article>
     </div>
   </section>
@@ -286,7 +288,7 @@
     </details>
     <details>
       <summary>Does AE Connect replace Oracle Argus, ArisGlobal, or Veeva Vault Safety?</summary>
-      <p>No. It works alongside those safety systems when you already run one. It is not a certified integration, and it does not configure Argus, ArisGlobal Safety One, or Veeva Vault Safety. Early-phase teams sometimes use the workspace for intake before they are ready to operate a full safety database. Submission stays outside AE Connect.</p>
+      <p>No. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the safety database. AE Connect is the intake and AI case-processing layer in front of them. There is no certified connector, and submission stays in the safety database. See <a href="https://aeconnect.io/integrations/oracle-argus/">Argus</a>, <a href="https://aeconnect.io/integrations/arisglobal/">LifeSphere</a>, and <a href="https://aeconnect.io/integrations/veeva-vault-safety/">Vault Safety</a>.</p>
     </details>
     <details>
       <summary>Does it maintain the company core data sheet or write aggregate reports?</summary>
@@ -315,9 +317,9 @@
       <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a>
       <a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a>
       <a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a>
-      <a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus: a fair comparison</a>
-      <a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere: a fair comparison</a>
-      <a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety: a fair comparison</a>
+      <a href="https://aeconnect.io/blog/oracle-argus/">How AE Connect works with Oracle Argus</a>
+      <a href="https://aeconnect.io/blog/arisglobal-lifesphere/">How AE Connect works with ArisGlobal LifeSphere</a>
+      <a href="https://aeconnect.io/blog/veeva-vault-safety/">How AE Connect works with Veeva Vault Safety</a>
       <a href="https://aeconnect.io/features/">Feature notes</a>
     </div>
   </section>
@@ -334,8 +336,12 @@
         <h5>Product</h5>
         <ul>
           <li><a href="https://aeconnect.io/app/">AI workspace</a></li>
+          <li><a href="https://aeconnect.io/pricing/">Pricing</a></li>
+          <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+          <li><a href="https://aeconnect.io/solutions/pv-case-intake/">Solutions</a></li>
+          <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, Vault</a></li>
+          <li><a href="https://aeconnect.io/trust/">Trust</a></li>
           <li><a href="https://aeconnect.io/features/">Features</a></li>
-          <li><a href="https://aeconnect.io/beta/">Beta program</a></li>
           <li><a href="https://aeconnect.io/e2b-r3-checklist/">E2B(R3) checklist</a></li>
         </ul>
       </div>

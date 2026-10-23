@@ -73,6 +73,12 @@ function checkNetlifyRedirects() {
     ['/adverse-event-intake-system/', '/'],
     ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect', '/blog/veeva-argus-overkill-early-phase-biotech/'],
     ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect/', '/blog/veeva-argus-overkill-early-phase-biotech/'],
+    ['/blog/oracle-argus-alternative', '/blog/oracle-argus/'],
+    ['/blog/oracle-argus-alternative/', '/blog/oracle-argus/'],
+    ['/blog/arisglobal-lifesphere-alternative', '/blog/arisglobal-lifesphere/'],
+    ['/blog/arisglobal-lifesphere-alternative/', '/blog/arisglobal-lifesphere/'],
+    ['/blog/veeva-vault-safety-alternative', '/blog/veeva-vault-safety/'],
+    ['/blog/veeva-vault-safety-alternative/', '/blog/veeva-vault-safety/'],
   ];
   for (const [from, to] of legacy) {
     const r = follow(from);
@@ -136,7 +142,7 @@ async function main() {
     check(`301 ${from}`, r.status === 301 && r.loc === to, r.loc);
   }
 
-  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus-alternative/', '/privacy/', '/terms/', '/app/']) {
+  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/pricing/', '/demo/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/']) {
     const r = await page(p);
     const canon = `https://aeconnect.io${p}`;
     check(`200 ${p}`, r.status === 200 && r.text.includes(`rel="canonical" href="${canon}"`));
@@ -146,7 +152,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 26 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 26);
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 41 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 41);
 
   const weak = await api('/api/signup', 'POST', undefined, { email: 'not-an-email', password: 'short', name: 'A' });
   check('signup weak password + bad email → 400', weak.status === 400 && !!weak.body.fields?.password && !!weak.body.fields?.email && weak.robots.includes('noindex'));

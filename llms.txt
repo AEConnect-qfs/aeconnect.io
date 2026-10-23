@@ -15,21 +15,27 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 
 ## What it does not do
 
-- It does not transmit E2B(R3) ICSR XML to FDA, EMA, or any gateway. E2B(R3) here means the draft is organized around ICSR concepts (seriousness, coding, causality, expectedness, timeline), not that the product is certified submission software.
-- It is not Oracle Argus, not ArisGlobal Safety One, and not Veeva Vault Safety. It works alongside those systems when a team already runs one. It is not a certified integration, and it does not configure them.
-- It is not positioned as an "AI governance and compliance layer" inside Argus or Veeva. Teams comparing those databases can read https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/.
+- It does not transmit E2B(R3) ICSR XML to FDA, EMA, or any gateway. The reviewed draft is organized around ICSR concepts (seriousness, coding, causality, expectedness, timeline, narrative) so a person can book the case in the safety database. The safety database produces and transmits the file when it is configured to.
+- It is not an alternative to Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety. Those remain the safety database. AE Connect is the intake-form and AI case-processing layer in front of them. There is no certified connector that writes the case into those systems.
+- It is not an "AI governance and compliance layer" inside Argus or Veeva. Read https://aeconnect.io/integrations/ and https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/.
 - It does not claim GAMP 5 certification, 21 CFR Part 11 certification, SOC 2, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail. Validation status is a question for QORO, not a claim on this page.
 
 ## Pricing
 
-First 5 AI-processed cases are free, no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe Checkout handles the card. Prices are defined in code and shown in the workspace. Do not invent other public price tiers from older marketing snippets.
+First 5 AI-processed cases are free, no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe Checkout handles the card. The public page is https://aeconnect.io/pricing/. Prices are defined in code and shown in the workspace. Do not invent other public price tiers from older marketing snippets.
 
 ## Pages
 
 - [Home](https://aeconnect.io/): product overview, how PV case intake works, FAQ
-- [AI workspace](https://aeconnect.io/app/): signup, login, and case processing
+- [Pricing](https://aeconnect.io/pricing/): 5 free cases, then Core at $20 per month
+- [Book a demo](https://aeconnect.io/demo/): Netlify form for name, email, company, role, case volume, safety database, and a message
+- [AI workspace](https://aeconnect.io/app/): signup, login, and case processing. First 5 cases are free
+- [Solutions](https://aeconnect.io/solutions/): PV case intake, AE/SAE intake form, SUSAR triage, PQC intake, E2B(R3), aggregate reports
+- [Works with Argus, LifeSphere, and Vault Safety](https://aeconnect.io/integrations/): complementary comparison tables, not alternatives
+- [Trust](https://aeconnect.io/trust/): data handling, audit trail, MedDRA suggestions, trial workspace. No Part 11 or GAMP 5 claim
+- [Design partners](https://aeconnect.io/design-partners/): application form. No published results
 - [Features](https://aeconnect.io/features/): longer feature narrative published on the marketing site
-- [E2B(R3) checklist](https://aeconnect.io/e2b-r3-checklist/): free readiness checklist PDF for IND sponsors
+- [E2B(R3) checklist](https://aeconnect.io/e2b-r3-checklist/): readiness checklist with a Netlify lead form
 - [Blog](https://aeconnect.io/blog/): pharmacovigilance notes for small biotech teams
 - [E2B(R3) ICSR submission guide](https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/): what the electronic ICSR requirement means for small sponsors
 - [Argus, Safety One, and Veeva for early-phase teams](https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/)
@@ -39,7 +45,7 @@ First 5 AI-processed cases are free, no card. Core is $20 per month and includes
 
 ## Guides
 
-Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQPage JSON-LD, and a link to the workspace. Comparison pages are factual. They are not certified alternatives and they do not claim an integration.
+Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQPage JSON-LD, and a link to the workspace. Pages about Argus, LifeSphere, and Vault Safety describe how AE Connect works in front of those safety databases. They are not alternatives and they do not claim a certified connector.
 
 - [PV case intake forms](https://aeconnect.io/blog/pv-case-intake-forms/): what an intake form captures before the clock starts
 - [Adverse event reporting: AE and SAE](https://aeconnect.io/blog/adverse-event-reporting-ae-sae/)
@@ -48,9 +54,15 @@ Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQP
 - [E2B(R3) ICSR submissions](https://aeconnect.io/blog/e2b-r3-icsr-submissions/): the message standard, which this product does not transmit
 - [AI pharmacovigilance case processing](https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/)
 - [PSUR, PBRER, and DSUR](https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/): aggregate-report basics the workspace does not write
-- [Oracle Argus alternative](https://aeconnect.io/blog/oracle-argus-alternative/): fair comparison, not a replacement database
-- [ArisGlobal LifeSphere alternative](https://aeconnect.io/blog/arisglobal-lifesphere-alternative/): LifeSphere Safety and the Safety One name
-- [Veeva Vault Safety alternative](https://aeconnect.io/blog/veeva-vault-safety-alternative/)
+- [Works with Oracle Argus](https://aeconnect.io/blog/oracle-argus/) and the [Argus table](https://aeconnect.io/integrations/oracle-argus/)
+- [Works with ArisGlobal LifeSphere](https://aeconnect.io/blog/arisglobal-lifesphere/) and the [LifeSphere table](https://aeconnect.io/integrations/arisglobal/)
+- [Works with Veeva Vault Safety](https://aeconnect.io/blog/veeva-vault-safety/) and the [Vault Safety table](https://aeconnect.io/integrations/veeva-vault-safety/)
+- [PV case intake](https://aeconnect.io/solutions/pv-case-intake/)
+- [AE and SAE intake form](https://aeconnect.io/solutions/ae-sae-intake-form/)
+- [SUSAR triage](https://aeconnect.io/solutions/susar-triage/)
+- [PQC intake](https://aeconnect.io/solutions/pqc-intake/)
+- [E2B(R3) case preparation](https://aeconnect.io/solutions/e2b-r3/)
+- [Aggregate reports](https://aeconnect.io/solutions/aggregate-reports/)
 - [Privacy Policy (draft)](https://aeconnect.io/privacy/)
 - [Terms of Service (draft)](https://aeconnect.io/terms/)
 - [About](https://aeconnect.io/about/)

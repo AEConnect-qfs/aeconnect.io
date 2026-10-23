@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AE Connect works with Veeva Vault Safety | AE Connect</title>
+  <meta name="description" content="Veeva Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <link rel="canonical" href="https://aeconnect.io/integrations/veeva-vault-safety/" />
+  <meta property="og:title" content="AE Connect works with Veeva Vault Safety | AE Connect" />
+  <meta property="og:description" content="Veeva Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aeconnect.io/integrations/veeva-vault-safety/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AE Connect works with Veeva Vault Safety | AE Connect" />
+  <meta name="twitter:description" content="Veeva Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://aeconnect.io/#organization",
+      "name": "QORO Intelligence Inc.",
+      "url": "https://aeconnect.io/",
+      "email": "info@qfsnow.com"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aeconnect.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Works with",
+          "item": "https://aeconnect.io/integrations/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Veeva Vault Safety",
+          "item": "https://aeconnect.io/integrations/veeva-vault-safety/"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": "AE Connect works with Veeva Vault Safety",
+      "description": "Veeva Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it.",
+      "url": "https://aeconnect.io/integrations/veeva-vault-safety/",
+      "author": {
+        "@type": "Organization",
+        "name": "QORO Intelligence Inc.",
+        "url": "https://aeconnect.io/"
+      },
+      "publisher": {
+        "@id": "https://aeconnect.io/#organization"
+      },
+      "mainEntityOfPage": "https://aeconnect.io/integrations/veeva-vault-safety/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is AE Connect a Veeva Vault Safety alternative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Vault Safety remains the safety database. AE Connect works in front of it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does AE Connect use Vault's open API?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. There is no certified Vault connector on this site."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who submits the ICSR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The path configured in Vault Safety, or whichever partner your pharmacovigilance plan names. Not AE Connect."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0a1628; --teal:#00d4c8; --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff; --border:rgba(255,255,255,0.08); --card:rgba(255,255,255,0.03); }
+    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.65; }
+    a { color: var(--teal); }
+    nav { position: sticky; top: 0; z-index: 20; display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 28px; background: rgba(10,22,40,0.94); border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:20px; list-style:none; align-items:center; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; font-weight:500; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--teal); color: var(--navy) !important; padding: 8px 12px; border-radius: 6px; font-weight: 700 !important; }
+    main { max-width: 820px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 16px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 14px; }
+    .lede { font-size: 18px; margin-bottom: 18px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .card-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+    .card h2, .card h3 { margin-top: 0; }
+    .card strong { color: var(--white); font-size: 28px; display:block; margin: 4px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0 18px; }
+    th, td { border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; padding: 10px 8px; }
+    th { color: var(--white); font-size: 13px; }
+    caption { text-align: left; color: var(--slate); font-size: 13px; margin-bottom: 8px; }
+    form { display: grid; gap: 12px; margin-top: 12px; }
+    label { display: block; color: var(--white); font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    input, select, textarea { width: 100%; background: #0d1b30; color: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; }
+    textarea { min-height: 120px; }
+    button, .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; border: 0; cursor: pointer; font: inherit; }
+    .btn-ghost { background: transparent; color: var(--white); border: 1px solid #8b99ad; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 16px; }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .note { color: var(--slate); font-size: 14px; }
+    .hp { position: absolute; left: -10000px; height: 1px; overflow: hidden; }
+    footer { border-top: 1px solid var(--border); padding: 28px 22px 36px; color: var(--slate); font-size: 13px; }
+    .footer-inner { max-width: 820px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    .footer-inner h2 { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; }
+    .footer-inner ul { list-style: none; padding: 0; }
+    .footer-inner a { color: var(--light); }
+    .footer-bottom { max-width: 820px; margin: 16px auto 0; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .card-grid, .footer-inner { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; }
+    }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/solutions/pv-case-intake/">Solutions</a></li>
+    <li><a href="https://aeconnect.io/pricing/">Pricing</a></li>
+    <li><a href="https://aeconnect.io/integrations/oracle-argus/">Works with</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+    <li><a class="nav-cta" href="https://aeconnect.io/app/">Start 5 free cases</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/integrations/">Works with</a> / Veeva Vault Safety</p>
+  <h1>AE Connect works with Veeva Vault Safety</h1>
+  
+  <p class="lede">AE Connect is not a Veeva Vault Safety alternative. Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it.</p>
+  <table>
+    <caption>What Veeva's Vault Help says Vault Safety does, and what AE Connect actually does.</caption>
+    <thead><tr><th scope="col">Job</th><th scope="col">Safety database</th><th scope="col">What AE Connect adds in front</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">Role</th><td>Safety database. <a href="https://safety.veevavault.help/en/lr/01462/">Veeva's Safety Suite overview</a> describes Vault Safety as end-to-end management of intake, medical review, case processing, and submission, plus aggregate reporting.</td><td>Intake and a reviewed draft before that case is booked in Vault Safety.</td></tr>
+    <tr><th scope="row">System of record</th><td>Typically Vault Safety, when the plan names it. Veeva describes it as a single source of truth for safety data on Vault.</td><td>No.</td></tr>
+    <tr><th scope="row">APIs</th><td>The same Veeva page says Vault Safety has open APIs and technology integrations. That is Veeva's platform, configured by the customer.</td><td>AE Connect does not call the Vault Safety API and does not write inbox items or cases into Vault.</td></tr>
+    <tr><th scope="row">AI extraction and triage</th><td>Any automation inside a customer's Vault is their configuration. This page does not describe it.</td><td>Seriousness, expectedness, WHO-UMC causality, and a reporting timeline for a person to accept or override.</td></tr>
+    <tr><th scope="row">MedDRA coding assist</th><td>Coding in Vault uses the customer's MedDRA license.</td><td>A suggested preferred term and system organ class.</td></tr>
+    <tr><th scope="row">Narrative</th><td>Medical review in Vault Safety is where Veeva says the case is processed.</td><td>A short draft narrative to take into that review.</td></tr>
+    <tr><th scope="row">E2B(R3) output</th><td>Veeva describes submission of adverse events as part of Vault Safety. The gateway and the message are configured there.</td><td>AE Connect does not transmit E2B(R3). The reviewed draft is the package a processor uses when they enter the case.</td></tr>
+    <tr><th scope="row">Aggregate reports</th><td>Veeva's overview lists aggregate reporting in the Safety suite. SafetyDocs is a related content application. Generating tables still requires the Safety license, according to Veeva's SafetyDocs notes.</td><td>AE Connect does not write PSUR, PBRER, DSUR, or an IND annual report.</td></tr>
+    </tbody>
+  </table>
+  <p>Source: <a href="https://safety.veevavault.help/en/lr/01462/">Veeva Vault Help, Veeva Safety Suite Overview</a>. Veeva can change that page.</p>
+  <p>There is no certified connector that writes the case into the safety database for you. A reviewer accepts or overrides the draft in AE Connect. The official case is then booked in the safety database by a person. Calling a silent API an integration would be false. The integration is the workflow: intake and AI case processing here, system of record there.</p>
+  <aside class="lead-cta">
+  <h2>Start 5 free cases, or book a demo</h2>
+  <p>AE Connect is the intake and AI case-processing layer in front of the safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety stay the system of record. The first 5 cases are free. Core is $20 per month.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+  <p>Related: <a href="https://aeconnect.io/pricing/">pricing</a>, <a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a>, <a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3)</a>, <a href="https://aeconnect.io/trust/">trust</a>.</p>
+
+  <section>
+<h2>Questions</h2>
+<h3>Is AE Connect a Veeva Vault Safety alternative?</h3>
+  <p>No. Vault Safety remains the safety database. AE Connect works in front of it.</p>
+<h3>Does AE Connect use Vault's open API?</h3>
+  <p>No. There is no certified Vault connector on this site.</p>
+<h3>Who submits the ICSR?</h3>
+  <p>The path configured in Vault Safety, or whichever partner your pharmacovigilance plan names. Not AE Connect.</p>
+</section>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h2>Product</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/pricing/">Pricing</a></li>
+        <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+        <li><a href="https://aeconnect.io/app/">Start 5 free cases</a></li>
+        <li><a href="https://aeconnect.io/trust/">Trust</a></li>
+        <li><a href="https://aeconnect.io/design-partners/">Design partners</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Solutions</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+        <li><a href="https://aeconnect.io/solutions/ae-sae-intake-form/">AE and SAE intake form</a></li>
+        <li><a href="https://aeconnect.io/solutions/susar-triage/">SUSAR triage</a></li>
+        <li><a href="https://aeconnect.io/solutions/pqc-intake/">PQC intake</a></li>
+        <li><a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3)</a></li>
+        <li><a href="https://aeconnect.io/solutions/aggregate-reports/">Aggregate reports</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Works with</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/integrations/oracle-argus/">Oracle Argus</a></li>
+        <li><a href="https://aeconnect.io/integrations/arisglobal/">ArisGlobal LifeSphere</a></li>
+        <li><a href="https://aeconnect.io/integrations/veeva-vault-safety/">Veeva Vault Safety</a></li>
+        <li><a href="mailto:info@qfsnow.com">info@qfsnow.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 QORO Intelligence Inc.</span>
+    <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/contact/">Contact</a></span>
+  </div>
+</footer>
+</body>
+</html>
