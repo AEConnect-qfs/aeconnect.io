@@ -54,11 +54,11 @@ Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQP
 - [Privacy Policy (draft)](https://aeconnect.io/privacy/)
 - [Terms of Service (draft)](https://aeconnect.io/terms/)
 - [About](https://aeconnect.io/about/)
-- [Contact](https://aeconnect.io/contact/): info@qorosystems.com
+- [Contact](https://aeconnect.io/contact/): info@qfsnow.com
 - [Beta program](https://aeconnect.io/beta/)
 
 ## Contact
 
-QORO Intelligence Inc. — info@qorosystems.com — https://qorosystems.com
+QORO Intelligence Inc. — info@qfsnow.com — https://qorosystems.com
 
 Privacy Policy and Terms of Service on this site are drafts and need legal review before anyone treats them as final.
