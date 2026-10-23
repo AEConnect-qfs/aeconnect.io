@@ -4,13 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog | AE Connect by QORO Intelligence</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Blog | AE Connect by QORO Intelligence" />
+  <meta name="twitter:description" content="Pharmacovigilance insights, ICSR compliance guides, and adverse event reporting resources for small and mid-size biotech teams." />
   <meta name="description" content="Pharmacovigilance insights, ICSR compliance guides, and adverse event reporting resources for small and mid-size biotech teams." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Blog | AE Connect by QORO Intelligence" />
   <meta property="og:description" content="Pharmacovigilance insights and ICSR compliance resources for small biotech IND sponsors." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://aeconnect.io/blog" />
+  <meta property="og:url" content="https://aeconnect.io/blog/" />
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -23,12 +26,7 @@
         "name": "QORO Intelligence Inc.",
         "alternateName": "QORO Intelligence",
         "url": "https://qorosystems.com",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://aeconnect.io/logo.png",
-          "width": 400,
-          "height": 120
-        },
+
         "description": "QORO Intelligence Inc. builds AI-powered pharmacovigilance software for small and mid-size biotech companies. AE Connect is its flagship product — a GAMP 5-validated adverse event intake and ICSR case management platform built for ICH E2B(R3) compliance.",
         "foundingDate": "2026",
         "foundingLocation": {
@@ -428,6 +426,7 @@
       gap: 16px;
     }
 
+    a.article-card { display: block; text-decoration: none; color: inherit; }
     .article-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -710,13 +709,13 @@
 <nav>
   <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
   <ul class="nav-links">
-    <li><a href="https://aeconnect.io/features">Features</a></li>
-    <li><a href="https://aeconnect.io/blog" class="active">Blog</a></li>
-    <li><a href="https://aeconnect.io/about">About</a></li>
-    <li><a href="https://aeconnect.io/contact">Contact</a></li>
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/" class="active">Blog</a></li>
+    <li><a href="https://aeconnect.io/about/">About</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
     <li><a href="https://qorosystems.com">QORO Intelligence</a></li>
-    <li><a href="https://aeconnect.io/beta" class="nav-beta">Beta Program</a></li>
-    <li><a href="/app" class="nav-cta">Try the AI Workspace →</a></li>
+    <li><a href="https://aeconnect.io/beta/" class="nav-beta">Beta Program</a></li>
+    <li><a href="/app/" class="nav-cta">Try the AI Workspace →</a></li>
     <li><a href="https://app.aeconnect.io" style="font-size:13px;font-weight:500;color:var(--slate)">Launch App</a></li>
   </ul>
 </nav>
@@ -736,7 +735,7 @@
     <h2>Latest Articles</h2>
 
     <!-- FEATURED ARTICLE -->
-    <a href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide" style="display:block; text-decoration:none;">
+    <a href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/" style="display:block; text-decoration:none;">
       <div class="article-featured">
         <div class="featured-visual">
           <div class="xml-preview">
@@ -776,7 +775,7 @@
     <!-- PUBLISHED + COMING SOON CARDS -->
     <div class="articles-grid">
 
-      <div class="article-card" onclick="location.href='https://aeconnect.io/blog/ae-intake-vs-pharmacovigilance'" style="cursor:pointer;">
+      <div class="article-card" onclick="location.href='https://aeconnect.io/blog/ae-intake-vs-pharmacovigilance/'" style="cursor:pointer;">
         <div class="card-badge-row">
           <span class="badge badge-new">New</span>
           <span class="badge badge-topic">ICSR Compliance</span>
@@ -792,7 +791,7 @@
         </div>
       </div>
 
-      <div class="article-card" onclick="location.href='https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech'" style="cursor:pointer;">
+      <div class="article-card" onclick="location.href='https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/'" style="cursor:pointer;">
         <div class="card-badge-row">
           <span class="badge badge-new">New</span>
           <span class="badge badge-topic">Pharmacovigilance</span>
@@ -824,13 +823,29 @@
         </div>
       </div>
 
+      <a class="article-card" href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">
+        <div class="card-badge-row">
+          <span class="badge badge-new">New</span>
+          <span class="badge badge-topic">Drug safety inbox</span>
+        </div>
+        <h3>The drug safety inbox at a small biotech</h3>
+        <p>AE, SAE, SUSAR, and product quality complaints still arrive by email. What gets lost before a case reaches Argus, ArisGlobal, or Veeva.</p>
+        <div class="card-footer">
+          <div class="author" style="display:flex; align-items:center; gap:7px;">
+            <div class="mini-avatar">DS</div>
+            <span>QORO Team</span>
+          </div>
+          <span>October 2026</span>
+        </div>
+      </a>
+
       <div class="article-card" onclick="location.href='https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/'" style="cursor:pointer;">
         <div class="card-badge-row">
           <span class="badge badge-new">New</span>
           <span class="badge badge-topic">Pharmacovigilance</span>
         </div>
-        <h3>Building a Pharmacovigilance Plan for Your First IND: What Small Biotechs Get Wrong</h3>
-        <p>Most first-time IND sponsors treat the PV plan as a template exercise. Here is what regulators actually expect and where small biotech programs consistently fall short.</p>
+        <h3>The first IND PV plan: timelines, the company core data sheet, and aggregate reports</h3>
+        <p>Day 0, the company core data sheet, and aggregate reports are where a first pharmacovigilance plan goes thin.</p>
         <div class="card-footer">
           <div class="author" style="display:flex; align-items:center; gap:7px;">
             <div class="mini-avatar">DS</div>
@@ -849,7 +864,7 @@
     <div class="cta-card">
       <h4>Free E2B(R3) Readiness Checklist</h4>
       <p>26-point compliance checklist for IND sponsors. Covers intake, submission infrastructure, SOPs, and training. Free PDF.</p>
-      <a href="https://aeconnect.io/e2b-r3-checklist" class="cta-btn">Download Free Checklist</a>
+      <a href="https://aeconnect.io/e2b-r3-checklist/" class="cta-btn">Download Free Checklist</a>
       <a href="https://qorosystems.com#demo" class="cta-secondary">Request a Demo →</a>
     </div>
 
@@ -890,8 +905,8 @@
     <div class="footer-col">
       <h5>Product</h5>
       <ul>
-        <li><a href="https://aeconnect.io#features">Features</a></li>
-        <li><a href="https://aeconnect.io#compliance">Security</a></li>
+        <li><a href="https://aeconnect.io/features/">Features</a></li>
+        <li><a href="https://aeconnect.io/app/">AI workspace</a></li>
         <li><a href="https://app.aeconnect.io">Launch App</a></li>
       </ul>
     </div>
@@ -899,13 +914,20 @@
       <h5>Company</h5>
       <ul>
         <li><a href="https://qorosystems.com">QORO Intelligence</a></li>
-        <li><a href="https://aeconnect.io/about">About</a></li>
-<li><a href="https://aeconnect.io/contact">Contact</a></li>
-<li><a href="https://aeconnect.io/blog">Blog</a></li>
-        <li><a href="https://aeconnect.io/blog">Blog</a></li>
+        <li><a href="https://aeconnect.io/about/">About</a></li>
+        <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+        <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+        <li><a href="https://aeconnect.io/privacy/">Privacy</a></li>
+        <li><a href="https://aeconnect.io/terms/">Terms</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 QORO Intelligence Inc. All rights reserved.</span>
-    <span>Made in California<
+    <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a></span>
+    <span>Made in California</span>
+  </div>
+</footer>
+
+</body>
+</html>

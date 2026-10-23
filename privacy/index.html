@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy (Draft) | AE Connect</title>
+  <meta name="description" content="Draft privacy policy for AE Connect, the pharmacovigilance case-processing workspace. Needs legal review. Covers case text, accounts, and Stripe." />
+  <link rel="canonical" href="https://aeconnect.io/privacy/" />
+  <meta property="og:title" content="Privacy Policy (Draft) | AE Connect" />
+  <meta property="og:description" content="Working draft of how AE Connect handles account data, adverse-event narratives, and payments. Not a final policy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aeconnect.io/privacy/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Privacy Policy (Draft) | AE Connect" />
+  <meta name="twitter:description" content="Working draft. Needs legal review before it is treated as QORO Intelligence's privacy policy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0a1628; --teal:#00d4c8; --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff; --border:rgba(255,255,255,0.08); }
+    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 36px 22px 64px; }
+    .banner { background: rgba(245,200,66,0.12); border: 1px solid rgba(245,200,66,0.45); color: var(--white); border-radius: 10px; padding: 14px 16px; margin-bottom: 28px; }
+    .banner strong { color: #f5c842; }
+    h1 { color: var(--white); font-size: 36px; letter-spacing: -0.4px; margin-bottom: 8px; }
+    .meta { color: var(--slate); margin-bottom: 22px; }
+    h2 { color: var(--white); font-size: 22px; margin: 28px 0 8px; }
+    p, li { margin-bottom: 10px; }
+    ul { padding-left: 1.2em; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/terms/">Terms</a></li>
+  </ul>
+</nav>
+<main>
+  <div class="banner" role="note">
+    <strong>Draft — needs legal review.</strong>
+    This is a working draft for transparency. It is not legal advice, it has not been reviewed by counsel, and it is not QORO Intelligence's final privacy policy. Do not rely on it as a binding notice until a reviewed version replaces it.
+  </div>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Draft dated 23 October 2026 · AE Connect at aeconnect.io · QORO Intelligence Inc.</p>
+
+  <h2>Who we are</h2>
+  <p>AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operating from the San Francisco Bay Area. This draft covers the public site at aeconnect.io and the self-serve workspace at aeconnect.io/app/. The sign-in application at app.aeconnect.io is a separate service; this draft does not describe it. A street address is not published here and still needs to be confirmed.</p>
+  <p>Privacy questions: <a href="mailto:info@qorosystems.com">info@qorosystems.com</a>. The checklist page also lists hello@aeconnect.io. Which inbox should own privacy requests is unresolved.</p>
+
+  <h2>What the product does with case text</h2>
+  <p>The workspace is for pharmacovigilance case processing. Narratives you paste or extract from a file may include patient health information, reporter details, product details, and other information about an adverse event. Treat that text as sensitive even when it is not labeled as such.</p>
+  <p>Files are parsed in your browser. The file itself is not uploaded. The extracted text is sent to our API when you create a case or run an assessment. When an Anthropic API key is configured, that text is sent to Anthropic to produce a draft assessment. If the key is not set, the server returns a deterministic mock and does not call the model.</p>
+
+  <h2>Information we collect</h2>
+  <ul>
+    <li>Account data: name, email address, and a password hash (bcrypt). We do not store the password itself.</li>
+    <li>Case data: title, source type, extracted source text, assessments, field decisions, sign-off metadata, and an audit log tied to the account.</li>
+    <li>Billing data: plan, usage counts, and Stripe customer and subscription identifiers. Card numbers are entered on Stripe Checkout, not on our servers.</li>
+    <li>A session token stored in the browser's local storage.</li>
+    <li>Technical logs that our host (Netlify) and database host may collect, such as IP address and request metadata.</li>
+    <li>Messages you send through the contact, beta, newsletter, or checklist forms.</li>
+  </ul>
+
+  <h2>How we use it</h2>
+  <p>We use this information to run the workspace, produce draft assessments, meter the free cases and the Core plan, keep an audit trail, secure the service, and answer requests you send us. We do not sell personal information. We do not use case narratives to train a public model of our own. Whether Anthropic retains prompts under its API terms has to be confirmed against the contract QORO actually signs.</p>
+
+  <h2>Who else processes it</h2>
+  <p>This list is based on how the site is built and needs confirmation:</p>
+  <ul>
+    <li>Netlify — hosting, serverless functions, and form submissions.</li>
+    <li>Neon — hosted Postgres for accounts and cases, when production is configured that way.</li>
+    <li>Anthropic — source text for the draft assessment, when the API key is set.</li>
+    <li>Stripe — subscription checkout and payment status.</li>
+    <li>Google Fonts — the browser requests font files; Google may see the requesting IP. Case text is not sent to Google.</li>
+    <li>jsDelivr — if you run OCR, the browser downloads a pinned Tesseract language file and recognition engine. The document stays on your machine. The download itself is a request to that network.</li>
+  </ul>
+
+  <h2>Health-privacy laws</h2>
+  <p>This draft does not say that AE Connect is a HIPAA-covered service, and it does not offer a business associate agreement. If you would put protected health information into the workspace, talk to us before you do. Customers who are controllers of pharmacovigilance data remain responsible for their own notices, lawful basis, and vendor reviews.</p>
+
+  <h2>Retention</h2>
+  <p>A retention schedule is not finalized. Case records may need to be kept for a long time under pharmacovigilance rules that apply to you, not automatically to us. Until counsel sets a schedule, assume we keep account and case data for the life of the account and for a limited period after a deletion request, except where we have to keep a record for security, billing, or legal reasons. There is no self-serve delete button yet. Email us to ask for access, correction, or deletion.</p>
+
+  <h2>Security</h2>
+  <p>The site is served over HTTPS. Passwords are hashed. Cases are scoped to the signed-in account. These are ordinary controls, not a certification. We do not claim SOC 2, ISO 27001, or Part 11 certification in this draft.</p>
+
+  <h2>International transfers</h2>
+  <p>We are a US company. Account data, case text, and model prompts may be processed in the United States by us and the providers above.</p>
+
+  <h2>Children</h2>
+  <p>The workspace is for professional drug-safety teams. It is not directed at children, and we do not knowingly create accounts for anyone under 18.</p>
+
+  <h2>Your requests</h2>
+  <p>Depending on where you live, you may have rights to access, correct, delete, or export personal information, or to appeal a refusal. Email <a href="mailto:info@qorosystems.com">info@qorosystems.com</a>. We will need to know which account you mean. This paragraph is a placeholder for the rights counsel decides to honor and the timelines that apply. It is not a statement that a formal GDPR or CCPA program is in place.</p>
+
+  <h2>Changes</h2>
+  <p>When a reviewed policy replaces this draft, we will change the date and the draft banner. Continued use of the workspace after that date is a question for the final terms, not for this draft.</p>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy (draft)</a> · <a href="https://aeconnect.io/terms/">Terms (draft)</a> · <a href="https://aeconnect.io/contact/">Contact</a></span>
+</footer>
+</body>
+</html>

@@ -1,10 +1,13 @@
 # Deploying aeconnect.io (site + AI workspace)
 
-This repo is the **full aeconnect.io site**: the existing v16 marketing pages **plus**
-the self-serve AI workspace at `/app`, backed by **Netlify Functions**. Deploying it
-replaces the current static-only deploy cleanly — every existing URL (`/`, `/features`,
-`/blog/...`, `/beta`, `/contact`, `/e2b-r3-checklist`) is preserved, and `/app` + `/api/*`
-are added.
+This repo is the **full aeconnect.io site**: marketing pages **plus**
+the self-serve AI workspace at `/app/`, backed by **Netlify Functions**.
+
+`/` is the marketing homepage (HTTP 200, canonical `https://aeconnect.io/`). It does
+**not** redirect to the workspace. Public URLs use a trailing slash (`/about/`,
+`/blog/…/`, `/app/`). `netlify.toml` 301s the non-slash form, and also 301s
+`http://` and `www` to `https://aeconnect.io`. `/api/*` is rewritten to functions
+and is `noindex`.
 
 > **Important workflow change:** the site now has a build step and serverless
 > functions. Drag-and-drop / zip uploads **will not run the functions**. You must
@@ -32,9 +35,9 @@ are added.
    postgresql://USER:PASSWORD@ep-xxxx.REGION.aws.neon.tech/DB?sslmode=require
    ```
 
-## 2. Switch Prisma to Postgres (one code change)
+## 2. Prisma is already Postgres
 
-Edit `prisma/schema.prisma` — change the datasource block from `sqlite` to:
+`prisma/schema.prisma` uses `provider = "postgresql"`. The datasource block should stay:
 
 ```prisma
 datasource db {
@@ -120,35 +123,39 @@ webhook flips the account to Core. Cancellations/expiries downgrade it back to t
 
 ## 6. Verify the live deploy
 
-1. Visit `https://aeconnect.io/app` → sign up.
+1. Visit `https://aeconnect.io/` (marketing page, 200) and `https://aeconnect.io/app/` → sign up.
 2. Create a case, paste an adverse-event narrative, **Run AI assessment**.
    - With `ANTHROPIC_API_KEY` set, this is a real Claude assessment; the header trial
      counter should tick up.
-3. Accept/override fields → set an e-signature PIN → **Sign off & clear** (locks the case).
-4. Netlify → Functions tab shows invocation logs for `assess`, `signoff`, etc.
+3. Accept or override fields, then **Download case**. E-signature sign-off is not part of this site; it stays on `app.aeconnect.io`.
+4. Netlify → Functions tab shows invocation logs for `assess`, `cases`, and so on.
 5. Confirm the trial gate: process 5 cases; the 6th should be blocked with a
    "subscribe" prompt (HTTP 402) — no Claude call is made for the blocked request.
 
 Local smoke test (against a local/dev DB) still works with:
 ```bash
-npm run dev          # http://localhost:8787/app
-npx tsx verify-site.mts   # 12 end-to-end checks
+npm run dev          # http://localhost:8787/  and  http://localhost:8787/app/
+npx tsx verify-site.mts   # page, redirect, validation, and billing checks
 ```
 
 ---
 
 ## File ingestion (client-side)
 
-The workspace extracts text from uploads **in the browser** (PHI never leaves the
-user's machine until the extracted text is submitted): plain text/email/CSV directly,
+The workspace extracts text from uploads **in the browser** (the file itself is not
+uploaded; extracted text is what the API stores): plain text/email/CSV directly,
 PDF via pdf.js, Word via mammoth, and images / scanned PDFs via tesseract.js OCR.
-These libraries load lazily from public CDNs (cdnjs, jsDelivr) only when a matching
-file is chosen.
+The entry scripts are self-hosted under `/vendor/` at pinned versions, with SRI,
+and load only after a matching file is chosen.
 
-> **If you add a Content-Security-Policy** to the site, allowlist `cdnjs.cloudflare.com`
-> and `cdn.jsdelivr.net` (script/worker/wasm/connect) or OCR/PDF extraction will break.
-> There is no CSP today, so it works out of the box. First OCR downloads the ~10 MB
-> English model (cached thereafter).
+`netlify.toml` already sends a Content-Security-Policy. Scripts and workers are
+`'self'` (plus `blob:` for workers). Tesseract still downloads its core WASM and
+the English traineddata from exact jsDelivr versions
+(`tesseract.js-core@5.1.0`, `@tesseract.js-data/eng@1.0.0`). Google Fonts are
+allowlisted. Do not add `cdnjs.cloudflare.com`. The local dev server sends the
+same CSP **without** HSTS or `upgrade-insecure-requests`.
+
+First OCR downloads the English model (cached thereafter).
 
 ## Not yet wired (intentional stubs)
 

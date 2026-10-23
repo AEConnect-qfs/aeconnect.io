@@ -13,17 +13,74 @@ async function api(path: string, method: string, token?: string, body?: object) 
     method,
     headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
     body: body ? JSON.stringify(body) : undefined,
+    redirect: 'manual',
   });
-  return { status: res.status, body: await res.json().catch(() => ({})) };
+  const robots = res.headers.get('x-robots-tag') || '';
+  return { status: res.status, body: await res.json().catch(() => ({})), robots };
+}
+
+function locationPath(loc: string): string {
+  if (!loc) return '';
+  try { return new URL(loc, B).pathname; } catch { return loc; }
+}
+
+async function page(path: string) {
+  const res = await fetch(B + path, { redirect: 'manual' });
+  return {
+    status: res.status,
+    loc: locationPath(res.headers.get('location') || ''),
+    csp: res.headers.get('content-security-policy') || '',
+    text: await res.text(),
+  };
 }
 
 async function main() {
-  // signup
+  const home = await page('/');
+  check('home 200 with self-canonical', home.status === 200 && home.text.includes('rel="canonical" href="https://aeconnect.io/"') && !home.csp.includes('upgrade-insecure-requests'));
+
+  const aboutBare = await page('/about');
+  const about = await page('/about/');
+  check('trailing slash: /about → /about/', aboutBare.status === 301 && aboutBare.loc === '/about/' && about.status === 200);
+
+  const legacy = [
+    ['/blog/meddra-coding-at-intake-ai-pharmacovigilance', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
+    ['/adverse-event-intake-system/', '/'],
+    ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect', '/blog/veeva-argus-overkill-early-phase-biotech/'],
+  ] as const;
+  for (const [from, to] of legacy) {
+    const r = await page(from);
+    check(`301 ${from}`, r.status === 301 && r.loc === to, r.loc);
+  }
+
+  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/privacy/', '/terms/', '/app/']) {
+    const r = await page(p);
+    const canon = `https://aeconnect.io${p}`;
+    check(`200 ${p}`, r.status === 200 && r.text.includes(`rel="canonical" href="${canon}"`));
+  }
+
+  const robots = await page('/robots.txt');
+  const sitemap = await page('/sitemap.xml');
+  const locs = sitemap.text.match(/<loc>/g)?.length || 0;
+  check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 16 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 16);
+
+  const weak = await api('/api/signup', 'POST', undefined, { email: 'not-an-email', password: 'short', name: 'A' });
+  check('signup weak password + bad email → 400', weak.status === 400 && !!weak.body.fields?.password && !!weak.body.fields?.email && weak.robots.includes('noindex'));
+  const loginBad = await api('/api/login', 'POST', undefined, { email: 'also-bad', password: '' });
+  check('login empty password → 400', loginBad.status === 400 && !!loginBad.body.fields?.password);
+
+  // signup — password123 (11 chars, letter + number) must still pass the policy
   const su = await api('/api/signup', 'POST', undefined, { email: EMAIL, password: 'password123', name: 'Verify User' });
   const token = su.body.token as string;
   check('signup → token + trial plan', su.status === 200 && !!token && su.body.user.plan === 'trial');
 
-  await api('/api/set-pin', 'POST', token, { pin: '1234' });
+  const li = await api('/api/login', 'POST', undefined, { email: EMAIL, password: 'password123' });
+  const liBad = await api('/api/login', 'POST', undefined, { email: EMAIL, password: 'wrong-password' });
+  check('login correct password → token', li.status === 200 && !!li.body.token);
+  check('login wrong password → 401', liBad.status === 401 && liBad.body.error === 'Invalid credentials');
+
+  const shortCase = await api('/api/cases', 'POST', token, { sourceText: 'too short', sourceType: 'nope', fileName: 'payload.exe', fileSize: 11 * 1024 * 1024 });
+  check('case: short text, bad type, oversize → 400', shortCase.status === 400 && !!shortCase.body.fields?.sourceText && !!shortCase.body.fields?.sourceType && !!shortCase.body.fields?.file);
 
   // create + assess 5 cases (trial = 5)
   const caseIds: string[] = [];
@@ -51,17 +108,12 @@ async function main() {
   const ovr = await api('/api/field-decision', 'POST', token, { caseId: caseIds[0], fieldKey: 'seriousness', decisionType: 'override', aiValue: 'Serious', finalValue: 'Non-serious', reason: 'No hospitalization confirmed' });
   check('field decision: accept + override recorded', acc.status === 200 && ovr.status === 200 && ovr.body.finalValue === 'Non-serious');
 
-  // sign-off: wrong pin then correct
-  const bad = await api('/api/signoff', 'POST', token, { caseId: caseIds[0], pin: '9999' });
-  check('signoff wrong PIN → 401', bad.status === 401);
+  // E-signature sign-off was removed from this site (it lives on app.aeconnect.io).
+  const pin = await api('/api/set-pin', 'POST', token, { pin: '1234' });
   const so = await api('/api/signoff', 'POST', token, { caseId: caseIds[0], pin: '1234' });
-  check('signoff correct PIN → cleared + locked + signature', so.status === 200 && so.body.status === 'cleared' && !!so.body.signature.boundAuditHash);
-
-  // locked case rejects further edits
-  const lockAssess = await api('/api/assess', 'POST', token, { caseId: caseIds[0] });
-  const lockField = await api('/api/field-decision', 'POST', token, { caseId: caseIds[0], fieldKey: 'soc', decisionType: 'accept', aiValue: 'x' });
-  const reSign = await api('/api/signoff', 'POST', token, { caseId: caseIds[0], pin: '1234' });
-  check('locked case: assess/field/re-signoff all rejected', lockAssess.status === 400 && lockField.status === 409 && reSign.status === 409);
+  check('sign-off endpoints stay removed', pin.status === 404 && so.status === 404);
+  const saved = await api('/api/cases?id=' + caseIds[0], 'GET', token);
+  check('field decisions persist on the case', saved.status === 200 && Array.isArray(saved.body.fieldDecisions) && saved.body.fieldDecisions.length >= 2);
 
   // subscribe → core, then overage past included limit
   const sub = await api('/api/create-checkout-session', 'POST', token);
