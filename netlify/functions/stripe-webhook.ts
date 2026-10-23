@@ -2,35 +2,31 @@ import type Stripe from 'stripe';
 import { prisma } from './_lib/prisma.js';
 import { stripe, STRIPE_WEBHOOK_SECRET } from './_lib/stripe.js';
 import { writeAudit } from './_lib/audit.js';
-import { requireMethod, ok, bad, json, type FnEvent } from './_lib/http.js';
+import { requireMethod, ok, bad, serverError, unavailable, type FnEvent } from './_lib/http.js';
 
 /**
- * Stripe webhook (spec §2 — real billing state lives server-side). Verifies the
- * signature, then reconciles the account's plan with Stripe:
- *   checkout.session.completed / subscription active  → Core
- *   subscription deleted / unpaid                      → back to trial
- *
- * Signature verification requires the RAW request body. Netlify passes it as a
- * string on `event.body` (base64 when flagged), which is what we use here.
+ * Stripe webhook. Refuses every call unless both the Stripe client and
+ * STRIPE_WEBHOOK_SECRET are configured, then verifies the signature against the
+ * raw body before any plan change.
  */
 export async function handler(event: FnEvent & { isBase64Encoded?: boolean }) {
   const m = requireMethod(event, 'POST');
   if (m) return m;
 
+  if (!stripe || !STRIPE_WEBHOOK_SECRET) {
+    return unavailable('Stripe webhooks are not configured.', 'WEBHOOK_DISABLED');
+  }
+
   const raw = event.isBase64Encoded ? Buffer.from(event.body || '', 'base64').toString('utf8') : (event.body || '');
+  const sig = event.headers['stripe-signature'] || event.headers['Stripe-Signature'];
+  if (!sig) return bad('Missing Stripe signature');
 
   let evt: Stripe.Event;
-  if (stripe && STRIPE_WEBHOOK_SECRET) {
-    const sig = event.headers['stripe-signature'] || event.headers['Stripe-Signature'];
-    if (!sig) return bad('Missing Stripe signature');
-    try {
-      evt = stripe.webhooks.constructEvent(raw, sig, STRIPE_WEBHOOK_SECRET);
-    } catch (e: any) {
-      return bad('Signature verification failed: ' + (e?.message || 'invalid'));
-    }
-  } else {
-    // Dev only (no webhook secret configured): accept unverified JSON.
-    try { evt = JSON.parse(raw); } catch { return bad('Invalid payload'); }
+  try {
+    evt = stripe.webhooks.constructEvent(raw, sig, STRIPE_WEBHOOK_SECRET);
+  } catch {
+    console.error('[stripe-webhook] signature rejected');
+    return bad('Invalid Stripe signature');
   }
 
   try {
@@ -68,10 +64,11 @@ export async function handler(event: FnEvent & { isBase64Encoded?: boolean }) {
         break;
       }
       default:
-        break; // ignore other events
+        break;
     }
-  } catch (e: any) {
-    return json(500, { error: 'Webhook handling failed: ' + (e?.message || 'unknown') });
+  } catch (e) {
+    console.error('[stripe-webhook] handler failed', e instanceof Error ? e.message : e);
+    return serverError('Webhook handling failed');
   }
 
   return ok({ received: true });

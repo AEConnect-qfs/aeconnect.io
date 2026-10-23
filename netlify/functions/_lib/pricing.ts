@@ -6,7 +6,8 @@ export const PRICING = {
   trialCases: 5, // first 5 AI-processed cases free, no card
   coreMonthlyCents: 2000, // $20 / month
   includedCasesPerMonth: 25, // cases included in Core
-  overagePerCaseCents: 100, // $1.00 per case beyond 25
+  // Historical per-case figure. Not collected: Core Checkout is a flat monthly price.
+  overagePerCaseCents: 100,
 } as const;
 
 export type Plan = 'trial' | 'core';
