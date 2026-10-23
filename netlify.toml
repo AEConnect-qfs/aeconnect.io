@@ -169,6 +169,66 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/blog/pv-case-intake-forms"
+  to = "/blog/pv-case-intake-forms/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/adverse-event-reporting-ae-sae"
+  to = "/blog/adverse-event-reporting-ae-sae/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/susar-reporting-ind-sponsors"
+  to = "/blog/susar-reporting-ind-sponsors/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/product-quality-complaint-reporting"
+  to = "/blog/product-quality-complaint-reporting/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/e2b-r3-icsr-submissions"
+  to = "/blog/e2b-r3-icsr-submissions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/ai-pharmacovigilance-case-processing"
+  to = "/blog/ai-pharmacovigilance-case-processing/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/aggregate-reports-psur-pbrer-dsur"
+  to = "/blog/aggregate-reports-psur-pbrer-dsur/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/oracle-argus-alternative"
+  to = "/blog/oracle-argus-alternative/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/arisglobal-lifesphere-alternative"
+  to = "/blog/arisglobal-lifesphere-alternative/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/veeva-vault-safety-alternative"
+  to = "/blog/veeva-vault-safety-alternative/"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]

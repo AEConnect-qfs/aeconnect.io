@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSUR, PBRER, and DSUR basics | AE Connect</title>
+  <meta name="description" content="Aggregate report basics for small biotechs: how a PSUR, a PBRER, a DSUR, and the IND annual report differ. AE Connect does not write them." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/" />
+  <meta property="og:title" content="PSUR, PBRER, and DSUR basics" />
+  <meta property="og:description" content="Aggregate report basics for small biotechs: how a PSUR, a PBRER, a DSUR, and the IND annual report differ. AE Connect does not write them." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PSUR, PBRER, and DSUR basics | AE Connect" />
+  <meta name="twitter:description" content="Aggregate report basics for small biotechs: how a PSUR, a PBRER, a DSUR, and the IND annual report differ. AE Connect does not write them." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Aggregate reports: PSUR, PBRER, and DSUR in plain language",
+  "description": "Aggregate report basics for small biotechs: how a PSUR, a PBRER, a DSUR, and the IND annual report differ. AE Connect does not write them.",
+  "url": "https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/",
+  "datePublished": "2026-10-23",
+  "dateModified": "2026-10-23",
+  "author": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "mainEntityOfPage": "https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/"
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a PSUR, a PBRER, and a DSUR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A PSUR is the older name for a periodic safety update on a marketed product. A PBRER is the ICH E2C(R2) periodic benefit-risk evaluation report that replaced the PSUR in many regions. A DSUR is the ICH E2F development safety update report for an investigational product, written annually. They are all aggregate reports. They cover different parts of a product's life."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is an IND annual report the same as a DSUR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The IND annual report is a US filing under 21 CFR 312.33, due within 60 days of the anniversary of the IND going into effect, and it covers more than safety. A DSUR is the ICH development safety report. Sponsors often align the safety narratives. The filings are still separate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does FDA require a PBRER?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PBRER is an ICH format used widely outside the US, including in the EU. Marketed drugs in the US have periodic adverse drug experience reports under 21 CFR 314.80. Companies sometimes prepare the science once and map it to each region's document. The documents are not interchangeable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will AE Connect draft a PSUR, PBRER, or DSUR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The workspace processes individual cases. Aggregate reports are written from the case series, exposure, and the reference safety information, usually in a safety database or by a pharmacovigilance partner. AE Connect does not produce them."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0a1628; --teal:#00d4c8; --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff; --border:rgba(255,255,255,0.08); }
+    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/about/">About</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / Aggregate reports</p>
+  <h1>Aggregate reports: PSUR, PBRER, and DSUR in plain language</h1>
+  <p class="by">QORO Team · 23 October 2026 · about 6 minutes</p>
+  <p>Aggregate reports are how a sponsor tells the rest of the safety story: not one patient's event, but the pattern across the period. People search for PSUR, PBRER, and DSUR as if they were three brands of the same PDF. They are related, and they are not substitutes. None of them are written by an intake form.</p>
+  <h2>Why aggregates exist</h2>
+  <p>Expedited <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">adverse event reporting</a> moves a single serious, unexpected, suspected case quickly. It is a bad way to see whether headaches became more common, whether a lot cluster changed the picture, or whether the investigator's brochure is now wrong. Aggregate reports force that look on a schedule. They also force the company to say what the reference safety information was during the period. The <a href="https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/">first-IND PV plan note</a> is where small teams usually discover they never named an owner for that document.</p>
+  <h2>DSUR: the development safety update</h2>
+  <p>A DSUR is the ICH E2F report for a drug still in development. It is annual. Sponsors usually tie the data lock to a development international birth date so every region is looking at the same year. The report summarizes interval and cumulative safety, important risks, and whether the benefit-risk balance for the development program has changed. Clinical-trial SUSARs from the year belong in that summary. They do not replace it.</p>
+  <p>A DSUR is not the US IND annual report. Under 21 CFR 312.33 the IND annual report is due within 60 days of the anniversary date the IND went into effect. It includes safety and also manufacturing, investigator, and study-status information the DSUR does not try to be. Teams that are in both ICH regions and the US often draft the safety analysis once and then fit it to each template. The due dates still differ. A calendar that only has "DSUR" on it will miss the IND anniversary.</p>
+  <h2>PSUR and PBRER: marketed products</h2>
+  <p>PSUR means periodic safety update report, the ICH E2C generation of marketed-product reports. PBRER means periodic benefit-risk evaluation report, ICH E2C(R2). The PBRER is explicitly a benefit-risk document, not only a list of adverse reactions. In the EU, periodic reporting for authorized products is in PBRER shape, on an interval that depends on the product and how long it has been authorized. People still say "PSUR" when they mean the periodic report. If a contract uses PSUR, ask which ICH revision and which region before you scope the work.</p>
+  <p>FDA does not call its marketed-product periodic report a PBRER. Holders of NDAs and ANDAs submit periodic adverse drug experience reports under 21 CFR 314.80. The science can overlap with a PBRER. The form, the clock, and the addressees do not. Biologics and vaccines have their own periodic duties. This page will not collapse them into one acronym.</p>
+  <h2>What an aggregate report needs from individual cases</h2>
+  <p>Whoever writes the report has to trust the case series. That means, for the interval:</p>
+  <ul>
+    <li>Cases that were actually received, including the non-serious ones expedited reporting ignores.</li>
+    <li>Seriousness, MedDRA coding, and causality applied consistently enough to tabulate.</li>
+    <li>Expectedness judged against the reference safety information that was in force, not against a brochure someone remembers.</li>
+    <li>A line of sight from a tabulated row back to the narrative, for the cases that drive a conclusion.</li>
+    <li>Product quality complaints that involved patients, flagged as such, so a defect cluster is not hidden inside a preferred term. See <a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">PQC reporting</a>.</li>
+  </ul>
+  <p>A messy <a href="https://aeconnect.io/blog/pv-case-intake-forms/">intake</a> year becomes a miserable aggregate year. The fix is at intake, all year, not in the two weeks before the data lock.</p>
+  <h2>What AE Connect will not write</h2>
+  <p>The <a href="https://aeconnect.io/app/">AE Connect workspace</a> stops at the individual case. It drafts seriousness, coding, causality, expectedness, and a timeline for one source document. It does not roll cases up, does not calculate exposure, does not maintain the company core data sheet, and does not produce a DSUR, PSUR, PBRER, PADER, or IND annual report. If a vendor says the workspace includes aggregate writing, that claim is wrong.</p>
+  <p>Use the case draft so the series you hand a pharmacovigilance partner, or the series you keep in Argus, LifeSphere, or Veeva, is reviewable. The partner or the database is where the aggregate document is assembled. <a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI case processing</a> does not change that split.</p>
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. The workspace does not submit an ICSR.</p>
+    <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
+  </div>
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What is the difference between a PSUR, a PBRER, and a DSUR?</h3>
+    <p>A PSUR is the older name for a periodic safety update on a marketed product. A PBRER is the ICH E2C(R2) periodic benefit-risk evaluation report that replaced the PSUR in many regions. A DSUR is the ICH E2F development safety update report for an investigational product, written annually. They are all aggregate reports. They cover different parts of a product&#x27;s life.</p>
+    <h3>Is an IND annual report the same as a DSUR?</h3>
+    <p>No. The IND annual report is a US filing under 21 CFR 312.33, due within 60 days of the anniversary of the IND going into effect, and it covers more than safety. A DSUR is the ICH development safety report. Sponsors often align the safety narratives. The filings are still separate.</p>
+    <h3>Does FDA require a PBRER?</h3>
+    <p>PBRER is an ICH format used widely outside the US, including in the EU. Marketed drugs in the US have periodic adverse drug experience reports under 21 CFR 314.80. Companies sometimes prepare the science once and map it to each region&#x27;s document. The documents are not interchangeable.</p>
+    <h3>Will AE Connect draft a PSUR, PBRER, or DSUR?</h3>
+    <p>No. The workspace processes individual cases. Aggregate reports are written from the case series, exposure, and the reference safety information, usually in a safety database or by a pharmacovigilance partner. AE Connect does not produce them.</p>
+  </section>
+  <div class="related">
+    <h2>In this series</h2>
+    <ul>
+<li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+<li><a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">Adverse event reporting: AE and SAE</a></li>
+<li><a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a></li>
+<li><a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">Product quality complaint reporting</a></li>
+<li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+<li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
+<li>PSUR, PBRER, and DSUR (this page)</li>
+<li><a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus alternative</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere alternative</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety alternative</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a></span>
+</footer>
+</body>
+</html>

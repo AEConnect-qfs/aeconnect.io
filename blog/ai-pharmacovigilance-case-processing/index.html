@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI pharmacovigilance case processing | AE Connect</title>
+  <meta name="description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. It does not file the case." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/" />
+  <meta property="og:title" content="AI pharmacovigilance case processing" />
+  <meta property="og:description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. It does not file the case." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI pharmacovigilance case processing | AE Connect" />
+  <meta name="twitter:description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. It does not file the case." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI pharmacovigilance case processing, with a person on every field",
+  "description": "AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. It does not file the case.",
+  "url": "https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/",
+  "datePublished": "2026-10-23",
+  "dateModified": "2026-10-23",
+  "author": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "mainEntityOfPage": "https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/"
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does AI pharmacovigilance case processing mean here?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In AE Connect it means the workspace reads an adverse-event source and drafts the fields a drug-safety reviewer normally fills in: seriousness, a suggested MedDRA term, WHO-UMC causality, expectedness, a reporting timeline, and a short narrative. The reviewer accepts or overrides every field. The draft is not a final regulatory action."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the AI submit the case?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. AE Connect does not send ICSRs, does not produce E2B(R3) XML, and does not write aggregate reports. Submission stays with the safety database, the CRO, or the publishing path named in the pharmacovigilance plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does MedDRA coding work in the draft?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The model suggests a preferred term and a system organ class from the verbatim text, with a rationale. It is not a search against a licensed MedDRA browser, and it can be wrong. Confirm the term against the MedDRA version your process uses before anyone treats it as the coded case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The first 5 AI-processed cases are free, with no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe handles payment. Re-running an assessment on a case that was already counted is not a new charge."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0a1628; --teal:#00d4c8; --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff; --border:rgba(255,255,255,0.08); }
+    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/about/">About</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / AI case processing</p>
+  <h1>AI pharmacovigilance case processing, with a person on every field</h1>
+  <p class="by">QORO Team · 23 October 2026 · about 6 minutes</p>
+  <p>Pharmacovigilance case processing is the work between "we received a report" and "a qualified person is willing to say what this case is." Seriousness, coding, causality, expectedness, and the reporting clock are that work. AI pharmacovigilance case processing, in the only sense this site uses the phrase, is a draft of those fields from the source text. It is not a safety database, not a governance layer inside someone else's database, and not a machine that files the report while the team is asleep.</p>
+  <h2>The judgments, named plainly</h2>
+  <p>A processed case can answer a short list of questions. If it cannot, it is still intake, which is fine, but it is not done.</p>
+  <ul>
+    <li><strong>Seriousness.</strong> Serious or not, and which ICH criterion if it is serious. Severity grades are not a substitute.</li>
+    <li><strong>Coding.</strong> A MedDRA preferred term that matches the reporter's words, sitting in a system organ class. The verbatim stays visible next to the term.</li>
+    <li><strong>Causality.</strong> A WHO-UMC style call — certain, probable, possible, unlikely, or unassessable — with the time course and the obvious alternative causes.</li>
+    <li><strong>Expectedness.</strong> Listed or not in the Investigator's Brochure or company core data sheet, at the right specificity, on a named version.</li>
+    <li><strong>Reporting.</strong> Whether an expedited report looks required, to whom, and on a 7-day clock, a 15-day clock, or neither.</li>
+    <li><strong>Narrative.</strong> A few sentences that match the structured fields.</li>
+  </ul>
+  <p>Aggregate writing, signal detection, and literature screening are other jobs. They use processed cases. They are not the processing of one case. <a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a> stay outside the workspace on purpose.</p>
+  <h2>What the workspace actually drafts</h2>
+  <p>You open the <a href="https://aeconnect.io/app/">AE Connect workspace</a>, paste the narrative, or upload a PDF, Word file, text, email, CSV, or image. The file is parsed in your browser. The model sees extracted text, not the original file. It returns the fields above, each with a confidence and a short reason, plus references it thinks apply. You accept or override. You can download the case. There is no e-signature step on this site. Sign-off, if your quality system requires a Part 11 signature, belongs in the system your validation package covers.</p>
+  <p>When the model is unsure, the draft should look unsure. Expectedness is the clearest example. The workspace does not contain your brochure. A suggestion of "unexpected" means "go check the document," not "the core data sheet has been consulted." MedDRA suggestions are the same kind of aid. Confirm the term. Do not paste a suggested code into an official case without looking it up in the MedDRA version you are licensed to use.</p>
+  <p>If no API key is configured, the workspace falls back to a deterministic mock so the screens can be tried. A mock is not a medical assessment. Production use needs the real model and a reviewer who knows that.</p>
+  <h2>What stays human</h2>
+  <p>The reviewer is the drug-safety decision. The draft can be faster than a blank form and still be wrong about hospitalization, about which product was suspect, or about a second event buried in paragraph four. Override is the product working, not the product failing. A team that accepts every field without reading the source has automated a risk, not a process.</p>
+  <p>The same limit applies to <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR</a> calls and to <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3)</a> content. The draft can show that a 7-day clock might apply. It cannot start the clock, unblind the subject, or send the file. <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">AE and SAE reporting</a> remains the sponsor's duty.</p>
+  <h2>Where this sits relative to a safety database</h2>
+  <p>Argus, LifeSphere, and Veeva Vault Safety process cases too, inside a validated system of record, with submission and aggregate modules their customers configure. AE Connect does not replace that stack and does not sit inside it as an add-on. It is a way to get from a source document to a reviewed draft when the volume is small or the database is not the place the email lands. The fair comparisons are the <a href="https://aeconnect.io/blog/oracle-argus-alternative/">Argus</a>, <a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">LifeSphere</a>, and <a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Vault Safety</a> pages.</p>
+  <p>Price is the workspace price, not an enterprise license. Five cases free, then $20 per month for 25 AI-processed cases and $1 each after that. If that is too small for the program you are about to run, you are shopping for a database, and these pages should help you say so.</p>
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. The workspace does not submit an ICSR.</p>
+    <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
+  </div>
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What does AI pharmacovigilance case processing mean here?</h3>
+    <p>In AE Connect it means the workspace reads an adverse-event source and drafts the fields a drug-safety reviewer normally fills in: seriousness, a suggested MedDRA term, WHO-UMC causality, expectedness, a reporting timeline, and a short narrative. The reviewer accepts or overrides every field. The draft is not a final regulatory action.</p>
+    <h3>Does the AI submit the case?</h3>
+    <p>No. AE Connect does not send ICSRs, does not produce E2B(R3) XML, and does not write aggregate reports. Submission stays with the safety database, the CRO, or the publishing path named in the pharmacovigilance plan.</p>
+    <h3>How does MedDRA coding work in the draft?</h3>
+    <p>The model suggests a preferred term and a system organ class from the verbatim text, with a rationale. It is not a search against a licensed MedDRA browser, and it can be wrong. Confirm the term against the MedDRA version your process uses before anyone treats it as the coded case.</p>
+    <h3>What does it cost?</h3>
+    <p>The first 5 AI-processed cases are free, with no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe handles payment. Re-running an assessment on a case that was already counted is not a new charge.</p>
+  </section>
+  <div class="related">
+    <h2>In this series</h2>
+    <ul>
+<li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+<li><a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">Adverse event reporting: AE and SAE</a></li>
+<li><a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a></li>
+<li><a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">Product quality complaint reporting</a></li>
+<li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+<li>AI pharmacovigilance case processing (this page)</li>
+<li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
+<li><a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus alternative</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere alternative</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety alternative</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a></span>
+</footer>
+</body>
+</html>
