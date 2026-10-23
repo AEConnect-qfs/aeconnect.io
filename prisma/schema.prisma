@@ -65,6 +65,8 @@ model Assessment {
   caseId             String
   userId             String
   modelVersion       String
+  // Prompt id that produced this draft. Empty on rows created before the column existed.
+  promptVersion      String   @default("")
   seriousness        String
   meddraPt           String
   meddraCode         String

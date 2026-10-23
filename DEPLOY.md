@@ -90,7 +90,7 @@ Site configuration → Environment variables. Add:
 | `DIRECT_URL` | Neon **direct** URL (only needed if you run migrations from Netlify; safe to include) |
 | `JWT_SECRET` | a long random string — generate with `openssl rand -hex 32` |
 | `ANTHROPIC_API_KEY` | your Anthropic key (server-side only; never shipped to the browser) |
-| `ANTHROPIC_MODEL` | *(optional)* defaults to `claude-sonnet-4-20250514` |
+| `ANTHROPIC_MODEL` | *(optional)* defaults to `claude-sonnet-5`. See [Switching the AI provider](#switching-the-ai-provider). |
 | `STRIPE_SECRET_KEY` | Stripe secret key (`sk_live_...`) |
 | `STRIPE_PRICE_ID` | the recurring Core price id (`price_...`) |
 | `STRIPE_WEBHOOK_SECRET` | signing secret of your webhook endpoint (`whsec_...`) |
@@ -102,6 +102,42 @@ Site configuration → Environment variables. Add:
 > (dev convenience) instead of charging — so don't ship to production without them.
 
 Trigger a redeploy after setting these.
+
+## Switching the AI provider
+
+The assessment call goes through one engine (`netlify/functions/_lib/assessment.ts`). The vendor is chosen per request. You do not need new variables to stay on Claude: when `LLM_PROVIDER` is unset and `ANTHROPIC_API_KEY` is set, the provider is Anthropic and the model is `LLM_MODEL`, then `ANTHROPIC_MODEL`, then `claude-sonnet-5`.
+
+| `LLM_PROVIDER` | Behavior | Required |
+|---|---|---|
+| *(unset)* | Anthropic if `ANTHROPIC_API_KEY` is set, otherwise the deterministic mock (`mock-dev-0`) | |
+| `mock` | Same mock. No network call. Used by `npm run dev` without a key, and by `verify-site.mts` / `npm run eval`. | |
+| `anthropic` | Claude | `ANTHROPIC_API_KEY` or `LLM_API_KEY` |
+| `openai-compatible` | Ollama, vLLM, or any host that serves `POST {LLM_BASE_URL}/chat/completions` | `LLM_BASE_URL` (the `/v1` root, not the full completions path) and `LLM_MODEL`. `LLM_API_KEY` when that host requires a bearer token. |
+
+```bash
+# Ollama on the same machine
+LLM_PROVIDER=openai-compatible
+LLM_BASE_URL=http://127.0.0.1:11434/v1
+LLM_MODEL=qwen2.5:1.5b
+
+# A hosted OpenAI-compatible API
+LLM_PROVIDER=openai-compatible
+LLM_BASE_URL=https://api.example.com/v1
+LLM_MODEL=your-model-id
+LLM_API_KEY=...
+```
+
+The workspace header shows the model id that ran and the prompt version (`pv-draft-2`). A draft that fails the schema (enums, 8-digit MedDRA code, required rationale) is not stored and does not consume a trial case.
+
+This build adds `Assessment.promptVersion`. Apply it to the database before deploying, from a machine that can reach Neon:
+
+```bash
+DATABASE_URL="<neon-url>" npx prisma db push
+```
+
+Local `DATABASE_URL` must be a `postgresql://` URL. The schema is already Postgres; the old SQLite file URL will not connect.
+
+`ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` still work. Leave `LLM_*` unset on Netlify to keep production on Claude.
 
 ## 5b. Configure Stripe (payments)
 

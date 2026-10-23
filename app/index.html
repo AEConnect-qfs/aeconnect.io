@@ -453,7 +453,7 @@
     // Assessment present → field review
     html += `<div class="card">
       <div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px">
-        <h2 style="border:0;margin:0">AI-drafted assessment · <span style="color:var(--slate);font-weight:500">model ${esc(currentModelVersion())}</span></h2>
+        <h2 style="border:0;margin:0">AI-drafted assessment · <span style="color:var(--slate);font-weight:500">${esc(draftStamp(a))}</span></h2>
         <button class="btn btn-primary" id="rerunBtn" onclick="runAssess()" style="white-space:nowrap;box-shadow:0 0 0 1px var(--teal)">↻ Re-run AI analysis</button>
       </div>
       <p class="hint">Review each field. Accept the AI value or override it. Low-confidence fields are flagged. Re-run to regenerate the AI draft — free, doesn't use a trial case.</p>`;
@@ -515,6 +515,11 @@
     mainPanel.innerHTML = html;
   }
   function currentModelVersion() { return (current && current.assessment && current.assessment.modelVersion) || 'ai'; }
+  function draftStamp(a) {
+    const model = (a && a.modelVersion) || currentModelVersion();
+    const prompt = (a && a.promptVersion) || '';
+    return prompt ? `model ${model} · prompt ${prompt}` : `model ${model}`;
+  }
 
   function downloadCase() {
     const c = current; if (!c || !c.assessment) return;
@@ -539,7 +544,7 @@ thead th{color:#4a5568}tbody th{width:210px;color:#4a5568;font-weight:600}
 <body>
 <div class="ref">${esc(c.caseRef)}</div>
 <h1>${esc(c.title)}</h1>
-<div class="meta">AE Connect · AI-assisted assessment · model ${esc(a.modelVersion || currentModelVersion())} · generated ${new Date().toLocaleString()}</div>
+<div class="meta">AE Connect · AI-assisted assessment · ${esc(draftStamp(a))} · generated ${new Date().toLocaleString()}</div>
 <h2>Source document</h2>
 <div class="src">${esc(c.sourceText)}</div>
 <h2>Structured assessment</h2>
