@@ -1,7 +1,89 @@
 import 'dotenv/config';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { prisma } from './netlify/functions/_lib/prisma.js';
 import { verifyAuditChain } from './netlify/functions/_lib/audit.js';
 import { currentBillingMonth } from './netlify/functions/_lib/billing.js';
+
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
+
+/** Netlify matches `/path` and `/path/` as the same redirect rule. A force rule whose
+ *  destination only adds a slash therefore 301s the canonical URL to itself. */
+function checkNetlifyRedirects() {
+  const toml = fs.readFileSync(path.join(ROOT, 'netlify.toml'), 'utf8');
+  const rules: { from: string; to: string; force: boolean }[] = [];
+  for (const block of toml.split('[[redirects]]').slice(1)) {
+    const from = block.match(/from = "([^"]*)"/)?.[1];
+    const to = block.match(/to = "([^"]*)"/)?.[1];
+    if (!from || !to || from.includes('://') || from.includes('*')) continue;
+    rules.push({ from, to, force: /force = true/.test(block.split('[[')[0]) });
+  }
+  const norm = (p: string) => (p.length > 1 && p.endsWith('/') ? p.slice(0, -1) : p);
+  const hasPage = (urlPath: string) => {
+    if (urlPath === '/' || urlPath.endsWith('/')) {
+      const rel = urlPath === '/' ? 'index.html' : urlPath.slice(1) + 'index.html';
+      return fs.existsSync(path.join(ROOT, rel));
+    }
+    return fs.existsSync(path.join(ROOT, urlPath.slice(1)));
+  };
+  const follow = (start: string) => {
+    let current = start;
+    const seen = new Set<string>();
+    let hops = 0;
+    for (;;) {
+      if (seen.has(current)) return { status: 0, hops, final: current, loop: true };
+      seen.add(current);
+      const rule = rules.find((r) => norm(r.from) === norm(current));
+      if (rule && (rule.force || !hasPage(current))) {
+        hops++;
+        if (hops > 2 || norm(rule.to) === norm(current)) return { status: 301, hops, final: rule.to, loop: true };
+        current = rule.to;
+        continue;
+      }
+      if (current !== '/' && !current.endsWith('/') && hasPage(current + '/')) {
+        hops++;
+        current = current + '/';
+        continue;
+      }
+      return { status: hasPage(current) ? 200 : 404, hops, final: current, loop: false };
+    }
+  };
+  const locs = [...fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
+  let ok = true;
+  const bad: string[] = [];
+  for (const p of locs) {
+    const slash = follow(p);
+    if (slash.loop || slash.status !== 200 || slash.hops !== 0) {
+      ok = false;
+      bad.push(`${p} → ${slash.status} hops=${slash.hops} loop=${slash.loop}`);
+    }
+    if (p !== '/') {
+      const bare = follow(p.slice(0, -1));
+      if (bare.loop || bare.status !== 200 || bare.hops !== 1 || bare.final !== p) {
+        ok = false;
+        bad.push(`${p.slice(0, -1)} → ${bare.final} hops=${bare.hops} loop=${bare.loop}`);
+      }
+    }
+  }
+  const legacy = [
+    ['/blog/meddra-coding-at-intake-ai-pharmacovigilance', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
+    ['/blog/meddra-coding-at-intake-ai-pharmacovigilance/', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
+    ['/adverse-event-intake-system', '/'],
+    ['/adverse-event-intake-system/', '/'],
+    ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect', '/blog/veeva-argus-overkill-early-phase-biotech/'],
+    ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect/', '/blog/veeva-argus-overkill-early-phase-biotech/'],
+  ];
+  for (const [from, to] of legacy) {
+    const r = follow(from);
+    const dest = follow(to);
+    if (r.loop || r.hops !== 1 || r.final !== to || dest.loop || dest.status !== 200 || dest.hops !== 0) {
+      ok = false;
+      bad.push(`legacy ${from} → ${r.final} hops=${r.hops}; dest ${dest.status}`);
+    }
+  }
+  check('netlify redirects: slash 200, one hop, no loops', ok, bad.slice(0, 4).join('; '));
+}
 
 const B = `http://localhost:${process.env.PORT || 8787}`;
 const EMAIL = `verify-${Date.now()}@x.io`;
@@ -35,6 +117,8 @@ async function page(path: string) {
 }
 
 async function main() {
+  checkNetlifyRedirects();
+
   const home = await page('/');
   check('home 200 with self-canonical', home.status === 200 && home.text.includes('rel="canonical" href="https://aeconnect.io/"') && !home.csp.includes('upgrade-insecure-requests'));
 

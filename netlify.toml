@@ -6,6 +6,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Directory indexes are the canonical URLs (`/blog/`, `/about/`).
+[build.processing.html]
+  pretty_urls = true
+
 [functions]
   # Prisma query engine must be bundled with each function.
   node_bundler = "esbuild"
@@ -77,157 +81,10 @@
   status = 301
   force = true
 
-# One URL form site-wide: a trailing slash. Non-slash requests 301 here.
-# `/` itself is the marketing homepage (200). The workspace stays at `/app/`.
-[[redirects]]
-  from = "/app"
-  to = "/app/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/features"
-  to = "/features/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/about"
-  to = "/about/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/contact"
-  to = "/contact/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/beta"
-  to = "/beta/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog"
-  to = "/blog/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/privacy"
-  to = "/privacy/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/terms"
-  to = "/terms/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/e2b-r3-checklist"
-  to = "/e2b-r3-checklist/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/ich-e2b-r3-deadline-biotech-guide"
-  to = "/blog/ich-e2b-r3-deadline-biotech-guide/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/pv-plan-first-ind-what-small-biotechs-get-wrong"
-  to = "/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/the-missing-layer-in-pharmacovigilance-ae-connect"
-  to = "/blog/the-missing-layer-in-pharmacovigilance-ae-connect/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/veeva-argus-overkill-early-phase-biotech"
-  to = "/blog/veeva-argus-overkill-early-phase-biotech/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/ae-intake-vs-pharmacovigilance"
-  to = "/blog/ae-intake-vs-pharmacovigilance/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/drug-safety-inbox-small-biotech-reality"
-  to = "/blog/drug-safety-inbox-small-biotech-reality/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/pv-case-intake-forms"
-  to = "/blog/pv-case-intake-forms/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/adverse-event-reporting-ae-sae"
-  to = "/blog/adverse-event-reporting-ae-sae/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/susar-reporting-ind-sponsors"
-  to = "/blog/susar-reporting-ind-sponsors/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/product-quality-complaint-reporting"
-  to = "/blog/product-quality-complaint-reporting/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/e2b-r3-icsr-submissions"
-  to = "/blog/e2b-r3-icsr-submissions/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/ai-pharmacovigilance-case-processing"
-  to = "/blog/ai-pharmacovigilance-case-processing/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/aggregate-reports-psur-pbrer-dsur"
-  to = "/blog/aggregate-reports-psur-pbrer-dsur/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/oracle-argus-alternative"
-  to = "/blog/oracle-argus-alternative/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/arisglobal-lifesphere-alternative"
-  to = "/blog/arisglobal-lifesphere-alternative/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/veeva-vault-safety-alternative"
-  to = "/blog/veeva-vault-safety-alternative/"
-  status = 301
-  force = true
+# Trailing-slash canonicals are not forced here. Netlify matches `/blog` and
+# `/blog/` as the same redirect path, so a force 301 from one to the other
+# loops the slash URL onto itself. Pretty URLs already 301 the non-slash form
+# to the directory index once; the slash form is a 200.
 
 [[headers]]
   for = "/*"
