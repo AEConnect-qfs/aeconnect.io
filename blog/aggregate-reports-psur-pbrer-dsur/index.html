@@ -104,7 +104,25 @@
     footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
     footer a { color: var(--light); }
     @media (max-width: 800px) { .nav-links { display:none; } }
+  
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #00d4c8); color: var(--navy, #0a1628); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #e6f1ff); border: 1px solid #8b99ad; }
+
   </style>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Aggregate reports: PSUR, PBRER, and DSUR in plain language", "item": "https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 <nav>
@@ -115,7 +133,9 @@
     <li><a href="https://aeconnect.io/about/">About</a></li>
     <li><a href="https://aeconnect.io/contact/">Contact</a></li>
     <li><a href="https://aeconnect.io/app/">Workspace</a></li>
-  </ul>
+      <li><a href="https://aeconnect.io/pricing/">Pricing</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+</ul>
 </nav>
 <main>
   <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / Aggregate reports</p>
@@ -124,6 +144,12 @@
   <p>Aggregate reports are how a sponsor tells the rest of the safety story: not one patient's event, but the pattern across the period. People search for PSUR, PBRER, and DSUR as if they were three brands of the same PDF. They are related, and they are not substitutes. None of them are written by an intake form.</p>
   <h2>Why aggregates exist</h2>
   <p>Expedited <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">adverse event reporting</a> moves a single serious, unexpected, suspected case quickly. It is a bad way to see whether headaches became more common, whether a lot cluster changed the picture, or whether the investigator's brochure is now wrong. Aggregate reports force that look on a schedule. They also force the company to say what the reference safety information was during the period. The <a href="https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/">first-IND PV plan note</a> is where small teams usually discover they never named an owner for that document.</p>
+<aside class="lead-cta">
+  <h2>Start 5 free cases, or book a demo</h2>
+  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+
   <h2>DSUR: the development safety update</h2>
   <p>A DSUR is the ICH E2F report for a drug still in development. It is annual. Sponsors usually tie the data lock to a development international birth date so every region is looking at the same year. The report summarizes interval and cumulative safety, important risks, and whether the benefit-risk balance for the development program has changed. Clinical-trial SUSARs from the year belong in that summary. They do not replace it.</p>
   <p>A DSUR is not the US IND annual report. Under 21 CFR 312.33 the IND annual report is due within 60 days of the anniversary date the IND went into effect. It includes safety and also manufacturing, investigator, and study-status information the DSUR does not try to be. Teams that are in both ICH regions and the US often draft the safety analysis once and then fit it to each template. The due dates still differ. A calendar that only has "DSUR" on it will miss the IND anniversary.</p>
@@ -169,11 +195,26 @@
 <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
 <li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
 <li>PSUR, PBRER, and DSUR (this page)</li>
-<li><a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus alternative</a></li>
-<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere alternative</a></li>
-<li><a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety alternative</a></li>
+<li><a href="https://aeconnect.io/blog/oracle-argus/">Works with Oracle Argus</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere/">Works with ArisGlobal LifeSphere</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety/">Works with Veeva Vault Safety</a></li>
     </ul>
   </div>
+
+<aside class="lead-cta">
+  <h2>Start 5 free cases, or book a demo</h2>
+  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+<section class="product-links">
+  <h2>Use this with the product</h2>
+  <ul>
+    <li><a href="https://aeconnect.io/solutions/aggregate-reports/">Aggregate reports</a></li>
+    <li><a href="https://aeconnect.io/pricing/">Pricing: 5 free cases, then $20 per month</a></li>
+    <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+    <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
+  </ul>
+</section>
 </main>
 <footer>
   <span>© 2026 QORO Intelligence Inc.</span>

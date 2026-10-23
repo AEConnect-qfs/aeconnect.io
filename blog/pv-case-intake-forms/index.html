@@ -104,7 +104,25 @@
     footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
     footer a { color: var(--light); }
     @media (max-width: 800px) { .nav-links { display:none; } }
+  
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #00d4c8); color: var(--navy, #0a1628); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #e6f1ff); border: 1px solid #8b99ad; }
+
   </style>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "PV case intake forms: what a small team should capture", "item": "https://aeconnect.io/blog/pv-case-intake-forms/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 <nav>
@@ -115,7 +133,9 @@
     <li><a href="https://aeconnect.io/about/">About</a></li>
     <li><a href="https://aeconnect.io/contact/">Contact</a></li>
     <li><a href="https://aeconnect.io/app/">Workspace</a></li>
-  </ul>
+      <li><a href="https://aeconnect.io/pricing/">Pricing</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+</ul>
 </nav>
 <main>
   <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / PV case intake</p>
@@ -124,6 +144,12 @@
   <p>Pharmacovigilance case intake is the hour when a report stops being an email and becomes a case. A PV case intake form is how a small drug-safety team captures that hour in one place. The form is not a safety database, and filling it in is not adverse event reporting to FDA or EMA. It is the record a qualified person needs before anyone can decide seriousness, expectedness, or whether a clock is running.</p>
   <h2>What intake is for</h2>
   <p>Sites, CROs, call centers, and medical monitors do not speak in E2B(R3) fields. They send a PDF, a three-line email, or a product quality complaint that happens to mention a patient. Intake is the translation step. Someone records the source wording, the dates, and the product, then a reviewer decides what the case is. Teams that skip this step retype the story later, usually after the weekend, and then argue about Day 0.</p>
+<aside class="lead-cta">
+  <h2>Start 5 free cases, or book a demo</h2>
+  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+
   <p>The <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">drug safety inbox</a> is where that delay actually happens. The intake form is the way out of the inbox. Full pharmacovigilance — submissions, signals, aggregate reports, a system of record — starts after intake. The difference is spelled out in <a href="https://aeconnect.io/blog/ae-intake-vs-pharmacovigilance/">AE intake versus full pharmacovigilance</a>.</p>
   <h2>The four elements that make a case valid</h2>
   <p>ICH practice, used for both clinical and post-approval cases, treats an individual case as valid when four elements are present:</p>
@@ -145,7 +171,7 @@
     <li>For a quality defect, lot or batch, and whether a patient was involved. That split is the subject of <a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">product quality complaint reporting</a>.</li>
   </ul>
   <h2>Intake forms versus the safety database</h2>
-  <p>Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety all have their own case-entry screens. Those screens are the right system of record once a company is running one of them. They are a poor place to discover, on a Sunday, that a coordinator's email was a serious report. A separate intake step is still useful beside those systems: read the source, draft the assessment, then have a person enter or reconcile the official case. AE Connect does not push data into those databases. Comparison notes are here for <a href="https://aeconnect.io/blog/oracle-argus-alternative/">Argus</a>, <a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">LifeSphere</a>, and <a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Vault Safety</a>.</p>
+  <p>Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the safety database, and their case-entry screens are where the official case is booked. They are a poor place to discover, on a Sunday, that a coordinator's email was a serious report. AE Connect is the intake step in front of them: read the source, draft the assessment, then have a person book the official case. AE Connect does not write into those databases. The tables are on <a href="https://aeconnect.io/integrations/oracle-argus/">Argus</a>, <a href="https://aeconnect.io/integrations/arisglobal/">LifeSphere</a>, and <a href="https://aeconnect.io/integrations/veeva-vault-safety/">Vault Safety</a>.</p>
   <h2>How the AE Connect intake works</h2>
   <p>The <a href="https://aeconnect.io/app/">AE Connect workspace</a> is a single intake, not a forty-field wizard and not a ten-language form pack. You paste the narrative or upload a PDF, Word file, text file, email, CSV, or image. Parsing runs in the browser. Only the extracted text is assessed. The draft covers seriousness, a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness, a reporting timeline, and a short narrative. You accept or override each field.</p>
   <p>Expectedness in that draft is a prompt to check the current Investigator's Brochure or company core data sheet. The workspace does not store or author that document. The draft is not an E2B(R3) file and it is not sent to a gateway. Submission is a later job, described in <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a>.</p>
@@ -176,11 +202,26 @@
 <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
 <li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
 <li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
-<li><a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus alternative</a></li>
-<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere alternative</a></li>
-<li><a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety alternative</a></li>
+<li><a href="https://aeconnect.io/blog/oracle-argus/">Works with Oracle Argus</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere/">Works with ArisGlobal LifeSphere</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety/">Works with Veeva Vault Safety</a></li>
     </ul>
   </div>
+
+<aside class="lead-cta">
+  <h2>Start 5 free cases, or book a demo</h2>
+  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+<section class="product-links">
+  <h2>Use this with the product</h2>
+  <ul>
+    <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+    <li><a href="https://aeconnect.io/pricing/">Pricing: 5 free cases, then $20 per month</a></li>
+    <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+    <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
+  </ul>
+</section>
 </main>
 <footer>
   <span>© 2026 QORO Intelligence Inc.</span>

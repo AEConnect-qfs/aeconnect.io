@@ -81,6 +81,44 @@
   status = 301
   force = true
 
+# Old comparison slugs. Destinations are different paths, so these do not
+# loop a slash URL onto itself. Pretty URLs still add the slash on the new path.
+[[redirects]]
+  from = "/blog/oracle-argus-alternative"
+  to = "/blog/oracle-argus/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/oracle-argus-alternative/"
+  to = "/blog/oracle-argus/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/arisglobal-lifesphere-alternative"
+  to = "/blog/arisglobal-lifesphere/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/arisglobal-lifesphere-alternative/"
+  to = "/blog/arisglobal-lifesphere/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/veeva-vault-safety-alternative"
+  to = "/blog/veeva-vault-safety/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/veeva-vault-safety-alternative/"
+  to = "/blog/veeva-vault-safety/"
+  status = 301
+  force = true
+
 # Trailing-slash canonicals are not forced here. Netlify matches `/blog` and
 # `/blog/` as the same redirect path, so a force 301 from one to the other
 # loops the slash URL onto itself. Pretty URLs already 301 the non-slash form

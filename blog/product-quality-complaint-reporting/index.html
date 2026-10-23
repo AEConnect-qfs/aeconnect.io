@@ -104,7 +104,25 @@
     footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
     footer a { color: var(--light); }
     @media (max-width: 800px) { .nav-links { display:none; } }
+  
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #00d4c8); color: var(--navy, #0a1628); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #e6f1ff); border: 1px solid #8b99ad; }
+
   </style>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Product quality complaint reporting when a patient is also involved", "item": "https://aeconnect.io/blog/product-quality-complaint-reporting/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 <nav>
@@ -115,7 +133,9 @@
     <li><a href="https://aeconnect.io/about/">About</a></li>
     <li><a href="https://aeconnect.io/contact/">Contact</a></li>
     <li><a href="https://aeconnect.io/app/">Workspace</a></li>
-  </ul>
+      <li><a href="https://aeconnect.io/pricing/">Pricing</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+</ul>
 </nav>
 <main>
   <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / PQC reporting</p>
@@ -124,6 +144,12 @@
   <p>Product quality complaint reporting and adverse event reporting meet in the same inbox and then have to leave on different paths. A pharmacist calls about a cracked vial. A site writes that the infusion pump alarmed and the subject later had chills. Quality wants the lot. Drug safety wants to know whether a person was harmed. If both teams assume the other one opened the case, nobody owns Day 0.</p>
   <h2>What a product quality complaint is</h2>
   <p>A product quality complaint, often shortened to PQC, is a report that something is wrong with the product as a product. Typical complaints:</p>
+<aside class="lead-cta">
+  <h2>Start 5 free cases, or book a demo</h2>
+  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+
   <ul>
     <li>Appearance: discoloration, particles, cloudiness, a leaking container.</li>
     <li>Packaging or labeling: wrong carton, missing warning, illegible lot.</li>
@@ -170,11 +196,26 @@
 <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
 <li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
 <li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
-<li><a href="https://aeconnect.io/blog/oracle-argus-alternative/">Oracle Argus alternative</a></li>
-<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere-alternative/">ArisGlobal LifeSphere alternative</a></li>
-<li><a href="https://aeconnect.io/blog/veeva-vault-safety-alternative/">Veeva Vault Safety alternative</a></li>
+<li><a href="https://aeconnect.io/blog/oracle-argus/">Works with Oracle Argus</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere/">Works with ArisGlobal LifeSphere</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety/">Works with Veeva Vault Safety</a></li>
     </ul>
   </div>
+
+<aside class="lead-cta">
+  <h2>Start 5 free cases, or book a demo</h2>
+  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+<section class="product-links">
+  <h2>Use this with the product</h2>
+  <ul>
+    <li><a href="https://aeconnect.io/solutions/pqc-intake/">PQC intake</a></li>
+    <li><a href="https://aeconnect.io/pricing/">Pricing: 5 free cases, then $20 per month</a></li>
+    <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+    <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
+  </ul>
+</section>
 </main>
 <footer>
   <span>© 2026 QORO Intelligence Inc.</span>

@@ -31,6 +31,12 @@ const LEGACY_REDIRECTS: Record<string, string> = {
     '/blog/veeva-argus-overkill-early-phase-biotech/',
   '/blog/safety-database-comparison-argus-veeva-reportum-ae-connect/':
     '/blog/veeva-argus-overkill-early-phase-biotech/',
+  '/blog/oracle-argus-alternative': '/blog/oracle-argus/',
+  '/blog/oracle-argus-alternative/': '/blog/oracle-argus/',
+  '/blog/arisglobal-lifesphere-alternative': '/blog/arisglobal-lifesphere/',
+  '/blog/arisglobal-lifesphere-alternative/': '/blog/arisglobal-lifesphere/',
+  '/blog/veeva-vault-safety-alternative': '/blog/veeva-vault-safety/',
+  '/blog/veeva-vault-safety-alternative/': '/blog/veeva-vault-safety/',
 };
 
 const CSP = [
