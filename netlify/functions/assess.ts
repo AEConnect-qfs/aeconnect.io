@@ -1,8 +1,8 @@
 import { prisma } from './_lib/prisma.js';
 import { assertCanProcessCase, recordCaseProcessed, BillingBlocked } from './_lib/billing.js';
-import { generateAssessment } from './_lib/claude.js';
+import { assessCase, AssessmentError } from './_lib/assessment.js';
 import { writeAudit } from './_lib/audit.js';
-import { getSession, parseBody, requireMethod, ok, bad, unauthorized, notFound, paymentRequired, serverError, type FnEvent } from './_lib/http.js';
+import { getSession, parseBody, requireMethod, ok, bad, unauthorized, notFound, paymentRequired, serverError, json, type FnEvent } from './_lib/http.js';
 
 export async function handler(event: FnEvent) {
   const mth = requireMethod(event, 'POST');
@@ -18,7 +18,7 @@ export async function handler(event: FnEvent) {
   if (!c) return notFound('Case not found');
   if (c.lockedAt) return bad('Case is signed off and locked', 'LOCKED');
 
-  // Billing gate — BEFORE the Claude call (spec §5, do-not-lose #3).
+  // Billing gate — before any model call. A rejected draft never reaches this meter.
   let shouldMeter = false;
   try {
     ({ shouldMeter } = await assertCanProcessCase(userId, c));
@@ -29,9 +29,14 @@ export async function handler(event: FnEvent) {
 
   let result;
   try {
-    result = await generateAssessment(c.sourceText);
-  } catch (err: any) {
-    return serverError('AI assessment failed: ' + (err?.message || 'unknown error'));
+    result = await assessCase(c.sourceText);
+  } catch (err) {
+    const detail = err instanceof AssessmentError ? err.detail : err instanceof Error ? err.message : String(err);
+    console.error('[assess]', detail);
+    if (err instanceof AssessmentError && err.kind === 'invalid_draft') {
+      return json(422, { error: 'The assessment draft was invalid and was not saved.', code: 'INVALID_DRAFT' });
+    }
+    return serverError('AI assessment failed');
   }
 
   const assessment = await prisma.assessment.create({
@@ -39,6 +44,7 @@ export async function handler(event: FnEvent) {
       caseId: c.id,
       userId,
       modelVersion: result.modelVersion,
+      promptVersion: result.promptVersion,
       seriousness: result.seriousness,
       meddraPt: result.meddraPt,
       meddraCode: result.meddraCode,
@@ -63,13 +69,14 @@ export async function handler(event: FnEvent) {
     userId,
     caseId: c.id,
     action: 'AI_ASSESSMENT',
-    detail: { metered: shouldMeter, modelVersion: result.modelVersion },
+    detail: { metered: shouldMeter, modelVersion: result.modelVersion, promptVersion: result.promptVersion },
   });
 
   return ok({
     assessmentId: assessment.id,
     metered: shouldMeter,
     modelVersion: result.modelVersion,
+    promptVersion: result.promptVersion,
     assessment: {
       seriousness: result.seriousness,
       meddraPt: result.meddraPt,
