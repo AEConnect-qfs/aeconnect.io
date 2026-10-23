@@ -1,0 +1,41 @@
+# AE Connect — https://aeconnect.io
+# Public pages are open to search and AI crawlers. The API is not a page.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.netlify/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+
+Sitemap: https://aeconnect.io/sitemap.xml

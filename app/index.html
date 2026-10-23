@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AE Connect — AI adverse-event case processing</title>
-  <meta name="description" content="Paste or upload an adverse-event source document and AI drafts a structured pharmacovigilance assessment — seriousness, MedDRA coding, causality, regulatory timeline — for you to review. First 5 cases free." />
-  <link rel="canonical" href="https://aeconnect.io/app" />
+  <title>AE Connect workspace — AI adverse-event case processing</title>
+  <meta name="description" content="Sign in to draft seriousness, MedDRA coding, causality, and a reporting timeline from an adverse-event source. First 5 cases free. The app does not submit ICSRs." />
+  <link rel="canonical" href="https://aeconnect.io/app/" />
+  <meta property="og:title" content="AE Connect workspace — AI adverse-event case processing" />
+  <meta property="og:description" content="Paste or upload a source document and review a structured pharmacovigilance draft. First 5 cases free." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aeconnect.io/app/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AE Connect workspace — AI adverse-event case processing" />
+  <meta name="twitter:description" content="Review an AI draft of an adverse-event case. First 5 cases free. Submission stays with your team." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -36,8 +43,9 @@
     .btn:active { transform:translateY(1px); }
     .btn-primary { background:var(--teal); color:var(--navy); }
     .btn-primary:hover { opacity:.9; }
-    .btn-ghost { background:transparent; color:var(--slate); border:1px solid var(--border); }
+    .btn-ghost { background:transparent; color:var(--light); border:1px solid #8b99ad; }
     .btn-ghost:hover { color:var(--white); }
+    .btn:focus-visible, a:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
     .btn-amber { background:linear-gradient(135deg,#e8a910,#f5c842); color:var(--navy); font-weight:700; }
     .btn-sm { padding:5px 11px; font-size:12px; }
     .btn:disabled { opacity:.4; cursor:not-allowed; }
@@ -50,10 +58,22 @@
     .tabs { display:flex; gap:4px; background:rgba(0,0,0,0.25); padding:4px; border-radius:8px; margin-bottom:20px; }
     .tabs button { flex:1; padding:8px; border:none; background:transparent; color:var(--slate); font-size:13px; font-weight:600; border-radius:6px; }
     .tabs button.active { background:var(--teal); color:var(--navy); }
-    label { display:block; font-size:12px; font-weight:600; color:var(--slate); margin:14px 0 6px; }
+    label { display:block; font-size:12px; font-weight:600; color:var(--light); margin:14px 0 6px; }
     input, textarea, select { width:100%; padding:10px 12px; background:rgba(0,0,0,0.25); border:1px solid var(--border);
       border-radius:7px; color:var(--white); font-size:13.5px; font-family:inherit; }
-    input:focus, textarea:focus { outline:none; border-color:var(--teal); }
+    input:focus, textarea:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color:var(--teal); }
+    input::placeholder, textarea::placeholder { color: #b7c3d6; opacity: 1; }
+    input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--red); }
+    .field-err { color: var(--red); font-size: 12.5px; margin-top: 6px; }
+    .field-err:empty { display: none; }
+    .legal { font-size: 12.5px; color: var(--light); margin-top: 14px; line-height: 1.5; }
+    .file-row { position: relative; display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+    .file-input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .file-input:focus + .file-btn { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .app-foot { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; padding: 14px 20px 22px; border-top: 1px solid var(--border); font-size: 12.5px; }
+    .app-foot a { color: var(--light); }
+    .sub-links { font-size: 12px; color: var(--light); }
+    .sub-links a { color: var(--light); text-decoration: underline; }
     textarea { resize:vertical; min-height:120px; line-height:1.55; }
     .err { color:var(--red); font-size:12.5px; margin-top:12px; min-height:16px; }
     .full { width:100%; margin-top:20px; }
@@ -145,13 +165,13 @@
 <body>
   <div class="topbar">
     <div class="row" style="gap:24px">
-      <a href="/app" class="brand">AE <span>Connect</span></a>
+      <a href="/app/" class="brand">AE <span>Connect</span></a>
       <nav class="site-nav">
-        <a href="/features">Features</a>
-        <a href="/blog">Blog</a>
-        <a href="/beta">Beta</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <a href="/features/">Features</a>
+        <a href="/blog/">Blog</a>
+        <a href="/beta/">Beta</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
     <div class="top-right" id="topRight"></div>
@@ -163,20 +183,26 @@
       <button class="modal-close" onclick="closeAuth()" aria-label="Close">×</button>
       <h1>Save your assessment</h1>
       <p class="sub" id="authSubtitle">Create your free account to see the AI assessment. First 5 cases free — no card.</p>
-      <div class="tabs">
-        <button id="tabSignup" class="active" onclick="setMode('signup')">Sign up</button>
-        <button id="tabLogin" onclick="setMode('login')">Log in</button>
+      <div class="tabs" role="tablist">
+        <button type="button" id="tabSignup" class="active" role="tab" aria-selected="true" onclick="setMode('signup')">Sign up</button>
+        <button type="button" id="tabLogin" role="tab" aria-selected="false" onclick="setMode('login')">Log in</button>
       </div>
-      <div id="nameField">
-        <label>Full name</label>
-        <input id="f_name" placeholder="Dr. Jane Doe" />
-      </div>
-      <label>Email</label>
-      <input id="f_email" type="email" placeholder="you@company.com" />
-      <label>Password</label>
-      <input id="f_password" type="password" placeholder="••••••••" />
-      <button class="btn btn-primary full" id="authBtn" onclick="submitAuth()">Create account</button>
-      <div class="err" id="authErr"></div>
+      <form id="authForm" novalidate onsubmit="submitAuth(event)">
+        <div id="nameField">
+          <label for="f_name">Full name</label>
+          <input id="f_name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Dr. Jane Doe" aria-describedby="f_name_err" />
+          <p class="field-err" id="f_name_err" role="alert"></p>
+        </div>
+        <label for="f_email">Email</label>
+        <input id="f_email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com" aria-describedby="f_email_err" />
+        <p class="field-err" id="f_email_err" role="alert"></p>
+        <label for="f_password">Password</label>
+        <input id="f_password" name="password" type="password" autocomplete="new-password" required minlength="10" maxlength="128" placeholder="At least 10 characters, with a letter and a number" aria-describedby="f_password_err" />
+        <p class="field-err" id="f_password_err" role="alert"></p>
+        <p class="legal" id="authLegal">Creating an account is subject to the <a href="/terms/">Terms of Service</a> and <a href="/privacy/">Privacy Policy</a>. Both are drafts pending legal review.</p>
+        <button class="btn btn-primary full" id="authBtn" type="submit">Create account</button>
+        <div class="err" id="authErr" role="alert"></div>
+      </form>
     </div>
   </div>
 
@@ -190,11 +216,20 @@
     <main class="main" id="mainPanel"></main>
   </div>
 
+  <footer class="app-foot">
+    <a href="/">Home</a>
+    <a href="/privacy/">Privacy Policy (draft)</a>
+    <a href="/terms/">Terms of Service (draft)</a>
+    <a href="/contact/">Contact</a>
+  </footer>
+
   <script>
   // ── API helper ────────────────────────────────────────────────
   const API = '';
   let token = localStorage.getItem('ae_token') || '';
-  let user = null, usage = null, cases = [], current = null, mode = 'signup', ncSourceType = 'text', pendingSource = null;
+  let user = null, usage = null, cases = [], current = null, mode = 'signup', ncSourceType = 'text', pendingSource = null, pendingFileMeta = null;
+  const LIMITS = { nameMin: 2, nameMax: 80, passwordMin: 10, passwordMax: 128, titleMax: 200, sourceMin: 10, sourceMax: 100000, fileMax: 10 * 1024 * 1024 };
+  const ALLOWED_EXT = { txt:'text', csv:'text', md:'text', json:'text', eml:'email', pdf:'pdf', doc:'word', docx:'word', png:'image', jpg:'image', jpeg:'image', webp:'image', gif:'image', tif:'image', tiff:'image' };
 
   async function api(path, method = 'GET', body) {
     const res = await fetch(API + path, {
@@ -209,13 +244,37 @@
   const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
 
   // ── Auth ──────────────────────────────────────────────────────
+  function setFieldErr(id, msg) {
+    const input = document.getElementById(id);
+    const err = document.getElementById(id + '_err');
+    if (err) err.textContent = msg || '';
+    if (input) input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+  function clearAuthErrs() { ['f_name','f_email','f_password'].forEach((id) => setFieldErr(id, '')); if (authErr) authErr.textContent = ''; }
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) && v.length <= 254; }
+  function passwordError(pw, enforce) {
+    if (!pw) return 'Password is required.';
+    if (pw.length > LIMITS.passwordMax) return 'Password must be 128 characters or fewer.';
+    if (enforce && (pw.length < LIMITS.passwordMin || !/[A-Za-z]/.test(pw) || !/[0-9]/.test(pw))) return 'Use at least 10 characters, including a letter and a number.';
+    return '';
+  }
   function setMode(m) {
     mode = m;
-    tabLogin.classList.toggle('active', m === 'login');
-    tabSignup.classList.toggle('active', m === 'signup');
-    nameField.classList.toggle('hidden', m !== 'signup');
-    authBtn.textContent = m === 'login' ? 'Log in' : 'Create account';
-    authErr.textContent = '';
+    const signup = m === 'signup';
+    tabLogin.classList.toggle('active', !signup);
+    tabSignup.classList.toggle('active', signup);
+    tabLogin.setAttribute('aria-selected', signup ? 'false' : 'true');
+    tabSignup.setAttribute('aria-selected', signup ? 'true' : 'false');
+    nameField.classList.toggle('hidden', !signup);
+    f_name.required = signup;
+    f_name.disabled = !signup;
+    f_password.minLength = signup ? LIMITS.passwordMin : 1;
+    f_password.autocomplete = signup ? 'new-password' : 'current-password';
+    f_password.placeholder = signup ? 'At least 10 characters, with a letter and a number' : 'Your password';
+    f_email.autocomplete = signup ? 'email' : 'username';
+    authLegal.classList.toggle('hidden', !signup);
+    authBtn.textContent = signup ? 'Create account' : 'Log in';
+    clearAuthErrs();
   }
   function openAuth(m, subtitle) {
     authModal.classList.remove('hidden');
@@ -225,14 +284,29 @@
   }
   function closeAuth() { authModal.classList.add('hidden'); if (authErr) authErr.textContent = ''; }
 
-  async function submitAuth() {
-    authErr.textContent = '';
+  async function submitAuth(ev) {
+    if (ev) ev.preventDefault();
+    clearAuthErrs();
     const email = f_email.value.trim(), password = f_password.value, name = f_name.value.trim();
-    if (!email || !password) { authErr.textContent = 'Email and password are required.'; return; }
-    if (mode === 'signup' && !name) { authErr.textContent = 'Please enter your name.'; return; }
+    let bad = false;
+    if (mode === 'signup') {
+      if (name.length < LIMITS.nameMin) { setFieldErr('f_name', 'Enter your full name (at least 2 characters).'); bad = true; }
+      else if (name.length > LIMITS.nameMax) { setFieldErr('f_name', 'Name must be 80 characters or fewer.'); bad = true; }
+    }
+    if (!validEmail(email)) { setFieldErr('f_email', 'Enter a valid email address.'); bad = true; }
+    const pwMsg = passwordError(password, mode === 'signup');
+    if (pwMsg) { setFieldErr('f_password', pwMsg); bad = true; }
+    if (bad) return;
     const path = mode === 'login' ? '/api/login' : '/api/signup';
     const r = await api(path, 'POST', mode === 'login' ? { email, password } : { email, password, name });
-    if (!r.ok) { authErr.textContent = r.data.error || 'Something went wrong.'; return; }
+    if (!r.ok) {
+      const f = r.data.fields || {};
+      if (f.name) setFieldErr('f_name', f.name);
+      if (f.email) setFieldErr('f_email', f.email);
+      if (f.password) setFieldErr('f_password', f.password);
+      authErr.textContent = r.data.error || 'Something went wrong.';
+      return;
+    }
     token = r.data.token; localStorage.setItem('ae_token', token);
     closeAuth();
     await boot();
@@ -284,7 +358,7 @@
       }
     }
     const sub = usage && usage.plan === 'trial'
-      ? `<button class="btn btn-amber btn-sm" onclick="subscribe()">Subscribe · $20/mo</button>` : '';
+      ? `<span class="sub-links"><button class="btn btn-amber btn-sm" onclick="subscribe()">Subscribe · $20/mo</button> Checkout uses the <a href="/terms/">Terms</a> and <a href="/privacy/">Privacy Policy</a> (drafts).</span>` : '';
     topRight.innerHTML = `${pill}${sub}<span style="color:var(--slate)">${esc(user.name)}</span><button class="btn btn-ghost btn-sm" onclick="logout()">Log out</button>`;
   }
 
@@ -320,8 +394,28 @@
   }
 
   // ── Guest landing (anonymous) ─────────────────────────────────
+  function caseFormHtml(opts) {
+    return `
+      <h2>${opts.heading}</h2>
+      ${opts.hint ? `<p class="hint">${opts.hint}</p>` : ''}
+      <label for="nc_file">Source document</label>
+      <div class="file-row">
+        <input class="file-input" type="file" id="nc_file" name="sourceFile" accept=".pdf,.doc,.docx,.txt,.eml,.csv,.md,.json,.png,.jpg,.jpeg,.webp,.gif,.tif,.tiff" aria-describedby="nc_file_err nc_filestatus" onchange="onFileChosen(this)" />
+        <label for="nc_file" class="btn btn-ghost btn-sm file-btn">Choose file</label>
+        <span id="nc_filestatus" role="status" style="font-size:12.5px;color:var(--light)"></span>
+      </div>
+      <p class="field-err" id="nc_file_err" role="alert"></p>
+      <label for="nc_text">Extracted or pasted text</label>
+      <textarea id="nc_text" name="sourceText" required minlength="10" maxlength="100000" placeholder="${opts.textPlaceholder}" aria-describedby="nc_text_err"></textarea>
+      <p class="field-err" id="nc_text_err" role="alert"></p>
+      <label for="nc_title">Case title (optional)</label>
+      <input id="nc_title" name="title" type="text" maxlength="200" autocomplete="off" placeholder="e.g. Headache after Cardizem XL" aria-describedby="nc_title_err" />
+      <p class="field-err" id="nc_title_err" role="alert"></p>
+      <button class="btn btn-primary full" type="submit">${opts.button}</button>
+      <div class="err" id="nc_err" role="alert"></div>`;
+  }
   function guestLanding() {
-    current = null; ncSourceType = 'text'; renderCaseList();
+    current = null; ncSourceType = 'text'; pendingFileMeta = null; renderCaseList();
     mainPanel.innerHTML = `
       <div class="landing">
         <div class="hero">
@@ -335,33 +429,41 @@
           <div class="feature"><div class="fi">🧑‍⚕️</div><h4>Human-in-the-loop</h4><p>Decision support only — you accept or override each field; the AI never files a report.</p></div>
           <div class="feature"><div class="fi">🔒</div><h4>Private by design</h4><p>Files are parsed in your browser; only the extracted text is sent for assessment.</p></div>
         </div>
-        <div class="card" style="max-width:760px;margin:18px auto 0">
-          <h2>Try it — process a case</h2>
-          <label>Source document</label>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-            <input type="file" id="nc_file" accept=".pdf,.doc,.docx,.txt,.eml,.csv,.md,.json,.png,.jpg,.jpeg,.webp,.gif,.tif,.tiff" onchange="onFileChosen(this.files[0])" style="display:none" />
-            <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nc_file').click()">📎 Choose file…</button>
-            <span id="nc_filestatus" style="font-size:12.5px;color:var(--slate)"></span>
-          </div>
-          <label>Extracted / pasted text</label>
-          <textarea id="nc_text" placeholder="Paste the adverse-event narrative, or upload a file above to auto-extract..."></textarea>
-          <label>Case title (optional)</label>
-          <input id="nc_title" placeholder="e.g. Headache after Cardizem XL" />
-          <button class="btn btn-primary full" onclick="guestRun()">🚀 Run AI assessment</button>
-          <div class="err" id="nc_err"></div>
-        </div>
+        <form class="card" style="max-width:760px;margin:18px auto 0" onsubmit="event.preventDefault(); guestRun();">
+          ${caseFormHtml({ heading: 'Try it — process a case', textPlaceholder: 'Paste the adverse-event narrative, or upload a file above to auto-extract...', button: 'Run AI assessment' })}
+        </form>
       </div>`;
   }
-  function guestRun() {
+  function readCaseForm() {
     const title = document.getElementById('nc_title').value.trim();
     const sourceText = document.getElementById('nc_text').value.trim();
-    if (!sourceText) { document.getElementById('nc_err').textContent = 'Add a source document or paste text first.'; return; }
-    pendingSource = { title, sourceText, sourceType: ncSourceType };
+    setFieldErr('nc_title', ''); setFieldErr('nc_text', ''); setFieldErr('nc_file', '');
+    document.getElementById('nc_err').textContent = '';
+    let bad = false;
+    if (title.length > LIMITS.titleMax) { setFieldErr('nc_title', 'Title must be 200 characters or fewer.'); bad = true; }
+    if (!sourceText) { setFieldErr('nc_text', 'Source text is required — paste a narrative or upload a supported file.'); bad = true; }
+    else if (sourceText.length < LIMITS.sourceMin) { setFieldErr('nc_text', 'Source text must be at least 10 characters.'); bad = true; }
+    else if (sourceText.length > LIMITS.sourceMax) { setFieldErr('nc_text', 'Source text must be 100,000 characters or fewer.'); bad = true; }
+    if (bad) return null;
+    return { title, sourceText, sourceType: ncSourceType, ...(pendingFileMeta || {}) };
+  }
+  function showCaseErrors(data) {
+    const f = (data && data.fields) || {};
+    if (f.title) setFieldErr('nc_title', f.title);
+    if (f.sourceText) setFieldErr('nc_text', f.sourceText);
+    if (f.file || f.sourceType) setFieldErr('nc_file', f.file || f.sourceType);
+    const err = document.getElementById('nc_err');
+    if (err) err.textContent = (data && data.error) || 'Something went wrong.';
+  }
+  function guestRun() {
+    const payload = readCaseForm();
+    if (!payload) return;
+    pendingSource = payload;
     openAuth('signup', 'Create your free account to run this assessment and see the result. First 5 cases free — no card.');
   }
   async function createAndAssess(s) {
     mainPanel.innerHTML = `<div class="empty">🧠 Running AI assessment…</div>`;
-    const c = await api('/api/cases', 'POST', { title: s.title, sourceText: s.sourceText, sourceType: s.sourceType });
+    const c = await api('/api/cases', 'POST', s);
     if (!c.ok) { showEmpty(); alert(c.data.error || 'Failed to create case'); return; }
     const a = await api('/api/assess', 'POST', { caseId: c.data.id });
     await refreshUsage();
@@ -372,31 +474,22 @@
 
   function newCase() {
     if (!user) { guestLanding(); return; }
-    current = null; ncSourceType = 'text'; renderCaseList();
+    current = null; ncSourceType = 'text'; pendingFileMeta = null; renderCaseList();
     mainPanel.innerHTML = `
-      <div class="card">
-        <h2>New case</h2>
-        <p class="hint">Upload a source document — PDF, Word, image/scan, email or text — or paste the text. Files are read in your browser; only the extracted text is sent. The AI then drafts a structured assessment you review.</p>
-        <label>Source document</label>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-          <input type="file" id="nc_file" accept=".pdf,.doc,.docx,.txt,.eml,.csv,.md,.json,.png,.jpg,.jpeg,.webp,.gif,.tif,.tiff" onchange="onFileChosen(this.files[0])" style="display:none" />
-          <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nc_file').click()">📎 Choose file…</button>
-          <span id="nc_filestatus" style="font-size:12.5px;color:var(--slate)"></span>
-        </div>
-        <label>Extracted / pasted text</label>
-        <textarea id="nc_text" placeholder="Paste the narrative, or upload a file above to auto-extract..."></textarea>
-        <label>Case title (optional)</label>
-        <input id="nc_title" placeholder="e.g. Headache after Cardizem XL" />
-        <button class="btn btn-primary full" onclick="createCase()">Create case</button>
-        <div class="err" id="nc_err"></div>
-      </div>`;
+      <form class="card" onsubmit="event.preventDefault(); createCase();">
+        ${caseFormHtml({
+          heading: 'New case',
+          hint: 'Upload a source document — PDF, Word, image/scan, email or text — or paste the text. Files are read in your browser; only the extracted text is sent. The maximum file size is 10 MB. The AI then drafts a structured assessment you review.',
+          textPlaceholder: 'Paste the narrative, or upload a file above to auto-extract...',
+          button: 'Create case',
+        })}
+      </form>`;
   }
   async function createCase() {
-    const title = document.getElementById('nc_title').value.trim();
-    const sourceText = document.getElementById('nc_text').value.trim();
-    if (!sourceText) { document.getElementById('nc_err').textContent = 'Source text is required — upload a file or paste text.'; return; }
-    const r = await api('/api/cases', 'POST', { title, sourceText, sourceType: ncSourceType });
-    if (!r.ok) { document.getElementById('nc_err').textContent = r.data.error || 'Failed'; return; }
+    const payload = readCaseForm();
+    if (!payload) return;
+    const r = await api('/api/cases', 'POST', payload);
+    if (!r.ok) { showCaseErrors(r.data); return; }
     await loadCases(); await selectCase(r.data.id);
   }
   function showEmpty() { mainPanel.innerHTML = `<div class="empty">Select a case, or create your first one.</div>`; }
@@ -557,7 +650,7 @@ ${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory refere
   // Regulatory-format exports are add-on modules in the full AE Connect platform —
   // route the request to the contact form (with the format prefilled).
   function requestExport(format) {
-    window.open('https://aeconnect.io/contact?export=' + encodeURIComponent(format), '_blank');
+    window.open('https://aeconnect.io/contact/?export=' + encodeURIComponent(format), '_blank');
   }
 
   async function runAssess() {
@@ -584,44 +677,83 @@ ${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory refere
   }
 
   // ── File ingestion (client-side; PHI stays in the browser) ────
+  // Exact versions, self-hosted, with SRI. Loaded only after a matching file is chosen.
   const CDN = {
-    pdfjs: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    pdfWorker: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js',
-    mammoth: 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js',
-    tesseract: 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js',
+    pdfjs: '/vendor/pdfjs/3.11.174/pdf.min.js',
+    pdfWorker: '/vendor/pdfjs/3.11.174/pdf.worker.min.js',
+    mammoth: '/vendor/mammoth/1.6.0/mammoth.browser.min.js',
+    tesseract: '/vendor/tesseract/5.1.0/tesseract.min.js',
+  };
+  const SRI = {
+    '/vendor/pdfjs/3.11.174/pdf.min.js': 'sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e',
+    '/vendor/mammoth/1.6.0/mammoth.browser.min.js': 'sha384-nFoSjZIoH3CCp8W639jJyQkuPHinJ2NHe7on1xvlUA7SuGfJAfvMldrsoAVm6ECz',
+    '/vendor/tesseract/5.1.0/tesseract.min.js': 'sha384-1zP4ZOtlk2FXAOiUArpMuWf7INJJKe/ROfYFAVSeUa11DEfXdKWGiPI3dVma2Gt0',
   };
   const _scripts = {};
   function loadScript(url) {
     if (_scripts[url]) return _scripts[url];
     _scripts[url] = new Promise((res, rej) => {
       const s = document.createElement('script');
-      s.src = url; s.onload = res; s.onerror = () => rej(new Error('Could not load ' + url));
+      s.src = url;
+      s.async = true;
+      if (SRI[url]) { s.integrity = SRI[url]; s.crossOrigin = 'anonymous'; }
+      s.onload = () => res();
+      s.onerror = () => rej(new Error('Could not load ' + url));
       document.head.appendChild(s);
     });
     return _scripts[url];
   }
   function fstatus(msg) { const el = document.getElementById('nc_filestatus'); if (el) el.textContent = msg; }
+  function tessOptions(logger) {
+    const opts = {
+      workerPath: location.origin + '/vendor/tesseract/5.1.0/worker.min.js',
+      corePath: 'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.0',
+      langPath: 'https://cdn.jsdelivr.net/npm/@tesseract.js-data/eng@1.0.0/4.0.0',
+      gzip: true,
+    };
+    if (logger) opts.logger = logger;
+    return opts;
+  }
 
-  async function onFileChosen(file) {
+  async function onFileChosen(input) {
+    const file = input && input.files && input.files[0];
     if (!file) return;
     const name = file.name, ext = (name.split('.').pop() || '').toLowerCase();
+    setFieldErr('nc_file', '');
+    if (!ALLOWED_EXT[ext]) {
+      pendingFileMeta = null;
+      input.value = '';
+      setFieldErr('nc_file', 'That file type is not supported. Use PDF, Word, text, email, CSV, or an image.');
+      fstatus('');
+      return;
+    }
+    if (file.size > LIMITS.fileMax) {
+      pendingFileMeta = null;
+      input.value = '';
+      setFieldErr('nc_file', 'File is too large. Maximum size is 10 MB.');
+      fstatus('');
+      return;
+    }
+    pendingFileMeta = { fileName: name, fileSize: file.size, fileType: file.type || '' };
+    ncSourceType = ALLOWED_EXT[ext];
     const titleEl = document.getElementById('nc_title');
     if (titleEl && !titleEl.value.trim()) titleEl.value = name.replace(/\.[^.]+$/, '');
     try {
       let text = '';
-      if (['txt', 'eml', 'csv', 'md', 'json'].includes(ext) || (file.type || '').startsWith('text/')) {
-        fstatus('Reading ' + name + '…'); text = await file.text(); ncSourceType = ext === 'eml' ? 'email' : 'text';
-      } else if (ext === 'pdf') {
-        text = await extractPdf(file); ncSourceType = 'pdf';
-      } else if (ext === 'docx' || ext === 'doc') {
+      if (ncSourceType === 'text' || ncSourceType === 'email') {
+        fstatus('Reading ' + name + '…'); text = await file.text();
+      } else if (ncSourceType === 'pdf') {
+        text = await extractPdf(file);
+      } else if (ncSourceType === 'word') {
         fstatus('Extracting Word document…'); await loadScript(CDN.mammoth);
-        text = (await window.mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() })).value || ''; ncSourceType = 'word';
-      } else if (['png', 'jpg', 'jpeg', 'webp', 'gif', 'tif', 'tiff'].includes(ext) || (file.type || '').startsWith('image/')) {
-        text = await ocrImage(file); ncSourceType = 'image';
-      } else { fstatus('Unsupported file type — paste the text instead.'); return; }
+        text = (await window.mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() })).value || '';
+      } else if (ncSourceType === 'image') {
+        text = await ocrImage(file);
+      }
       text = (text || '').trim();
       document.getElementById('nc_text').value = text;
-      fstatus(text ? `✓ Extracted ${text.length} characters from ${name}` : 'No text found — if this is a scan, upload it as an image for OCR.');
+      if (text.length > LIMITS.sourceMax) setFieldErr('nc_text', 'Extracted text is over 100,000 characters. Split the document and try again.');
+      fstatus(text ? 'Extracted ' + text.length + ' characters from ' + name : 'No text found — if this is a scan, upload it as an image for OCR.');
     } catch (e) { fstatus('Extraction failed: ' + (e.message || e)); }
   }
 
@@ -642,7 +774,7 @@ ${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory refere
 
   async function ocrPdf(pdf) {
     await loadScript(CDN.tesseract);
-    const worker = await window.Tesseract.createWorker('eng');
+    const worker = await window.Tesseract.createWorker('eng', 1, tessOptions());
     const out = [];
     try {
       for (let p = 1; p <= pdf.numPages; p++) {
@@ -660,9 +792,7 @@ ${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory refere
 
   async function ocrImage(file) {
     fstatus('Loading OCR engine…'); await loadScript(CDN.tesseract);
-    const worker = await window.Tesseract.createWorker('eng', 1, {
-      logger: (m) => { if (m.status === 'recognizing text') fstatus('OCR… ' + Math.round(m.progress * 100) + '%'); },
-    });
+    const worker = await window.Tesseract.createWorker('eng', 1, tessOptions((m) => { if (m.status === 'recognizing text') fstatus('OCR… ' + Math.round(m.progress * 100) + '%'); }));
     try { return (await worker.recognize(file)).data.text || ''; }
     finally { await worker.terminate(); }
   }

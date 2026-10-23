@@ -1,6 +1,7 @@
 import { prisma } from './_lib/prisma.js';
 import { writeAudit } from './_lib/audit.js';
-import { getSession, parseBody, ok, bad, unauthorized, notFound, json, type FnEvent } from './_lib/http.js';
+import { getSession, parseBody, ok, unauthorized, notFound, json, type FnEvent } from './_lib/http.js';
+import { validateCase } from './_lib/validate.js';
 
 export async function handler(event: FnEvent) {
   const session = getSession(event);
@@ -48,8 +49,9 @@ export async function handler(event: FnEvent) {
 
   // POST /api/cases → create
   if (event.httpMethod === 'POST') {
-    const { title, sourceText, sourceType } = parseBody<{ title?: string; sourceText?: string; sourceType?: string }>(event);
-    if (!sourceText || !sourceText.trim()) return bad('sourceText is required');
+    const parsed = validateCase(parseBody(event));
+    if (!parsed.ok) return json(400, { error: Object.values(parsed.fields)[0], fields: parsed.fields });
+    const { title, sourceText, sourceType } = parsed.value;
 
     const count = await prisma.case.count({ where: { userId } });
     const caseRef = `CASE-${String(count + 1).padStart(4, '0')}`;
@@ -57,9 +59,9 @@ export async function handler(event: FnEvent) {
       data: {
         userId,
         caseRef,
-        title: (title && title.trim()) || caseRef,
+        title: title || caseRef,
         sourceText,
-        sourceType: sourceType || 'text',
+        sourceType,
         status: 'pending',
       },
     });

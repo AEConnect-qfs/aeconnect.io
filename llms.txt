@@ -1,0 +1,49 @@
+# AE Connect
+
+> AE Connect is AI pharmacovigilance case processing for drug-safety teams. Paste or upload an adverse-event source and the workspace at https://aeconnect.io/app/ drafts seriousness, MedDRA coding, causality, expectedness, and a reporting timeline for a person to review. First 5 cases are free, then Core is $20/month via Stripe. It is not a safety database and it does not submit ICSRs.
+
+AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operating from the San Francisco Bay Area. The public site is https://aeconnect.io/. The self-serve workspace is https://aeconnect.io/app/. A separate sign-in application is linked from the marketing pages at https://app.aeconnect.io and is not this site.
+
+## What the workspace does
+
+- PV case intake: an intake form where you paste a narrative or upload PDF, Word, text, email, CSV, or an image. Files are parsed in the browser. Only the extracted text is sent for assessment.
+- The draft covers seriousness, a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness, whether regulatory reporting looks required, and a reporting timeline, each with a short rationale.
+- A reviewer accepts or overrides every field and can sign off. The draft is decision support. It does not file an AE, SAE, or SUSAR report.
+- Expectedness is a suggestion to check against the current company core data sheet or Investigator's Brochure. AE Connect does not author or version the CCDS.
+- Product quality complaint (PQC) narratives that include an adverse event can be pasted into the same intake. This is not a QMS or a complaint-handling system.
+- Aggregate reports (IND annual report, DSUR, PSUR, PBRER) are out of scope. Those stay with the safety database or the PV partner.
+
+## What it does not do
+
+- It does not transmit E2B(R3) ICSR XML to FDA, EMA, or any gateway. E2B(R3) here means the draft is organized around ICSR concepts (seriousness, coding, causality, expectedness, timeline), not that the product is certified submission software.
+- It is not Oracle Argus, not ArisGlobal Safety One, and not Veeva Vault Safety. It works alongside those systems when a team already runs one. It is not a certified integration, and it does not configure them.
+- It is not positioned as an "AI governance and compliance layer" inside Argus or Veeva. Teams comparing those databases can read https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/.
+- It does not claim GAMP 5 certification, 21 CFR Part 11 certification, SOC 2, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail and a human sign-off. Validation status is a question for QORO, not a claim on this page.
+
+## Pricing
+
+First 5 AI-processed cases are free, no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe Checkout handles the card. Prices are defined in code and shown in the workspace. Do not invent other public price tiers from older marketing snippets.
+
+## Pages
+
+- [Home](https://aeconnect.io/): product overview, how PV case intake works, FAQ
+- [AI workspace](https://aeconnect.io/app/): signup, login, and case processing
+- [Features](https://aeconnect.io/features/): longer feature narrative published on the marketing site
+- [E2B(R3) checklist](https://aeconnect.io/e2b-r3-checklist/): free readiness checklist PDF for IND sponsors
+- [Blog](https://aeconnect.io/blog/): pharmacovigilance notes for small biotech teams
+- [E2B(R3) ICSR submission guide](https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/): what the electronic ICSR requirement means for small sponsors
+- [Argus, Safety One, and Veeva for early-phase teams](https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/)
+- [AE intake vs full pharmacovigilance](https://aeconnect.io/blog/ae-intake-vs-pharmacovigilance/)
+- [First-IND PV plan, CCDS, and aggregate reports](https://aeconnect.io/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/)
+- [The drug safety inbox](https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/)
+- [Privacy Policy (draft)](https://aeconnect.io/privacy/)
+- [Terms of Service (draft)](https://aeconnect.io/terms/)
+- [About](https://aeconnect.io/about/)
+- [Contact](https://aeconnect.io/contact/): info@qorosystems.com
+- [Beta program](https://aeconnect.io/beta/)
+
+## Contact
+
+QORO Intelligence Inc. — info@qorosystems.com — https://qorosystems.com
+
+Privacy Policy and Terms of Service on this site are drafts and need legal review before anyone treats them as final.

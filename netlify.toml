@@ -14,27 +14,208 @@
 [template.environment]
   EMAIL_OBFUSCATION = "off"
 
+# HTTP and www → the canonical https apex. Path is preserved.
+# Netlify also forces HTTPS at the edge; these rules keep the choice in-repo.
+[[redirects]]
+  from = "http://aeconnect.io/*"
+  to = "https://aeconnect.io/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.aeconnect.io/*"
+  to = "https://aeconnect.io/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.aeconnect.io/*"
+  to = "https://aeconnect.io/:splat"
+  status = 301
+  force = true
+
 # Self-serve AI workspace API → Netlify Functions.
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 
-# Clean URL for the workspace app.
+# Previously indexed URLs that are not in this repo. Send them to the closest page.
+[[redirects]]
+  from = "/blog/meddra-coding-at-intake-ai-pharmacovigilance"
+  to = "/blog/the-missing-layer-in-pharmacovigilance-ae-connect/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/meddra-coding-at-intake-ai-pharmacovigilance/"
+  to = "/blog/the-missing-layer-in-pharmacovigilance-ae-connect/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/adverse-event-intake-system"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/adverse-event-intake-system/"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/safety-database-comparison-argus-veeva-reportum-ae-connect"
+  to = "/blog/veeva-argus-overkill-early-phase-biotech/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/safety-database-comparison-argus-veeva-reportum-ae-connect/"
+  to = "/blog/veeva-argus-overkill-early-phase-biotech/"
+  status = 301
+  force = true
+
+# One URL form site-wide: a trailing slash. Non-slash requests 301 here.
+# `/` itself is the marketing homepage (200). The workspace stays at `/app/`.
 [[redirects]]
   from = "/app"
-  to = "/app/index.html"
-  status = 200
+  to = "/app/"
+  status = 301
+  force = true
 
-# aeconnect.io redirects to the AI Workspace (URL becomes /app).
-# `force` overrides the static index.html. Other pages (/features, /blog, …) are unaffected.
 [[redirects]]
-  from = "/"
-  to = "/app"
+  from = "/features"
+  to = "/features/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/beta"
+  to = "/beta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/e2b-r3-checklist"
+  to = "/e2b-r3-checklist/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/ich-e2b-r3-deadline-biotech-guide"
+  to = "/blog/ich-e2b-r3-deadline-biotech-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/pv-plan-first-ind-what-small-biotechs-get-wrong"
+  to = "/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/the-missing-layer-in-pharmacovigilance-ae-connect"
+  to = "/blog/the-missing-layer-in-pharmacovigilance-ae-connect/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/veeva-argus-overkill-early-phase-biotech"
+  to = "/blog/veeva-argus-overkill-early-phase-biotech/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/ae-intake-vs-pharmacovigilance"
+  to = "/blog/ae-intake-vs-pharmacovigilance/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/drug-safety-inbox-small-biotech-reality"
+  to = "/blog/drug-safety-inbox-small-biotech-reality/"
   status = 301
   force = true
 
 [[headers]]
-  for = "/blog/veeva-argus-overkill-early-phase-biotech"
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()"
+    # includeSubDomains covers hosts such as app.aeconnect.io. They must stay on HTTPS.
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; frame-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; worker-src 'self' blob: https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; manifest-src 'self'; media-src 'self' blob:; upgrade-insecure-requests"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/downloads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/blog/veeva-argus-overkill-early-phase-biotech/*"
   [headers.values]
     Content-Type = "text/html; charset=UTF-8"
