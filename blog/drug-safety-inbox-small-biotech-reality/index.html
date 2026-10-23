@@ -11,11 +11,9 @@
   <meta property="og:description" content="Email and spreadsheets are still the front door for adverse event reporting. What gets lost before anyone opens a safety database." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="The drug safety inbox at a small biotech | AE Connect" />
   <meta name="twitter:description" content="What small PV teams lose in a shared inbox before a case ever reaches Argus, ArisGlobal, or Veeva." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -25,15 +23,15 @@
     "url": "https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/",
     "datePublished": "2026-10-23",
     "dateModified": "2026-10-23",
-    "author": { "@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/" },
-    "publisher": { "@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/" },
+    "author": { "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/" },
+    "publisher": { "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/" },
     "mainEntityOfPage": "https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/"
   }
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --navy:#0a1628; --teal:#00d4c8; --slate:#8892a4; --light:#ccd6f6; --white:#e6f1ff; --border:rgba(255,255,255,0.08); }
-    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.7; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.7; }
     a { color: var(--teal); }
     nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
     .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
@@ -53,11 +51,11 @@
     footer a { color: var(--light); }
     @media (max-width: 800px) { .nav-links { display:none; } }
   
-    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
     .lead-cta h2 { margin-top: 0; }
     .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
-    .lead-cta .btn { display: inline-block; background: var(--teal, #00d4c8); color: var(--navy, #0a1628); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
-    .lead-cta .btn-ghost { background: transparent; color: var(--white, #e6f1ff); border: 1px solid #8b99ad; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #4A6FA5); color: var(--navy, #F3F5F4); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #14202C); border: 1px solid #5E6873; }
 
   </style>
 <script type="application/ld+json">
@@ -71,10 +69,23 @@
     ]
   }
   </script>
+
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/drug-safety-inbox-small-biotech-reality.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="The drug safety inbox at a small biotech | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/drug-safety-inbox-small-biotech-reality.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
   <ul class="nav-links">
     <li><a href="https://aeconnect.io/features/">Features</a></li>
     <li><a href="https://aeconnect.io/blog/">Blog</a></li>
@@ -85,10 +96,12 @@
     <li><a href="https://aeconnect.io/demo/">Demo</a></li>
 </ul>
 </nav>
-<main>
-  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / Drug safety inbox</p>
+<header class="brand-hero">
+<p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / Drug safety inbox</p>
   <h1>The drug safety inbox at a small biotech</h1>
   <p class="by">QORO Team · 23 October 2026 · about 8 minutes</p>
+</header>
+<main>
   <p>Ask a pharmacovigilance lead at a 40-person biotech where adverse event reports arrive and the honest answer is rarely "the safety database." It is a shared mailbox, a medical monitor's personal inbox, a site email forwarded twice, and a spreadsheet someone updates on Monday. Oracle Argus, ArisGlobal Safety One, and Veeva Vault Safety do not see the case until a person decides it is a case. That gap is the drug safety inbox.</p>
 
   <h2>What actually shows up</h2>

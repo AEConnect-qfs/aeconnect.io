@@ -4,38 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beta Program | AE Connect by QORO Intelligence</title>
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Beta Program | AE Connect by QORO Intelligence" />
   <meta name="twitter:description" content="Join the AE Connect Beta Program. A 3-month program starting April 1, 2026. Shape the future of AI-powered adverse event intake for small and mid-size biotech." />
   <meta name="description" content="Join the AE Connect Beta Program. A 3-month program starting April 1, 2026. Shape the future of AI-powered adverse event intake for small and mid-size biotech." />
   <link rel="canonical" href="https://aeconnect.io/beta/" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #0a1628;
-      --navy2:  #112240;
-      --teal:   #00d4c8;
-      --teal2:  #00a896;
-      --gold:   #e8a910;
-      --white:  #e6f1ff;
-      --off:    #ccd6f6;
-      --muted:  #8892a4;
-      --border: rgba(255,255,255,0.07);
+      --navy:   #F3F5F4;
+      --navy2:  #E6EBE9;
+      --teal:   #4A6FA5;
+      --teal2:  #3A5A88;
+      --gold:   #4A6FA5;
+      --white:  #14202C;
+      --off:    #14202C;
+      --muted:  #5E6873;
+      --border: #D5DBE0;
       --radius: 12px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: var(--ae-font-body);
       background: var(--navy);
       color: var(--white);
       line-height: 1.65;
@@ -48,12 +44,12 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 40px;
       height: 64px;
-      background: rgba(10,22,40,0.92);
+      background: rgba(243,245,244,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
-      font-family: 'DM Serif Display', serif;
+      font-family: var(--ae-font-heading);
       font-size: 1.25rem;
       color: var(--white);
       text-decoration: none;
@@ -62,7 +58,7 @@
     .nav-logo span { color: var(--teal); }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links a {
-      color: rgba(255,255,255,0.7);
+      color: #14202C;
       text-decoration: none;
       font-size: 0.875rem;
       font-weight: 500;
@@ -81,7 +77,7 @@
 
     .nav-beta {
       position: relative;
-      background: linear-gradient(135deg, var(--gold), #f5c842) !important;
+      background: linear-gradient(135deg, var(--gold), #4A6FA5) !important;
       color: var(--navy) !important;
       padding: 7px 16px !important;
       border-radius: 6px !important;
@@ -89,7 +85,7 @@
       font-size: 0.82rem !important;
       letter-spacing: 0.01em;
       transition: opacity 0.2s, transform 0.15s !important;
-      box-shadow: 0 0 0 0 rgba(230,168,23,0.5);
+      box-shadow: 0 0 0 0 rgba(74,111,165,0.5);
       animation: beta-glow 2.5s infinite;
     }
     .nav-beta:hover { opacity: 0.9; transform: translateY(-1px); color: var(--navy) !important; }
@@ -101,8 +97,8 @@
       animation: pulse 2s infinite;
     }
     @keyframes beta-glow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(230,168,23,0.4); }
-      50%       { box-shadow: 0 0 0 6px rgba(230,168,23,0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(74,111,165,0.4); }
+      50%       { box-shadow: 0 0 0 6px rgba(74,111,165,0); }
     }
 
     /* ── HERO ── */
@@ -116,8 +112,8 @@
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,176,155,0.13) 0%, transparent 70%),
-                  radial-gradient(ellipse 50% 40% at 20% 80%, rgba(230,168,23,0.07) 0%, transparent 70%);
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(74,111,165,0.13) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 20% 80%, rgba(74,111,165,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -129,8 +125,8 @@
 
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,176,155,0.12);
-      border: 1px solid rgba(0,176,155,0.3);
+      background: rgba(74,111,165,0.12);
+      border: 1px solid rgba(74,111,165,0.3);
       color: var(--teal);
       font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -148,7 +144,7 @@
     }
 
     h1 {
-      font-family: 'DM Serif Display', serif;
+      font-family: var(--ae-font-heading);
       font-size: clamp(2.4rem, 4vw, 3.5rem);
       line-height: 1.1;
       letter-spacing: -0.02em;
@@ -161,7 +157,7 @@
 
     .hero-sub {
       font-size: 1.05rem;
-      color: rgba(255,255,255,0.65);
+      color: #14202C;
       font-weight: 300;
       max-width: 480px;
       margin-bottom: 32px;
@@ -198,7 +194,7 @@
     .btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
 
     .btn-ghost {
-      color: rgba(255,255,255,0.7);
+      color: #14202C;
       font-size: 0.9rem;
       text-decoration: none;
       display: flex; align-items: center; gap: 6px;
@@ -235,14 +231,14 @@
       margin-bottom: 12px;
     }
     h2 {
-      font-family: 'DM Serif Display', serif;
+      font-family: var(--ae-font-heading);
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       line-height: 1.15;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
     }
     .section-sub {
-      font-size: 1rem; color: rgba(255,255,255,0.55);
+      font-size: 1rem; color: #14202C;
       font-weight: 300; max-width: 560px;
     }
 
@@ -258,7 +254,7 @@
       padding: 28px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .benefit-card:hover { border-color: rgba(0,176,155,0.3); transform: translateY(-3px); }
+    .benefit-card:hover { border-color: rgba(74,111,165,0.3); transform: translateY(-3px); }
 
     .benefit-icon {
       width: 44px; height: 44px;
@@ -267,16 +263,16 @@
       font-size: 1.3rem;
       margin-bottom: 18px;
     }
-    .icon-teal { background: rgba(0,176,155,0.12); }
-    .icon-gold  { background: rgba(230,168,23,0.12); }
-    .icon-blue  { background: rgba(80,130,255,0.12); }
+    .icon-teal { background: rgba(74,111,165,0.12); }
+    .icon-gold  { background: rgba(74,111,165,0.12); }
+    .icon-blue  { background: rgba(74,111,165,0.12); }
 
     .benefit-card h3 {
       font-size: 1rem; font-weight: 600;
       margin-bottom: 8px;
     }
     .benefit-card p {
-      font-size: 0.875rem; color: rgba(255,255,255,0.55);
+      font-size: 0.875rem; color: #14202C;
       line-height: 1.6;
     }
 
@@ -294,15 +290,15 @@
     }
     .ask-num {
       min-width: 32px; height: 32px;
-      background: rgba(0,176,155,0.1);
-      border: 1px solid rgba(0,176,155,0.25);
+      background: rgba(74,111,165,0.1);
+      border: 1px solid rgba(74,111,165,0.25);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.75rem; font-weight: 700; color: var(--teal);
       margin-top: 2px;
     }
     .ask-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
-    .ask-text p { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+    .ask-text p { font-size: 0.85rem; color: #14202C; }
 
     /* TIMELINE */
     .timeline { display: flex; flex-direction: column; gap: 0; }
@@ -322,7 +318,7 @@
     }
     .tl-line {
       width: 1px; flex: 1;
-      background: rgba(0,176,155,0.2);
+      background: rgba(74,111,165,0.2);
       margin-top: 4px;
     }
     .tl-item:last-child .tl-line { display: none; }
@@ -333,7 +329,7 @@
       margin-bottom: 2px;
     }
     .tl-content h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
-    .tl-content p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+    .tl-content p { font-size: 0.82rem; color: #14202C; }
 
     /* ── FORM ── */
     .form-section { border-top: 1px solid var(--border); }
@@ -349,12 +345,12 @@
     .trust-items { display: flex; flex-direction: column; gap: 12px; }
     .trust-item {
       display: flex; align-items: center; gap: 10px;
-      font-size: 0.85rem; color: rgba(255,255,255,0.55);
+      font-size: 0.85rem; color: #14202C;
     }
     .trust-check {
       width: 20px; height: 20px; border-radius: 50%;
-      background: rgba(0,176,155,0.12);
-      border: 1px solid rgba(0,176,155,0.3);
+      background: rgba(74,111,165,0.12);
+      border: 1px solid rgba(74,111,165,0.3);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.65rem; color: var(--teal); flex-shrink: 0;
     }
@@ -374,7 +370,7 @@
     }
 
     .form-heading {
-      font-family: 'DM Serif Display', serif;
+      font-family: var(--ae-font-heading);
       font-size: 1.35rem; margin-bottom: 6px;
     }
     .form-desc {
@@ -386,26 +382,26 @@
     label {
       display: block;
       font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.6);
+      color: #14202C;
       margin-bottom: 7px;
     }
     label span { color: var(--teal); }
 
     input, select, textarea {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #FFFFFF;
+      border: 1px solid #D5DBE0;
       border-radius: 7px;
       color: var(--white);
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--ae-font-body);
       font-size: 0.9rem;
       padding: 11px 14px;
       outline: none;
       transition: border-color 0.2s;
     }
-    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+    input::placeholder, textarea::placeholder { color: #5E6873; }
     input:focus, select:focus, textarea:focus {
-      border-color: rgba(0,176,155,0.5);
+      border-color: rgba(74,111,165,0.5);
     }
     select option { background: var(--navy); color: var(--white); }
     textarea { resize: vertical; min-height: 90px; }
@@ -425,7 +421,7 @@
       border: none; cursor: pointer;
       padding: 14px;
       border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--ae-font-body);
       font-size: 0.95rem; font-weight: 700;
       transition: background 0.2s, transform 0.15s;
     }
@@ -440,13 +436,13 @@
     }
     .success-icon {
       width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(0,176,155,0.12);
-      border: 1px solid rgba(0,176,155,0.3);
+      background: rgba(74,111,165,0.12);
+      border: 1px solid rgba(74,111,165,0.3);
       margin: 0 auto 20px;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.5rem;
     }
-    .form-success h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 8px; }
+    .form-success h3 { font-family: var(--ae-font-heading); font-size: 1.3rem; margin-bottom: 8px; }
     .form-success p { font-size: 0.85rem; color: var(--muted); }
 
     /* ── FOOTER ── */
@@ -460,7 +456,7 @@
       flex-wrap: wrap; gap: 24px;
     }
     .footer-logo {
-      font-family: 'DM Serif Display', serif;
+      font-family: var(--ae-font-heading);
       font-size: 1.1rem; color: var(--white); text-decoration: none;
     }
     .footer-logo span { color: var(--teal); }
@@ -499,12 +495,25 @@
     }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
   </style>
+
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="Beta Program | AE Connect by QORO Intelligence">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
+  <a href="https://aeconnect.io" class="nav-logo"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
   <ul class="nav-links">
     <li><a href="https://aeconnect.io/features/">Features</a></li>
     <li><a href="https://aeconnect.io/blog/">Blog</a></li>
@@ -713,9 +722,9 @@
           </div>
         </div>
 
-        <div style="margin-top:36px; padding: 20px; background: rgba(230,168,23,0.07); border: 1px solid rgba(230,168,23,0.2); border-radius: 10px;">
-          <p style="font-size:0.82rem; color:rgba(255,255,255,0.6); margin-bottom:6px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;">Ideal Beta Participant</p>
-          <p style="font-size:0.85rem; color:rgba(255,255,255,0.55); line-height:1.6;">IND-stage or early commercial biotech with at least one active study generating adverse events, a named PV contact or QA lead, and the willingness to engage actively over three months.</p>
+        <div style="margin-top:36px; padding: 20px; background: rgba(74,111,165,0.07); border: 1px solid rgba(74,111,165,0.2); border-radius: 10px;">
+          <p style="font-size:0.82rem; color:#14202C; margin-bottom:6px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;">Ideal Beta Participant</p>
+          <p style="font-size:0.85rem; color:#14202C; line-height:1.6;">IND-stage or early commercial biotech with at least one active study generating adverse events, a named PV contact or QA lead, and the willingness to engage actively over three months.</p>
         </div>
       </div>
 
@@ -816,7 +825,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div style="font-size:18px;font-weight:700;color:var(--white);">AE <span style="color:var(--teal);">Connect</span></div>
+      <div class="footer-wordmark"><img class="brand-logo brand-logo-dark" src="/brand/logo/logo-horizontal-dark.svg" alt="AE Connect" width="143" height="32"></div>
       <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
     </div>
     <div class="footer-col">

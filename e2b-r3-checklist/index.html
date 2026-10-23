@@ -6,30 +6,28 @@
 <title>E2B(R3) ICSR submission checklist for IND sponsors | AE Connect</title>
   <link rel="canonical" href="https://aeconnect.io/e2b-r3-checklist/" />
 <meta name="description" content="A practical E2B(R3) ICSR submission checklist: intake, clock start, and what small biotechs still have to do outside the form. Free PDF.">
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="E2B(R3) ICSR submission checklist for IND sponsors | AE Connect" />
   <meta name="twitter:description" content="A practical E2B(R3) ICSR submission checklist: intake, clock start, and what small biotechs still have to do outside the form. Free PDF." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy: #0B1F3A;
-    --navy-mid: #162E50;
-    --teal: #00A896;
-    --teal-light: #00C9B4;
-    --teal-muted: rgba(0,168,150,0.12);
-    --slate: #8A9BB0;
-    --off-white: #F6F8FA;
-    --white: #ffffff;
-    --border: rgba(255,255,255,0.08);
+    --navy: #F3F5F4;
+    --navy-mid: #E6EBE9;
+    --teal: #3A5A88;
+    --teal-light: #4A6FA5;
+    --teal-muted: rgba(74,111,165,0.12);
+    --slate: #5E6873;
+    --off-white: #F3F5F4;
+    --white: #14202C;
+    --border: #D5DBE0;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Sora', sans-serif;
+    font-family: var(--ae-font-body);
     background: var(--navy);
     color: var(--white);
     min-height: 100vh;
@@ -42,8 +40,8 @@
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(0,168,150,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,168,150,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(74,111,165,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,111,165,0.04) 1px, transparent 1px);
     background-size: 48px 48px;
     pointer-events: none;
     z-index: 0;
@@ -55,7 +53,7 @@
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,168,150,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(74,111,165,0.12) 0%, transparent 70%);
     top: -200px;
     right: -100px;
     pointer-events: none;
@@ -94,7 +92,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'DM Mono', monospace;
+    font-family: ui-monospace, monospace;
     font-weight: 500;
     font-size: 13px;
     color: var(--navy);
@@ -114,8 +112,8 @@
   }
 
   .deadline-badge {
-    background: rgba(0,168,150,0.15);
-    border: 1px solid rgba(0,168,150,0.3);
+    background: rgba(74,111,165,0.15);
+    border: 1px solid rgba(74,111,165,0.3);
     border-radius: 100px;
     padding: 6px 14px;
     font-size: 11px;
@@ -144,7 +142,7 @@
   }
 
   .eyebrow {
-    font-family: 'DM Mono', monospace;
+    font-family: ui-monospace, monospace;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -183,7 +181,7 @@
     align-items: flex-start;
     gap: 12px;
     font-size: 14px;
-    color: rgba(255,255,255,0.75);
+    color: #14202C;
     line-height: 1.4;
   }
 
@@ -209,19 +207,19 @@
   }
 
   .pill {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #FFFFFF;
+    border: 1px solid #D5DBE0;
     border-radius: 6px;
     padding: 5px 12px;
     font-size: 12px;
     color: var(--slate);
-    font-family: 'DM Mono', monospace;
+    font-family: ui-monospace, monospace;
   }
 
   /* RIGHT COLUMN — FORM CARD */
   .form-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #FFFFFF;
+    border: 1px solid #D5DBE0;
     border-radius: 20px;
     padding: 40px;
     backdrop-filter: blur(12px);
@@ -264,28 +262,28 @@
     text-transform: uppercase;
     color: var(--slate);
     margin-bottom: 7px;
-    font-family: 'DM Mono', monospace;
+    font-family: ui-monospace, monospace;
   }
 
   input, select {
     width: 100%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: #D5DBE0;
+    border: 1px solid #D5DBE0;
     border-radius: 10px;
     padding: 12px 16px;
     font-size: 14px;
     color: var(--white);
-    font-family: 'Sora', sans-serif;
+    font-family: var(--ae-font-body);
     transition: border-color 0.2s, background 0.2s;
     outline: none;
     appearance: none;
   }
 
-  input::placeholder { color: rgba(255,255,255,0.25); }
+  input::placeholder { color: #5E6873; }
 
   input:focus, select:focus {
     border-color: var(--teal);
-    background: rgba(0,168,150,0.06);
+    background: rgba(74,111,165,0.06);
   }
 
   select option { background: var(--navy-mid); color: var(--white); }
@@ -296,7 +294,7 @@
     background: var(--teal);
     border: none;
     border-radius: 10px;
-    font-family: 'Sora', sans-serif;
+    font-family: var(--ae-font-body);
     font-size: 15px;
     font-weight: 700;
     color: var(--navy);
@@ -313,7 +311,7 @@
   .submit-btn:hover {
     background: var(--teal-light);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(0,168,150,0.3);
+    box-shadow: 0 8px 24px rgba(74,111,165,0.3);
   }
 
   .submit-btn svg { width: 16px; height: 16px; }
@@ -409,6 +407,19 @@
   .left-col { animation: fadeUp 0.6s ease both; }
   .form-card { animation: fadeUp 0.6s ease 0.15s both; }
 </style>
+
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="E2B(R3) ICSR submission checklist for IND sponsors | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
 </head>
 <body>
 <div class="glow"></div>
@@ -416,7 +427,7 @@
 
   <!-- NAV -->
 <nav>
-  <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
+  <a href="https://aeconnect.io" class="nav-logo"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
   <ul class="nav-links">
     <li><a href="https://aeconnect.io/features/">Features</a></li>
     <li><a href="https://aeconnect.io/blog/">Blog</a></li>
@@ -445,25 +456,25 @@
       <div class="checklist-preview">
         <div class="check-item">
           <div class="check-icon">
-            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#00A896" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#3A5A88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           26 specific compliance checkpoints across 4 domains
         </div>
         <div class="check-item">
           <div class="check-icon">
-            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#00A896" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#3A5A88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           Mapped to 21 CFR 312.32 and FDA April 2024 final guidance
         </div>
         <div class="check-item">
           <div class="check-icon">
-            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#00A896" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#3A5A88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           Covers intake, case management, ESG setup, SOPs, and training
         </div>
         <div class="check-item">
           <div class="check-icon">
-            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#00A896" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#3A5A88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           Written by a pharmacovigilance QA director with 15 years in biotech
         </div>
@@ -533,7 +544,7 @@
       <!-- SUCCESS STATE -->
       <div class="success-state" id="success-view">
         <div class="success-icon">
-          <svg viewBox="0 0 28 28" fill="none"><path d="M5 14L10.5 19.5L23 7" stroke="#00A896" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 28 28" fill="none"><path d="M5 14L10.5 19.5L23 7" stroke="#3A5A88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <h3>Your checklist is ready.</h3>
         <p>Click below to download your ICH E2B(R3) Readiness Checklist PDF.<br>Check your inbox too, we sent a copy to your email.</p>

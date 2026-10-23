@@ -4,37 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | AE Connect by QORO Intelligence</title>
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact | AE Connect by QORO Intelligence" />
   <meta name="twitter:description" content="Get in touch with the QORO Intelligence team about AE Connect — beta access, demos, partnerships, or general questions." />
   <meta name="description" content="Get in touch with the QORO Intelligence team about AE Connect — beta access, demos, partnerships, or general questions." />
   <link rel="canonical" href="https://aeconnect.io/contact/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
     
     :root {
-      --navy:       #0a1628;
-      --navy-mid:   #112240;
-      --teal:       #00d4c8;
-      --teal-dark:  #00a896;
-      --teal-muted: rgba(0, 212, 200, 0.1);
-      --gold:       #e8a910;
-      --slate:      #8892a4;
-      --light:      #ccd6f6;
-      --white:      #e6f1ff;
-      --border:     rgba(255,255,255,0.07);
-      --card-bg:    rgba(255,255,255,0.03);
+      --navy:       #F3F5F4;
+      --navy-mid:   #E6EBE9;
+      --teal:       #4A6FA5;
+      --teal-dark:  #3A5A88;
+      --teal-muted: rgba(74,111,165,0.1);
+      --gold:       #4A6FA5;
+      --slate:      #5E6873;
+      --light:      #14202C;
+      --white:      #14202C;
+      --border:     #D5DBE0;
+      --card-bg:    #FFFFFF;
     }
     html { scroll-behavior: smooth; }
-    body { font-family:'Inter',sans-serif; background:var(--navy); color:var(--light); line-height:1.7; min-height:100vh; display:flex; flex-direction:column; }
+    body { font-family: var(--ae-font-body); background:var(--navy); color:var(--light); line-height:1.7; min-height:100vh; display:flex; flex-direction:column; }
     a { color:var(--teal); text-decoration:none; }
     a:hover { text-decoration:underline; }
     
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(10,22,40,0.92);
+      background: rgba(243,245,244,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 48px; height: 64px;
@@ -48,10 +46,10 @@
     .nav-links a.active { color: var(--white); }
     .nav-cta { background: var(--teal); color: var(--navy) !important; padding: 8px 18px; border-radius: 6px; font-weight: 600 !important; font-size: 13px !important; transition: opacity 0.2s !important; }
     .nav-cta:hover { opacity: 0.88; }
-    .nav-beta { background: linear-gradient(135deg, #e8a910, #f5c842); color: #0a1628 !important; padding: 7px 15px; border-radius: 6px; font-weight: 700 !important; font-size: 12px !important; animation: beta-glow 2.5s infinite; white-space: nowrap; transition: opacity 0.2s, transform 0.15s !important; }
-    .nav-beta:hover { opacity: 0.9 !important; transform: translateY(-1px); color: #0a1628 !important; }
+    .nav-beta { background: linear-gradient(135deg, #4A6FA5, #4A6FA5); color: #F3F5F4 !important; padding: 7px 15px; border-radius: 6px; font-weight: 700 !important; font-size: 12px !important; animation: beta-glow 2.5s infinite; white-space: nowrap; transition: opacity 0.2s, transform 0.15s !important; }
+    .nav-beta:hover { opacity: 0.9 !important; transform: translateY(-1px); color: #F3F5F4 !important; }
     .nav-beta::before { content: "\25CF"; font-size: 0.45rem; margin-right: 5px; vertical-align: middle; opacity: 0.8; animation: beta-pulse 2s infinite; }
-    @keyframes beta-glow { 0%,100% { box-shadow: 0 0 0 0 rgba(232,169,16,0.5); } 50% { box-shadow: 0 0 0 7px rgba(232,169,16,0); } }
+    @keyframes beta-glow { 0%,100% { box-shadow: 0 0 0 0 rgba(74,111,165,0.5); } 50% { box-shadow: 0 0 0 7px rgba(74,111,165,0); } }
     @keyframes beta-pulse { 0%,100% { opacity: 0.8; } 50% { opacity: 0.3; } }
     .page-header { max-width:1100px; margin:0 auto; padding:72px 24px 56px; border-bottom:1px solid var(--border); }
     .eyebrow { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:16px; }
@@ -60,8 +58,8 @@
     main { flex:1; max-width:1100px; margin:0 auto; width:100%; padding:64px 24px 100px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
     .contact-options { display:flex; flex-direction:column; gap:16px; }
     .contact-card { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:24px 28px; display:flex; gap:16px; align-items:flex-start; transition:border-color 0.2s; }
-    .contact-card:hover { border-color:rgba(0,212,200,0.2); }
-    .contact-icon { width:40px; height:40px; border-radius:9px; background:var(--teal-muted); border:1px solid rgba(0,212,200,0.15); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .contact-card:hover { border-color:rgba(74,111,165,0.2); }
+    .contact-icon { width:40px; height:40px; border-radius:9px; background:var(--teal-muted); border:1px solid rgba(74,111,165,0.15); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
     .contact-card h3 { font-size:14px; font-weight:600; color:var(--white); margin-bottom:4px; }
     .contact-card p { font-size:13px; color:var(--slate); line-height:1.6; margin-bottom:8px; }
     .contact-card a { font-size:13px; font-weight:500; }
@@ -70,16 +68,16 @@
     .form-card h2 { font-size:20px; font-weight:700; color:var(--white); margin-bottom:6px; }
     .form-card .sub { font-size:13px; color:var(--slate); margin-bottom:24px; }
     .field { margin-bottom:16px; }
-    label { display:block; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:6px; }
-    input,select,textarea { width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:7px; color:var(--white); font-family:'Inter',sans-serif; font-size:14px; padding:10px 14px; outline:none; transition:border-color 0.2s; }
-    input::placeholder,textarea::placeholder { color:rgba(255,255,255,0.25); }
-    input:focus,select:focus,textarea:focus { border-color:rgba(0,212,200,0.4); }
+    label { display:block; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:#14202C; margin-bottom:6px; }
+    input,select,textarea { width:100%; background:#FFFFFF; border:1px solid #D5DBE0; border-radius:7px; color:var(--white); font-family: var(--ae-font-body); font-size:14px; padding:10px 14px; outline:none; transition:border-color 0.2s; }
+    input::placeholder,textarea::placeholder { color:#5E6873; }
+    input:focus,select:focus,textarea:focus { border-color:rgba(74,111,165,0.4); }
     select option { background:var(--navy); color:var(--white); }
     textarea { resize:vertical; min-height:100px; }
-    .submit-btn { width:100%; background:var(--teal); color:var(--navy); border:none; cursor:pointer; padding:12px; border-radius:7px; font-family:'Inter',sans-serif; font-size:14px; font-weight:600; margin-top:4px; transition:opacity 0.2s; }
+    .submit-btn { width:100%; background:var(--teal); color:var(--navy); border:none; cursor:pointer; padding:12px; border-radius:7px; font-family: var(--ae-font-body); font-size:14px; font-weight:600; margin-top:4px; transition:opacity 0.2s; }
     .submit-btn:hover { opacity:0.88; }
     .form-success { display:none; text-align:center; padding:32px 16px; }
-    .form-success .icon { width:52px; height:52px; border-radius:50%; background:var(--teal-muted); border:1px solid rgba(0,212,200,0.3); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:22px; }
+    .form-success .icon { width:52px; height:52px; border-radius:50%; background:var(--teal-muted); border:1px solid rgba(74,111,165,0.3); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:22px; }
     .form-success h3 { font-size:18px; font-weight:700; color:var(--white); margin-bottom:8px; }
     .form-success p { font-size:13px; color:var(--slate); }
     @media(max-width:900px) { main { grid-template-columns:1fr; gap:40px; padding:40px 20px 60px; } }
@@ -96,12 +94,25 @@
     @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
     .page-header { animation:fadeUp 0.5s ease both; }
   </style>
+
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="Contact | AE Connect by QORO Intelligence">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
+  <a href="https://aeconnect.io" class="nav-logo"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
   <ul class="nav-links">
     <li><a href="https://aeconnect.io/features/">Features</a></li>
     <li><a href="https://aeconnect.io/blog/">Blog</a></li>
@@ -206,7 +217,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div style="font-size:18px;font-weight:700;color:var(--white);">AE <span style="color:var(--teal);">Connect</span></div>
+      <div class="footer-wordmark"><img class="brand-logo brand-logo-dark" src="/brand/logo/logo-horizontal-dark.svg" alt="AE Connect" width="143" height="32"></div>
       <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
     </div>
     <div class="footer-col">

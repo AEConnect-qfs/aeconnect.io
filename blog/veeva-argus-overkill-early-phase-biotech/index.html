@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/" />
 
   <link rel="canonical" href="https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Argus, Safety One, or Veeva for a small PV team? | AE Connect" />
   <meta name="twitter:description" content="What those safety databases are built for, and what they do not do about the cases still sitting in email." />
   <script type="application/ld+json">
@@ -26,34 +26,32 @@
     "url": "https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/",
     "datePublished": "2026-03-01",
     "dateModified": "2026-10-23",
-    "author": { "@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/" },
-    "publisher": { "@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/" },
+    "author": { "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/" },
+    "publisher": { "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/" },
     "mainEntityOfPage": "https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/"
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:       #0a1628;
-      --navy-mid:   #112240;
-      --teal:       #00d4c8;
-      --teal-dark:  #00a896;
-      --teal-muted: rgba(0, 212, 200, 0.1);
-      --slate:      #8892a4;
-      --light:      #ccd6f6;
-      --white:      #e6f1ff;
-      --border:     rgba(255,255,255,0.07);
-      --card-bg:    rgba(255,255,255,0.03);
+      --navy:       #F3F5F4;
+      --navy-mid:   #E6EBE9;
+      --teal:       #4A6FA5;
+      --teal-dark:  #3A5A88;
+      --teal-muted: rgba(74,111,165,0.1);
+      --slate:      #5E6873;
+      --light:      #14202C;
+      --white:      #14202C;
+      --border:     #D5DBE0;
+      --card-bg:    #FFFFFF;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--ae-font-body);
       background: var(--navy);
       color: var(--light);
       line-height: 1.7;
@@ -68,7 +66,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(10, 22, 40, 0.92);
+      background: rgba(243,245,244,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 48px;
@@ -112,8 +110,8 @@
       padding: 4px 12px; border-radius: 100px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase;
     }
-    .badge-topic { background: var(--teal-muted); border: 1px solid rgba(0,212,200,0.2); color: var(--teal); }
-    .badge-new { background: rgba(255,200,80,0.12); border: 1px solid rgba(255,200,80,0.3); color: #ffc850; }
+    .badge-topic { background: var(--teal-muted); border: 1px solid rgba(74,111,165,0.2); color: var(--teal); }
+    .badge-new { background: rgba(74,111,165,0.12); border: 1px solid rgba(74,111,165,0.3); color: #4A6FA5; }
 
     .article-hero h1 {
       font-size: clamp(28px, 4vw, 42px); font-weight: 700; color: var(--white);
@@ -154,7 +152,7 @@
 
     /* ARTICLE BODY */
     .article-body p {
-      color: rgba(204,214,246,0.85);
+      color: #14202C;
       margin-bottom: 24px; font-size: 16.5px; line-height: 1.8;
     }
 
@@ -168,7 +166,7 @@
 
     .article-body h3 { font-size: 18px; font-weight: 600; color: var(--white); margin: 32px 0 12px; }
 
-    .article-body ul, .article-body ol { margin: 0 0 24px 24px; color: rgba(204,214,246,0.85); }
+    .article-body ul, .article-body ol { margin: 0 0 24px 24px; color: #14202C; }
     .article-body li { margin-bottom: 8px; font-size: 16px; line-height: 1.7; }
 
     .article-body .lead {
@@ -206,13 +204,13 @@
 
     .compare-table td {
       padding: 12px 16px; border: 1px solid var(--border);
-      color: rgba(204,214,246,0.85); vertical-align: top; line-height: 1.5;
+      color: #14202C; vertical-align: top; line-height: 1.5;
     }
     .compare-table tr:nth-child(even) td { background: var(--card-bg); }
     .compare-table td:first-child { font-weight: 500; color: var(--white); width: 30%; }
 
     .teal-text { color: var(--teal); font-weight: 600; }
-    .red-text { color: #ff6b6b; font-weight: 600; }
+    .red-text { color: #8C3A32; font-weight: 600; }
 
     /* SIDEBAR */
     .article-sidebar { position: sticky; top: 84px; }
@@ -236,8 +234,8 @@
     .toc-list a:hover { color: var(--white); background: var(--teal-muted); text-decoration: none; }
 
     .cta-card {
-      background: linear-gradient(135deg, rgba(0,168,150,0.15), rgba(0,212,200,0.05));
-      border: 1px solid rgba(0,212,200,0.2); border-radius: 12px; padding: 24px;
+      background: linear-gradient(135deg, rgba(74,111,165,0.15), rgba(74,111,165,0.05));
+      border: 1px solid rgba(74,111,165,0.2); border-radius: 12px; padding: 24px;
     }
 
     .cta-card h4 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.4; }
@@ -320,11 +318,11 @@
       .compare-table { font-size: 13px; }
     }
   
-    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(0,212,200,0.35); border-radius: 12px; background: rgba(0,212,200,0.06); }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
     .lead-cta h2 { margin-top: 0; }
     .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
-    .lead-cta .btn { display: inline-block; background: var(--teal, #00d4c8); color: var(--navy, #0a1628); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
-    .lead-cta .btn-ghost { background: transparent; color: var(--white, #e6f1ff); border: 1px solid #8b99ad; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #4A6FA5); color: var(--navy, #F3F5F4); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #14202C); border: 1px solid #5E6873; }
 
   </style>
 <script type="application/ld+json">
@@ -338,12 +336,25 @@
     ]
   }
   </script>
+
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/veeva-argus-overkill-early-phase-biotech.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="Argus, Safety One, or Veeva for a small PV team? | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/veeva-argus-overkill-early-phase-biotech.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="https://aeconnect.io" class="nav-logo">AE <span>Connect</span></a>
+  <a href="https://aeconnect.io" class="nav-logo"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
   <ul class="nav-links">
     <li><a href="https://aeconnect.io/features/">Features</a></li>
     <li><a href="https://aeconnect.io/blog/" class="active">Blog</a></li>
@@ -359,7 +370,7 @@
 </nav>
 
 <!-- HERO -->
-<div class="article-hero">
+<div class="article-hero brand-hero">
   <div class="breadcrumb">
     <a href="https://aeconnect.io">Home</a>
     <span>/</span>
@@ -559,7 +570,7 @@
 
     <p>If you have one IND, are in Phase 1 or Phase 2, and are processing fewer than 50 ICSRs per year, you are not at that stage. Build infrastructure appropriate for where you are now, with a clear path to scale when the time comes.</p>
 
-    <div class="callout" style="border-color: rgba(0,212,200,0.25); background: linear-gradient(135deg, rgba(0,168,150,0.08), rgba(0,212,200,0.04));">
+    <div class="callout" style="border-color: rgba(74,111,165,0.25); background: linear-gradient(135deg, rgba(74,111,165,0.08), rgba(74,111,165,0.04));">
       <div class="callout-title">About AE Connect</div>
       <p>AE Connect by QORO Intelligence Inc. is a purpose-built adverse event intake and case management platform designed specifically for small and mid-size biotech IND sponsors. It provides validated, E2B(R3)-aligned intake forms in 10 languages, AI-assisted triage and MedDRA coding, complete audit trail, and structured case output designed to integrate with your outsourced PV partner or submit directly via FDA ESG.</p>
       <p>It is not an enterprise pharmacovigilance database. It is the right-sized infrastructure for where most early-phase programs actually are, at a fraction of the cost and operational overhead.</p>
@@ -633,7 +644,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div style="font-size:18px; font-weight:700; color:var(--white);">AE <span style="color:var(--teal);">Connect</span></div>
+      <div class="footer-wordmark"><img class="brand-logo brand-logo-dark" src="/brand/logo/logo-horizontal-dark.svg" alt="AE Connect" width="143" height="32"></div>
       <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
     </div>
     <div class="footer-col">
