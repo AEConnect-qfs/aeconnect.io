@@ -74,10 +74,13 @@ async function main() {
   const token = su.body.token as string;
   check('signup → token + trial plan', su.status === 200 && !!token && su.body.user.plan === 'trial');
 
+  const li = await api('/api/login', 'POST', undefined, { email: EMAIL, password: 'password123' });
+  const liBad = await api('/api/login', 'POST', undefined, { email: EMAIL, password: 'wrong-password' });
+  check('login correct password → token', li.status === 200 && !!li.body.token);
+  check('login wrong password → 401', liBad.status === 401 && liBad.body.error === 'Invalid credentials');
+
   const shortCase = await api('/api/cases', 'POST', token, { sourceText: 'too short', sourceType: 'nope', fileName: 'payload.exe', fileSize: 11 * 1024 * 1024 });
   check('case: short text, bad type, oversize → 400', shortCase.status === 400 && !!shortCase.body.fields?.sourceText && !!shortCase.body.fields?.sourceType && !!shortCase.body.fields?.file);
-
-  await api('/api/set-pin', 'POST', token, { pin: '1234' });
 
   // create + assess 5 cases (trial = 5)
   const caseIds: string[] = [];
@@ -105,17 +108,12 @@ async function main() {
   const ovr = await api('/api/field-decision', 'POST', token, { caseId: caseIds[0], fieldKey: 'seriousness', decisionType: 'override', aiValue: 'Serious', finalValue: 'Non-serious', reason: 'No hospitalization confirmed' });
   check('field decision: accept + override recorded', acc.status === 200 && ovr.status === 200 && ovr.body.finalValue === 'Non-serious');
 
-  // sign-off: wrong pin then correct
-  const bad = await api('/api/signoff', 'POST', token, { caseId: caseIds[0], pin: '9999' });
-  check('signoff wrong PIN → 401', bad.status === 401);
+  // E-signature sign-off was removed from this site (it lives on app.aeconnect.io).
+  const pin = await api('/api/set-pin', 'POST', token, { pin: '1234' });
   const so = await api('/api/signoff', 'POST', token, { caseId: caseIds[0], pin: '1234' });
-  check('signoff correct PIN → cleared + locked + signature', so.status === 200 && so.body.status === 'cleared' && !!so.body.signature.boundAuditHash);
-
-  // locked case rejects further edits
-  const lockAssess = await api('/api/assess', 'POST', token, { caseId: caseIds[0] });
-  const lockField = await api('/api/field-decision', 'POST', token, { caseId: caseIds[0], fieldKey: 'soc', decisionType: 'accept', aiValue: 'x' });
-  const reSign = await api('/api/signoff', 'POST', token, { caseId: caseIds[0], pin: '1234' });
-  check('locked case: assess/field/re-signoff all rejected', lockAssess.status === 400 && lockField.status === 409 && reSign.status === 409);
+  check('sign-off endpoints stay removed', pin.status === 404 && so.status === 404);
+  const saved = await api('/api/cases?id=' + caseIds[0], 'GET', token);
+  check('field decisions persist on the case', saved.status === 200 && Array.isArray(saved.body.fieldDecisions) && saved.body.fieldDecisions.length >= 2);
 
   // subscribe → core, then overage past included limit
   const sub = await api('/api/create-checkout-session', 'POST', token);

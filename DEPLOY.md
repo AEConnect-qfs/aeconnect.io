@@ -127,8 +127,8 @@ webhook flips the account to Core. Cancellations/expiries downgrade it back to t
 2. Create a case, paste an adverse-event narrative, **Run AI assessment**.
    - With `ANTHROPIC_API_KEY` set, this is a real Claude assessment; the header trial
      counter should tick up.
-3. Accept/override fields → set an e-signature PIN → **Sign off & clear** (locks the case).
-4. Netlify → Functions tab shows invocation logs for `assess`, `signoff`, etc.
+3. Accept or override fields, then **Download case**. E-signature sign-off is not part of this site; it stays on `app.aeconnect.io`.
+4. Netlify → Functions tab shows invocation logs for `assess`, `cases`, and so on.
 5. Confirm the trial gate: process 5 cases; the 6th should be blocked with a
    "subscribe" prompt (HTTP 402) — no Claude call is made for the blocked request.
 

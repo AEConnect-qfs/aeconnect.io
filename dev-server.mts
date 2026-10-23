@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -72,9 +73,10 @@ const NAME_RE = /^[a-z0-9-]+$/;
 
 app.all('/api/:name', async (req, res) => {
   const name = req.params.name;
-  if (!NAME_RE.test(name)) return res.status(404).json({ error: 'Unknown endpoint' });
+  const file = path.join(FUNCTIONS_DIR, `${name}.ts`);
+  if (!NAME_RE.test(name) || !fs.existsSync(file)) return res.status(404).json({ error: 'Unknown endpoint' });
   try {
-    const mod = await import(pathToFileURL(path.join(FUNCTIONS_DIR, `${name}.ts`)).href);
+    const mod = await import(pathToFileURL(file).href);
     if (typeof mod.handler !== 'function') return res.status(404).json({ error: 'Unknown endpoint' });
     const event = {
       httpMethod: req.method,
