@@ -1,0 +1,11 @@
+:root{
+  --ae-navy: #14202C;
+  --ae-offwhite: #F3F5F4;
+  --ae-blue: #4A6FA5;
+  --ae-blue-light: #A7BEE0;
+  --ae-blue-dark: #3A5A88;
+  --ae-muted: #5E6873;
+  --ae-rule: #D5DBE0;
+  --ae-font-heading: 'Source Serif 4', Georgia, serif;
+  --ae-font-body: 'Source Sans 3', Helvetica, Arial, sans-serif;
+}

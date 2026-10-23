@@ -11,17 +11,15 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aeconnect.io/" />
   <meta property="og:site_name" content="AE Connect" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AE Connect — AI pharmacovigilance case intake" />
   <meta name="twitter:description" content="Draft AE, SAE, and SUSAR assessments from the source document. Works alongside Argus and Veeva. Does not submit ICSRs. First 5 cases free." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png",
         "@id": "https://aeconnect.io/#organization",
         "name": "QORO Intelligence Inc.",
         "url": "https://aeconnect.io/",
@@ -123,16 +121,16 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #0a1628; --navy-mid: #112240; --teal: #00d4c8; --teal-dark: #00a896;
-      --slate: #8892a4; --light: #ccd6f6; --white: #e6f1ff;
-      --border: rgba(255,255,255,0.08); --card: rgba(255,255,255,0.03);
+      --navy: #F3F5F4; --navy-mid: #E6EBE9; --teal: #4A6FA5; --teal-dark: #3A5A88;
+      --slate: #5E6873; --light: #14202C; --white: #14202C;
+      --border: #D5DBE0; --card: #FFFFFF;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: Inter, sans-serif; background: var(--navy); color: var(--light); line-height: 1.65; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.65; }
     a { color: var(--teal); text-decoration: none; }
     a:hover { text-decoration: underline; }
     nav { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between;
-      height: 64px; padding: 0 40px; background: rgba(10,22,40,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+      height: 64px; padding: 0 40px; background: rgba(243,245,244,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-weight: 700; color: var(--white); font-size: 18px; text-decoration: none; }
     .nav-logo span { color: var(--teal); }
     .nav-links { display: flex; gap: 26px; align-items: center; list-style: none; }
@@ -147,7 +145,7 @@
     .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
     .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; padding: 12px 18px; border-radius: 8px; text-decoration: none; }
     .btn:hover { text-decoration: none; opacity: 0.92; }
-    .btn-ghost { background: transparent; color: var(--white); border: 1px solid #8b99ad; }
+    .btn-ghost { background: transparent; color: var(--white); border: 1px solid #5E6873; }
     .note { margin-top: 14px; color: var(--slate); font-size: 14px; }
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0 10px; }
     .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
@@ -179,10 +177,23 @@
       .grid, .steps, .links, .footer-inner { grid-template-columns: 1fr; }
     }
   </style>
+
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="AE Connect — AI pharmacovigilance case intake">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/home.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="https://aeconnect.io/">AE <span>Connect</span></a>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
   <ul class="nav-links">
     <li><a href="https://aeconnect.io/features/">Features</a></li>
     <li><a href="https://aeconnect.io/blog/">Blog</a></li>
@@ -329,7 +340,7 @@
   <div class="wrap">
     <div class="footer-inner">
       <div>
-        <div class="nav-logo">AE <span>Connect</span></div>
+        <div class="nav-logo"><img class="brand-logo brand-logo-dark" src="/brand/logo/logo-horizontal-dark.svg" alt="AE Connect" width="143" height="32"></div>
         <p style="margin-top:8px">AI pharmacovigilance case processing for small and mid-size teams. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
       </div>
       <div class="footer-col">
