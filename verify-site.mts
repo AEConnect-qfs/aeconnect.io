@@ -159,6 +159,8 @@ async function main() {
   const keyBody = keyName ? fs.readFileSync(path.join(ROOT, keyName), 'utf8').trim() : '';
   const keyPage = keyName ? await page('/' + keyName) : { status: 0, text: '' };
   check('indexnow key file is served', keyNames.length === 1 && keyBody === keyName.slice(0, -4) && keyPage.status === 200 && keyPage.text.trim() === keyBody, keyName);
+  const manifest = fs.readFileSync(path.join(ROOT, 'netlify/plugins/indexnow/manifest.yml'), 'utf8');
+  check('indexnow plugin manifest', /^name:\s*netlify-plugin-indexnow\s*$/m.test(manifest));
   const thanks = await page('/resources/ae-intake-checklist/thanks/');
   const pdf = await fetch(B + '/downloads/ae-intake-readiness-checklist.pdf');
   const pdfBytes = new Uint8Array(await pdf.arrayBuffer());
