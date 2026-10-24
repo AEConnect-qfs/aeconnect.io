@@ -66,7 +66,6 @@ Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQP
 - [Aggregate reports](https://aeconnect.io/solutions/aggregate-reports/)
 - [Privacy Policy (draft)](https://aeconnect.io/privacy/)
 - [Terms of Service (draft)](https://aeconnect.io/terms/)
-- [About](https://aeconnect.io/about/)
 - [Contact](https://aeconnect.io/contact/): info@qfsnow.com
 
 ## Contact

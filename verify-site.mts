@@ -81,6 +81,8 @@ function checkNetlifyRedirects() {
     ['/blog/veeva-vault-safety-alternative/', '/blog/veeva-vault-safety/'],
     ['/beta', '/trial/'],
     ['/beta/', '/trial/'],
+    ['/about', '/'],
+    ['/about/', '/'],
   ];
   for (const [from, to] of legacy) {
     const r = follow(from);
@@ -130,9 +132,9 @@ async function main() {
   const home = await page('/');
   check('home 200 with self-canonical', home.status === 200 && home.text.includes('rel="canonical" href="https://aeconnect.io/"') && !home.csp.includes('upgrade-insecure-requests'));
 
-  const aboutBare = await page('/about');
-  const about = await page('/about/');
-  check('trailing slash: /about → /about/', aboutBare.status === 301 && aboutBare.loc === '/about/' && about.status === 200);
+  const contactBare = await page('/contact');
+  const contact = await page('/contact/');
+  check('trailing slash: /contact → /contact/', contactBare.status === 301 && contactBare.loc === '/contact/' && contact.status === 200);
 
   const legacy = [
     ['/blog/meddra-coding-at-intake-ai-pharmacovigilance', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
@@ -140,6 +142,8 @@ async function main() {
     ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect', '/blog/veeva-argus-overkill-early-phase-biotech/'],
     ['/beta/', '/trial/'],
     ['/beta', '/trial/'],
+    ['/about/', '/'],
+    ['/about', '/'],
   ] as const;
   for (const [from, to] of legacy) {
     const r = await page(from);
@@ -156,7 +160,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 42 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 42 && !sitemap.text.includes('/beta/'));
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 41 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 41 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/'));
 
   const keyNames = fs.readdirSync(ROOT).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
   const keyName = keyNames[0] || '';
