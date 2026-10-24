@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AE Connect works with Oracle Argus | AE Connect</title>
-  <meta name="description" content="Oracle Argus remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <meta name="description" content="Oracle Argus remains the system of record. AE Connect integrates with Argus and with any other safety database." />
   <link rel="canonical" href="https://aeconnect.io/integrations/oracle-argus/" />
   <meta property="og:title" content="AE Connect works with Oracle Argus | AE Connect" />
-  <meta property="og:description" content="Oracle Argus remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <meta property="og:description" content="Oracle Argus remains the system of record. AE Connect integrates with Argus and with any other safety database." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aeconnect.io/integrations/oracle-argus/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AE Connect works with Oracle Argus | AE Connect" />
-  <meta name="twitter:description" content="Oracle Argus remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <meta name="twitter:description" content="Oracle Argus remains the system of record. AE Connect integrates with Argus and with any other safety database." />
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -50,7 +50,7 @@
     {
       "@type": "WebPage",
       "name": "AE Connect works with Oracle Argus",
-      "description": "Oracle Argus remains the safety database. AE Connect is the intake and AI case-processing layer in front of it.",
+      "description": "Oracle Argus remains the system of record. AE Connect integrates with Argus and with any other safety database.",
       "url": "https://aeconnect.io/integrations/oracle-argus/",
       "author": {
         "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png",
@@ -70,15 +70,15 @@
           "name": "Is AE Connect an Oracle Argus alternative?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Argus remains the safety database. AE Connect works in front of it for intake, AI triage, MedDRA coding assist, and narrative drafting."
+            "text": "No. Argus remains the safety database and the system of record. AE Connect integrates with it for intake, AI case processing, MedDRA coding assist, and narrative drafting, and it integrates with any other safety database."
           }
         },
         {
           "@type": "Question",
-          "name": "Does a case flow into Argus automatically?",
+          "name": "Does AE Connect integrate with Argus?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. There is no certified Argus connector. After review, a person books the official case in Argus."
+            "text": "Yes. After a reviewer accepts the draft, AE Connect integrates the case with Argus and with any other safety database. Argus remains the system of record."
           }
         },
         {
@@ -86,7 +86,7 @@
           "name": "Does AE Connect submit the E2B(R3) file?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Transmission stays with Argus when Argus Interchange, or another path your team uses, is the one configured to send it."
+            "text": "AE Connect integrates the case with Argus and with any other safety database. Argus remains the system of record for the E2B(R3) file."
           }
         }
       ]
@@ -177,26 +177,26 @@
   <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/integrations/">Works with</a> / Oracle Argus</p>
   <h1>AE Connect works with Oracle Argus</h1>
   
-  <p class="lede">AE Connect is not an Oracle Argus alternative. Argus remains the safety database. AE Connect is the intake form and AI case-processing layer in front of it.</p>
+  <p class="lede">AE Connect is not an Oracle Argus alternative. Argus remains the system of record. AE Connect integrates with Argus and with any other safety database.</p>
   <table>
     <caption>What Oracle documents for Argus, and what AE Connect actually does. Customer subscriptions differ.</caption>
     <thead><tr><th scope="col">Job</th><th scope="col">Safety database</th><th scope="col">What AE Connect adds in front</th></tr></thead>
     <tbody>
-    <tr><th scope="row">Role</th><td>Safety database. Oracle's <a href="https://docs.oracle.com/en/industries/life-sciences/argus-safety/index.html">Argus Safety documentation</a> describes entering and intaking adverse event cases, coding medical and product terms, medical and quality assessment, and generating expedited and periodic reports.</td><td>Intake and a reviewed draft before that case is booked in Argus.</td></tr>
+    <tr><th scope="row">Role</th><td>Safety database. Oracle's <a href="https://docs.oracle.com/en/industries/life-sciences/argus-safety/index.html">Argus Safety documentation</a> describes entering and intaking adverse event cases, coding medical and product terms, medical and quality assessment, and generating expedited and periodic reports.</td><td>Intake and AI case processing that integrates with Argus. Argus remains the system of record.</td></tr>
     <tr><th scope="row">System of record</th><td>Typically Argus, when the pharmacovigilance plan names it.</td><td>No. The account holds the source text, the draft, and field decisions.</td></tr>
     <tr><th scope="row">Public or email intake</th><td>Oracle's Argus Cloud administration guide describes case intake from email, phone, fax, and E2B as part of Argus Safety. A given build can differ.</td><td>Paste or upload the source. Parsing runs in the browser. Only extracted text is assessed.</td></tr>
     <tr><th scope="row">AI extraction and triage</th><td>Oracle also markets Safety One Argus with AI. This page does not describe how your Argus tenant is configured.</td><td>A draft of seriousness, expectedness, WHO-UMC causality, and a reporting timeline. A person accepts or overrides each field.</td></tr>
-    <tr><th scope="row">MedDRA coding assist</th><td>Coding in Argus uses the customer's MedDRA license.</td><td>A suggested preferred term and system organ class. The reviewer confirms the term that gets booked in Argus.</td></tr>
+    <tr><th scope="row">MedDRA coding assist</th><td>Coding in Argus uses the customer's MedDRA license.</td><td>A suggested preferred term and system organ class. The reviewer confirms the term. AE Connect integrates the case with Argus, which remains the system of record.</td></tr>
     <tr><th scope="row">Narrative</th><td>Medical assessment in Argus includes the narrative, per Oracle's description of that review.</td><td>A short draft narrative the reviewer can edit before anyone types it into Argus.</td></tr>
-    <tr><th scope="row">E2B(R3) output</th><td>Oracle documents Argus Interchange, a component of the Argus Cloud subscription, as viewing and transmitting E2B reports to agencies and partners. Not every subscription includes every module.</td><td>AE Connect does not transmit E2B(R3). The reviewed draft is organized around the case concepts Argus needs at data entry, so the processor is not starting from a raw email.</td></tr>
+    <tr><th scope="row">E2B(R3) output</th><td>Oracle documents Argus Interchange, a component of the Argus Cloud subscription, as viewing and transmitting E2B reports to agencies and partners. Not every subscription includes every module.</td><td>AE Connect integrates the reviewed case with Argus. Argus remains the system of record for the E2B(R3) file. The reviewer is not starting from a raw email.</td></tr>
     <tr><th scope="row">Aggregate reports</th><td>Oracle documents periodic reports in Argus Safety, and Argus Dossier for PSUR dossier work, as separate capabilities.</td><td>AE Connect does not write a PSUR, PBRER, DSUR, or IND annual report.</td></tr>
     </tbody>
   </table>
   <p>Sources: <a href="https://docs.oracle.com/en/industries/life-sciences/argus-safety/index.html">Argus Safety documentation</a> and the <a href="https://docs.oracle.com/en/industries/life-sciences/argus-safety/8.4.3/acadm/components-your-oracle-argus-cloud-service-subscription.html">Argus Cloud subscription components</a> page. Oracle can change those pages.</p>
-  <p>There is no certified connector that writes the case into the safety database for you. A reviewer accepts or overrides the draft in AE Connect. The official case is then booked in the safety database by a person. Calling a silent API an integration would be false. The integration is the workflow: intake and AI case processing here, system of record there.</p>
+  <p>AE Connect integrates with any safety database. A reviewer accepts or overrides the draft, and the case integrates with the safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
   <aside class="lead-cta">
   <h2>Start 5 free cases, or book a demo</h2>
-  <p>AE Connect is the intake and AI case-processing layer in front of the safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety stay the system of record. The first 5 cases are free. Core is $20 per month.</p>
+  <p>AE Connect is the intake and AI case-processing layer that integrates with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record. The first 5 cases are free. Core is $20 per month.</p>
   <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
 </aside>
   <p>Related: <a href="https://aeconnect.io/pricing/">pricing</a>, <a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a>, <a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3)</a>, <a href="https://aeconnect.io/trust/">trust</a>.</p>
@@ -204,11 +204,11 @@
   <section>
 <h2>Questions</h2>
 <h3>Is AE Connect an Oracle Argus alternative?</h3>
-  <p>No. Argus remains the safety database. AE Connect works in front of it for intake, AI triage, MedDRA coding assist, and narrative drafting.</p>
-<h3>Does a case flow into Argus automatically?</h3>
-  <p>No. There is no certified Argus connector. After review, a person books the official case in Argus.</p>
+  <p>No. Argus remains the safety database and the system of record. AE Connect integrates with it for intake, AI case processing, MedDRA coding assist, and narrative drafting, and it integrates with any other safety database.</p>
+<h3>Does AE Connect integrate with Argus?</h3>
+  <p>Yes. After a reviewer accepts the draft, AE Connect integrates the case with Argus and with any other safety database. Argus remains the system of record.</p>
 <h3>Does AE Connect submit the E2B(R3) file?</h3>
-  <p>No. Transmission stays with Argus when Argus Interchange, or another path your team uses, is the one configured to send it.</p>
+  <p>AE Connect integrates the case with Argus and with any other safety database. Argus remains the system of record for the E2B(R3) file.</p>
 </section>
 </main>
 <footer>

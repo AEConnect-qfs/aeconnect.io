@@ -4,22 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>E2B(R3) ICSR submissions, explained | AE Connect</title>
-  <meta name="description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, and why AE Connect does not transmit E2B(R3) XML." />
+  <meta name="description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, AE Connect integrates the case with any safety database, which remains the system of record." />
   <meta name="author" content="QORO Team" />
   <link rel="canonical" href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/" />
   <meta property="og:title" content="E2B(R3) ICSR submissions, explained" />
-  <meta property="og:description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, and why AE Connect does not transmit E2B(R3) XML." />
+  <meta property="og:description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, AE Connect integrates the case with any safety database, which remains the system of record." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://aeconnect.io/blog/e2b-r3-icsr-submissions/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="E2B(R3) ICSR submissions, explained | AE Connect" />
-  <meta name="twitter:description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, and why AE Connect does not transmit E2B(R3) XML." />
+  <meta name="twitter:description" content="What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, AE Connect integrates the case with any safety database, which remains the system of record." />
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "E2B(R3) ICSR submissions start with a complete case",
-  "description": "What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, and why AE Connect does not transmit E2B(R3) XML.",
+  "description": "What an E2B(R3) ICSR submission is, what has to be true in the case before anyone builds the file, AE Connect integrates the case with any safety database, which remains the system of record.",
   "url": "https://aeconnect.io/blog/e2b-r3-icsr-submissions/",
   "datePublished": "2026-10-23",
   "dateModified": "2026-10-23",
@@ -54,7 +54,7 @@
       "name": "Does AE Connect submit E2B(R3) files?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. AE Connect does not create E2B(R3) XML, does not connect to an ESG or other gateway, and does not transmit ICSRs. It drafts a human-reviewed assessment from the source narrative. A safety database, a CRO, or a publishing tool sends the file."
+        "text": "AE Connect drafts a human-reviewed assessment from the source narrative and integrates that case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record for the E2B(R3) file."
       }
     },
     {
@@ -160,13 +160,13 @@
   <p>Regulators moved individual case exchange off paper and off older E2B releases onto E2B(R3). The message carries reporter, patient, reaction, drug, and narrative sections in a fixed structure so a receiving system can read them. FDA's electronic submissions gateway, and the equivalent paths in other regions, are how the message travels. The gateway checks that a sender is allowed to send. It does not check that the causality call was wise.</p>
 <aside class="lead-cta">
   <h2>Start 5 free cases, or book a demo</h2>
-  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p>AE Connect is the intake and AI case-processing layer that integrates with any safety database, including Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those products remain the system of record. The first 5 cases are free. Core is $20 per month.</p>
   <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
 </aside>
 
 <aside class="lead-cta">
   <h2>AE Intake Readiness Checklist</h2>
-  <p>A two-page checklist for AE and SAE intake, and for the case data to have in hand before an E2B(R3) file is prepared in the safety database. AE Connect drafts the case. It does not transmit an ICSR, and it is not a certified connector to Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety.</p>
+  <p>A two-page checklist for AE and SAE intake, and for the case data to have in hand before an E2B(R3) file is prepared in the safety database. AE Connect drafts the case and integrates it with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
   <p class="actions"><a class="btn" href="https://aeconnect.io/resources/ae-intake-checklist/">Get the checklist</a></p>
 </aside>
 
@@ -184,14 +184,14 @@
   </ul>
   <p>Teams stall on the packaging because the case is still in email. Buying a gateway login does not create the case. The <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">inbox</a> is still the bottleneck at a lot of small biotechs.</p>
   <h2>Who actually sends it</h2>
-  <p>A company that runs Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety often sends from that system, or from a safety CRO that runs one of them. That is a reason to have the database, and it is also a reason not to pretend an intake workspace is the database. AE Connect does not configure those products and does not hand them a case. If they are your system of record, someone still types or reconciles the official case there before the message exists.</p>
+  <p>A company that runs Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety often sends from that system, or from a safety CRO that runs one of them. Those products remain the system of record. AE Connect integrates the reviewed case with any safety database, including those.</p>
   <p>A sponsor that has outsourced submissions should be able to name the vendor, the account, and the person who confirms a file was acknowledged. "We use a gateway" is not a control. The checklist is the blunter version of that question.</p>
   <h2>What AE Connect does with E2B(R3) concepts</h2>
-  <p>The <a href="https://aeconnect.io/app/">AE Connect workspace</a> organizes a source document into the judgments an ICSR depends on: seriousness, a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness, whether reporting looks required, and a timeline. You accept or override each one. The output is a reviewed draft and a short narrative. It is not E2B(R3) XML. It is not transmitted. It will not show an acknowledgment from FDA or EMA.</p>
-  <p>Use it so the person who does build the message is not inventing seriousness from a PDF at midnight. Do not describe it, internally or to a partner, as E2B(R3) submission software. It is not. <a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI case processing</a> on this site means that draft, with a person on every field.</p>
+  <p>The <a href="https://aeconnect.io/app/">AE Connect workspace</a> organizes a source document into the judgments an ICSR depends on: seriousness, a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness, whether reporting looks required, and a timeline. You accept or override each one. AE Connect integrates that reviewed case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
+  <p>Use it so seriousness is not invented from a PDF at midnight. AE Connect integrates the case with the safety database, which remains the system of record. <a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI case processing</a> on this site means that draft, with a person on every field.</p>
   <div class="cta">
     <h2>Open a case in the workspace</h2>
-    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. The workspace does not submit an ICSR.</p>
+    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. AE Connect integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
     <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
   </div>
   <section class="faq">
@@ -199,7 +199,7 @@
     <h3>What is an E2B(R3) ICSR submission?</h3>
     <p>E2B(R3) is the ICH standard for the electronic message that carries an individual case safety report. An E2B(R3) submission is that message, validated and sent to an authority such as FDA through the path the authority requires. It is the transport format of a case, not the medical judgment inside the case.</p>
     <h3>Does AE Connect submit E2B(R3) files?</h3>
-    <p>No. AE Connect does not create E2B(R3) XML, does not connect to an ESG or other gateway, and does not transmit ICSRs. It drafts a human-reviewed assessment from the source narrative. A safety database, a CRO, or a publishing tool sends the file.</p>
+    <p>AE Connect drafts a human-reviewed assessment from the source narrative and integrates that case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record for the E2B(R3) file.</p>
     <h3>What has to be in the case before an E2B(R3) file is worth building?</h3>
     <p>A valid case: identifiable reporter, identifiable patient, suspect product, and event, plus the seriousness, coding, causality, and expectedness decisions a reviewer has accepted. A narrative still sitting in a PDF will fail validation or, worse, pass validation with the wrong facts.</p>
     <h3>Where should a small sponsor start on E2B(R3)?</h3>
@@ -223,14 +223,14 @@
 
 <aside class="lead-cta">
   <h2>Start 5 free cases, or book a demo</h2>
-  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p>AE Connect is the intake and AI case-processing layer that integrates with any safety database, including Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those products remain the system of record. The first 5 cases are free. Core is $20 per month.</p>
   <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
 </aside>
 <section class="product-links">
   <h2>Use this with the product</h2>
   <ul>
     <li><a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3) case preparation</a></li>
-    <li><a href="https://aeconnect.io/pricing/">Pricing: 5 free cases, then $20 per month</a></li>
+    <li><a href="https://aeconnect.io/pricing/">Pricing: Core from $20 per month, annual plans from $36,000</a></li>
     <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
     <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
   </ul>
