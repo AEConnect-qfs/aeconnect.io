@@ -12,12 +12,18 @@ const ROOT = path.dirname(fileURLToPath(import.meta.url));
  *  destination only adds a slash therefore 301s the canonical URL to itself. */
 function checkNetlifyRedirects() {
   const toml = fs.readFileSync(path.join(ROOT, 'netlify.toml'), 'utf8');
-  const rules: { from: string; to: string; force: boolean }[] = [];
+  const rules: { from: string; to: string; force: boolean; status: number }[] = [];
   for (const block of toml.split('[[redirects]]').slice(1)) {
-    const from = block.match(/from = "([^"]*)"/)?.[1];
-    const to = block.match(/to = "([^"]*)"/)?.[1];
+    const chunk = block.split('[[')[0];
+    const from = chunk.match(/from = "([^"]*)"/)?.[1];
+    const to = chunk.match(/to = "([^"]*)"/)?.[1];
     if (!from || !to || from.includes('://') || from.includes('*')) continue;
-    rules.push({ from, to, force: /force = true/.test(block.split('[[')[0]) });
+    rules.push({
+      from,
+      to,
+      force: /force = true/.test(chunk),
+      status: Number(chunk.match(/status = (\d+)/)?.[1] || '301'),
+    });
   }
   const norm = (p: string) => (p.length > 1 && p.endsWith('/') ? p.slice(0, -1) : p);
   const hasPage = (urlPath: string) => {
@@ -37,6 +43,7 @@ function checkNetlifyRedirects() {
       const rule = rules.find((r) => norm(r.from) === norm(current));
       if (rule && (rule.force || !hasPage(current))) {
         hops++;
+        if (/^https?:\/\//.test(rule.to)) return { status: rule.status, hops, final: rule.to, loop: false };
         if (hops > 2 || norm(rule.to) === norm(current)) return { status: 301, hops, final: rule.to, loop: true };
         current = rule.to;
         continue;
@@ -54,13 +61,24 @@ function checkNetlifyRedirects() {
   const bad: string[] = [];
   for (const p of locs) {
     const slash = follow(p);
-    if (slash.loop || slash.status !== 200 || slash.hops !== 0) {
+    const external = slash.final.startsWith('http');
+    if (external) {
+      if (slash.loop || slash.status !== 302 || slash.hops !== 1) {
+        ok = false;
+        bad.push(`${p} → ${slash.status} ${slash.final} hops=${slash.hops} loop=${slash.loop}`);
+      }
+    } else if (slash.loop || slash.status !== 200 || slash.hops !== 0) {
       ok = false;
       bad.push(`${p} → ${slash.status} hops=${slash.hops} loop=${slash.loop}`);
     }
     if (p !== '/') {
       const bare = follow(p.slice(0, -1));
-      if (bare.loop || bare.status !== 200 || bare.hops !== 1 || bare.final !== p) {
+      if (external) {
+        if (bare.loop || bare.status !== 302 || bare.hops !== 1 || bare.final !== slash.final) {
+          ok = false;
+          bad.push(`${p.slice(0, -1)} → ${bare.final} hops=${bare.hops} loop=${bare.loop}`);
+        }
+      } else if (bare.loop || bare.status !== 200 || bare.hops !== 1 || bare.final !== p) {
         ok = false;
         bad.push(`${p.slice(0, -1)} → ${bare.final} hops=${bare.hops} loop=${bare.loop}`);
       }
@@ -87,9 +105,16 @@ function checkNetlifyRedirects() {
   for (const [from, to] of legacy) {
     const r = follow(from);
     const dest = follow(to);
-    if (r.loop || r.hops !== 1 || r.final !== to || dest.loop || dest.status !== 200 || dest.hops !== 0) {
+    const destExternal = dest.final.startsWith('http');
+    const destOk = destExternal
+      ? !dest.loop && dest.status === 302
+      : !dest.loop && dest.status === 200 && dest.hops === 0;
+    const fromOk = destExternal
+      ? !r.loop && r.final === dest.final
+      : !r.loop && r.hops === 1 && r.final === to;
+    if (!fromOk || !destOk) {
       ok = false;
-      bad.push(`legacy ${from} → ${r.final} hops=${r.hops}; dest ${dest.status}`);
+      bad.push(`legacy ${from} → ${r.final} hops=${r.hops}; dest ${dest.status} ${dest.final}`);
     }
   }
   check('netlify redirects: slash 200, one hop, no loops', ok, bad.slice(0, 4).join('; '));
@@ -122,6 +147,7 @@ async function page(path: string) {
     status: res.status,
     loc: locationPath(res.headers.get('location') || ''),
     csp: res.headers.get('content-security-policy') || '',
+    location: res.headers.get('location') || '',
     text: await res.text(),
   };
 }
@@ -150,7 +176,7 @@ async function main() {
     check(`301 ${from}`, r.status === 301 && r.loc === to, r.loc);
   }
 
-  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/pricing/', '/demo/', '/trial/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/', '/resources/ae-intake-checklist/']) {
+  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/pricing/', '/demo/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/', '/resources/ae-intake-checklist/']) {
     const r = await page(p);
     const canon = `https://aeconnect.io${p}`;
     check(`200 ${p}`, r.status === 200 && r.text.includes(`rel="canonical" href="${canon}"`));
@@ -186,57 +212,29 @@ async function main() {
     `pdf ${pdf.status} ${pdfMagic}`,
   );
 
-  const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com'];
-  const personalStatuses = await Promise.all(personalDomains.map(async (domain) => {
-    const res = await fetch(B + '/trial/thanks/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `name=A&email=person@${domain}&company=Co`,
-      redirect: 'manual',
-    });
-    return res.status;
-  }));
-  const personalTrial = { status: personalStatuses.every((status) => status === 400) ? 400 : personalStatuses.join(',') };
-  const companyTrial = await fetch(B + '/trial/thanks/', {
+  const APP_SIGNUP = 'https://app.aeconnect.io/register';
+  for (const p of ['/trial', '/trial/', '/trial/thanks', '/trial/thanks/']) {
+    const r = await page(p);
+    check(`302 ${p} → app signup`, r.status === 302 && r.location === APP_SIGNUP, `${r.status} ${r.location}`);
+  }
+  const posted = await fetch(B + '/trial/thanks/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'name=A&email=safety@example-biotech.com&company=Co',
+    body: 'name=A&email=person@gmail.com&company=Co',
     redirect: 'manual',
   });
-  const missingCompany = await fetch(B + '/trial/thanks/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'name=A&email=safety@example-biotech.com&company=%20%20',
-    redirect: 'manual',
-  });
-  const missingName = await fetch(B + '/trial/thanks/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'name=&email=safety@example-biotech.com&company=Co',
-    redirect: 'manual',
-  });
-  const trialPage = await page('/trial/');
-  const trialThanks = await page('/trial/thanks/');
-  check('trial rejects a personal email', personalTrial.status === 400);
+  check('trial form post redirects to app signup', posted.status === 302 && posted.headers.get('location') === APP_SIGNUP);
+  const trialHtml = fs.readFileSync(path.join(ROOT, 'trial/index.html'), 'utf8');
+  const trialThanksHtml = fs.readFileSync(path.join(ROOT, 'trial/thanks/index.html'), 'utf8');
   check(
-    'trial requires a company name',
-    missingCompany.status === 400 && missingName.status === 400 &&
-      trialPage.text.includes('>Company name<') &&
-      trialPage.text.includes('placeholder="name@company.com"') &&
-      /id="trial-company"[^>]*required/.test(trialPage.text) &&
-      trialPage.text.includes('verification link') &&
-      trialPage.text.includes('only after you verify') &&
-      !trialPage.text.includes('@gmail'),
-  );
-  check(
-    'trial accepts a company email and the thanks page is noindex',
-    companyTrial.status === 303 &&
-      locationPath(companyTrial.headers.get('location') || '') === '/trial/thanks/' &&
-      trialThanks.status === 200 &&
-      trialThanks.text.includes('name="robots" content="noindex, nofollow"') &&
-      trialThanks.text.includes('https://app.aeconnect.io') &&
-      trialThanks.text.includes('verification link') &&
-      trialThanks.text.includes('only after you verify') &&
+    'trial pages do not promise a verification email from a Netlify form',
+    !trialHtml.includes('data-netlify') &&
+      !trialHtml.includes('sandbox-trial') &&
+      !trialHtml.includes('verification link') &&
+      !trialThanksHtml.includes('verification link') &&
+      trialHtml.includes(APP_SIGNUP) &&
+      trialThanksHtml.includes('name="robots" content="noindex, nofollow"') &&
+      trialThanksHtml.includes(APP_SIGNUP) &&
       !sitemap.text.includes('/trial/thanks/'),
   );
 
