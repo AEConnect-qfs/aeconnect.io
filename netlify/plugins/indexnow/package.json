@@ -1,0 +1,7 @@
+{
+  "name": "netlify-plugin-indexnow",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "description": "After a production deploy, submit sitemap URLs for aeconnect.io to IndexNow."
+}

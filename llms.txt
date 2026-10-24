@@ -36,6 +36,7 @@ First 5 AI-processed cases are free, no card. Core is $20 per month and includes
 - [Design partners](https://aeconnect.io/design-partners/): application form. No published results
 - [Features](https://aeconnect.io/features/): longer feature narrative published on the marketing site
 - [E2B(R3) checklist](https://aeconnect.io/e2b-r3-checklist/): readiness checklist with a Netlify lead form
+- [AE Intake Readiness Checklist](https://aeconnect.io/resources/ae-intake-checklist/): two-page checklist for AE and SAE intake and for the case data to have ready before an E2B(R3) file is prepared in the safety database. The PDF is on the thank-you page after the form. AE Connect does not transmit the ICSR.
 - [Blog](https://aeconnect.io/blog/): pharmacovigilance notes for small biotech teams
 - [E2B(R3) ICSR submission guide](https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/): what the electronic ICSR requirement means for small sponsors
 - [Argus, Safety One, and Veeva for early-phase teams](https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/)

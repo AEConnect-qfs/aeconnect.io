@@ -3,6 +3,11 @@
   functions = "netlify/functions"
   command = "npx prisma generate"
 
+# IndexNow key file: /ca06112e4d97f820b16bd05adafbc2e8.txt
+# The file body is the key. onSuccess submits sitemap URLs after a production deploy.
+[[plugins]]
+package = "./netlify/plugins/indexnow"
+
 [build.environment]
   NODE_VERSION = "20"
 
@@ -159,6 +164,21 @@
   for = "/downloads/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/downloads/ae-intake-readiness-checklist.pdf"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/resources/ae-intake-checklist/thanks"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/resources/ae-intake-checklist/thanks/"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
 [[headers]]
   for = "/robots.txt"

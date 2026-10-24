@@ -142,7 +142,7 @@ async function main() {
     check(`301 ${from}`, r.status === 301 && r.loc === to, r.loc);
   }
 
-  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/pricing/', '/demo/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/']) {
+  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/pricing/', '/demo/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/', '/resources/ae-intake-checklist/']) {
     const r = await page(p);
     const canon = `https://aeconnect.io${p}`;
     check(`200 ${p}`, r.status === 200 && r.text.includes(`rel="canonical" href="${canon}"`));
@@ -152,7 +152,28 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 41 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 41);
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 42 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 42);
+
+  const keyNames = fs.readdirSync(ROOT).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
+  const keyName = keyNames[0] || '';
+  const keyBody = keyName ? fs.readFileSync(path.join(ROOT, keyName), 'utf8').trim() : '';
+  const keyPage = keyName ? await page('/' + keyName) : { status: 0, text: '' };
+  check('indexnow key file is served', keyNames.length === 1 && keyBody === keyName.slice(0, -4) && keyPage.status === 200 && keyPage.text.trim() === keyBody, keyName);
+  const thanks = await page('/resources/ae-intake-checklist/thanks/');
+  const pdf = await fetch(B + '/downloads/ae-intake-readiness-checklist.pdf');
+  const pdfBytes = new Uint8Array(await pdf.arrayBuffer());
+  const pdfMagic = String.fromCharCode(...pdfBytes.slice(0, 5));
+  check(
+    'checklist thanks is noindex and the PDF is a PDF',
+    thanks.status === 200 &&
+      thanks.text.includes('name="robots" content="noindex, nofollow"') &&
+      thanks.text.includes('/downloads/ae-intake-readiness-checklist.pdf') &&
+      !sitemap.text.includes('/resources/ae-intake-checklist/thanks/') &&
+      !sitemap.text.includes(keyName) &&
+      pdf.status === 200 &&
+      pdfMagic === '%PDF-',
+    `pdf ${pdf.status} ${pdfMagic}`,
+  );
 
   const weak = await api('/api/signup', 'POST', undefined, { email: 'not-an-email', password: 'short', name: 'A' });
   check('signup weak password + bad email → 400', weak.status === 400 && !!weak.body.fields?.password && !!weak.body.fields?.email && weak.robots.includes('noindex'));

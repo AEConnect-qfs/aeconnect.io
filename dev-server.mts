@@ -58,6 +58,15 @@ const CSP = [
 
 const app = express();
 app.use(express.json({ limit: '5mb' }));
+app.use(express.urlencoded({ extended: false }));
+// Netlify intercepts this form in production and redirects to the action URL.
+// Locally, send the same redirect so the thanks page can be exercised.
+app.post('/resources/ae-intake-checklist/thanks', (_req, res) => {
+  res.redirect(303, '/resources/ae-intake-checklist/thanks/');
+});
+app.post('/resources/ae-intake-checklist/thanks/', (_req, res) => {
+  res.redirect(303, '/resources/ae-intake-checklist/thanks/');
+});
 
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -69,6 +78,12 @@ app.use((req, res, next) => {
   );
   res.setHeader('Content-Security-Policy', CSP);
   if (req.path.startsWith('/api/')) res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+  if (req.path === '/resources/ae-intake-checklist/thanks' || req.path === '/resources/ae-intake-checklist/thanks/') {
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+  }
+  if (req.path === '/downloads/ae-intake-readiness-checklist.pdf') {
+    res.setHeader('X-Robots-Tag', 'noindex');
+  }
   if (req.path.startsWith('/vendor/')) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
   const dest = LEGACY_REDIRECTS[req.path];
   if (dest) return res.redirect(301, dest);
