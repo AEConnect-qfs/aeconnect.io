@@ -11,7 +11,7 @@ package = "./netlify/plugins/indexnow"
 [build.environment]
   NODE_VERSION = "20"
 
-# Directory indexes are the canonical URLs (`/blog/`, `/about/`).
+# Directory indexes are the canonical URLs (`/blog/`, `/contact/`).
 [build.processing.html]
   pretty_urls = true
 
@@ -134,6 +134,19 @@ package = "./netlify/plugins/indexnow"
 [[redirects]]
   from = "/beta/"
   to = "/trial/"
+  status = 301
+  force = true
+
+# The about page is gone.
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about/"
+  to = "/"
   status = 301
   force = true
 

@@ -39,6 +39,8 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   '/blog/veeva-vault-safety-alternative/': '/blog/veeva-vault-safety/',
   '/beta': '/trial/',
   '/beta/': '/trial/',
+  '/about': '/',
+  '/about/': '/',
 };
 
 const CSP = [

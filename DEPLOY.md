@@ -4,7 +4,7 @@ This repo is the **full aeconnect.io site**: marketing pages **plus**
 the self-serve AI workspace at `/app/`, backed by **Netlify Functions**.
 
 `/` is the marketing homepage (HTTP 200, canonical `https://aeconnect.io/`). It does
-**not** redirect to the workspace. Public URLs use a trailing slash (`/about/`,
+**not** redirect to the workspace. Public URLs use a trailing slash (`/contact/`,
 `/blog/…/`, `/app/`). `netlify.toml` 301s the non-slash form, and also 301s
 `http://` and `www` to `https://aeconnect.io`. `/api/*` is rewritten to functions
 and is `noindex`.
