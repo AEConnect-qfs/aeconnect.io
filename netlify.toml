@@ -124,6 +124,19 @@ package = "./netlify/plugins/indexnow"
   status = 301
   force = true
 
+# The beta program page is gone. Send the old URL to the 14-day sandbox.
+[[redirects]]
+  from = "/beta"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/beta/"
+  to = "/trial/"
+  status = 301
+  force = true
+
 # Trailing-slash canonicals are not forced here. Netlify matches `/blog` and
 # `/blog/` as the same redirect path, so a force 301 from one to the other
 # loops the slash URL onto itself. Pretty URLs already 301 the non-slash form

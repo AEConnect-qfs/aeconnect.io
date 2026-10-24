@@ -37,6 +37,8 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   '/blog/arisglobal-lifesphere-alternative/': '/blog/arisglobal-lifesphere/',
   '/blog/veeva-vault-safety-alternative': '/blog/veeva-vault-safety/',
   '/blog/veeva-vault-safety-alternative/': '/blog/veeva-vault-safety/',
+  '/beta': '/trial/',
+  '/beta/': '/trial/',
 };
 
 const CSP = [

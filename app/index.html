@@ -180,7 +180,7 @@
       <nav class="site-nav">
         <a href="/features/">Features</a>
         <a href="/blog/">Blog</a>
-        <a href="/beta/">Beta</a>
+        <a href="/trial/">14-day trial</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
       </nav>
@@ -563,7 +563,7 @@
         <h2 style="border:0;margin:0">AI-drafted assessment · <span style="color:var(--slate);font-weight:500">model ${esc(currentModelVersion())}</span></h2>
         <button class="btn btn-primary" id="rerunBtn" onclick="runAssess()" style="white-space:nowrap;box-shadow:0 0 0 1px var(--teal)">↻ Re-run AI analysis</button>
       </div>
-      <p class="hint">Review each field. Accept the AI value or override it. Low-confidence fields are flagged. Re-run to regenerate the AI draft — free, doesn't use a trial case.</p>`;
+      <p class="hint">Review each field. Accept the AI value or override it. Low-confidence fields are flagged. Re-run to regenerate the AI draft.</p>`;
 
     for (const [key, label] of FIELDS) {
       const aiVal = key === 'authorities' ? (a.authorities || []).join(', ') : a[key];

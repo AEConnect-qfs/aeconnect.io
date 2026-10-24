@@ -68,7 +68,6 @@ Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQP
 - [Terms of Service (draft)](https://aeconnect.io/terms/)
 - [About](https://aeconnect.io/about/)
 - [Contact](https://aeconnect.io/contact/): info@qfsnow.com
-- [Beta program](https://aeconnect.io/beta/)
 
 ## Contact
 

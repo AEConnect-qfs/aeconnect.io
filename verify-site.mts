@@ -79,6 +79,8 @@ function checkNetlifyRedirects() {
     ['/blog/arisglobal-lifesphere-alternative/', '/blog/arisglobal-lifesphere/'],
     ['/blog/veeva-vault-safety-alternative', '/blog/veeva-vault-safety/'],
     ['/blog/veeva-vault-safety-alternative/', '/blog/veeva-vault-safety/'],
+    ['/beta', '/trial/'],
+    ['/beta/', '/trial/'],
   ];
   for (const [from, to] of legacy) {
     const r = follow(from);
@@ -136,6 +138,8 @@ async function main() {
     ['/blog/meddra-coding-at-intake-ai-pharmacovigilance', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
     ['/adverse-event-intake-system/', '/'],
     ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect', '/blog/veeva-argus-overkill-early-phase-biotech/'],
+    ['/beta/', '/trial/'],
+    ['/beta', '/trial/'],
   ] as const;
   for (const [from, to] of legacy) {
     const r = await page(from);
@@ -152,7 +156,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 43 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 43);
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 42 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 42 && !sitemap.text.includes('/beta/'));
 
   const keyNames = fs.readdirSync(ROOT).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
   const keyName = keyNames[0] || '';
