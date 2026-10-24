@@ -49,6 +49,7 @@ body > nav,
   background: rgba(243, 245, 244, 0.96) !important;
   border-bottom: 1px solid var(--ae-rule) !important;
 }
+.nav-links { gap: 12px !important; }
 .nav-links a { color: var(--ae-muted); }
 .nav-links a:hover,
 .nav-links a.active { color: var(--ae-navy); }
