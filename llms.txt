@@ -1,6 +1,6 @@
 # AE Connect
 
-> The problem is email intake. AE Connect is customizable electronic intake plus AI triage for drug-safety teams. It can feed Oracle Argus, ArisGlobal LifeSphere, Veeva Vault Safety, or another safety database, or it can be the safety database for the full ICSR and the E2B(R3) file. A company email starts a 14-day sandbox trial at https://app.aeconnect.io with unlimited cases. Annual subscriptions are Starter at $36,000, Growth at $72,000, and Scale at $120,000 per year.
+> The problem is email intake. AE Connect is customizable electronic intake plus AI triage for drug-safety teams. It can feed Oracle Argus, ArisGlobal LifeSphere, Veeva Vault Safety, or another safety database, or it can be the safety database for the full ICSR and the E2B(R3) file. Name, a company email, and a company name start a 14-day sandbox trial at https://app.aeconnect.io with unlimited cases. The Organization is created under that company name. Annual subscriptions are Starter at $36,000, Growth at $72,000, and Scale at $120,000 per year.
 
 AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operating from the San Francisco Bay Area. The public site is https://aeconnect.io/. The self-serve workspace is https://aeconnect.io/app/. A separate sign-in application is linked from the marketing pages at https://app.aeconnect.io and is not this site.
 
@@ -21,13 +21,13 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 
 ## Pricing
 
-AE Connect is a full app sold to biotech companies. There is no per-case monthly plan. A company email starts a 14-day sandbox trial with unlimited cases: https://aeconnect.io/trial/ then https://app.aeconnect.io. The sandbox covers electronic intake, form customization, AI triage, and E2B(R3) export. Personal domains such as Gmail, Yahoo, Hotmail, Outlook, iCloud, and AOL are not accepted. Annual subscriptions are Starter $36,000, Growth $72,000, and Scale $120,000 per year. The public page is https://aeconnect.io/pricing/. Contact sales at https://aeconnect.io/contact/ or book a demo at https://aeconnect.io/demo/. Do not invent other prices or per-tier feature lists.
+AE Connect is a full app sold to biotech companies. There is no per-case monthly plan. Name, a company email, and a company name start a 14-day sandbox trial with unlimited cases. The Organization is created under that company name: https://aeconnect.io/trial/ then https://app.aeconnect.io. The sandbox covers electronic intake, form customization, AI triage, and E2B(R3) export. Personal domains such as Gmail, Yahoo, Hotmail, Outlook, iCloud, and AOL are not accepted. Annual subscriptions are Starter $36,000, Growth $72,000, and Scale $120,000 per year. The public page is https://aeconnect.io/pricing/. Contact sales at https://aeconnect.io/contact/ or book a demo at https://aeconnect.io/demo/. Do not invent other prices or per-tier feature lists.
 
 ## Pages
 
 - [Home](https://aeconnect.io/): product overview, how PV case intake works, FAQ
 - [Pricing](https://aeconnect.io/pricing/): 14-day company-email sandbox, then annual Starter $36,000, Growth $72,000, and Scale $120,000
-- [14-day trial](https://aeconnect.io/trial/): work-email form, then the sandbox at https://app.aeconnect.io
+- [14-day trial](https://aeconnect.io/trial/): name, company email, and company name. The sandbox Organization uses that company name, then https://app.aeconnect.io
 - [Book a demo](https://aeconnect.io/demo/): Netlify form for name, email, company, role, case volume, safety database, and a message
 - [AI workspace](https://aeconnect.io/app/): sample workspace on this site. The 14-day sandbox is https://app.aeconnect.io
 - [Solutions](https://aeconnect.io/solutions/): PV case intake, AE/SAE intake form, SUSAR triage, PQC intake, E2B(R3), aggregate reports

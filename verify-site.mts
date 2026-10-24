@@ -195,8 +195,30 @@ async function main() {
     body: 'name=A&email=safety@example-biotech.com&company=Co',
     redirect: 'manual',
   });
+  const missingCompany = await fetch(B + '/trial/thanks/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'name=A&email=safety@example-biotech.com&company=%20%20',
+    redirect: 'manual',
+  });
+  const missingName = await fetch(B + '/trial/thanks/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'name=&email=safety@example-biotech.com&company=Co',
+    redirect: 'manual',
+  });
+  const trialPage = await page('/trial/');
   const trialThanks = await page('/trial/thanks/');
   check('trial rejects a personal email', personalTrial.status === 400);
+  check(
+    'trial requires a company name',
+    missingCompany.status === 400 && missingName.status === 400 &&
+      trialPage.text.includes('>Company name<') &&
+      trialPage.text.includes('placeholder="name@company.com"') &&
+      /id="trial-company"[^>]*required/.test(trialPage.text) &&
+      trialPage.text.includes('Organization') &&
+      !trialPage.text.includes('@gmail'),
+  );
   check(
     'trial accepts a company email and the thanks page is noindex',
     companyTrial.status === 303 &&
@@ -204,6 +226,7 @@ async function main() {
       trialThanks.status === 200 &&
       trialThanks.text.includes('name="robots" content="noindex, nofollow"') &&
       trialThanks.text.includes('https://app.aeconnect.io') &&
+      trialThanks.text.includes('Organization') &&
       !sitemap.text.includes('/trial/thanks/'),
   );
 

@@ -21,6 +21,20 @@
     var note = form.querySelector("[data-email-error]");
     if (!input) return;
     form.addEventListener("submit", function (event) {
+      var nameInput = form.querySelector('input[name="name"]');
+      var companyInput = form.querySelector('input[name="company"]');
+      var missing = false;
+      [nameInput, companyInput].forEach(function (el) {
+        if (!el || !el.required) return;
+        var empty = !(el.value || "").trim();
+        el.setCustomValidity(empty ? "This field is required." : "");
+        if (empty) missing = true;
+      });
+      if (missing) {
+        event.preventDefault();
+        form.reportValidity();
+        return;
+      }
       var email = (input.value || "").trim().toLowerCase();
       var domain = email.split("@")[1] || "";
       var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && !blocked[domain];

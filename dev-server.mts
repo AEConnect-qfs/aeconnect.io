@@ -82,6 +82,12 @@ function companyEmailOk(email: unknown) {
 }
 
 function sandboxTrialPost(req: express.Request, res: express.Response) {
+  const name = String(req.body?.name ?? '').trim();
+  const company = String(req.body?.company ?? '').trim();
+  if (!name || !company) {
+    res.status(400).type('html').send('Name, work email, and company name are required. We create the sandbox Organization under the company name.');
+    return;
+  }
   if (!companyEmailOk(req.body?.email)) {
     res.status(400).type('html').send('Use a company email. Gmail, Yahoo, Hotmail, Outlook, iCloud, and AOL are not accepted.');
     return;
