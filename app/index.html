@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AE Connect workspace — AI adverse-event case processing</title>
-  <meta name="description" content="Sign in to draft seriousness, MedDRA coding, causality, and a reporting timeline from an adverse-event source. First 5 cases free. AE Connect integrates with any safety database. Argus, ArisGlobal, and Veeva remain the system of record." />
+  <meta name="description" content="Sign in to draft seriousness, MedDRA coding, causality, and a reporting timeline from an adverse-event source. A company email starts the 14-day sandbox at app.aeconnect.io." />
   <link rel="canonical" href="https://aeconnect.io/app/" />
   <meta property="og:title" content="AE Connect workspace — AI adverse-event case processing" />
-  <meta property="og:description" content="Paste or upload a source document and review a structured pharmacovigilance draft. First 5 cases free." />
+  <meta property="og:description" content="Paste or upload a source document and review a structured pharmacovigilance draft. The 14-day sandbox is for a company email." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aeconnect.io/app/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AE Connect workspace — AI adverse-event case processing" />
-  <meta name="twitter:description" content="Review an AI draft of an adverse-event case. First 5 cases free. AE Connect integrates with any safety database, which remains the system of record." />
+  <meta name="twitter:description" content="Review an AI draft of an adverse-event case. A company email starts a 14-day sandbox with unlimited cases." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -193,7 +193,7 @@
     <div class="modal-card">
       <button class="modal-close" onclick="closeAuth()" aria-label="Close">×</button>
       <h1>Save your assessment</h1>
-      <p class="sub" id="authSubtitle">Create your free account to see the AI assessment. First 5 cases free — no card.</p>
+      <p class="sub" id="authSubtitle">The 14-day sandbox uses a company email. Personal addresses such as Gmail are not accepted.</p>
       <div class="tabs" role="tablist">
         <button type="button" id="tabSignup" class="active" role="tab" aria-selected="true" onclick="setMode('signup')">Sign up</button>
         <button type="button" id="tabLogin" role="tab" aria-selected="false" onclick="setMode('login')">Log in</button>
@@ -292,7 +292,7 @@
   }
   function openAuth(m, subtitle) {
     authModal.classList.remove('hidden');
-    document.getElementById('authSubtitle').textContent = subtitle || 'Log in or create your free account. First 5 cases free — no card.';
+    document.getElementById('authSubtitle').textContent = subtitle || 'Use a company email. The 14-day sandbox does not accept personal addresses such as Gmail.';
     setMode(m || 'signup');
     setTimeout(() => { (mode === 'signup' ? f_name : f_email).focus(); }, 60);
   }
@@ -366,13 +366,13 @@
     if (usage) {
       if (usage.plan === 'trial') {
         const rem = usage.trial.remaining;
-        pill = `<div class="usage-pill ${rem <= 1 ? 'warn' : ''}"><span class="dot"></span>Free trial · ${usage.trial.used}/${usage.trial.limit} used</div>`;
+        pill = `<div class="usage-pill ${rem <= 1 ? 'warn' : ''}"><span class="dot"></span>Sample workspace · ${usage.trial.used}/${usage.trial.limit} used</div>`;
       } else {
-        pill = `<div class="usage-pill"><span class="dot"></span>Core · ${usage.casesProcessed}/${usage.includedPerMonth} this month${usage.overageCases ? ' · +' + usage.overageCases + ' overage' : ''} · ${usage.estimatedAmountDue}</div>`;
+        pill = `<div class="usage-pill"><span class="dot"></span>Workspace · ${usage.casesProcessed} cases this month</div>`;
       }
     }
     const sub = usage && usage.plan === 'trial'
-      ? `<span class="sub-links"><button class="btn btn-amber btn-sm" onclick="subscribe()">Subscribe · $20/mo</button> Checkout uses the <a href="/terms/">Terms</a> and <a href="/privacy/">Privacy Policy</a> (drafts).</span>` : '';
+      ? `<span class="sub-links"><a class="btn btn-amber btn-sm" href="/trial/">Start a 14-day trial</a> <a href="/pricing/">Annual plans</a></span>` : '';
     topRight.innerHTML = `${pill}${sub}<span style="color:var(--slate)">${esc(user.name)}</span><button class="btn btn-ghost btn-sm" onclick="logout()">Log out</button>`;
   }
 
@@ -435,7 +435,7 @@
         <div class="hero">
           <div class="eyebrow">✦ AI-assisted pharmacovigilance</div>
           <h1>From an adverse-event source document to a structured assessment — in seconds.</h1>
-          <p class="lede">Paste or upload an adverse-event report and the engine drafts a complete ICSR-style assessment — seriousness, MedDRA coding, causality, expectedness and reporting timeline — each with its clinical reasoning and guideline references. You review and approve every field. <strong>First 5 cases free, no card.</strong></p>
+          <p class="lede">Paste or upload an adverse-event report and the engine drafts a complete ICSR-style assessment — seriousness, MedDRA coding, causality, expectedness and reporting timeline — each with its clinical reasoning and guideline references. You review and approve every field. <strong>The 14-day sandbox takes a company email and does not cap cases.</strong></p>
         </div>
         <div class="features">
           <div class="feature"><div class="fi">🧬</div><h4>Structured PV draft</h4><p>Seriousness, MedDRA (LLT→PT→SOC), WHO-UMC causality, expectedness & the reporting clock.</p></div>
@@ -473,7 +473,7 @@
     const payload = readCaseForm();
     if (!payload) return;
     pendingSource = payload;
-    openAuth('signup', 'Create your free account to run this assessment and see the result. First 5 cases free — no card.');
+    openAuth('signup', 'Use a company email. Personal addresses such as Gmail are not accepted for the 14-day sandbox.');
   }
   async function createAndAssess(s) {
     mainPanel.innerHTML = `<div class="empty">🧠 Running AI assessment…</div>`;
@@ -549,8 +549,8 @@
       const blocked = usage && usage.plan === 'trial' && usage.trial.remaining <= 0;
       html += `<div class="card"><h2>AI assessment</h2>
         <p class="hint">Run the AI engine to draft the structured assessment.</p>
-        ${blocked ? `<div class="banner banner-warn">Your free trial is used up. Subscribe to Core to process this case.</div>
-          <button class="btn btn-amber" onclick="subscribe()">Subscribe · $20/mo</button>`
+        ${blocked ? `<div class="banner banner-warn">This sample workspace has a case cap. The 14-day sandbox takes a company email and does not cap cases.</div>
+          <a class="btn btn-amber" href="/trial/">Start a 14-day trial</a>`
           : `<button class="btn btn-primary" id="assessBtn" onclick="runAssess()">🚀 Run AI assessment</button>`}
         <div class="err" id="assessErr"></div></div>`;
       mainPanel.innerHTML = html;

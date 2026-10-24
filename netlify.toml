@@ -181,6 +181,16 @@ package = "./netlify/plugins/indexnow"
     X-Robots-Tag = "noindex, nofollow"
 
 [[headers]]
+  for = "/trial/thanks"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/trial/thanks/"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
   for = "/robots.txt"
   [headers.values]
     Cache-Control = "public, max-age=3600"
