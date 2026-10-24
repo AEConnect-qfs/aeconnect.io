@@ -85,7 +85,7 @@ function sandboxTrialPost(req: express.Request, res: express.Response) {
   const name = String(req.body?.name ?? '').trim();
   const company = String(req.body?.company ?? '').trim();
   if (!name || !company) {
-    res.status(400).type('html').send('Name, work email, and company name are required. We create the sandbox Organization under the company name.');
+    res.status(400).type('html').send('Name, work email, and company name are required. We email a verification link to the company work address. The sandbox Organization is created only after you verify.');
     return;
   }
   if (!companyEmailOk(req.body?.email)) {

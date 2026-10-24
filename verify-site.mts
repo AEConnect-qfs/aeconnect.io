@@ -216,7 +216,8 @@ async function main() {
       trialPage.text.includes('>Company name<') &&
       trialPage.text.includes('placeholder="name@company.com"') &&
       /id="trial-company"[^>]*required/.test(trialPage.text) &&
-      trialPage.text.includes('Organization') &&
+      trialPage.text.includes('verification link') &&
+      trialPage.text.includes('only after you verify') &&
       !trialPage.text.includes('@gmail'),
   );
   check(
@@ -226,7 +227,8 @@ async function main() {
       trialThanks.status === 200 &&
       trialThanks.text.includes('name="robots" content="noindex, nofollow"') &&
       trialThanks.text.includes('https://app.aeconnect.io') &&
-      trialThanks.text.includes('Organization') &&
+      trialThanks.text.includes('verification link') &&
+      trialThanks.text.includes('only after you verify') &&
       !sitemap.text.includes('/trial/thanks/'),
   );
 
