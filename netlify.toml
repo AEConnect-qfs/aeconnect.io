@@ -137,6 +137,36 @@ package = "./netlify/plugins/indexnow"
   status = 301
   force = true
 
+# The marketing trial form does not email a verification link. Until that
+# signup mail lives in the app, send /trial to the live app account page.
+# Verified 2026-10-24 against the app bundle: the route is /register.
+# There is no /signup route. 302 (not 301) because this is interim.
+# Both slash forms go to the same external URL, so this does not loop.
+# force is required because trial/index.html remains as a fallback.
+[[redirects]]
+  from = "/trial"
+  to = "https://app.aeconnect.io/register"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/trial/"
+  to = "https://app.aeconnect.io/register"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/trial/thanks"
+  to = "https://app.aeconnect.io/register"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/trial/thanks/"
+  to = "https://app.aeconnect.io/register"
+  status = 302
+  force = true
+
 # The about page is gone.
 [[redirects]]
   from = "/about"
