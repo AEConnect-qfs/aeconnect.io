@@ -4,22 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI pharmacovigilance case processing | AE Connect</title>
-  <meta name="description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. It does not file the case." />
+  <meta name="description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. AE Connect integrates the case with any safety database, which remains the system of record." />
   <meta name="author" content="QORO Team" />
   <link rel="canonical" href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/" />
   <meta property="og:title" content="AI pharmacovigilance case processing" />
-  <meta property="og:description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. It does not file the case." />
+  <meta property="og:description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. AE Connect integrates the case with any safety database, which remains the system of record." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AI pharmacovigilance case processing | AE Connect" />
-  <meta name="twitter:description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. It does not file the case." />
+  <meta name="twitter:description" content="AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. AE Connect integrates the case with any safety database, which remains the system of record." />
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "AI pharmacovigilance case processing, with a person on every field",
-  "description": "AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. It does not file the case.",
+  "description": "AI pharmacovigilance case processing in AE Connect: a reviewed draft of seriousness, MedDRA, causality, expectedness, and timeline. AE Connect integrates the case with any safety database, which remains the system of record.",
   "url": "https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/",
   "datePublished": "2026-10-23",
   "dateModified": "2026-10-23",
@@ -51,10 +51,10 @@
     },
     {
       "@type": "Question",
-      "name": "Does the AI submit the case?",
+      "name": "What happens after a reviewer accepts the draft?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. AE Connect does not send ICSRs, does not produce E2B(R3) XML, and does not write aggregate reports. Submission stays with the safety database, the CRO, or the publishing path named in the pharmacovigilance plan."
+        "text": "A reviewer accepts or overrides the draft. AE Connect then integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record for the E2B(R3) file. Aggregate reports stay with that database."
       }
     },
     {
@@ -70,7 +70,7 @@
       "name": "What does it cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The first 5 AI-processed cases are free, with no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe handles payment. Re-running an assessment on a case that was already counted is not a new charge."
+        "text": "The first 5 AI-processed cases are free, with no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe handles payment. Re-running an assessment on a case that was already counted is not a new charge. That is the starting point. Companies that need a customized intake form and integration with their existing safety database buy Starter at $36,000 per year, Growth at $72,000 per year, or Scale at $120,000 per year."
       }
     }
   ]
@@ -160,13 +160,13 @@
   <p>A processed case can answer a short list of questions. If it cannot, it is still intake, which is fine, but it is not done.</p>
 <aside class="lead-cta">
   <h2>Start 5 free cases, or book a demo</h2>
-  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p>AE Connect is the intake and AI case-processing layer that integrates with any safety database, including Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those products remain the system of record. The first 5 cases are free. Core is $20 per month.</p>
   <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
 </aside>
 
 <aside class="lead-cta">
   <h2>AE Intake Readiness Checklist</h2>
-  <p>A two-page checklist for AE and SAE intake, and for the case data to have in hand before an E2B(R3) file is prepared in the safety database. AE Connect drafts the case. It does not transmit an ICSR, and it is not a certified connector to Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety.</p>
+  <p>A two-page checklist for AE and SAE intake, and for the case data to have in hand before an E2B(R3) file is prepared in the safety database. AE Connect drafts the case and integrates it with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
   <p class="actions"><a class="btn" href="https://aeconnect.io/resources/ae-intake-checklist/">Get the checklist</a></p>
 </aside>
 
@@ -188,23 +188,23 @@
   <p>The reviewer is the drug-safety decision. The draft can be faster than a blank form and still be wrong about hospitalization, about which product was suspect, or about a second event buried in paragraph four. Override is the product working, not the product failing. A team that accepts every field without reading the source has automated a risk, not a process.</p>
   <p>The same limit applies to <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR</a> calls and to <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3)</a> content. The draft can show that a 7-day clock might apply. It cannot start the clock, unblind the subject, or send the file. <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">AE and SAE reporting</a> remains the sponsor's duty.</p>
   <h2>Where this sits relative to a safety database</h2>
-  <p>Argus, LifeSphere, and Veeva Vault Safety remain the safety database, including the submission and aggregate modules their customers configure. AE Connect works in front of that stack. It turns the source document into a reviewed draft, and a person books the official case in the safety database. There is no certified connector. Read how that handoff works for <a href="https://aeconnect.io/integrations/oracle-argus/">Argus</a>, <a href="https://aeconnect.io/integrations/arisglobal/">LifeSphere</a>, and <a href="https://aeconnect.io/integrations/veeva-vault-safety/">Vault Safety</a>.</p>
-  <p>Price is the workspace price, not an enterprise license. Five cases free, then $20 per month for 25 AI-processed cases and $1 each after that. If that is too small for the program you are about to run, you are shopping for a database, and these pages should help you say so.</p>
+  <p>AE Connect integrates with any safety database, including Argus, LifeSphere, and Veeva Vault Safety. Those products remain the system of record, including submission and aggregate reports. Read how that works for <a href="https://aeconnect.io/integrations/oracle-argus/">Argus</a>, <a href="https://aeconnect.io/integrations/arisglobal/">LifeSphere</a>, and <a href="https://aeconnect.io/integrations/veeva-vault-safety/">Vault Safety</a>.</p>
+  <p>Free cases and Core at $20 per month are the starting point. Companies that need a customized intake form and integration with their existing safety database buy Starter, Growth, or Scale at $36,000, $72,000, or $120,000 per year. <a href="https://aeconnect.io/pricing/">Pricing</a> has the Contact sales and Book a demo links.</p>
   <div class="cta">
     <h2>Open a case in the workspace</h2>
-    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. The workspace does not submit an ICSR.</p>
+    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. The first 5 cases are free. Core is $20 per month, with 25 AI-processed cases included and $1 for each case after that. You accept or override every field. AE Connect integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
     <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
   </div>
   <section class="faq">
     <h2>FAQ</h2>
     <h3>What does AI pharmacovigilance case processing mean here?</h3>
     <p>In AE Connect it means the workspace reads an adverse-event source and drafts the fields a drug-safety reviewer normally fills in: seriousness, a suggested MedDRA term, WHO-UMC causality, expectedness, a reporting timeline, and a short narrative. The reviewer accepts or overrides every field. The draft is not a final regulatory action.</p>
-    <h3>Does the AI submit the case?</h3>
-    <p>No. AE Connect does not send ICSRs, does not produce E2B(R3) XML, and does not write aggregate reports. Submission stays with the safety database, the CRO, or the publishing path named in the pharmacovigilance plan.</p>
+    <h3>What happens after a reviewer accepts the draft?</h3>
+    <p>A reviewer accepts or overrides the draft. AE Connect then integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record for the E2B(R3) file. Aggregate reports stay with that database.</p>
     <h3>How does MedDRA coding work in the draft?</h3>
     <p>The model suggests a preferred term and a system organ class from the verbatim text, with a rationale. It is not a search against a licensed MedDRA browser, and it can be wrong. Confirm the term against the MedDRA version your process uses before anyone treats it as the coded case.</p>
     <h3>What does it cost?</h3>
-    <p>The first 5 AI-processed cases are free, with no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe handles payment. Re-running an assessment on a case that was already counted is not a new charge.</p>
+    <p>The first 5 AI-processed cases are free, with no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe handles payment. Re-running an assessment on a case that was already counted is not a new charge. That is the starting point. Companies that need a customized intake form and integration with their existing safety database buy Starter at $36,000 per year, Growth at $72,000 per year, or Scale at $120,000 per year.</p>
   </section>
   <div class="related">
     <h2>In this series</h2>
@@ -224,14 +224,14 @@
 
 <aside class="lead-cta">
   <h2>Start 5 free cases, or book a demo</h2>
-  <p>AE Connect is the intake and AI case-processing layer in front of Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those systems remain the safety database. The first 5 cases are free. Core is $20 per month.</p>
+  <p>AE Connect is the intake and AI case-processing layer that integrates with any safety database, including Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. Those products remain the system of record. The first 5 cases are free. Core is $20 per month.</p>
   <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
 </aside>
 <section class="product-links">
   <h2>Use this with the product</h2>
   <ul>
     <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
-    <li><a href="https://aeconnect.io/pricing/">Pricing: 5 free cases, then $20 per month</a></li>
+    <li><a href="https://aeconnect.io/pricing/">Pricing: Core from $20 per month, annual plans from $36,000</a></li>
     <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
     <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
   </ul>

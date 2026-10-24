@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AE Connect works with Veeva Vault Safety | AE Connect</title>
-  <meta name="description" content="Veeva Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <meta name="description" content="Veeva Vault Safety remains the system of record. AE Connect integrates with Vault Safety and with any other safety database." />
   <link rel="canonical" href="https://aeconnect.io/integrations/veeva-vault-safety/" />
   <meta property="og:title" content="AE Connect works with Veeva Vault Safety | AE Connect" />
-  <meta property="og:description" content="Veeva Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <meta property="og:description" content="Veeva Vault Safety remains the system of record. AE Connect integrates with Vault Safety and with any other safety database." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aeconnect.io/integrations/veeva-vault-safety/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AE Connect works with Veeva Vault Safety | AE Connect" />
-  <meta name="twitter:description" content="Veeva Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it." />
+  <meta name="twitter:description" content="Veeva Vault Safety remains the system of record. AE Connect integrates with Vault Safety and with any other safety database." />
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -50,7 +50,7 @@
     {
       "@type": "WebPage",
       "name": "AE Connect works with Veeva Vault Safety",
-      "description": "Veeva Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it.",
+      "description": "Veeva Vault Safety remains the system of record. AE Connect integrates with Vault Safety and with any other safety database.",
       "url": "https://aeconnect.io/integrations/veeva-vault-safety/",
       "author": {
         "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png",
@@ -70,15 +70,15 @@
           "name": "Is AE Connect a Veeva Vault Safety alternative?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Vault Safety remains the safety database. AE Connect works in front of it."
+            "text": "No. Vault Safety remains the safety database and the system of record. AE Connect integrates with it, and with any other safety database."
           }
         },
         {
           "@type": "Question",
-          "name": "Does AE Connect use Vault's open API?",
+          "name": "Does AE Connect integrate with Vault Safety?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. There is no certified Vault connector on this site."
+            "text": "Yes. AE Connect integrates with Vault Safety and with any other safety database. Vault Safety remains the system of record."
           }
         },
         {
@@ -177,26 +177,26 @@
   <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/integrations/">Works with</a> / Veeva Vault Safety</p>
   <h1>AE Connect works with Veeva Vault Safety</h1>
   
-  <p class="lede">AE Connect is not a Veeva Vault Safety alternative. Vault Safety remains the safety database. AE Connect is the intake and AI case-processing layer in front of it.</p>
+  <p class="lede">AE Connect is not a Veeva Vault Safety alternative. Vault Safety remains the system of record. AE Connect integrates with Vault Safety and with any other safety database.</p>
   <table>
     <caption>What Veeva's Vault Help says Vault Safety does, and what AE Connect actually does.</caption>
     <thead><tr><th scope="col">Job</th><th scope="col">Safety database</th><th scope="col">What AE Connect adds in front</th></tr></thead>
     <tbody>
-    <tr><th scope="row">Role</th><td>Safety database. <a href="https://safety.veevavault.help/en/lr/01462/">Veeva's Safety Suite overview</a> describes Vault Safety as end-to-end management of intake, medical review, case processing, and submission, plus aggregate reporting.</td><td>Intake and a reviewed draft before that case is booked in Vault Safety.</td></tr>
+    <tr><th scope="row">Role</th><td>Safety database. <a href="https://safety.veevavault.help/en/lr/01462/">Veeva's Safety Suite overview</a> describes Vault Safety as end-to-end management of intake, medical review, case processing, and submission, plus aggregate reporting.</td><td>Intake and AI case processing that integrates with Vault Safety. Vault Safety remains the system of record.</td></tr>
     <tr><th scope="row">System of record</th><td>Typically Vault Safety, when the plan names it. Veeva describes it as a single source of truth for safety data on Vault.</td><td>No.</td></tr>
-    <tr><th scope="row">APIs</th><td>The same Veeva page says Vault Safety has open APIs and technology integrations. That is Veeva's platform, configured by the customer.</td><td>AE Connect does not call the Vault Safety API and does not write inbox items or cases into Vault.</td></tr>
+    <tr><th scope="row">APIs</th><td>The same Veeva page says Vault Safety has open APIs and technology integrations. That is Veeva's platform, configured by the customer.</td><td>AE Connect integrates with Vault Safety. Vault Safety remains the system of record.</td></tr>
     <tr><th scope="row">AI extraction and triage</th><td>Any automation inside a customer's Vault is their configuration. This page does not describe it.</td><td>Seriousness, expectedness, WHO-UMC causality, and a reporting timeline for a person to accept or override.</td></tr>
     <tr><th scope="row">MedDRA coding assist</th><td>Coding in Vault uses the customer's MedDRA license.</td><td>A suggested preferred term and system organ class.</td></tr>
     <tr><th scope="row">Narrative</th><td>Medical review in Vault Safety is where Veeva says the case is processed.</td><td>A short draft narrative to take into that review.</td></tr>
-    <tr><th scope="row">E2B(R3) output</th><td>Veeva describes submission of adverse events as part of Vault Safety. The gateway and the message are configured there.</td><td>AE Connect does not transmit E2B(R3). The reviewed draft is the package a processor uses when they enter the case.</td></tr>
+    <tr><th scope="row">E2B(R3) output</th><td>Veeva describes submission of adverse events as part of Vault Safety. The gateway and the message are configured there.</td><td>AE Connect integrates the reviewed case with Vault Safety. Vault Safety remains the system of record for the E2B(R3) file.</td></tr>
     <tr><th scope="row">Aggregate reports</th><td>Veeva's overview lists aggregate reporting in the Safety suite. SafetyDocs is a related content application. Generating tables still requires the Safety license, according to Veeva's SafetyDocs notes.</td><td>AE Connect does not write PSUR, PBRER, DSUR, or an IND annual report.</td></tr>
     </tbody>
   </table>
   <p>Source: <a href="https://safety.veevavault.help/en/lr/01462/">Veeva Vault Help, Veeva Safety Suite Overview</a>. Veeva can change that page.</p>
-  <p>There is no certified connector that writes the case into the safety database for you. A reviewer accepts or overrides the draft in AE Connect. The official case is then booked in the safety database by a person. Calling a silent API an integration would be false. The integration is the workflow: intake and AI case processing here, system of record there.</p>
+  <p>AE Connect integrates with any safety database. A reviewer accepts or overrides the draft, and the case integrates with the safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
   <aside class="lead-cta">
   <h2>Start 5 free cases, or book a demo</h2>
-  <p>AE Connect is the intake and AI case-processing layer in front of the safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety stay the system of record. The first 5 cases are free. Core is $20 per month.</p>
+  <p>AE Connect is the intake and AI case-processing layer that integrates with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record. The first 5 cases are free. Core is $20 per month.</p>
   <p class="actions"><a class="btn" href="https://aeconnect.io/app/">Start 5 free cases</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
 </aside>
   <p>Related: <a href="https://aeconnect.io/pricing/">pricing</a>, <a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a>, <a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3)</a>, <a href="https://aeconnect.io/trust/">trust</a>.</p>
@@ -204,9 +204,9 @@
   <section>
 <h2>Questions</h2>
 <h3>Is AE Connect a Veeva Vault Safety alternative?</h3>
-  <p>No. Vault Safety remains the safety database. AE Connect works in front of it.</p>
-<h3>Does AE Connect use Vault's open API?</h3>
-  <p>No. There is no certified Vault connector on this site.</p>
+  <p>No. Vault Safety remains the safety database and the system of record. AE Connect integrates with it, and with any other safety database.</p>
+<h3>Does AE Connect integrate with Vault Safety?</h3>
+  <p>Yes. AE Connect integrates with Vault Safety and with any other safety database. Vault Safety remains the system of record.</p>
 <h3>Who submits the ICSR?</h3>
   <p>The path configured in Vault Safety, or whichever partner your pharmacovigilance plan names. Not AE Connect.</p>
 </section>

@@ -1,6 +1,6 @@
 # AE Connect
 
-> AE Connect is AI pharmacovigilance case processing for drug-safety teams. Paste or upload an adverse-event source and the workspace at https://aeconnect.io/app/ drafts seriousness, MedDRA coding, causality, expectedness, and a reporting timeline for a person to review. First 5 cases are free, then Core is $20/month via Stripe. It is not a safety database and it does not submit ICSRs.
+> AE Connect is AI pharmacovigilance case processing for drug-safety teams. Paste or upload an adverse-event source and the workspace at https://aeconnect.io/app/ drafts seriousness, MedDRA coding, causality, expectedness, and a reporting timeline for a person to review. First 5 cases are free, then Core is $20/month via Stripe. That self-serve price is the starting point. Annual subscriptions for a customized intake form and integration with the company's safety database are Starter at $36,000, Growth at $72,000, and Scale at $120,000 per year. It integrates with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.
 
 AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operating from the San Francisco Bay Area. The public site is https://aeconnect.io/. The self-serve workspace is https://aeconnect.io/app/. A separate sign-in application is linked from the marketing pages at https://app.aeconnect.io and is not this site.
 
@@ -8,26 +8,25 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 
 - PV case intake: an intake form where you paste a narrative or upload PDF, Word, text, email, CSV, or an image. Files are parsed in the browser. Only the extracted text is sent for assessment.
 - The draft covers seriousness, a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness, whether regulatory reporting looks required, and a reporting timeline, each with a short rationale.
-- A reviewer accepts or overrides every field. The draft is decision support. It does not file an AE, SAE, or SUSAR report. This workspace has no e-signature sign-off.
+- A reviewer accepts or overrides every field. The draft is decision support. AE Connect integrates the reviewed case with any safety database. The draft is organized around ICSR concepts (seriousness, coding, causality, expectedness, timeline, narrative). Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record, including the E2B(R3) file when that database is configured to produce it. This workspace has no e-signature sign-off.
 - Expectedness is a suggestion to check against the current company core data sheet or Investigator's Brochure. AE Connect does not author or version the CCDS.
 - Product quality complaint (PQC) narratives that include an adverse event can be pasted into the same intake. This is not a QMS or a complaint-handling system.
 - Aggregate reports (IND annual report, DSUR, PSUR, PBRER) are out of scope. Those stay with the safety database or the PV partner.
 
 ## What it does not do
 
-- It does not transmit E2B(R3) ICSR XML to FDA, EMA, or any gateway. The reviewed draft is organized around ICSR concepts (seriousness, coding, causality, expectedness, timeline, narrative) so a person can book the case in the safety database. The safety database produces and transmits the file when it is configured to.
-- It is not an alternative to Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety. Those remain the safety database. AE Connect is the intake-form and AI case-processing layer in front of them. There is no certified connector that writes the case into those systems.
+- It is not an alternative to Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety. AE Connect integrates with any safety database, including those three. They remain the system of record.
 - It is not an "AI governance and compliance layer" inside Argus or Veeva. Read https://aeconnect.io/integrations/ and https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/.
 - It does not claim GAMP 5 certification, 21 CFR Part 11 certification, SOC 2, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail. Validation status is a question for QORO, not a claim on this page.
 
 ## Pricing
 
-First 5 AI-processed cases are free, no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe Checkout handles the card. The public page is https://aeconnect.io/pricing/. Prices are defined in code and shown in the workspace. Do not invent other public price tiers from older marketing snippets.
+AE Connect is a full app sold to biotech companies. First 5 AI-processed cases are free, no card. Core is $20 per month and includes 25 AI-processed cases, then $1 per additional case. Stripe Checkout handles that starting price. Companies that need a customized intake form and integration with their existing safety database buy an annual subscription: Starter $36,000, Growth $72,000, or Scale $120,000 per year. The public page is https://aeconnect.io/pricing/. Contact sales at https://aeconnect.io/contact/ or book a demo at https://aeconnect.io/demo/. Do not invent other prices or per-tier feature lists.
 
 ## Pages
 
 - [Home](https://aeconnect.io/): product overview, how PV case intake works, FAQ
-- [Pricing](https://aeconnect.io/pricing/): 5 free cases, then Core at $20 per month
+- [Pricing](https://aeconnect.io/pricing/): 5 free cases, then Core at $20 per month, plus annual Starter $36,000, Growth $72,000, and Scale $120,000
 - [Book a demo](https://aeconnect.io/demo/): Netlify form for name, email, company, role, case volume, safety database, and a message
 - [AI workspace](https://aeconnect.io/app/): signup, login, and case processing. First 5 cases are free
 - [Solutions](https://aeconnect.io/solutions/): PV case intake, AE/SAE intake form, SUSAR triage, PQC intake, E2B(R3), aggregate reports
@@ -36,7 +35,7 @@ First 5 AI-processed cases are free, no card. Core is $20 per month and includes
 - [Design partners](https://aeconnect.io/design-partners/): application form. No published results
 - [Features](https://aeconnect.io/features/): longer feature narrative published on the marketing site
 - [E2B(R3) checklist](https://aeconnect.io/e2b-r3-checklist/): readiness checklist with a Netlify lead form
-- [AE Intake Readiness Checklist](https://aeconnect.io/resources/ae-intake-checklist/): two-page checklist for AE and SAE intake and for the case data to have ready before an E2B(R3) file is prepared in the safety database. The PDF is on the thank-you page after the form. AE Connect does not transmit the ICSR.
+- [AE Intake Readiness Checklist](https://aeconnect.io/resources/ae-intake-checklist/): two-page checklist for AE and SAE intake and for the case data to have ready before an E2B(R3) file is prepared. The PDF is on the thank-you page after the form. AE Connect integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.
 - [Blog](https://aeconnect.io/blog/): pharmacovigilance notes for small biotech teams
 - [E2B(R3) ICSR submission guide](https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/): what the electronic ICSR requirement means for small sponsors
 - [Argus, Safety One, and Veeva for early-phase teams](https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/)
@@ -46,13 +45,13 @@ First 5 AI-processed cases are free, no card. Core is $20 per month and includes
 
 ## Guides
 
-Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQPage JSON-LD, and a link to the workspace. Pages about Argus, LifeSphere, and Vault Safety describe how AE Connect works in front of those safety databases. They are not alternatives and they do not claim a certified connector.
+Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQPage JSON-LD, and a link to the workspace. Pages about Argus, LifeSphere, and Vault Safety describe how AE Connect integrates with those safety databases and with any other. They are not alternatives. Those products remain the system of record.
 
 - [PV case intake forms](https://aeconnect.io/blog/pv-case-intake-forms/): what an intake form captures before the clock starts
 - [Adverse event reporting: AE and SAE](https://aeconnect.io/blog/adverse-event-reporting-ae-sae/)
 - [SUSAR reporting](https://aeconnect.io/blog/susar-reporting-ind-sponsors/)
 - [Product quality complaint reporting](https://aeconnect.io/blog/product-quality-complaint-reporting/): not a QMS, and not a Field Alert Report
-- [E2B(R3) ICSR submissions](https://aeconnect.io/blog/e2b-r3-icsr-submissions/): the message standard, which this product does not transmit
+- [E2B(R3) ICSR submissions](https://aeconnect.io/blog/e2b-r3-icsr-submissions/): the message standard. AE Connect integrates the case with the safety database, which remains the system of record
 - [AI pharmacovigilance case processing](https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/)
 - [PSUR, PBRER, and DSUR](https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/): aggregate-report basics the workspace does not write
 - [Works with Oracle Argus](https://aeconnect.io/blog/oracle-argus/) and the [Argus table](https://aeconnect.io/integrations/oracle-argus/)
