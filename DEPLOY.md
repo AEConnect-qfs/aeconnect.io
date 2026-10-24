@@ -107,7 +107,7 @@ Trigger a redeploy after setting these.
 
 ## 5b. Payments
 
-Do not publish a monthly self-serve price. Annual plans are sold through Contact sales and Book a demo. The 14-day sandbox starts from `/trial/` after the company email is verified.
+Do not publish a monthly self-serve price. Annual plans are sold through Contact sales and Book a demo. The 14-day sandbox is requested at `/trial/` with a company email and a company name. We set up the account.
 
 ## 6. Verify the live deploy
 

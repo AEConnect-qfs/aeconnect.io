@@ -15,13 +15,11 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
  * Legacy 301s below must stay in sync with the "previously indexed" rules in
  * netlify.toml. Trailing-slash canonicals are the directory indexes themselves;
  * express.static 301s a non-slash directory request to the slash form.
- * /trial and /trial/thanks 302 to the app signup page and must stay in sync
- * with the trial rules in netlify.toml. Those rules run before static files.
+ * /beta still 301s to /trial/. The sandbox-trial form posts to /trial/thanks/.
  */
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const FUNCTIONS_DIR = path.join(__dirname, 'netlify', 'functions');
 const PORT = Number(process.env.PORT || 8787);
-const APP_SIGNUP_URL = 'https://app.aeconnect.io/register';
 
 const LEGACY_REDIRECTS: Record<string, string> = {
   '/blog/meddra-coding-at-intake-ai-pharmacovigilance':
@@ -75,6 +73,37 @@ app.post('/resources/ae-intake-checklist/thanks/', (_req, res) => {
   res.redirect(303, '/resources/ae-intake-checklist/thanks/');
 });
 
+// Keep this list aligned with assets/work-email.js. Netlify accepts the
+// posted form in production; this local check mirrors the client-side gate.
+const PERSONAL_EMAIL_DOMAINS = new Set([
+  'gmail.com', 'googlemail.com', 'yahoo.com', 'yahoo.co.uk', 'ymail.com', 'rocketmail.com',
+  'hotmail.com', 'hotmail.co.uk', 'outlook.com', 'live.com', 'msn.com',
+  'icloud.com', 'me.com', 'mac.com', 'aol.com',
+]);
+
+function companyEmailOk(email: unknown) {
+  const value = String(email ?? '').trim().toLowerCase();
+  const domain = value.split('@')[1] || '';
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && !PERSONAL_EMAIL_DOMAINS.has(domain);
+}
+
+function sandboxTrialPost(req: express.Request, res: express.Response) {
+  const name = String(req.body?.name ?? '').trim();
+  const company = String(req.body?.company ?? '').trim();
+  if (!name || !company) {
+    res.status(400).type('html').send('Name, company work email, and company name are required. We set up the sandbox account from this request.');
+    return;
+  }
+  if (!companyEmailOk(req.body?.email)) {
+    res.status(400).type('html').send('Use a company email. Gmail, Yahoo, Hotmail, Outlook, iCloud, and AOL are not accepted.');
+    return;
+  }
+  res.redirect(303, '/trial/thanks/');
+}
+
+app.post('/trial/thanks', sandboxTrialPost);
+app.post('/trial/thanks/', sandboxTrialPost);
+
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -97,14 +126,6 @@ app.use((req, res, next) => {
     res.setHeader('X-Robots-Tag', 'noindex');
   }
   if (req.path.startsWith('/vendor/')) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  if (
-    req.path === '/trial' ||
-    req.path === '/trial/' ||
-    req.path === '/trial/thanks' ||
-    req.path === '/trial/thanks/'
-  ) {
-    return res.redirect(302, APP_SIGNUP_URL);
-  }
   const dest = LEGACY_REDIRECTS[req.path];
   if (dest) return res.redirect(301, dest);
   next();
