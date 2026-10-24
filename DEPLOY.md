@@ -94,43 +94,29 @@ Site configuration → Environment variables. Add:
 | `JWT_SECRET` | a long random string — generate with `openssl rand -hex 32` |
 | `ANTHROPIC_API_KEY` | your Anthropic key (server-side only; never shipped to the browser) |
 | `ANTHROPIC_MODEL` | *(optional)* defaults to `claude-sonnet-4-20250514` |
-| `STRIPE_SECRET_KEY` | Stripe secret key (`sk_live_...`) |
-| `STRIPE_PRICE_ID` | the recurring Core price id (`price_...`) |
+| `STRIPE_SECRET_KEY` | Stripe secret key (`sk_live_...`), only if a checkout flow is configured |
+| `STRIPE_PRICE_ID` | Stripe price id, only if a checkout flow is configured |
 | `STRIPE_WEBHOOK_SECRET` | signing secret of your webhook endpoint (`whsec_...`) |
-| `SITE_URL` | `https://aeconnect.io` (Checkout redirect base) |
+| `SITE_URL` | `https://aeconnect.io` |
 
 `NODE_VERSION` is already pinned to 20 in `netlify.toml`.
 
-> If the Stripe vars are omitted, the Subscribe button **activates Core directly**
-> (dev convenience) instead of charging — so don't ship to production without them.
+The public offer is a 14-day company-email sandbox with unlimited cases, plus annual Starter, Growth, and Scale. There is no monthly self-serve plan on the public site.
 
 Trigger a redeploy after setting these.
 
-## 5b. Configure Stripe (payments)
+## 5b. Payments
 
-1. **Product + price:** Stripe Dashboard → Products → create "AE Connect Core",
-   add a **recurring $20/month** price. Copy its id (`price_...`) → `STRIPE_PRICE_ID`.
-2. **Secret key:** Developers → API keys → copy the secret key → `STRIPE_SECRET_KEY`.
-3. **Webhook:** Developers → Webhooks → Add endpoint:
-   - URL: `https://aeconnect.io/api/stripe-webhook`
-   - Events: `checkout.session.completed`, `customer.subscription.updated`,
-     `customer.subscription.deleted`
-   - Copy the signing secret (`whsec_...`) → `STRIPE_WEBHOOK_SECRET`.
-4. Set `SITE_URL=https://aeconnect.io` so Checkout redirects back correctly.
-
-The Subscribe button → `create-checkout-session` → Stripe Checkout → on success the
-webhook flips the account to Core. Cancellations/expiries downgrade it back to trial.
+Do not publish a monthly self-serve price. Annual plans are sold through Contact sales and Book a demo. The 14-day sandbox starts from `/trial/` after the company email is verified.
 
 ## 6. Verify the live deploy
 
 1. Visit `https://aeconnect.io/` (marketing page, 200) and `https://aeconnect.io/app/` → sign up.
 2. Create a case, paste an adverse-event narrative, **Run AI assessment**.
-   - With `ANTHROPIC_API_KEY` set, this is a real Claude assessment; the header trial
-     counter should tick up.
+   - With `ANTHROPIC_API_KEY` set, this is a real Claude assessment and returns a structured draft.
 3. Accept or override fields, then **Download case**. E-signature sign-off is not part of this site; it stays on `app.aeconnect.io`.
 4. Netlify → Functions tab shows invocation logs for `assess`, `cases`, and so on.
-5. Confirm the trial gate: process 5 cases; the 6th should be blocked with a
-   "subscribe" prompt (HTTP 402) — no Claude call is made for the blocked request.
+5. The public trial is the 14-day sandbox at `/trial/`, not a capped case allowance.
 
 Local smoke test (against a local/dev DB) still works with:
 ```bash
@@ -159,8 +145,7 @@ First OCR downloads the English model (cached thereafter).
 
 ## Not yet wired (intentional stubs)
 
-- **Payments** — wired via Stripe Checkout + webhook (§5b). Until you set the
-  `STRIPE_*` env vars, Subscribe activates Core directly without charging.
+- **Payments** — the public site sells the 14-day sandbox and annual plans. It does not list a monthly self-serve price.
 - **Data retention / backups** — Neon handles Postgres durability; PV records often need
   ~25-year retention (spec §7). Plan a backup/retention policy before real cases.
 

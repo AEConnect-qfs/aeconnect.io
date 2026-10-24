@@ -37,6 +37,8 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   '/blog/arisglobal-lifesphere-alternative/': '/blog/arisglobal-lifesphere/',
   '/blog/veeva-vault-safety-alternative': '/blog/veeva-vault-safety/',
   '/blog/veeva-vault-safety-alternative/': '/blog/veeva-vault-safety/',
+  '/beta': '/trial/',
+  '/beta/': '/trial/',
 };
 
 const CSP = [
@@ -68,6 +70,36 @@ app.post('/resources/ae-intake-checklist/thanks/', (_req, res) => {
   res.redirect(303, '/resources/ae-intake-checklist/thanks/');
 });
 
+// Keep this list aligned with assets/work-email.js.
+const PERSONAL_EMAIL_DOMAINS = new Set([
+  'gmail.com', 'googlemail.com', 'yahoo.com', 'yahoo.co.uk', 'ymail.com', 'rocketmail.com',
+  'hotmail.com', 'hotmail.co.uk', 'outlook.com', 'live.com', 'msn.com',
+  'icloud.com', 'me.com', 'mac.com', 'aol.com',
+]);
+
+function companyEmailOk(email: unknown) {
+  const value = String(email ?? '').trim().toLowerCase();
+  const domain = value.split('@')[1] || '';
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && !PERSONAL_EMAIL_DOMAINS.has(domain);
+}
+
+function sandboxTrialPost(req: express.Request, res: express.Response) {
+  const name = String(req.body?.name ?? '').trim();
+  const company = String(req.body?.company ?? '').trim();
+  if (!name || !company) {
+    res.status(400).type('html').send('Name, work email, and company name are required. We email a verification link to the company work address. The sandbox Organization is created only after you verify.');
+    return;
+  }
+  if (!companyEmailOk(req.body?.email)) {
+    res.status(400).type('html').send('Use a company email. Gmail, Yahoo, Hotmail, Outlook, iCloud, and AOL are not accepted.');
+    return;
+  }
+  res.redirect(303, '/trial/thanks/');
+}
+
+app.post('/trial/thanks', sandboxTrialPost);
+app.post('/trial/thanks/', sandboxTrialPost);
+
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -78,7 +110,12 @@ app.use((req, res, next) => {
   );
   res.setHeader('Content-Security-Policy', CSP);
   if (req.path.startsWith('/api/')) res.setHeader('X-Robots-Tag', 'noindex, nofollow');
-  if (req.path === '/resources/ae-intake-checklist/thanks' || req.path === '/resources/ae-intake-checklist/thanks/') {
+  if (
+    req.path === '/resources/ae-intake-checklist/thanks' ||
+    req.path === '/resources/ae-intake-checklist/thanks/' ||
+    req.path === '/trial/thanks' ||
+    req.path === '/trial/thanks/'
+  ) {
     res.setHeader('X-Robots-Tag', 'noindex, nofollow');
   }
   if (req.path === '/downloads/ae-intake-readiness-checklist.pdf') {

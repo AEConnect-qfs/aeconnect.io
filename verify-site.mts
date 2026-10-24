@@ -79,6 +79,8 @@ function checkNetlifyRedirects() {
     ['/blog/arisglobal-lifesphere-alternative/', '/blog/arisglobal-lifesphere/'],
     ['/blog/veeva-vault-safety-alternative', '/blog/veeva-vault-safety/'],
     ['/blog/veeva-vault-safety-alternative/', '/blog/veeva-vault-safety/'],
+    ['/beta', '/trial/'],
+    ['/beta/', '/trial/'],
   ];
   for (const [from, to] of legacy) {
     const r = follow(from);
@@ -136,13 +138,15 @@ async function main() {
     ['/blog/meddra-coding-at-intake-ai-pharmacovigilance', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
     ['/adverse-event-intake-system/', '/'],
     ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect', '/blog/veeva-argus-overkill-early-phase-biotech/'],
+    ['/beta/', '/trial/'],
+    ['/beta', '/trial/'],
   ] as const;
   for (const [from, to] of legacy) {
     const r = await page(from);
     check(`301 ${from}`, r.status === 301 && r.loc === to, r.loc);
   }
 
-  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/pricing/', '/demo/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/', '/resources/ae-intake-checklist/']) {
+  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/pricing/', '/demo/', '/trial/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/', '/resources/ae-intake-checklist/']) {
     const r = await page(p);
     const canon = `https://aeconnect.io${p}`;
     check(`200 ${p}`, r.status === 200 && r.text.includes(`rel="canonical" href="${canon}"`));
@@ -152,7 +156,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 42 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 42);
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 42 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 42 && !sitemap.text.includes('/beta/'));
 
   const keyNames = fs.readdirSync(ROOT).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
   const keyName = keyNames[0] || '';
@@ -171,10 +175,65 @@ async function main() {
       thanks.text.includes('name="robots" content="noindex, nofollow"') &&
       thanks.text.includes('/downloads/ae-intake-readiness-checklist.pdf') &&
       !sitemap.text.includes('/resources/ae-intake-checklist/thanks/') &&
+      !sitemap.text.includes('/trial/thanks/') &&
       !sitemap.text.includes(keyName) &&
       pdf.status === 200 &&
       pdfMagic === '%PDF-',
     `pdf ${pdf.status} ${pdfMagic}`,
+  );
+
+  const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com'];
+  const personalStatuses = await Promise.all(personalDomains.map(async (domain) => {
+    const res = await fetch(B + '/trial/thanks/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `name=A&email=person@${domain}&company=Co`,
+      redirect: 'manual',
+    });
+    return res.status;
+  }));
+  const personalTrial = { status: personalStatuses.every((status) => status === 400) ? 400 : personalStatuses.join(',') };
+  const companyTrial = await fetch(B + '/trial/thanks/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'name=A&email=safety@example-biotech.com&company=Co',
+    redirect: 'manual',
+  });
+  const missingCompany = await fetch(B + '/trial/thanks/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'name=A&email=safety@example-biotech.com&company=%20%20',
+    redirect: 'manual',
+  });
+  const missingName = await fetch(B + '/trial/thanks/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'name=&email=safety@example-biotech.com&company=Co',
+    redirect: 'manual',
+  });
+  const trialPage = await page('/trial/');
+  const trialThanks = await page('/trial/thanks/');
+  check('trial rejects a personal email', personalTrial.status === 400);
+  check(
+    'trial requires a company name',
+    missingCompany.status === 400 && missingName.status === 400 &&
+      trialPage.text.includes('>Company name<') &&
+      trialPage.text.includes('placeholder="name@company.com"') &&
+      /id="trial-company"[^>]*required/.test(trialPage.text) &&
+      trialPage.text.includes('verification link') &&
+      trialPage.text.includes('only after you verify') &&
+      !trialPage.text.includes('@gmail'),
+  );
+  check(
+    'trial accepts a company email and the thanks page is noindex',
+    companyTrial.status === 303 &&
+      locationPath(companyTrial.headers.get('location') || '') === '/trial/thanks/' &&
+      trialThanks.status === 200 &&
+      trialThanks.text.includes('name="robots" content="noindex, nofollow"') &&
+      trialThanks.text.includes('https://app.aeconnect.io') &&
+      trialThanks.text.includes('verification link') &&
+      trialThanks.text.includes('only after you verify') &&
+      !sitemap.text.includes('/trial/thanks/'),
   );
 
   const weak = await api('/api/signup', 'POST', undefined, { email: 'not-an-email', password: 'short', name: 'A' });
