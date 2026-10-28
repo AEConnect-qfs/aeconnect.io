@@ -186,7 +186,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 41 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 41 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/'));
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 43 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 43 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/'));
 
   const keyNames = fs.readdirSync(ROOT).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
   const keyName = keyNames[0] || '';

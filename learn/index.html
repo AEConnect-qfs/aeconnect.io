@@ -98,7 +98,11 @@
     .caveat { margin-top: auto; background: #F3F5F4; border-left: 3px solid #3A5A88; padding: 8px 10px; font-size: 14px; line-height: 1.5; color: #14202C; }
     .fact-source { font-size: 13px; }
     .prose { max-width: 68ch; }
-    .prose h2 { margin-top: 8px; }
+    .prose h2 { margin-top: 28px; }
+    .prose h2:first-child { margin-top: 8px; }
+    .prose ul { padding-left: 1.2em; margin: 0 0 12px; }
+    .prose li { margin: 0 0 8px; }
+    .mission { max-width: 68ch; margin-top: 28px; font-family: var(--ae-font-heading); font-size: clamp(22px, 2.4vw, 28px); line-height: 1.35; letter-spacing: -0.3px; color: var(--white); }
     .lead-cta { margin: 28px 0; padding: 18px; border: 1px solid var(--border); border-radius: 12px; background: #fff; max-width: 68ch; }
     .lead-cta h2 { margin-top: 0; }
     .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 0; }
@@ -146,6 +150,7 @@
     <li><a href="https://aeconnect.io/blog/">Blog</a></li>
     <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
     <li><a href="https://aeconnect.io/learn/" aria-current="page">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
     <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
     <li><a class="nav-cta" href="https://aeconnect.io/trial/">Start the 14 day trial</a></li>
   </ul>
@@ -213,6 +218,19 @@
   </section>
 
   <div class="prose">
+    <h2>Why many reactions never become a report</h2>
+    <p>Underreporting is not only a delay after a manufacturer already has a case. A large share of reactions never enter the system, because a patient or a healthcare professional who could send a report does not send one. The 94% median on the card above is that gap in the studies Hazell and Shakir reviewed: adverse reactions found by intensive methods that were not passed to a spontaneous reporting system. The 9.94% card is a later problem. It counts expedited reports the manufacturer already had, which then reached FDA after day 15. It says nothing about reactions that were never reported.</p>
+    <p>A 2023 update asked why healthcare professionals do not report. <a href="#src-garcia">García-Abeijón and colleagues</a> included 65 studies. Knowledge and attitudes still dominated. The factors named most often were:</p>
+    <ul>
+      <li>Ignorance, the belief that only serious adverse drug reactions need to be reported, cited in 86.2% of the papers.</li>
+      <li>Lethargy, meaning procrastination, lack of interest, and other excuses, cited in 84.6%.</li>
+      <li>Complacency, the belief that only well tolerated drugs are allowed on the market, cited in 46.2%.</li>
+      <li>Diffidence, fear of appearing ridiculous for reporting a reaction that is only suspected, cited in 44.6%.</li>
+      <li>Insecurity, the view that it is nearly impossible to say whether a drug caused a particular reaction, cited in 33.8%.</li>
+    </ul>
+    <p><strong>Limit.</strong> Those percentages are the share of studies that mention a factor. They are not the share of healthcare professionals who hold it, and they are not an official FDA or EMA rate. The studies are about healthcare professionals, not a survey of patients.</p>
+    <p>The same update says that non-obligation to report, and confidentiality, have emerged as reasons in the newer studies. It does not give a percentage for either. Spontaneous reporting is largely voluntary. In many settings it is not treated as a mandatory duty for the clinician or the patient, so there is often no obligation the person treats as theirs to meet. A reaction that is never sent never becomes a case. That is a description of how these systems are set up in many places. It is not one statute that excuses every physician, everywhere, from reporting.</p>
+
     <h2>What late intake does to the work after it</h2>
     <p>A case is valid, and Day 0 can start, when the organization has an identifiable patient, an identifiable reporter, a suspect product, and a suspect reaction. ICH E2D and EU GVP Module VI use that gate. If one of those is missing, the report is recorded and followed up. It is not ready to go forward as a valid case.</p>
     <p>Coding, medical review, an E2B file, and signal statistics all use the case intake produced. When intake is late, those steps start late. When intake never collects the minimum criteria, they never see a valid case. Regulators tied the expedited clock to first valid knowledge, which is why the quality of the first report matters before any safety database is opened.</p>
@@ -221,6 +239,9 @@
     <h2>Why AE Connect is the step before the safety database</h2>
     <p>AE Connect is a structured intake form plus an AI draft. A reviewer accepts or overrides each field. The case can go to the safety database the company already uses, including Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or AE Connect can hold the ICSR and the E2B(R3) file. AE Connect does not submit or transmit ICSRs.</p>
     <p>The draft is there so the minimum facts, seriousness, and a suggested coding are visible while the case is still at intake. It does not make the regulatory call, and nothing on this page is a claim that the software changes mortality.</p>
+
+    <h2>Education on reporting and intake</h2>
+    <p>AE Connect, a product of QORO Intelligence Inc., commits to public education on adverse-event reporting and on case intake. That work is funded with a dedicated education and awareness budget. This page is part of the commitment: the figures above, the limits on them, and a plain account of what happens when a report is never started, or is started late.</p>
   </div>
 
   <aside class="lead-cta">
@@ -231,6 +252,8 @@
       <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a>
     </p>
   </aside>
+
+  <p class="mission">Medicines are built to save and improve lives. AE Connect’s mission is to catch adverse drug reactions before it is too late.</p>
 
   <section class="sources" aria-labelledby="sources-heading">
     <h2 id="sources-heading">Sources</h2>
@@ -261,6 +284,10 @@
       <li id="src-vigibase">Uppsala Monitoring Centre. About VigiBase. Figure stated as of February 2025.
         <a href="https://who-umc.org/vigibase-data-access/about-vigibase/">https://who-umc.org/vigibase-data-access/about-vigibase/</a>
       </li>
+      <li id="src-garcia">García-Abeijón P, Costa C, Taracido M, Herdeiro MT, Torre C, Figueiras A. Factors Associated with Underreporting of Adverse Drug Reactions by Health Care Professionals: A Systematic Review Update. Drug Safety. 2023.
+        <a href="https://doi.org/10.1007/s40264-023-01302-7">https://doi.org/10.1007/s40264-023-01302-7</a>
+        · PMC <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10279571/">https://pmc.ncbi.nlm.nih.gov/articles/PMC10279571/</a>
+      </li>
     </ol>
   </section>
 </main>
@@ -271,6 +298,7 @@
       <ul>
         <li><a href="https://aeconnect.io/pricing/">Pricing</a></li>
         <li><a href="https://aeconnect.io/learn/" aria-current="page">Learn</a></li>
+        <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
         <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></li>
         <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
         <li><a href="https://aeconnect.io/trial/">Start a 14-day trial</a></li>
