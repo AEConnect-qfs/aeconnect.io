@@ -26,8 +26,8 @@ const LEGACY_REDIRECTS: Record<string, string> = {
     '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/',
   '/blog/meddra-coding-at-intake-ai-pharmacovigilance/':
     '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/',
-  '/adverse-event-intake-system': '/',
-  '/adverse-event-intake-system/': '/',
+  '/adverse-event-intake-system': '/solutions/pv-case-intake/',
+  '/adverse-event-intake-system/': '/solutions/pv-case-intake/',
   '/blog/safety-database-comparison-argus-veeva-reportum-ae-connect':
     '/blog/veeva-argus-overkill-early-phase-biotech/',
   '/blog/safety-database-comparison-argus-veeva-reportum-ae-connect/':
