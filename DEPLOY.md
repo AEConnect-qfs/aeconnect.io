@@ -101,13 +101,13 @@ Site configuration → Environment variables. Add:
 
 `NODE_VERSION` is already pinned to 20 in `netlify.toml`.
 
-The public offer is a 14-day company-email sandbox with unlimited cases, plus annual Starter, Growth, and Scale. There is no monthly self-serve plan on the public site.
+The public offer is a 14-day company-email sandbox with unlimited cases, requested at /trial/. The marketing site does not list plan prices. Questions go to Contact or Book a demo.
 
 Trigger a redeploy after setting these.
 
 ## 5b. Payments
 
-Do not publish a monthly self-serve price. Annual plans are sold through Contact sales and Book a demo. The 14-day sandbox is requested at `/trial/` with a company email and a company name. We set up the account.
+Do not publish plan prices on the marketing site. The 14-day sandbox is requested at `/trial/` with a company email and a company name. We set up the account. Questions go to Contact or Book a demo.
 
 ## 6. Verify the live deploy
 
@@ -145,7 +145,7 @@ First OCR downloads the English model (cached thereafter).
 
 ## Not yet wired (intentional stubs)
 
-- **Payments** — the public site sells the 14-day sandbox and annual plans. It does not list a monthly self-serve price.
+- **Payments** — the public site offers the 14-day sandbox at /trial/ and does not publish plan prices.
 - **Data retention / backups** — Neon handles Postgres durability; PV records often need
   ~25-year retention (spec §7). Plan a backup/retention policy before real cases.
 

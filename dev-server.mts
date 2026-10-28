@@ -42,6 +42,16 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   '/beta/': '/trial/',
   '/about': '/',
   '/about/': '/',
+  '/pricing': '/trial/',
+  '/pricing/': '/trial/',
+  '/pricing.html': '/trial/',
+  '/pricing/index.html': '/trial/',
+  '/Pricing': '/trial/',
+  '/Pricing/': '/trial/',
+  '/prices': '/trial/',
+  '/prices/': '/trial/',
+  '/plans': '/trial/',
+  '/plans/': '/trial/',
 };
 
 const CSP = [
