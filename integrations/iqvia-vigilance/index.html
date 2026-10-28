@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AE Connect | Electronic AE intake vs IQVIA Vigilance Collect for biotech</title>
+  <meta name="description" content="AE Connect is a biotech electronic AE form and ICSR intake layer, comparable to IQVIA Vigilance Collect and Vigilance Intake. Biotech AE intake only. Not a full IQVIA Vigilance Platform or IQVIA services replacement. AE Connect is not affiliated with IQVIA." />
+  <link rel="canonical" href="https://aeconnect.io/integrations/iqvia-vigilance/" />
+  <meta property="og:title" content="AE Connect | Electronic AE intake vs IQVIA Vigilance Collect for biotech" />
+  <meta property="og:description" content="AE Connect is a biotech electronic AE form and ICSR intake layer, comparable to IQVIA Vigilance Collect and Vigilance Intake. Biotech AE intake only. Not a full IQVIA Vigilance Platform or IQVIA services replacement. AE Connect is not affiliated with IQVIA." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aeconnect.io/integrations/iqvia-vigilance/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AE Connect | Electronic AE intake vs IQVIA Vigilance Collect for biotech" />
+  <meta name="twitter:description" content="AE Connect is a biotech electronic AE form and ICSR intake layer, comparable to IQVIA Vigilance Collect and Vigilance Intake. Biotech AE intake only. Not a full IQVIA Vigilance Platform or IQVIA services replacement. AE Connect is not affiliated with IQVIA." />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png",
+      "@id": "https://aeconnect.io/#organization",
+      "name": "QORO Intelligence Inc.",
+      "url": "https://aeconnect.io/",
+      "email": "info@qfsnow.com"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"}, {"@type": "ListItem", "position": 2, "name": "Works with", "item": "https://aeconnect.io/integrations/"}, {"@type": "ListItem", "position": 3, "name": "IQVIA Vigilance intake", "item": "https://aeconnect.io/integrations/iqvia-vigilance/"}]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Electronic AE / ICSR intake alongside IQVIA Vigilance Collect",
+      "description": "AE Connect is a biotech electronic AE form and ICSR intake layer, comparable to IQVIA Vigilance Collect and Vigilance Intake. Biotech AE intake only. Not a full IQVIA Vigilance Platform or IQVIA services replacement. AE Connect is not affiliated with IQVIA.",
+      "url": "https://aeconnect.io/integrations/iqvia-vigilance/",
+      "author": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/"},
+      "publisher": {"@id": "https://aeconnect.io/#organization"},
+      "mainEntityOfPage": "https://aeconnect.io/integrations/iqvia-vigilance/"
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; --card:#FFFFFF; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.65; }
+    a { color: var(--teal); }
+    nav { position: sticky; top: 0; z-index: 20; display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 28px; background: rgba(243,245,244,0.94); border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:20px; list-style:none; align-items:center; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; font-weight:500; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--teal); color: var(--navy) !important; padding: 8px 12px; border-radius: 6px; font-weight: 700 !important; }
+    main { max-width: 820px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 16px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 14px; }
+    .lede { font-size: 18px; margin-bottom: 18px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .card-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+    .card h2, .card h3 { margin-top: 0; }
+    .card strong { color: var(--white); font-size: 28px; display:block; margin: 4px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0 18px; }
+    th, td { border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; padding: 10px 8px; }
+    th { color: var(--white); font-size: 13px; }
+    caption { text-align: left; color: var(--slate); font-size: 13px; margin-bottom: 8px; }
+    form { display: grid; gap: 12px; margin-top: 12px; }
+    label { display: block; color: var(--white); font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    input, select, textarea { width: 100%; background: #FFFFFF; color: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; }
+    textarea { min-height: 120px; }
+    button, .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; border: 0; cursor: pointer; font: inherit; }
+    .btn-ghost { background: transparent; color: var(--white); border: 1px solid #5E6873; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 16px; }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .note { color: var(--slate); font-size: 14px; }
+    .hp { position: absolute; left: -10000px; height: 1px; overflow: hidden; }
+    footer { border-top: 1px solid var(--border); padding: 28px 22px 36px; color: var(--slate); font-size: 13px; }
+    .footer-inner { max-width: 820px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    .footer-inner h2 { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; }
+    .footer-inner ul { list-style: none; padding: 0; }
+    .footer-inner a { color: var(--light); }
+    .footer-bottom { max-width: 820px; margin: 16px auto 0; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .card-grid, .footer-inner { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; }
+    }
+</style>
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="AE Connect | Electronic AE intake vs IQVIA Vigilance Collect for biotech">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/solutions/pv-case-intake/">Solutions</a></li>
+    <li><a href="https://aeconnect.io/integrations/oracle-argus/">Works with</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+    <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+    <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
+    <li><a class="nav-cta" href="https://aeconnect.io/trial/">Start the 14 day trial</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/integrations/">Works with</a> / IQVIA Vigilance intake</p>
+  <h1>Electronic AE / ICSR intake alongside IQVIA Vigilance Collect</h1>
+  <p class="lede">AE Connect is a biotech electronic AE form and ICSR intake layer, comparable to IQVIA Vigilance Collect and Vigilance Intake. This is biotech AE intake alongside those products. It is not a full IQVIA Vigilance Platform and not an IQVIA services replacement. AE Connect is not affiliated with IQVIA, and this page does not claim integration with the IQVIA Vigilance Platform.</p>
+  <p>IQVIA describes <a href="https://www.iqvia.com/solutions/safety-regulatory-compliance/safety-and-pharmacovigilance/iqvia-vigilance-platform/iqvia-vigilance-collect">Vigilance Collect</a> as a web and mobile way for patients, healthcare professionals, pharmacies, support programs, and representatives to report an adverse event. IQVIA describes <a href="https://www.iqvia.com/solutions/safety-regulatory-compliance/safety-and-pharmacovigilance/iqvia-vigilance-platform/iqvia-vigilance-intake">Vigilance Intake</a> as intake automation on the Vigilance Platform: receiving adverse events, extracting data, and checking duplicates. Those are IQVIA products. AE Connect does that collect and intake job when the source is already in hand: electronic AE intake, an AI draft, and a person who accepts or overrides each field.</p>
+  <p>When IQVIA runs safety operations as the CRO, AE Connect is the intake workspace in front of the database the contract names. That is works-with language for the outsourced operation, not a Vigilance Platform integration and not a full-platform replacement.</p>
+  <table>
+    <caption>The collect and intake job only. This table does not describe the rest of the IQVIA Vigilance Platform.</caption>
+    <thead><tr><th scope="col">Job</th><th scope="col">IQVIA Vigilance Collect and Intake</th><th scope="col">What AE Connect does</th></tr></thead>
+    <tbody>
+    <tr><th scope="row">Collect from a reporter</th><td>IQVIA's public page for Vigilance Collect describes a web and mobile portal that stores a submission and can create a case in a safety database.</td><td>Not that portal. The workspace is for a drug-safety reviewer working from a source they already received.</td></tr>
+    <tr><th scope="row">AE and ICSR intake</th><td>IQVIA's public page for Vigilance Intake describes automated receipt of adverse events on the Vigilance Platform, including extraction and duplicate search.</td><td>Electronic intake: paste or upload, a draft of seriousness, a suggested MedDRA term, causality, expectedness, and a timeline. A reviewer accepts or overrides every field.</td></tr>
+    <tr><th scope="row">Safety database and submissions</th><td>The Vigilance Platform is IQVIA's pharmacovigilance platform. Case processing, submissions, and the database stay there when the plan names them.</td><td>Out of scope for this page. AE Connect does not replace the Vigilance Platform and does not submit ICSRs. The safety database the plan names remains the system of record.</td></tr>
+    </tbody>
+  </table>
+  <p>Sources: <a href="https://www.iqvia.com/solutions/safety-regulatory-compliance/safety-and-pharmacovigilance/iqvia-vigilance-platform/iqvia-vigilance-collect">IQVIA Vigilance Collect</a> and <a href="https://www.iqvia.com/solutions/safety-regulatory-compliance/safety-and-pharmacovigilance/iqvia-vigilance-platform/iqvia-vigilance-intake">IQVIA Vigilance Intake</a>. IQVIA, Vigilance, Vigilance Collect, and Vigilance Intake are names of their owner. AE Connect is not affiliated with IQVIA. IQVIA can change those pages. This page does not describe, and does not replace, the rest of the Vigilance Platform.</p>
+  <p>If the safety database is Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, use those pages: <a href="https://aeconnect.io/integrations/oracle-argus/">electronic intake for Oracle Argus</a>, <a href="https://aeconnect.io/integrations/arisglobal/">electronic intake for LifeSphere</a>, and <a href="https://aeconnect.io/integrations/veeva-vault-safety/">electronic intake for Vault Safety</a>. When a CRO or PV partner holds the case, use <a href="https://aeconnect.io/solutions/pv-partner-intake/">PV partner intake</a>.</p>
+  <aside class="lead-cta">
+  <h2>Start a 14-day trial, or book a demo</h2>
+  <p>The problem is email intake. AE Connect is customizable electronic intake plus AI triage. It can feed the safety database you already run, or it can be the safety database for the full ICSR and the E2B(R3) file. It does not replace IQVIA Vigilance Platform.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/trial/">Start a 14-day trial</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+  <p>Related: <a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a>, <a href="https://aeconnect.io/solutions/pv-partner-intake/">PV partner intake</a>, <a href="https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/">PVA and SDEA</a>, <a href="https://aeconnect.io/trust/">trust</a>.</p>
+  <section>
+<h2>Questions</h2>
+<h3>Is AE Connect an IQVIA Vigilance Platform alternative?</h3>
+  <p>No. The Vigilance Platform stays the pharmacovigilance platform when the plan names it. This page is only the collect and intake job that Vigilance Collect and Vigilance Intake describe.</p>
+<h3>Is AE Connect Vigilance Collect or Vigilance Intake?</h3>
+  <p>No. Those are IQVIA products. AE Connect is a separate electronic intake workspace for a source a reviewer already has.</p>
+<h3>Does AE Connect submit the ICSR?</h3>
+  <p>No. Submission stays with the safety database or the partner the pharmacovigilance plan names.</p>
+</section>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h2>Product</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+        <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+        <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></li>
+        <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+        <li><a href="https://aeconnect.io/trial/">Start a 14-day trial</a></li>
+        <li><a href="https://aeconnect.io/trust/">Trust</a></li>
+        <li><a href="https://aeconnect.io/design-partners/">Design partners</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Solutions</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+        <li><a href="https://aeconnect.io/solutions/ae-sae-intake-form/">AE and SAE intake form</a></li>
+        <li><a href="https://aeconnect.io/solutions/susar-triage/">SUSAR triage</a></li>
+        <li><a href="https://aeconnect.io/solutions/pqc-intake/">PQC intake</a></li>
+        <li><a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3)</a></li>
+        <li><a href="https://aeconnect.io/solutions/aggregate-reports/">Aggregate reports</a></li>
+        <li><a href="https://aeconnect.io/solutions/pv-partner-intake/">PV partner intake</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Works with</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/integrations/oracle-argus/">Oracle Argus</a></li>
+        <li><a href="https://aeconnect.io/integrations/arisglobal/">ArisGlobal LifeSphere</a></li>
+        <li><a href="https://aeconnect.io/integrations/veeva-vault-safety/">Veeva Vault Safety</a></li>
+        <li><a href="https://aeconnect.io/integrations/iqvia-vigilance/">IQVIA Vigilance intake</a></li>
+        <li><a href="mailto:info@qfsnow.com">info@qfsnow.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 QORO Intelligence Inc.</span>
+    <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/contact/">Contact</a></span>
+  </div>
+</footer>
+</body>
+</html>

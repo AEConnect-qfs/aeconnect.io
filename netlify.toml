@@ -155,6 +155,69 @@ package = "./netlify/plugins/indexnow"
   status = 301
   force = true
 
+# The pricing page is unpublished. Old URLs go to the 14-day sandbox.
+# Destinations differ from the source path, so the slash and non-slash
+# rules do not loop a pretty URL onto itself.
+[[redirects]]
+  from = "/pricing"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pricing/"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pricing.html"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pricing/index.html"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Pricing"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Pricing/"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/prices"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/prices/"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/plans"
+  to = "/trial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/plans/"
+  to = "/trial/"
+  status = 301
+  force = true
+
 # Trailing-slash canonicals are not forced here. Netlify matches `/blog` and
 # `/blog/` as the same redirect path, so a force 301 from one to the other
 # loops the slash URL onto itself. Pretty URLs already 301 the non-slash form

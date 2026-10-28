@@ -1,6 +1,6 @@
 # AE Connect
 
-> The problem is email intake. AE Connect is customizable electronic intake plus AI triage for drug-safety teams. It can feed Oracle Argus, ArisGlobal LifeSphere, Veeva Vault Safety, or another safety database, or it can be the safety database for the full ICSR and the E2B(R3) file. Name, a company email, and a company name request a 14-day sandbox trial at https://aeconnect.io/trial/ with unlimited cases. We set up the account. The company name becomes the Organization. Annual subscriptions are Starter at $36,000, Growth at $72,000, and Scale at $120,000 per year.
+> The problem is email intake. AE Connect is customizable electronic intake plus AI triage for drug-safety teams. It can feed Oracle Argus, ArisGlobal LifeSphere, Veeva Vault Safety, or another safety database, or it can be the safety database for the full ICSR and the E2B(R3) file. Name, a company email, and a company name request a 14-day sandbox trial at https://aeconnect.io/trial/ with unlimited cases. We set up the account. The company name becomes the Organization. Questions go to https://aeconnect.io/contact/ or https://aeconnect.io/demo/. The public site does not list plan prices.
 
 AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operating from the San Francisco Bay Area. The public site is https://aeconnect.io/. The self-serve workspace is https://aeconnect.io/app/. A separate sign-in application is linked from the marketing pages at https://app.aeconnect.io and is not this site.
 
@@ -19,14 +19,13 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 - It is not an "AI governance and compliance layer" inside Argus or Veeva. Read https://aeconnect.io/integrations/ and https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/.
 - It does not claim GAMP 5 certification, 21 CFR Part 11 certification, SOC 2, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail. Validation status is a question for QORO, not a claim on this page.
 
-## Pricing
+## Trial
 
-AE Connect is a full app sold to biotech companies. There is no per-case monthly plan. Name, a company email, and a company name request a 14-day sandbox trial with unlimited cases on the form at https://aeconnect.io/trial/. We set up the sandbox account. The company name becomes the Organization. The sandbox covers electronic intake, form customization, AI triage, and E2B(R3) export. Personal domains such as Gmail, Yahoo, Hotmail, Outlook, iCloud, and AOL are not accepted. Annual subscriptions are Starter $36,000, Growth $72,000, and Scale $120,000 per year. The public page is https://aeconnect.io/pricing/. Contact sales at https://aeconnect.io/contact/ or book a demo at https://aeconnect.io/demo/. Do not invent other prices or per-tier feature lists.
+AE Connect is a full app sold to biotech companies. Name, a company email, and a company name request a 14-day sandbox trial with unlimited cases on the form at https://aeconnect.io/trial/. We set up the sandbox account. The company name becomes the Organization. The sandbox covers electronic intake, form customization, AI triage, and E2B(R3) export. Personal domains such as Gmail, Yahoo, Hotmail, Outlook, iCloud, and AOL are not accepted. Contact sales at https://aeconnect.io/contact/ or book a demo at https://aeconnect.io/demo/. The public site does not list plan prices.
 
 ## Pages
 
 - [Home](https://aeconnect.io/): product overview, how PV case intake works, FAQ
-- [Pricing](https://aeconnect.io/pricing/): 14-day company-email sandbox, then annual Starter $36,000, Growth $72,000, and Scale $120,000
 - [14-day trial](https://aeconnect.io/trial/): Netlify form for name, company name, and company work email. We set up the sandbox account. The company name becomes the Organization.
 - [Book a demo](https://aeconnect.io/demo/): Netlify form for name, email, company, role, case volume, safety database, and a message
 - [AI workspace](https://aeconnect.io/app/): sample workspace on this site. The sandbox account we set up is at https://app.aeconnect.io
@@ -37,7 +36,18 @@ AE Connect is a full app sold to biotech companies. There is no per-case monthly
 - [Features](https://aeconnect.io/features/): longer feature narrative published on the marketing site
 - [E2B(R3) checklist](https://aeconnect.io/e2b-r3-checklist/): readiness checklist with a Netlify lead form
 - [AE Intake Readiness Checklist](https://aeconnect.io/resources/ae-intake-checklist/): two-page checklist for AE and SAE intake and for the case data to have ready before an E2B(R3) file is prepared. The PDF is on the thank-you page after the form. AE Connect integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.
-- [Learn: case intake and the reporting clock](https://aeconnect.io/learn/): cited facts on ADR underreporting, Day 0, the 15-day expedited clock, onset-to-report lag, the openFDA death-outcome flag, and VigiBase. Each figure is sourced and limited on the page. AE Connect does not submit or transmit ICSRs, and the page does not claim a mortality effect. The page also states why many reactions are never reported, QORO's public-education commitment, and AE Connect's mission.
+- [Learn](https://aeconnect.io/learn/): index of notes on case intake and the reporting clock. AE Connect does not submit or transmit ICSRs, and the notes do not claim a mortality effect.
+- [Six cited facts](https://aeconnect.io/learn/underreporting-facts/): ADR underreporting, Day 0, the 15-day expedited clock, onset-to-report lag, the openFDA death-outcome flag, and VigiBase. Each figure is sourced and limited on the page.
+- [Why many reactions never become a report](https://aeconnect.io/learn/why-reactions-are-never-reported/): the 2023 review of why healthcare professionals do not report, with the limit that those percentages are the share of studies, not an official rate.
+- [What late intake does](https://aeconnect.io/learn/what-late-intake-does/): Day 0 and the work that starts only after a valid case. A process description, not a mortality estimate.
+- [Education on reporting and intake](https://aeconnect.io/learn/education-commitment/): QORO's public-education commitment, funded with a dedicated education and awareness budget.
+- [AE Connect’s mission](https://aeconnect.io/learn/mission/): catch adverse drug reactions before it is too late. Not a claim that the software changes mortality.
+- [PVA / SDEA explained](https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/): a pharmacovigilance agreement (PVA, about the same job as an SDEA) is not software. Adverse event exchange and partner ICSR intake under that agreement.
+- [Electronic AE / ICSR intake that works with Oracle Argus (Safety One)](https://aeconnect.io/integrations/oracle-argus/): Oracle Argus integration. Consolidated Intake and the Argus intake form stay Oracle's. Not an Argus alternative.
+- [Electronic intake for ArisGlobal LifeSphere](https://aeconnect.io/integrations/arisglobal/): LifeSphere AE and ICSR intake. Not a LifeSphere alternative.
+- [Electronic intake for Veeva Vault Safety](https://aeconnect.io/integrations/veeva-vault-safety/): AE and ICSR intake in front of Vault Safety. Web Intake Forms and Inbox Items stay Veeva's. Not a Vault Safety alternative.
+- [Electronic AE intake vs IQVIA Vigilance Collect for biotech](https://aeconnect.io/integrations/iqvia-vigilance/): biotech electronic AE form and ICSR intake alongside IQVIA Vigilance Collect and Vigilance Intake. Not a full IQVIA Vigilance Platform or IQVIA services replacement. Not affiliated with IQVIA.
+- [PV partner / CRO case intake](https://aeconnect.io/solutions/pv-partner-intake/): ICSR intake your team or CRO uses. Works with Argus, Vault Safety, and LifeSphere. PrimeVigilance and PharmaLex are example PV service models only, not alternatives or affiliations.
 - [Pipeline](https://aeconnect.io/pipeline/): products in development. AE Connect is live. PQC Connect (product quality complaint intake and workflow) and Combined AE/PQC Connect (unified adverse-event and product-quality-complaint intake) are coming soon and are not available for purchase. No ship date is stated.
 - [Blog](https://aeconnect.io/blog/): pharmacovigilance notes for small biotech teams
 - [E2B(R3) ICSR submission guide](https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/): what the electronic ICSR requirement means for small sponsors
@@ -60,7 +70,7 @@ Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQP
 - [Works with Oracle Argus](https://aeconnect.io/blog/oracle-argus/) and the [Argus table](https://aeconnect.io/integrations/oracle-argus/)
 - [Works with ArisGlobal LifeSphere](https://aeconnect.io/blog/arisglobal-lifesphere/) and the [LifeSphere table](https://aeconnect.io/integrations/arisglobal/)
 - [Works with Veeva Vault Safety](https://aeconnect.io/blog/veeva-vault-safety/) and the [Vault Safety table](https://aeconnect.io/integrations/veeva-vault-safety/)
-- [PV case intake](https://aeconnect.io/solutions/pv-case-intake/)
+- [PV case intake form](https://aeconnect.io/solutions/pv-case-intake/): ICSR intake form and electronic form intake that feeds Argus, Vault Safety, and LifeSphere
 - [AE and SAE intake form](https://aeconnect.io/solutions/ae-sae-intake-form/)
 - [SUSAR triage](https://aeconnect.io/solutions/susar-triage/)
 - [PQC intake](https://aeconnect.io/solutions/pqc-intake/)

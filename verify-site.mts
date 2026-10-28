@@ -101,6 +101,16 @@ function checkNetlifyRedirects() {
     ['/beta/', '/trial/'],
     ['/about', '/'],
     ['/about/', '/'],
+    ['/pricing', '/trial/'],
+    ['/pricing/', '/trial/'],
+    ['/pricing.html', '/trial/'],
+    ['/pricing/index.html', '/trial/'],
+    ['/Pricing', '/trial/'],
+    ['/Pricing/', '/trial/'],
+    ['/prices', '/trial/'],
+    ['/prices/', '/trial/'],
+    ['/plans', '/trial/'],
+    ['/plans/', '/trial/'],
   ];
   for (const [from, to] of legacy) {
     const r = follow(from);
@@ -170,13 +180,23 @@ async function main() {
     ['/beta', '/trial/'],
     ['/about/', '/'],
     ['/about', '/'],
+    ['/pricing/', '/trial/'],
+    ['/pricing', '/trial/'],
+    ['/pricing.html', '/trial/'],
+    ['/pricing/index.html', '/trial/'],
+    ['/Pricing/', '/trial/'],
+    ['/Pricing', '/trial/'],
+    ['/prices/', '/trial/'],
+    ['/prices', '/trial/'],
+    ['/plans/', '/trial/'],
+    ['/plans', '/trial/'],
   ] as const;
   for (const [from, to] of legacy) {
     const r = await page(from);
     check(`301 ${from}`, r.status === 301 && r.loc === to, r.loc);
   }
 
-  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/pricing/', '/demo/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/', '/resources/ae-intake-checklist/']) {
+  for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/demo/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/', '/resources/ae-intake-checklist/']) {
     const r = await page(p);
     const canon = `https://aeconnect.io${p}`;
     check(`200 ${p}`, r.status === 200 && r.text.includes(`rel="canonical" href="${canon}"`));
@@ -186,7 +206,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 43 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 43 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/'));
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 50 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 50 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/') && !sitemap.text.includes('/pricing'));
 
   const keyNames = fs.readdirSync(ROOT).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
   const keyName = keyNames[0] || '';
