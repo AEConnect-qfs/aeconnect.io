@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AE reporter forms for patients and HCPs | AE Connect</title>
+  <meta name="description" content="What a patient or healthcare professional report must contain before Day 0, and what email leaves out. ICH E2D(R1), EU GVP Module VI, and 21 CFR 314.80." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/" />
+  <meta property="og:title" content="AE reporter forms for patients and HCPs" />
+  <meta property="og:description" content="What a patient or healthcare professional report must contain before Day 0, and what email leaves out. ICH E2D(R1), EU GVP Module VI, and 21 CFR 314.80." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AE reporter forms for patients and HCPs | AE Connect" />
+  <meta name="twitter:description" content="What a patient or healthcare professional report must contain before Day 0, and what email leaves out. ICH E2D(R1), EU GVP Module VI, and 21 CFR 314.80." />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AE reporter forms for patients and healthcare professionals",
+  "description": "What a patient or healthcare professional report must contain before Day 0, and what email leaves out. ICH E2D(R1), EU GVP Module VI, and 21 CFR 314.80.",
+  "url": "https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/",
+  "datePublished": "2026-10-28",
+  "dateModified": "2026-10-28",
+  "author": {
+    "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "publisher": {
+    "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png",
+    "name": "QORO Intelligence Inc.",
+    "url": "https://aeconnect.io/"
+  },
+  "mainEntityOfPage": "https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/"
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an AE reporter form?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An AE reporter form is the structured record of what a patient, caregiver, or healthcare professional tells the company about a suspected adverse event. It is the front of pharmacovigilance case intake. It is the company's record, not a MedWatch submission and not the ICSR that later goes to a regulator."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a patient report and a healthcare professional report?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ICH E2D(R1) treats both as primary sources. A healthcare professional is medically qualified, such as a physician, dentist, pharmacist, or nurse. A consumer is not, and includes the patient, a caregiver, a friend, or a relative. EU GVP Module VI says that if the reporter's qualification was never captured, the report should be treated as a consumer report by default. Qualification and country are part of what makes an ICSR valid for submission under the E2B rules that GVP cites."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does the reporting clock start if the first email is incomplete?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under ICH E2D(R1), day zero is the date any personnel of the marketing authorization holder, including a contractor, first has enough information to meet the minimum criteria: an adverse event or other reportable observation, a suspect product, an identifiable patient, and an identifiable reporter. A case missing one of those is not eligible for ICSR reporting until follow-up supplies it. FDA's postmarketing 15-day alert in 21 CFR 314.80 runs from initial receipt of the information for an experience that is both serious and unexpected. Record the receipt date and the date the case became valid. They are often different days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AE Connect be the safety database, or only the intake in front of Argus or Veeva?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Either. AE Connect is customizable electronic intake with AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, Veeva Vault Safety, IQVIA Vigilance, or another safety database, which remains the system of record. It can also be the safety database and build the ICSR and the E2B(R3) file. A reviewer accepts or overrides every drafted field. AE Connect does not submit or transmit the ICSR to a regulator."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+  
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #4A6FA5); color: var(--navy, #F3F5F4); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #14202C); border: 1px solid #5E6873; }
+
+  </style>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "AE reporter forms for patients and healthcare professionals", "item": "https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/"}
+    ]
+  }
+  </script>
+
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="AE reporter forms for patients and HCPs | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+    <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+    <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
+</ul>
+</nav>
+<header class="brand-hero">
+<p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / AE reporter forms</p>
+  <h1>AE reporter forms for patients and healthcare professionals</h1>
+  <p class="by">QORO Team · 28 October 2026 · about 9 minutes</p>
+</header>
+<main>
+  <p>A patient emails the medical information address: "Started your drug Tuesday. Rash and swelling by Thursday. Went to urgent care." A nurse practitioner sends three lines about a hospitalization and leaves no callback number. Both messages are adverse event reports. Neither is yet a case a regulator can receive. The missing pieces are ordinary. Who can be contacted. Which person the event happened to. Which product. What happened, in the reporter's words. Biotechs that leave this in a mailbox lose those pieces, and the follow-up that would have supplied them starts late or never starts. A reaction that never becomes a valid case cannot be compared with the next one. That is the patient-safety problem inside a sloppy intake, before anyone argues about a file format.</p>
+  <p>This page is about the reporter. The <a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake form</a> is what the drug-safety team stores after the report arrives. <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">AE and SAE reporting</a> is the medical classification that comes after the facts are in one place. The question here is what a patient or a healthcare professional has to be asked, and which clock can start only when the answer is complete.</p>
+  <h2>The reporter is a primary source</h2>
+  <p><a href="https://database.ich.org/sites/default/files/ICH_E2D%28R1%29_Step4_FinalGuideline_2025_0819.pdf">ICH E2D(R1)</a>, the post-approval safety-data guideline adopted at Step 4 on 15 September 2025, calls the person who provides the facts a primary source. Teams usually say "reporter." A healthcare professional, in that guideline, is medically qualified: a physician, dentist, pharmacist, nurse, or a coroner if medically trained, unless a region defines the term differently. A consumer is a primary source who is not a healthcare professional. The examples are the patient, a legal representative, a caregiver, a friend, or a relative. The person who later transmits the case to an authority is a sender. The sender is not the primary source.</p>
+<aside class="lead-cta">
+  <h2>Start a 14-day trial, or book a demo</h2>
+  <p>The problem is email intake. AE Connect is customizable electronic intake plus AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or it can be the safety database for the full ICSR and the E2B(R3) file.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/trial/">Start a 14-day trial</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+
+<aside class="lead-cta">
+  <h2>AE Intake Readiness Checklist</h2>
+  <p>A two-page checklist for AE and SAE intake, and for the case data to have in hand before an E2B(R3) file is prepared in the safety database. AE Connect drafts the case and integrates it with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/resources/ae-intake-checklist/">Get the checklist</a></p>
+</aside>
+
+
+  <p><a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">EU GVP Module VI (Rev 2)</a> is the practical test when the file is thin. Section VI.B.2. says a reporter is identifiable when the organization has enough evidence that the person exists: a name, initials, or an address, and an address can be an email or a phone number. For an individual case safety report to be valid for submission, the same section requires the reporter's qualification and country, drawing the qualification-and-country rule from ICH E2B. If qualification was never captured, treat the report as a consumer report by default. If the country is missing, use the country where the notification was received or where the review took place. Record contact details so follow-up is possible. If the reporter will not leave a contact, the case can still be valid when the organization is able to confirm it directly with that person.</p>
+  <p>Hearsay is a different failure. GVP says a second-hand report is not valid until someone verifies it with the patient, the patient's healthcare professional, or a reporter who had direct contact with the patient. "A colleague heard about a patient" does not pass. An email from the patient, with a name or a phone number, can.</p>
+  <h2>Spontaneous, solicited, and the IND path</h2>
+  <p>E2D(R1) defines a spontaneous report as a direct communication by a healthcare professional or a consumer to the company, a regulator, or another organization, describing an adverse event in a patient who was exposed to a medicinal product, and not gathered inside an organized data collection system. The company's ordinary pharmacovigilance mailbox is that kind of receipt. The guideline says an organized data collection system does not include the company's standard procedures for receiving spontaneous reports. A medical-information inbox, used as routine drug safety, is spontaneous intake.</p>
+  <p>A solicited report comes from an organized system. The examples in E2D(R1) include clinical trials, non-interventional studies, patient support programs, and market research programs. For reporting, solicited cases are classified as a report from study in the <a href="https://ich.org/page/e2br3-individual-case-safety-report-icsr-specification-and-related-files">ICH E2B(R3)</a> format, and they should carry a causality assessment. The guideline says a solicited report should be submitted only when the reporter or the company considers a causal relationship at least a reasonable possibility. Spontaneous reports, for purposes of reporting, already imply a suspected causal relationship. A patient support program that enrolls people and talks with them in both directions is solicited. A one-way coupon or delivery service, with no conversation and not part of a support program, is handled as spontaneous if an event shows up. The intake record should say which situation the report came from. Guessing at the time of submission changes the report type.</p>
+  <p>Investigator reports on an IND are a third receipt. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.32">21 CFR 312.32</a> is the US expedited duty for suspected adverse reactions that are both serious and unexpected. <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a> walks through the three tests and the 7-calendar-day and 15-calendar-day clocks. A patient's post-marketing email and a site SAE can look alike on a screen. They are not the same obligation. The form should record the source so the wrong clock is not the one that gets tracked.</p>
+  <h2>Four facts, then a date</h2>
+  <p>E2D(R1) section 2.2 says an ICSR is eligible for submission when it has at least these minimum criteria:</p>
+  <ul>
+    <li>One adverse event or adverse reaction, or another observation the region requires as an ICSR.</li>
+    <li>One suspect or interacting medicinal product. An interacting product is treated as suspect.</li>
+    <li>An identifiable patient.</li>
+    <li>An identifiable reporter.</li>
+  </ul>
+  <p>A case missing any of those does not qualify for ICSR reporting. The company is expected to exercise due diligence to collect the missing criterion. That is follow-up, described in E2D(R1) section 6.4. It is not a reason to delete the email.</p>
+  <p>GVP Module VI.B.2. is more specific about the patient. One qualifying descriptor is enough: initials, a medical-record number, date of birth, age, age group, gestation period, or sex. The information should be as complete as local privacy law allows. A note that "several patients" had the event is not an identifiable patient until one person can be described with one of those descriptors.</p>
+  <p>Day zero, in E2D(R1) section 5.2, is the date any personnel of the marketing authorization holder first has enough information to decide that the minimum criteria are met. Personnel includes service providers and other contractors acting for the company. Expedited reports go as soon as possible and not later than 15 calendar days after that date. Serious and unexpected cases are the expedited class in the guideline. Whether a serious expected case is expedited depends on the region. Non-serious cases are normally outside the expedited clock, though a region can still require them as ICSRs on a longer timeline. When follow-up turns a non-serious case into a serious one, day zero for that expedited follow-up is the date the new information arrived.</p>
+  <p>GVP Module VI.B.7. states the same gate and is explicit about the calendar. Day zero is the first day the authority or the company knows of a valid ICSR, including when that day is a weekend or a public holiday. The timelines are calendar days. An unread Friday email does not wait until Monday to become Friday.</p>
+  <p>FDA's marketed-drug rule is related, and the sentence is different. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80</a> requires the applicant to report each adverse drug experience that is both serious and unexpected, foreign or domestic, as soon as possible but no later than 15 calendar days from initial receipt of the information. "Initial receipt" is the regulation's phrase. "Day zero, once the four criteria exist" is the ICH and EU phrase. A Friday email that names the product and the rash, and does not identify the patient, has a receipt date of Friday. It may not have a day zero until a later call supplies an age and initials. The procedure should record both dates. A data-entry date, typed on Monday from a thread nobody opened, is a third date, and it is the wrong one.</p>
+  <p>Follow-up has its own clock. E2D(R1) says that when medically relevant new information arrives on a case already reported, the clock starts again for the follow-up report. An internal correction, with no new information from outside, does not get a new day zero. <a href="https://aeconnect.io/learn/what-late-intake-does/">What late intake does</a> is the process description of the work that waits on a valid case. It is not a mortality estimate, and this page does not add one.</p>
+  <h2>What the email drops</h2>
+  <p>These are the fields a three-line message from a patient or a healthcare professional most often lacks. They do not replace medical review. They are what review needs before it can start. The <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">drug safety inbox</a> is where the same gaps show up as a pile of threads. The list here is the reporter's side of that pile.</p>
+  <ul>
+    <li><strong>Qualification and a way back.</strong> Physician, pharmacist, nurse, patient, caregiver. A role with no name, or a name with no contact, is how follow-up dies. Ask for a phone or email. If the person refuses, write that down. Do not invent a number.</li>
+    <li><strong>One patient.</strong> Initials, age or age group, and sex are enough to be identifiable. The stored file does not need a full legal name when privacy rules say otherwise. It does need one person.</li>
+    <li><strong>The product in the reporter's words.</strong> The name they used, the dose if they know it, and the dates of use. Lot or batch helps and is often unknown. A missing lot does not erase the event.</li>
+    <li><strong>The event verbatim.</strong> Onset, whether it is still going on, and what happened next, including whether anyone was admitted. A patient checkbox labeled "serious" is a clue. Seriousness is a criterion a qualified person applies.</li>
+    <li><strong>The receipt stamp.</strong> The reporter cannot supply the company's receipt date. The system has to record when the message arrived, including Saturday.</li>
+    <li><strong>Other products and history.</strong> Concomitant medicines and the history that would change causality can be follow-up. They should not be filled in by guesswork to make the first screen look complete.</li>
+  </ul>
+  <p>Seriousness uses the outcomes in <a href="https://database.ich.org/sites/default/files/E2A_Guideline.pdf">ICH E2A</a> and in 21 CFR 314.80: death, a life-threatening event, inpatient hospitalization or prolongation of hospitalization, persistent or significant disability, a congenital anomaly or birth defect, or a medically important event that may require intervention to prevent one of those outcomes. Life-threatening means the patient was at immediate risk of death from the event as it occurred. Severity, how bad it felt or how a scale graded it, is a separate fact. Store both if you have them. Do not collapse them into one checkbox.</p>
+  <p>If the same message describes a defect, a cracked pen, a cloudy liquid, a wrong tablet in the bottle, read it against <a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">product quality complaint reporting</a> as well. Quality wants the lot. Drug safety wants to know whether a person was harmed. The reporter should not have to pick a department before finishing the story.</p>
+  <h2>Reports that are not automatically an adverse event</h2>
+  <p>E2D(R1) section 5.1.3 treats several observations as records the company should keep and, where needed, follow up. They become ICSRs when the region requires it, or when an adverse event is also present.</p>
+  <ul>
+    <li><strong>Lack of effect.</strong> "It did not work," with no untoward occurrence, is an ICSR only where the region or the product class requires that. Vaccines, contraceptives, and medicines used in life-threatening conditions are the examples the guideline gives. An event that accompanies the lack of effect is reported as an adverse event.</li>
+    <li><strong>Medication error, overdose, misuse, abuse, occupational exposure.</strong> With no associated event, these are ICSRs only where required. A near miss that never reached a patient can still be reportable in some regions, and the identifiable-patient criterion has a specific exception in E2D(R1) for that situation. An error that harmed someone is an adverse event plus the error.</li>
+    <li><strong>Pregnancy or breastfeeding exposure.</strong> Exposure of a parent, with no adverse event in the parent or the child, is an ICSR only where required. An abnormal outcome, including a congenital anomaly, fetal death, or an event in the mother or newborn, is subject to ICSR reporting. The company is not expected to record uneventful exposure for a product specifically indicated in pregnancy.</li>
+  </ul>
+  <p>The practical habit is the same for all three. Keep the reporter's words. Ask the follow-up that would show whether an event is hiding inside the sentence. Do not drop the message because the first reading failed the four-element test.</p>
+  <h2>MedWatch is FDA's form</h2>
+  <p>Health professionals, patients, and consumers may report voluntarily to FDA through MedWatch. <a href="https://www.fda.gov/safety/medical-product-safety-information/medwatch-forms-fda-safety-reporting">FDA's MedWatch forms page</a> points health professionals to Form FDA 3500 and patients and consumers to Form FDA 3500B. That reporting is voluntary. <a href="https://www.fda.gov/safety/medwatch-forms-fda-safety-reporting/instructions-completing-form-fda-3500">The instructions for Form FDA 3500</a> ask for the reporter's name, address, phone, and email so serious cases can be followed up, and they say the reporter's identity may be shared with the manufacturer unless the reporter asks otherwise. Form 3500A is the mandatory industry report. A patient does not complete 3500A.</p>
+  <p>A message a patient sends to the company is a report to the company. A MedWatch form is a report to FDA. A form the company uses to receive the story is the company's intake. What is worth taking from the FDA instructions is the content: who is reporting, whether they are a health professional and what their occupation is, the product, the event in their words, and a plain statement of what will happen to the contact details. The company's own privacy notice is the place for that statement.</p>
+  <h2>After the report is in one record</h2>
+  <p>Someone still has to judge seriousness, expectedness, and causality. Expectedness for a marketed product is a check against current labeling. In a trial it is a check against the investigator's brochure or the company core data sheet, including the version. AE Connect does not author or version that document. <a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a> is the draft of those judgments: a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness as a prompt to check the reference document, and a timeline, each with a short rationale. A person accepts or overrides every field. The draft is decision support. It does not make the regulatory call.</p>
+  <p>AE Connect is customizable electronic intake for that step, with AI triage. In the <a href="https://aeconnect.io/app/">workspace</a>, a reviewer pastes the narrative or uploads a PDF, Word file, text file, email, CSV, or image. Parsing runs in the browser. Only the extracted text is assessed. The intake form is the case screen. Patients and healthcare professionals are not sent to a separate consumer website, and the screen is not MedWatch.</p>
+  <p>The reviewed case can feed <a href="https://aeconnect.io/integrations/oracle-argus/">Oracle Argus</a>, <a href="https://aeconnect.io/integrations/arisglobal/">ArisGlobal LifeSphere</a>, <a href="https://aeconnect.io/integrations/veeva-vault-safety/">Veeva Vault Safety</a>, <a href="https://aeconnect.io/integrations/iqvia-vigilance/">IQVIA Vigilance</a>, or another safety database. When the company uses one of those, it remains the system of record. AE Connect integrates with any safety database. For a biotech that is not implementing Veeva Vault Safety or Oracle Argus, AE Connect can itself be the safety database and build the full ICSR and the E2B(R3) file. That is a far cheaper way to hold the case than standing up either of those platforms. AE Connect does not submit or transmit the ICSR to a regulator. Submission stays with the process the pharmacovigilance plan names. <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a> describes the message. <a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a> are a later job, and this intake does not write them.</p>
+  <p>The <a href="https://aeconnect.io/solutions/ae-sae-intake-form/">AE and SAE intake form</a> is the product page for the case screen. A company email requests the 14-day sandbox. Questions go to <a href="mailto:info@qfsnow.com">info@qfsnow.com</a> or to <a href="https://aeconnect.io/demo/">a demo</a>.</p>
+  <p><a href="https://aeconnect.io/learn/why-reactions-are-never-reported/">Why many reactions never become a report</a> is the literature on healthcare professionals who do not report at all. An intake form cannot create a report that was never started. It can stop a report that was started from dying in a mailbox, with the patient identifier in one message and the product name in another, and no one left to call.</p>
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload a source at the <a href="https://aeconnect.io/app/">AE Connect workspace</a>. A company email starts a 14-day sandbox trial with unlimited cases. You accept or override every field. AE Connect can feed any safety database, including Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety, or it can be the safety database for the full ICSR and the E2B(R3) file.</p>
+    <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
+  </div>
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What is an AE reporter form?</h3>
+    <p>An AE reporter form is the structured record of what a patient, caregiver, or healthcare professional tells the company about a suspected adverse event. It is the front of pharmacovigilance case intake. It is the company's record, not a MedWatch submission and not the ICSR that later goes to a regulator.</p>
+    <h3>What is the difference between a patient report and a healthcare professional report?</h3>
+    <p>ICH E2D(R1) treats both as primary sources. A healthcare professional is medically qualified, such as a physician, dentist, pharmacist, or nurse. A consumer is not, and includes the patient, a caregiver, a friend, or a relative. EU GVP Module VI says that if the reporter's qualification was never captured, the report should be treated as a consumer report by default. Qualification and country are part of what makes an ICSR valid for submission under the E2B rules that GVP cites.</p>
+    <h3>When does the reporting clock start if the first email is incomplete?</h3>
+    <p>Under ICH E2D(R1), day zero is the date any personnel of the marketing authorization holder, including a contractor, first has enough information to meet the minimum criteria: an adverse event or other reportable observation, a suspect product, an identifiable patient, and an identifiable reporter. A case missing one of those is not eligible for ICSR reporting until follow-up supplies it. FDA's postmarketing 15-day alert in 21 CFR 314.80 runs from initial receipt of the information for an experience that is both serious and unexpected. Record the receipt date and the date the case became valid. They are often different days.</p>
+    <h3>Can AE Connect be the safety database, or only the intake in front of Argus or Veeva?</h3>
+    <p>Either. AE Connect is customizable electronic intake with AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, Veeva Vault Safety, IQVIA Vigilance, or another safety database, which remains the system of record. It can also be the safety database and build the ICSR and the E2B(R3) file. A reviewer accepts or overrides every drafted field. AE Connect does not submit or transmit the ICSR to a regulator.</p>
+  </section>
+  <h2>Sources</h2>
+  <ol>
+    <li>International Council for Harmonisation. <em>E2D(R1) Post-Approval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports.</em> Step 4, adopted 15 September 2025. <a href="https://database.ich.org/sites/default/files/ICH_E2D%28R1%29_Step4_FinalGuideline_2025_0819.pdf">ICH E2D(R1) PDF</a>.</li>
+    <li>International Council for Harmonisation. <em>E2A Clinical Safety Data Management: Definitions and Standards for Expedited Reporting.</em> <a href="https://database.ich.org/sites/default/files/E2A_Guideline.pdf">ICH E2A PDF</a>.</li>
+    <li>International Council for Harmonisation. <em>E2B(R3) Individual Case Safety Report specification.</em> <a href="https://ich.org/page/e2br3-individual-case-safety-report-icsr-specification-and-related-files">ICH E2B(R3) page</a>.</li>
+    <li>European Medicines Agency. <em>Guideline on good pharmacovigilance practices (GVP) Module VI (Rev 2).</em> Collection, management and submission of reports of suspected adverse reactions. <a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">GVP Module VI PDF</a>.</li>
+    <li>Code of Federal Regulations. <em>21 CFR 314.80, Postmarketing reporting of adverse drug experiences.</em> <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">eCFR 314.80</a>.</li>
+    <li>Code of Federal Regulations. <em>21 CFR 312.32, IND safety reporting.</em> <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.32">eCFR 312.32</a>.</li>
+    <li>U.S. Food and Drug Administration. <em>MedWatch Forms for FDA Safety Reporting</em> and <em>Instructions for Completing Form FDA 3500</em>. <a href="https://www.fda.gov/safety/medical-product-safety-information/medwatch-forms-fda-safety-reporting">Forms</a>. <a href="https://www.fda.gov/safety/medwatch-forms-fda-safety-reporting/instructions-completing-form-fda-3500">Form 3500 instructions</a>.</li>
+  </ol>
+  <div class="related">
+    <h2>In this series</h2>
+    <ul>
+<li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+<li><a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">Adverse event reporting: AE and SAE</a></li>
+<li><a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a></li>
+<li><a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">Product quality complaint reporting</a></li>
+<li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+<li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
+<li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
+<li>AE reporter forms for patients and healthcare professionals (this page)</li>
+<li><a href="https://aeconnect.io/blog/oracle-argus/">Works with Oracle Argus</a></li>
+<li><a href="https://aeconnect.io/blog/arisglobal-lifesphere/">Works with ArisGlobal LifeSphere</a></li>
+<li><a href="https://aeconnect.io/blog/veeva-vault-safety/">Works with Veeva Vault Safety</a></li>
+    </ul>
+  </div>
+
+<aside class="lead-cta">
+  <h2>Start a 14-day trial, or book a demo</h2>
+  <p>The problem is email intake. AE Connect is customizable electronic intake plus AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or it can be the safety database for the full ICSR and the E2B(R3) file.</p>
+  <p class="actions"><a class="btn" href="https://aeconnect.io/trial/">Start a 14-day trial</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+</aside>
+<section class="product-links">
+  <h2>Use this with the product</h2>
+  <ul>
+    <li><a href="https://aeconnect.io/solutions/ae-sae-intake-form/">AE and SAE intake form</a></li>
+    <li><a href="https://aeconnect.io/trial/">Start a 14-day trial</a></li>
+    <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+    <li><a href="https://aeconnect.io/integrations/iqvia-vigilance/">Works with IQVIA Vigilance</a></li>
+  </ul>
+</section>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a> · <a href="mailto:info@qfsnow.com">info@qfsnow.com</a> · <a href="https://aeconnect.io/learn/">Learn</a> · <a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></span>
+</footer>
+</body>
+</html>
