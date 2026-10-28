@@ -61,6 +61,7 @@ AE Connect is a full app sold to biotech companies. Name, a company email, and a
 Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQPage JSON-LD, and a link to the workspace. Pages about Argus, LifeSphere, and Vault Safety describe how AE Connect integrates with those safety databases and with any other. They are not alternatives. Those products remain the system of record.
 
 - [PV case intake forms](https://aeconnect.io/blog/pv-case-intake-forms/): what an intake form captures before the clock starts
+- [AE reporter forms for patients and healthcare professionals](https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/): what a patient or HCP report must contain before Day 0. Spontaneous versus solicited, MedWatch versus the company record, ICH E2D(R1), GVP Module VI, and 21 CFR 314.80. AE Connect is the case screen, not a patient portal and not MedWatch.
 - [Adverse event reporting: AE and SAE](https://aeconnect.io/blog/adverse-event-reporting-ae-sae/)
 - [SUSAR reporting](https://aeconnect.io/blog/susar-reporting-ind-sponsors/)
 - [Product quality complaint reporting](https://aeconnect.io/blog/product-quality-complaint-reporting/): not a QMS, and not a Field Alert Report

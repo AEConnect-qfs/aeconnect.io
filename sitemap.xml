@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://aeconnect.io/blog/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -123,6 +123,12 @@
   <url>
     <loc>https://aeconnect.io/blog/veeva-vault-safety/</loc>
     <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/</loc>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
