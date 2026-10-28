@@ -62,15 +62,17 @@ package = "./netlify/plugins/indexnow"
   status = 301
   force = true
 
+# Old product URL. The live page that describes that intake system is PV case
+# intake, not the homepage, the AE/SAE form explainer, or the checklist PDF gate.
 [[redirects]]
   from = "/adverse-event-intake-system"
-  to = "/"
+  to = "/solutions/pv-case-intake/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/adverse-event-intake-system/"
-  to = "/"
+  to = "/solutions/pv-case-intake/"
   status = 301
   force = true
 
