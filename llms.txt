@@ -42,6 +42,12 @@ AE Connect is a full app sold to biotech companies. Name, a company email, and a
 - [What late intake does](https://aeconnect.io/learn/what-late-intake-does/): Day 0 and the work that starts only after a valid case. A process description, not a mortality estimate.
 - [Education on reporting and intake](https://aeconnect.io/learn/education-commitment/): QORO's public-education commitment, funded with a dedicated education and awareness budget.
 - [AE Connect’s mission](https://aeconnect.io/learn/mission/): catch adverse drug reactions before it is too late. Not a claim that the software changes mortality.
+- [Pharmacovigilance agreements and SDEAs](https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/): PVA means pharmacovigilance agreement, not a product. An SDEA describes how adverse events move between parties. AE Connect does not replace the agreement or submit the ICSR.
+- [Electronic intake for Oracle Argus](https://aeconnect.io/integrations/oracle-argus/): Argus AE and ICSR intake in front of Safety One Argus. Consolidated Intake and the reporter form stay Oracle's. Not an Argus alternative.
+- [Electronic intake for ArisGlobal LifeSphere](https://aeconnect.io/integrations/arisglobal/): LifeSphere AE and ICSR intake. Not a LifeSphere alternative.
+- [Electronic intake for Veeva Vault Safety](https://aeconnect.io/integrations/veeva-vault-safety/): AE and ICSR intake in front of Vault Safety. Web Intake Forms and Inbox Items stay Veeva's. Not a Vault Safety alternative.
+- [Electronic intake beside IQVIA Vigilance Collect and Intake](https://aeconnect.io/integrations/iqvia-vigilance/): the collect and intake job only. Not an IQVIA Vigilance Platform alternative, and not a Vigilance module.
+- [PV partner intake](https://aeconnect.io/solutions/pv-partner-intake/): electronic intake for cases that go to a CRO or pharmacovigilance partner. PrimeVigilance and PharmaLex are example service partners, not alternatives.
 - [Pipeline](https://aeconnect.io/pipeline/): products in development. AE Connect is live. PQC Connect (product quality complaint intake and workflow) and Combined AE/PQC Connect (unified adverse-event and product-quality-complaint intake) are coming soon and are not available for purchase. No ship date is stated.
 - [Blog](https://aeconnect.io/blog/): pharmacovigilance notes for small biotech teams
 - [E2B(R3) ICSR submission guide](https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/): what the electronic ICSR requirement means for small sponsors
