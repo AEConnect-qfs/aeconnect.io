@@ -63,7 +63,7 @@ function checkNetlifyRedirects() {
     const slash = follow(p);
     const external = slash.final.startsWith('http');
     if (external) {
-      if (slash.loop || slash.status !== 302 || slash.hops !== 1) {
+      if (slash.loop || (slash.status !== 301 && slash.status !== 302) || slash.hops !== 1) {
         ok = false;
         bad.push(`${p} → ${slash.status} ${slash.final} hops=${slash.hops} loop=${slash.loop}`);
       }
@@ -74,7 +74,7 @@ function checkNetlifyRedirects() {
     if (p !== '/') {
       const bare = follow(p.slice(0, -1));
       if (external) {
-        if (bare.loop || bare.status !== 302 || bare.hops !== 1 || bare.final !== slash.final) {
+        if (bare.loop || (bare.status !== 301 && bare.status !== 302) || bare.hops !== 1 || bare.final !== slash.final) {
           ok = false;
           bad.push(`${p.slice(0, -1)} → ${bare.final} hops=${bare.hops} loop=${bare.loop}`);
         }
@@ -117,7 +117,7 @@ function checkNetlifyRedirects() {
     const dest = follow(to);
     const destExternal = dest.final.startsWith('http');
     const destOk = destExternal
-      ? !dest.loop && dest.status === 302
+      ? !dest.loop && (dest.status === 301 || dest.status === 302)
       : !dest.loop && dest.status === 200 && dest.hops === 0;
     const fromOk = destExternal
       ? !r.loop && r.final === dest.final
@@ -206,7 +206,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 51 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 51 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/') && !sitemap.text.includes('/pricing'));
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 50 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 50 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/') && !sitemap.text.includes('/pricing') && !sitemap.text.includes('https://aeconnect.io/trial/'));
 
   const keyNames = fs.readdirSync(ROOT).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
   const keyName = keyNames[0] || '';
@@ -232,81 +232,60 @@ async function main() {
     `pdf ${pdf.status} ${pdfMagic}`,
   );
 
-  const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com'];
-  const personalStatuses = await Promise.all(personalDomains.map(async (domain) => {
-    const res = await fetch(B + '/trial/thanks/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `name=A&email=person@${domain}&company=Co`,
-      redirect: 'manual',
-    });
-    return res.status;
-  }));
-  const personalTrial = { status: personalStatuses.every((status) => status === 400) ? 400 : personalStatuses.join(',') };
-  const companyTrial = await fetch(B + '/trial/thanks/', {
+  const APP_SIGNUP = 'https://app.aeconnect.io/register';
+  check(
+    'home trial CTA is self-serve signup',
+    home.text.includes(`href="${APP_SIGNUP}"`) &&
+      home.text.includes('you are the admin of a new organization') &&
+      !home.text.includes('We set up the account') &&
+      home.text.includes('href="https://aeconnect.io/demo/"'),
+  );
+  for (const p of ['/trial', '/trial/', '/trial/thanks', '/trial/thanks/']) {
+    const r = await page(p);
+    check(`301 ${p} → app signup`, r.status === 301 && r.location === APP_SIGNUP, `${r.status} ${r.location}`);
+  }
+  const posted = await fetch(B + '/trial/thanks/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: 'name=A&email=safety@example-biotech.com&company=Co',
     redirect: 'manual',
   });
-  const missingCompany = await fetch(B + '/trial/thanks/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'name=A&email=safety@example-biotech.com&company=%20%20',
-    redirect: 'manual',
-  });
-  const missingName = await fetch(B + '/trial/thanks/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'name=&email=safety@example-biotech.com&company=Co',
-    redirect: 'manual',
-  });
-  const trialBare = await page('/trial');
-  const trialPage = await page('/trial/');
-  const trialThanksBare = await page('/trial/thanks');
-  const trialThanks = await page('/trial/thanks/');
-  const noSignupRedirect = (html: string) =>
-    !html.includes('app.aeconnect.io/register') &&
-    !html.includes('verification link') &&
-    !html.includes('http-equiv="refresh"');
-  check('trial rejects a personal email', personalTrial.status === 400, String(personalTrial.status));
+  const trialHtml = fs.readFileSync(path.join(ROOT, 'trial/index.html'), 'utf8');
+  const trialThanksHtml = fs.readFileSync(path.join(ROOT, 'trial/thanks/index.html'), 'utf8');
+  const staleTrial: string[] = [];
+  const walkHtml = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name === 'node_modules' || entry.name === 'vendor' || entry.name === '.git') continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walkHtml(full);
+      else if (entry.name.endsWith('.html')) {
+        const text = fs.readFileSync(full, 'utf8');
+        if (
+          text.includes('href="https://aeconnect.io/trial/') ||
+          text.includes('href="/trial/"') ||
+          text.includes('name="sandbox-trial"') ||
+          text.includes('We set up the account') ||
+          text.includes('We set up the sandbox') ||
+          text.includes('will set up the 14-day')
+        ) staleTrial.push(path.relative(ROOT, full));
+      }
+    }
+  };
+  walkHtml(ROOT);
+  check('trial form post redirects to app signup', posted.status === 301 && posted.headers.get('location') === APP_SIGNUP, `${posted.status} ${posted.headers.get('location')}`);
   check(
-    'trial page is a Netlify form',
-    trialBare.status === 301 && trialBare.loc === '/trial/' &&
-      trialPage.status === 200 &&
-      trialPage.text.includes('rel="canonical" href="https://aeconnect.io/trial/"') &&
-      trialPage.text.includes('name="sandbox-trial"') &&
-      trialPage.text.includes('data-netlify="true"') &&
-      trialPage.text.includes('data-work-email') &&
-      trialPage.text.includes('action="/trial/thanks/"') &&
-      trialPage.text.includes('>Name<') &&
-      trialPage.text.includes('>Company name<') &&
-      trialPage.text.includes('>Company work email<') &&
-      /id="trial-company"[^>]*required/.test(trialPage.text) &&
-      trialPage.text.includes('/assets/work-email.js') &&
-      trialPage.text.includes('We set up the account') &&
-      trialPage.text.includes('The company name becomes the Organization') &&
-      noSignupRedirect(trialPage.text),
-    `${trialBare.status} ${trialBare.loc} / ${trialPage.status}`,
-  );
-  check(
-    'trial requires a name and a company name',
-    missingCompany.status === 400 && missingName.status === 400,
-    `company ${missingCompany.status} name ${missingName.status}`,
-  );
-  check(
-    'trial accepts a company email and the thanks page sets up the account',
-    companyTrial.status === 303 &&
-      locationPath(companyTrial.headers.get('location') || '') === '/trial/thanks/' &&
-      trialThanksBare.status === 301 && trialThanksBare.loc === '/trial/thanks/' &&
-      trialThanks.status === 200 &&
-      trialThanks.text.includes('name="robots" content="noindex, nofollow"') &&
-      trialThanks.text.includes('We received your request') &&
-      trialThanks.text.includes('set up the 14-day sandbox account') &&
-      trialThanks.text.includes('becomes the Organization') &&
-      noSignupRedirect(trialThanks.text) &&
-      !sitemap.text.includes('/trial/thanks/'),
-    `${companyTrial.status} ${companyTrial.headers.get('location')} thanks ${trialThanks.status}`,
+    'trial fallback pages describe self-serve signup',
+    !trialHtml.includes('data-netlify') &&
+      !trialHtml.includes('sandbox-trial') &&
+      !trialHtml.includes('We set up') &&
+      trialHtml.includes(APP_SIGNUP) &&
+      trialHtml.includes('you are the admin of a new organization') &&
+      trialThanksHtml.includes('name="robots" content="noindex, nofollow"') &&
+      trialThanksHtml.includes(APP_SIGNUP) &&
+      !trialThanksHtml.includes('will set up') &&
+      !sitemap.text.includes('/trial/thanks/') &&
+      staleTrial.length === 0,
+    staleTrial.join(', '),
   );
 
   const weak = await api('/api/signup', 'POST', undefined, { email: 'not-an-email', password: 'short', name: 'A' });
