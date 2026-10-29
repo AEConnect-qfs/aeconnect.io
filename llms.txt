@@ -25,7 +25,8 @@ AE Connect is a full app sold to biotech companies. Name, a company email, and a
 
 ## Pages
 
-- [Home](https://aeconnect.io/): product overview, how PV case intake works, FAQ
+- [Home](https://aeconnect.io/): overview of what AE Connect is, who it is for, how intake works, and where to go next (trial, demo, learn). The longer product note and FAQ moved to https://aeconnect.io/product/.
+- [Product](https://aeconnect.io/product/): the former homepage. Intake steps, safety-database paths, scope limits, and the questions teams ask.
 - [14-day trial](https://aeconnect.io/trial/): Netlify form for name, company name, and company work email. We set up the sandbox account. The company name becomes the Organization.
 - [Book a demo](https://aeconnect.io/demo/): Netlify form for name, email, company, role, case volume, safety database, and a message
 - [AI workspace](https://aeconnect.io/app/): sample workspace on this site. The sandbox account we set up is at https://app.aeconnect.io
