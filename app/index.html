@@ -182,7 +182,7 @@
         <a href="/product/">Product</a>
         <a href="/features/">Features</a>
         <a href="/blog/">Blog</a>
-        <a href="/trial/">14-day trial</a>
+        <a href="https://app.aeconnect.io/register">14-day trial</a>
         <a href="/contact/">Contact</a>
       </nav>
     </div>
@@ -373,7 +373,7 @@
       }
     }
     const sub = usage && usage.plan === 'trial'
-      ? `<span class="sub-links"><a class="btn btn-amber btn-sm" href="/trial/">Start a 14-day trial</a> <a href="/contact/">Contact</a></span>` : '';
+      ? `<span class="sub-links"><a class="btn btn-amber btn-sm" href="https://app.aeconnect.io/register">Start a 14-day trial</a> <a href="/contact/">Contact</a></span>` : '';
     topRight.innerHTML = `${pill}${sub}<span style="color:var(--slate)">${esc(user.name)}</span><button class="btn btn-ghost btn-sm" onclick="logout()">Log out</button>`;
   }
 
@@ -551,7 +551,7 @@
       html += `<div class="card"><h2>AI assessment</h2>
         <p class="hint">Run the AI engine to draft the structured assessment.</p>
         ${blocked ? `<div class="banner banner-warn">This sample workspace has a case cap. The 14-day sandbox takes a company email and does not cap cases.</div>
-          <a class="btn btn-amber" href="/trial/">Start a 14-day trial</a>`
+          <a class="btn btn-amber" href="https://app.aeconnect.io/register">Start a 14-day trial</a>`
           : `<button class="btn btn-primary" id="assessBtn" onclick="runAssess()">🚀 Run AI assessment</button>`}
         <div class="err" id="assessErr"></div></div>`;
       mainPanel.innerHTML = html;

@@ -139,8 +139,34 @@ package = "./netlify/plugins/indexnow"
   status = 301
   force = true
 
-# /trial/ is the Netlify form sandbox-trial. Do not send it to the app.
-# /trial/thanks/ is the form success page. /beta still points at /trial/.
+# Self-serve signup is the live app register page. /trial is no longer a
+# Netlify form. Both slash forms go to the same external URL, so this does
+# not loop. 301 because signup is the permanent destination. force is
+# required because trial/index.html remains as a fallback. /beta and
+# /pricing still 301 to /trial/, which then 301s here.
+[[redirects]]
+  from = "/trial"
+  to = "https://app.aeconnect.io/register"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/trial/"
+  to = "https://app.aeconnect.io/register"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/trial/thanks"
+  to = "https://app.aeconnect.io/register"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/trial/thanks/"
+  to = "https://app.aeconnect.io/register"
+  status = 301
+  force = true
 
 # The about page is gone.
 [[redirects]]

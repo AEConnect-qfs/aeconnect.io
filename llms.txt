@@ -1,6 +1,6 @@
 # AE Connect
 
-> The problem is email intake. AE Connect is customizable electronic intake plus AI triage for drug-safety teams. It can feed Oracle Argus, ArisGlobal LifeSphere, Veeva Vault Safety, or another safety database, or it can be the safety database for the full ICSR and the E2B(R3) file. Name, a company email, and a company name request a 14-day sandbox trial at https://aeconnect.io/trial/ with unlimited cases. We set up the account. The company name becomes the Organization. Questions go to https://aeconnect.io/contact/ or https://aeconnect.io/demo/. The public site does not list plan prices.
+> The problem is email intake. AE Connect is customizable electronic intake plus AI triage for drug-safety teams. It can feed Oracle Argus, ArisGlobal LifeSphere, Veeva Vault Safety, or another safety database, or it can be the safety database for the full ICSR and the E2B(R3) file. You create a 14-day sandbox at https://app.aeconnect.io/register with your name, a company email, a password, your company name, and your role. After you verify the email, you are the admin of a new organization. The sandbox has unlimited cases. https://aeconnect.io/trial/ redirects there. Questions go to https://aeconnect.io/contact/ or https://aeconnect.io/demo/. The public site does not list plan prices.
 
 AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operating from the San Francisco Bay Area. The public site is https://aeconnect.io/. The self-serve workspace is https://aeconnect.io/app/. A separate sign-in application is linked from the marketing pages at https://app.aeconnect.io and is not this site.
 
@@ -21,15 +21,15 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 
 ## Trial
 
-AE Connect is a full app sold to biotech companies. Name, a company email, and a company name request a 14-day sandbox trial with unlimited cases on the form at https://aeconnect.io/trial/. We set up the sandbox account. The company name becomes the Organization. The sandbox covers electronic intake, form customization, AI triage, and E2B(R3) export. Personal domains such as Gmail, Yahoo, Hotmail, Outlook, iCloud, and AOL are not accepted. Contact sales at https://aeconnect.io/contact/ or book a demo at https://aeconnect.io/demo/. The public site does not list plan prices.
+AE Connect is a full app sold to biotech companies. You create a 14-day sandbox trial with unlimited cases at https://app.aeconnect.io/register: name, a company email, a password, a company name, and a role. After you verify the email, you are the admin of a new organization under that company name. https://aeconnect.io/trial/ redirects there. The sandbox covers electronic intake, form customization, AI triage, and E2B(R3) export. Contact sales at https://aeconnect.io/contact/ or book a demo at https://aeconnect.io/demo/. The public site does not list plan prices.
 
 ## Pages
 
 - [Home](https://aeconnect.io/): overview of what AE Connect is, who it is for, how intake works, and where to go next (trial, demo, learn). The longer product note and FAQ moved to https://aeconnect.io/product/.
 - [Product](https://aeconnect.io/product/): the former homepage. Intake steps, safety-database paths, scope limits, and the questions teams ask.
-- [14-day trial](https://aeconnect.io/trial/): Netlify form for name, company name, and company work email. We set up the sandbox account. The company name becomes the Organization.
+- [14-day trial](https://app.aeconnect.io/register): self-serve signup. You enter your name, a company email, a password, your company name, and your role. After you verify the email, you are the admin of a new organization. https://aeconnect.io/trial/ redirects there.
 - [Book a demo](https://aeconnect.io/demo/): Netlify form for name, email, company, role, case volume, safety database, and a message
-- [AI workspace](https://aeconnect.io/app/): sample workspace on this site. The sandbox account we set up is at https://app.aeconnect.io
+- [AI workspace](https://aeconnect.io/app/): sample workspace on this site. Self-serve signup for the 14-day sandbox is at https://app.aeconnect.io/register
 - [Solutions](https://aeconnect.io/solutions/): PV case intake, AE/SAE intake form, SUSAR triage, PQC intake, E2B(R3), aggregate reports
 - [Works with Argus, LifeSphere, and Vault Safety](https://aeconnect.io/integrations/): complementary comparison tables, not alternatives
 - [Trust](https://aeconnect.io/trust/): data handling, audit trail, MedDRA suggestions, trial workspace. No Part 11 or GAMP 5 claim

@@ -101,13 +101,13 @@ Site configuration → Environment variables. Add:
 
 `NODE_VERSION` is already pinned to 20 in `netlify.toml`.
 
-The public offer is a 14-day company-email sandbox with unlimited cases, requested at /trial/. The marketing site does not list plan prices. Questions go to Contact or Book a demo.
+The public offer is a 14-day company-email sandbox with unlimited cases. Signup is self-serve at https://app.aeconnect.io/register. https://aeconnect.io/trial/ redirects there. The marketing site does not list plan prices. Questions go to Contact or Book a demo.
 
 Trigger a redeploy after setting these.
 
 ## 5b. Payments
 
-Do not publish plan prices on the marketing site. The 14-day sandbox is requested at `/trial/` with a company email and a company name. We set up the account. Questions go to Contact or Book a demo.
+Do not publish plan prices on the marketing site. The 14-day sandbox is self-serve at https://app.aeconnect.io/register: name, a company email, a password, a company name, and a role. After email verification, that person is the admin of a new organization. `/trial/` redirects there. Questions go to Contact or Book a demo.
 
 ## 6. Verify the live deploy
 
@@ -116,7 +116,7 @@ Do not publish plan prices on the marketing site. The 14-day sandbox is requeste
    - With `ANTHROPIC_API_KEY` set, this is a real Claude assessment and returns a structured draft.
 3. Accept or override fields, then **Download case**. E-signature sign-off is not part of this site; it stays on `app.aeconnect.io`.
 4. Netlify → Functions tab shows invocation logs for `assess`, `cases`, and so on.
-5. The public trial is the 14-day sandbox at `/trial/`, not a capped case allowance.
+5. The public trial is the 14-day sandbox at https://app.aeconnect.io/register. https://aeconnect.io/trial/ redirects there. It is not a capped case allowance.
 
 Local smoke test (against a local/dev DB) still works with:
 ```bash
@@ -145,7 +145,7 @@ First OCR downloads the English model (cached thereafter).
 
 ## Not yet wired (intentional stubs)
 
-- **Payments** — the public site offers the 14-day sandbox at /trial/ and does not publish plan prices.
+- **Payments** — the public site offers the 14-day sandbox at https://app.aeconnect.io/register (`/trial/` redirects there) and does not publish plan prices.
 - **Data retention / backups** — Neon handles Postgres durability; PV records often need
   ~25-year retention (spec §7). Plan a backup/retention policy before real cases.
 
