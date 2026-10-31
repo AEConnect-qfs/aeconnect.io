@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI analysis and design architecture | AE Connect</title>
+  <meta name="description" content="How AE Connect turns adverse event intake into a structured case, an AI triage draft, and a human review. The QORO PV model is in development and is not in production." />
+  <link rel="canonical" href="https://aeconnect.io/tech/" />
+  <meta property="og:title" content="AI analysis and design architecture | AE Connect" />
+  <meta property="og:description" content="How AE Connect turns adverse event intake into a structured case, an AI triage draft, and a human review. The QORO PV model is in development and is not in production." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aeconnect.io/tech/" />
+  <meta property="og:site_name" content="AE Connect" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI analysis and design architecture | AE Connect" />
+  <meta name="twitter:description" content="How AE Connect turns adverse event intake into a structured case, an AI triage draft, and a human review. The QORO PV model is in development and is not in production." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png",
+        "@id": "https://aeconnect.io/#organization",
+        "name": "QORO Intelligence Inc.",
+        "url": "https://aeconnect.io/",
+        "email": "info@qfsnow.com"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Tech", "item": "https://aeconnect.io/tech/" }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "AI analysis and design architecture",
+        "description": "How AE Connect turns adverse event intake into a structured case, an AI triage draft, and a human review. The QORO PV model is in development and is not in production.",
+        "url": "https://aeconnect.io/tech/",
+        "inLanguage": "en",
+        "datePublished": "2026-10-31",
+        "dateModified": "2026-10-31",
+        "publisher": { "@id": "https://aeconnect.io/#organization" },
+        "mainEntityOfPage": "https://aeconnect.io/tech/"
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; --card:#FFFFFF; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.65; }
+    a { color: var(--teal); }
+    nav { position: sticky; top: 0; z-index: 20; display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 28px; background: rgba(243,245,244,0.94); border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-links { display:flex; gap:12px; list-style:none; align-items:center; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; font-weight:500; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--teal); color: var(--navy) !important; padding: 8px 12px; border-radius: 6px; font-weight: 700 !important; }
+    main { max-width: 1080px; margin: 0 auto; padding: 36px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 16px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 46px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 14px; }
+    .lede { font-size: 18px; margin-bottom: 8px; }
+    h2 { color: var(--white); font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.3px; margin: 8px 0 12px; }
+    h3 { color: var(--white); font-size: 18px; margin: 0 0 6px; }
+    p { margin-bottom: 12px; }
+    .section-intro { max-width: 68ch; margin-bottom: 16px; }
+    section { margin-bottom: 36px; }
+    .flow { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; margin: 8px 0 14px; }
+    .flow-step { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 12px 16px; min-width: 0; }
+    .flow-step h3 { font-size: 16px; }
+    .flow-step p { margin: 0; font-size: 13.5px; }
+    .flow-kicker { display: block; color: var(--teal); font-weight: 700; font-size: 12px; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .flow-arrow { position: absolute; right: -22px; top: 50%; width: 22px; height: 22px; margin-top: -11px; color: var(--teal); }
+    .note { color: var(--slate); font-size: 14px; max-width: 72ch; }
+    .card-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 0; }
+    .card-grid > li, .promise { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 0; }
+    .card-grid h3 { font-size: 17px; }
+    .card-grid p, .promise p { margin: 0; }
+    .qoro { margin: 8px 0 36px; padding: 28px 22px 22px; border: 1px solid var(--border); border-radius: 16px; background: #fff; box-shadow: 0 0 0 4px rgba(74,111,165,0.08); }
+    .qoro h2 { font-size: clamp(28px, 3.4vw, 40px); max-width: 18em; }
+    .pill { display: inline-block; margin: 0 8px 12px 0; padding: 3px 8px; border: 1px solid #3A5A88; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #3A5A88; }
+    .promises { list-style: none; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 16px 0; }
+    .status { background: var(--navy); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin: 0; }
+    .status strong { color: var(--white); }
+    .lead-cta { margin: 28px 0; padding: 18px; border: 1px solid var(--border); border-radius: 12px; background: #fff; max-width: 68ch; }
+    .lead-cta h2 { margin-top: 0; font-size: clamp(24px, 3vw, 32px); }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 0; }
+    .btn { display: inline-block; background: var(--teal); color: #fff; font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .btn-ghost { background: transparent; color: var(--white); border: 1px solid #3A5A88; }
+    footer { border-top: 1px solid var(--border); padding: 28px 22px 36px; color: var(--slate); font-size: 13px; }
+    .footer-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    .footer-inner h2 { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; }
+    .footer-inner ul { list-style: none; padding: 0; }
+    .footer-inner a { color: var(--light); }
+    .footer-bottom { max-width: 1080px; margin: 16px auto 0; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 980px) {
+      .flow { grid-template-columns: 1fr; gap: 28px; }
+      .flow-arrow { position: static; display: block; margin: 12px auto 0; transform: rotate(90deg); }
+      .promises { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .card-grid, .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="AI analysis and design architecture | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
+</head>
+<body>
+<nav aria-label="Primary">
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/product/">Product</a></li>
+    <li><a href="https://aeconnect.io/tech/" aria-current="page">Tech</a></li>
+    <li><a href="https://aeconnect.io/solutions/pv-case-intake/">Solutions</a></li>
+    <li><a href="https://aeconnect.io/integrations/oracle-argus/">Works with</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+    <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+    <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
+    <li><a class="nav-cta" href="https://app.aeconnect.io/register">Start the 14 day trial</a></li>
+  </ul>
+</nav>
+<header class="brand-hero">
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / Tech</p>
+  <p class="eyebrow">Technology</p>
+  <h1>Adverse event intake, then a draft a person reviews.</h1>
+  <p class="lede">AE Connect turns a report into a structured case, drafts the triage, and leaves the decision with safety staff. Nothing on this page is submitted to a regulator by the software.</p>
+</header>
+<main>
+  <section aria-labelledby="architecture-heading">
+    <h2 id="architecture-heading">From intake to a reviewed case</h2>
+    <p class="section-intro">Five steps. The analysis layer drafts. A person files the case, or keeps it in AE Connect.</p>
+    <ol class="flow">
+      <li class="flow-step">
+        <span class="flow-kicker">01</span>
+        <h3>Intake</h3>
+        <p>Public reporter form. Custom organization forms. Email a safety person files into the case.</p>
+        <svg class="flow-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </li>
+      <li class="flow-step">
+        <span class="flow-kicker">02</span>
+        <h3>Structured case record</h3>
+        <p>Reporter, patient, product, and event, held on the organization.</p>
+        <svg class="flow-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </li>
+      <li class="flow-step">
+        <span class="flow-kicker">03</span>
+        <h3>AI analysis layer</h3>
+        <p>A draft of priority, seriousness, coding, causality, timelines, gaps, and a summary.</p>
+        <svg class="flow-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </li>
+      <li class="flow-step">
+        <span class="flow-kicker">04</span>
+        <h3>Human review</h3>
+        <p>Safety staff read the source and accept or override the draft.</p>
+        <svg class="flow-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </li>
+      <li class="flow-step">
+        <span class="flow-kicker">05</span>
+        <h3>Outputs</h3>
+        <p>ICSR and E2B(R3). Export for Argus, Veeva, or ArisGlobal, or keep AE Connect as the safety database.</p>
+      </li>
+    </ol>
+    <p class="note">The public reporter form does not need an AE Connect account. Each organization customizes that form (fields, branding, products, and languages) and shares its own link. An emailed report is brought into the case by the safety team. AE Connect does not submit or transmit the ICSR. Oracle Argus, Veeva Vault Safety, and ArisGlobal LifeSphere are product names of their owners.</p>
+  </section>
+
+  <section aria-labelledby="analysis-heading">
+    <h2 id="analysis-heading">What the analysis layer drafts</h2>
+    <p class="section-intro">Every item below is a suggestion. A qualified person reviews it. Nothing is submitted to a regulator from this layer.</p>
+    <ul class="card-grid">
+      <li>
+        <h3>Priority</h3>
+        <p>A priority score so the queue can surface the cases that need a person first.</p>
+      </li>
+      <li>
+        <h3>Seriousness criteria</h3>
+        <p>A suggested serious or not serious call, against death, a life threatening event, hospitalization, disability, a congenital anomaly, or another medically important event.</p>
+      </li>
+      <li>
+        <h3>Suggested MedDRA coding</h3>
+        <p>A preferred term and system organ class for the reviewer to confirm. This suggestion is not a MedDRA license and not a coded case.</p>
+      </li>
+      <li>
+        <h3>WHO-UMC causality suggestion</h3>
+        <p>A WHO-UMC category with a short reason. The reviewer accepts it or replaces it.</p>
+      </li>
+      <li>
+        <h3>FDA and EMA reporting timeline guidance</h3>
+        <p>A suggested reporting deadline, including the usual 7 day and 15 day expedited clocks. The draft does not start the clock and does not file the report.</p>
+      </li>
+      <li>
+        <h3>Missing information checklist</h3>
+        <p>Gaps the case still needs, including a reporter, a product, and an onset date, so follow up can start before the file is complete.</p>
+      </li>
+      <li>
+        <h3>Case summary</h3>
+        <p>A short narrative the reviewer can read next to the source and export with the triage draft.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="provider-heading">
+    <h2 id="provider-heading">How triage runs today</h2>
+    <p class="section-intro">The call that writes the draft goes through a provider layer. The case record stays the same when the model behind that call changes.</p>
+    <ul class="card-grid">
+      <li>
+        <h3>Leading foundation models</h3>
+        <p>The layer works with leading foundation models. Organization settings choose the Claude model used for the current call.</p>
+      </li>
+      <li>
+        <h3>Customer cloud or a custom endpoint</h3>
+        <p>The same layer can run inside the customer's cloud, for example on AWS Bedrock, or point at a custom model endpoint.</p>
+      </li>
+    </ul>
+    <p class="note">This is the path in the product now. The model in the next section is not this path.</p>
+  </section>
+
+  <section class="qoro" id="qoro-pv-model" aria-labelledby="qoro-heading">
+    <p class="pill">Roadmap</p>
+    <p class="pill">In development</p>
+    <h2 id="qoro-heading">The QORO PV model will power AE&nbsp;Connect triage</h2>
+    <p class="section-intro">The QORO PV model will be the in house technology that runs AI triage for AE Connect. It is in development. It is not in the product, it is not live, and it is not validated.</p>
+    <ul class="promises">
+      <li class="promise">
+        <h3>QORO will build and host it</h3>
+        <p>QORO will build the model and host it. Once it is deployed, triage will not depend on a third party model.</p>
+      </li>
+      <li class="promise">
+        <h3>It will cite public guidance</h3>
+        <p>The model will be grounded in public regulations and guidance, and it will cite the passages it retrieves. The grounding set will include ICH E2A, ICH E2B(R3), ICH E2D, FDA 21 CFR 314.80, FDA 21 CFR 600.80, and EU GVP.</p>
+      </li>
+      <li class="promise">
+        <h3>It will be validated before production</h3>
+        <p>Before the model is used in production, the core functionality will be fully validated. That work will include computer system validation and documented testing against qualified human reviewers. Validation will happen first. It has not happened yet.</p>
+      </li>
+    </ul>
+    <p>The model will be tuned on triage data. Licensed MedDRA coding is on the roadmap and will not be part of the first production use unless that work is finished and stated separately.</p>
+    <p class="status"><strong>Status:</strong> in development. Not available in the trial. Not in production. Not validated. Until this model is in production, triage keeps using the provider layer above.</p>
+  </section>
+
+  <section aria-labelledby="security-heading">
+    <h2 id="security-heading">Organization scope, roles, and the audit log</h2>
+    <p class="section-intro">These are controls in the workspace. This page does not claim 21 CFR Part 11, GAMP 5, SOC 2, ISO 27001, or a HIPAA business associate agreement. Data handling is on the <a href="https://aeconnect.io/trust/">trust page</a>.</p>
+    <ul class="card-grid">
+      <li>
+        <h3>Organization scope</h3>
+        <p>Cases, the public form, settings, and the audit log belong to one organization. The signed in session sends that organization id with each request. A signup without an invite creates a new organization, and that person is the Org Admin. Teammates join by invite.</p>
+      </li>
+      <li>
+        <h3>Role based access</h3>
+        <p>Organization roles are Org Admin, Manager, PV Specialist, and Reporter. User management, invites, the form builder, settings, and the audit log are admin screens, not open to every role. A QORO operator role can open cross organization administration. Customer roles stay inside their organization.</p>
+      </li>
+      <li>
+        <h3>Audit log</h3>
+        <p>The audit log records activity in the organization, including case updates, triage, status changes, and E2B export. An admin can review the log and export it.</p>
+      </li>
+    </ul>
+  </section>
+
+  <aside class="lead-cta">
+    <h2>Try the intake and the draft</h2>
+    <p>The 14 day trial is the product that runs today: electronic intake, the provider layer, and a human review. The QORO PV model is not in that trial.</p>
+    <p class="actions">
+      <a class="btn" href="https://aeconnect.io/trial/">Start the 14 day trial</a>
+      <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a>
+    </p>
+  </aside>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h2>Product</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/">Home</a></li>
+        <li><a href="https://aeconnect.io/product/">Product</a></li>
+        <li><a href="https://aeconnect.io/tech/" aria-current="page">Tech</a></li>
+        <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+        <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+        <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></li>
+        <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+        <li><a href="https://aeconnect.io/trial/">Start a 14 day trial</a></li>
+        <li><a href="https://aeconnect.io/trust/">Trust</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Solutions</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+        <li><a href="https://aeconnect.io/solutions/ae-sae-intake-form/">AE and SAE intake form</a></li>
+        <li><a href="https://aeconnect.io/solutions/susar-triage/">SUSAR triage</a></li>
+        <li><a href="https://aeconnect.io/solutions/pqc-intake/">PQC intake</a></li>
+        <li><a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3)</a></li>
+        <li><a href="https://aeconnect.io/solutions/aggregate-reports/">Aggregate reports</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Works with</h2>
+      <ul>
+        <li><a href="https://aeconnect.io/integrations/oracle-argus/">Oracle Argus</a></li>
+        <li><a href="https://aeconnect.io/integrations/arisglobal/">ArisGlobal LifeSphere</a></li>
+        <li><a href="https://aeconnect.io/integrations/veeva-vault-safety/">Veeva Vault Safety</a></li>
+        <li><a href="mailto:info@qfsnow.com">info@qfsnow.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 QORO Intelligence Inc.</span>
+    <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/contact/">Contact</a></span>
+  </div>
+</footer>
+</body>
+</html>
