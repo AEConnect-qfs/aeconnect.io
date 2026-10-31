@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICSR intake | AE Connect</title>
+  <meta name="description" content="What an ICSR has to contain under 21 CFR 314.80, how intake channels differ, and how a reviewed case reaches Argus, Vault Safety, LifeSphere, or IQVIA before anyone builds an E2B(R3) file for AEMS, formerly FAERS." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/icsr-intake/" />
+  <meta property="og:title" content="ICSR intake" />
+  <meta property="og:description" content="What an ICSR has to contain under 21 CFR 314.80, how intake channels differ, and how a reviewed case reaches a safety database before an E2B(R3) file for AEMS, formerly FAERS." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/icsr-intake/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ICSR intake | AE Connect" />
+  <meta name="twitter:description" content="What an ICSR has to contain under 21 CFR 314.80, how intake channels differ, and how a reviewed case reaches a safety database before an E2B(R3) file for AEMS, formerly FAERS." />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ICSR intake before the case is a submission",
+  "description": "What an ICSR has to contain under 21 CFR 314.80, how intake channels differ, and how a reviewed case reaches a safety database before an E2B(R3) file for AEMS, formerly FAERS.",
+  "url": "https://aeconnect.io/blog/icsr-intake/",
+  "datePublished": "2026-10-31",
+  "dateModified": "2026-10-31",
+  "author": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/"},
+  "publisher": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png"},
+  "mainEntityOfPage": "https://aeconnect.io/blog/icsr-intake/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What information does an ICSR have to include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "21 CFR 314.80(f) says a drug ICSR includes patient information, the adverse drug experience, the suspect product, the initial reporter, and applicant information such as the date the applicant received the report. 21 CFR 314.80 does not use the phrase four minimum criteria. Those groups are the practical check at intake. The 15 calendar day alert clock runs from initial receipt of the information by the applicant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does ICSR intake send the case to AEMS or FAERS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Intake records the case. Submission is later. The FDA E2B(R3) data standards page is the technical reference for electronic ICSRs sent to the FDA Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS), using E2B(R3). The gateway and the Safety Reporting Portal are described on the FAERS and AEMS guide on this site, which cites the AEMS electronic submissions page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can intake quality be measured without a published benchmark?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Count whether reporter, patient, suspect product, and event were identifiable on the day of receipt, whether the receipt date was stored, and how long it took a person to accept or override the draft. Those are operating counts for your own cases. They are not FDA metrics and they are not a published study."
+      }
+    }
+  ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #4A6FA5); color: var(--navy, #F3F5F4); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #14202C); border: 1px solid #5E6873; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "ICSR intake before the case is a submission", "item": "https://aeconnect.io/blog/icsr-intake/"}
+    ]
+  }
+  </script>
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="ICSR intake | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/product/">Product</a></li>
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+    <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+    <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
+  </ul>
+</nav>
+<header class="brand-hero">
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / ICSR intake</p>
+  <h1>ICSR intake before the case is a submission</h1>
+  <p class="by">QORO Team · 31 October 2026 · about 8 minutes</p>
+</header>
+<main>
+  <p>ICSR intake is the hour a report becomes a case your company can stand behind. An individual case safety report, in <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80</a>, is a description of an adverse drug experience related to an individual patient or subject. Intake is not the transmission of that description to the FDA Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). Transmission is a later file, described on the <a href="https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-e2br3-data-standards">FDA E2B(R3) data standards page</a>.</p>
+
+  <h2>What counts as a report you can submit</h2>
+  <p>People in drug safety talk about four elements: an identifiable reporter, an identifiable patient, a suspect product, and an adverse event. 21 CFR 314.80 does not use that slogan. Paragraph (f) does list the information a drug ICSR includes, in those groups, plus a block about the applicant.</p>
+  <ul>
+    <li><strong>Patient.</strong> Identification code, age at the time of the experience or date of birth, gender, and weight. Names and addresses of patients stay out of the report. The applicant assigns a code.</li>
+    <li><strong>Adverse drug experience.</strong> Outcome, date of the experience, date of the ICSR, a description with a concise medical narrative, the adverse terms, relevant tests with dates and laboratory data, and other relevant history, including preexisting conditions.</li>
+    <li><strong>Suspect product.</strong> Name, dose, frequency, and route, therapy dates, diagnosis for use, prescription or nonprescription, whether it is a combination product, whether the experience abated after the product stopped or the dose was reduced, whether it reappeared after the product was restarted, lot, expiration, National Drug Code, and concomitant products with therapy dates.</li>
+    <li><strong>Initial reporter.</strong> Name, address, and telephone number, whether the reporter is a health care professional, and occupation if so.</li>
+    <li><strong>Applicant.</strong> Contact details, report source, the date the report was received by the applicant, the application number, whether the ICSR is an alert, whether it is an initial report or a followup, and a case number that stays the same on followup.</li>
+  </ul>
+  <p>The alert rule is separate from that list. 21 CFR 314.80(c)(1)(i) says each adverse drug experience that is both serious and unexpected is reported as soon as possible and no later than 15 calendar days from initial receipt of the information by the applicant. The regulation ties the clock to receipt. It does not say the clock waits until every field in paragraph (f) is filled. Your procedure should still record which of the four groups is missing, because a submission that cannot name a reporter, a patient, a product, and an event is not the ICSR paragraph (f) describes. Keep the receipt date while you ask for the missing piece. What late intake does to that date is the subject of <a href="https://aeconnect.io/learn/what-late-intake-does/">what late intake does</a>.</p>
+  <p>A useful form for the same facts is the <a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake form</a> guide. What to ask a patient or a health care professional is on the <a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">reporter forms page</a>.</p>
+
+  <aside class="lead-cta">
+    <h2>Start a 14 day trial, or book a demo</h2>
+    <p>The problem is email intake. AE Connect is electronic intake with AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or it can hold the full ICSR and the E2B(R3) file. A person accepts or overrides the draft before any file is built for AEMS, formerly FAERS.</p>
+    <p class="actions"><a class="btn" href="https://app.aeconnect.io/register">Start a 14 day trial</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+  </aside>
+  <aside class="lead-cta">
+    <h2>AE intake checklist</h2>
+    <p>A short checklist for AE and SAE intake, and for the case data to have in hand before an E2B(R3) file is prepared in the safety database. AE Connect drafts the case. The safety database remains the system of record when you use one.</p>
+    <p class="actions"><a class="btn" href="https://aeconnect.io/resources/ae-intake-checklist/">Get the checklist</a></p>
+  </aside>
+
+  <h2>Intake channels</h2>
+  <p>21 CFR 314.80(b) requires review of information from any source, foreign or domestic. The channels a small team actually sees are fewer, and each one loses a different field.</p>
+  <ul>
+    <li><strong>Patient or caregiver.</strong> Often an email with the event in ordinary words and no lot number. The reporter may also be the patient. The regulation says to include the reporter’s name even then, and to keep the patient’s name out of the FDA report by using a code.</li>
+    <li><strong>Health care professional.</strong> A call or a medical information request. Occupation and whether the reporter is a health care professional are fields paragraph (f) includes. Write them down at intake.</li>
+    <li><strong>Partner.</strong> A distributor, a licensee, or a contract safety group forwards a packet. Store the date your company received it. That date is the applicant receipt date in paragraph (f). The partner’s earlier date is history, and your contract should say how the two dates are used.</li>
+    <li><strong>Literature.</strong> 21 CFR 314.80(d) says a 15 calendar day alert based on the scientific literature must include a copy of the article, and that this literature rule applies to case reports or formal clinical trials in scientific and medical journals. Intake should attach the article, not a paraphrase.</li>
+  </ul>
+  <p><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a> is the single place those channels should meet. The source wording stays attached to the case.</p>
+
+  <h2>Data quality at intake</h2>
+  <p>The E2B(R3) file is only as specific as the case you hand the safety database. FDA’s data standards page says AEMS, formerly FAERS, is where premarketing and postmarketing ICSRs go when they use E2B(R3). The page points sponsors to the regional implementation guide and to the spreadsheet of core and regional data elements and business rules. It also says FDA provides a validator so you can check an E2B(R3) XML file before you rely on it. Those checks happen after intake. They fail more quietly when the narrative never contained the fact.</p>
+  <p>Two items on that FDA page are a reminder that source type is data, not a footnote. FDA says AEMS accepts new values for data element C.5.4, study type where the reaction was observed: 4 for a patient support program, 5 for a market research program, and 6 for an organised data collection system with source data from a digital platform. The page uses that spelling of organised. If the report came from one of those programs, intake should say so in the source field, while the case number is still new. The same page discusses data element C.1.3, type of report, in the ICH information paper it cites. Your coder should use the current FDA document. This article does not restate the code list.</p>
+  <p>Quality at intake means the verbatim event, the receipt date, and the product name are present before anyone suggests a coded term. A suggested term can wait. A missing receipt date cannot be reconstructed from memory without a note of who reconstructed it.</p>
+
+  <h2>Routing to a safety database</h2>
+  <p>After a person accepts the draft, the case has to reach the system that will hold it. The pages on this site for the systems teams name are:</p>
+  <ul>
+    <li><a href="https://aeconnect.io/integrations/oracle-argus/">Oracle Argus</a></li>
+    <li><a href="https://aeconnect.io/integrations/veeva-vault-safety/">Veeva Vault Safety</a></li>
+    <li><a href="https://aeconnect.io/integrations/arisglobal/">ArisGlobal LifeSphere</a></li>
+    <li><a href="https://aeconnect.io/integrations/iqvia-vigilance/">IQVIA Vigilance</a></li>
+  </ul>
+  <p>If one of those databases is your system of record, it remains the system of record. AE Connect drafts the case from the source and a person accepts or overrides each field. The E2B(R3) file those databases produce is what a gateway submission uses. Building that file, and sending it to AEMS, formerly FAERS, is outside the intake hour. FDA’s data standards page is the reference for the file. It does not name AE Connect, Argus, Vault Safety, LifeSphere, or IQVIA as a preferred tool.</p>
+
+  <h2>Measuring intake quality</h2>
+  <p>There is no FDA score on the sources for this page, and this site does not publish a white paper of benchmark rates. You can still count your own cases. Useful counts, taken from the fields above, are:</p>
+  <ul>
+    <li>Share of new cases that named a reporter, a patient, a suspect product, and an event on the day of receipt.</li>
+    <li>Share that stored the applicant’s receipt date on that day.</li>
+    <li>Share sent back because one of those groups was missing, and which group it was.</li>
+    <li>Time from receipt until a person accepted or overrode the draft. That time is an operating measure. It is not the 15 calendar day regulatory clock, which runs from receipt whether or not the draft is done.</li>
+  </ul>
+  <p>Review the counts in the same meeting where you look at late cases. The point of the count is the repair: a channel that never captures occupation, a partner file that never includes the date they received the report, a literature inbox that stores a link and forgets the PDF. The <a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a> is a short list of the same fields.</p>
+
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload a source. A company email starts a 14 day sandbox trial. You accept or override every field. AE Connect can feed a safety database, or it can hold the full ICSR and the E2B(R3) file. The send to AEMS, formerly FAERS, is a later step.</p>
+    <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
+  </div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What information does an ICSR have to include?</h3>
+    <p>21 CFR 314.80(f) says a drug ICSR includes patient information, the adverse drug experience, the suspect product, the initial reporter, and applicant information such as the date the applicant received the report. 21 CFR 314.80 does not use the phrase four minimum criteria. Those groups are the practical check at intake. The 15 calendar day alert clock runs from initial receipt of the information by the applicant.</p>
+    <h3>Does ICSR intake send the case to AEMS or FAERS?</h3>
+    <p>Intake records the case. Submission is later. The FDA E2B(R3) data standards page is the technical reference for electronic ICSRs sent to the FDA Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS), using E2B(R3). The gateway and the Safety Reporting Portal are described on the <a href="https://aeconnect.io/blog/faers-is-now-aems/">FAERS and AEMS guide</a>, which cites the AEMS electronic submissions page.</p>
+    <h3>Can intake quality be measured without a published benchmark?</h3>
+    <p>Yes. Count whether reporter, patient, suspect product, and event were identifiable on the day of receipt, whether the receipt date was stored, and how long it took a person to accept or override the draft. Those are operating counts for your own cases. They are not FDA metrics and they are not a published study.</p>
+  </section>
+
+  <div class="related">
+    <h2>Sources</h2>
+    <ol>
+      <li>U.S. Food and Drug Administration. FDA Adverse Event Monitoring System (AEMS) E2B(R3) Data Standards. Formerly the FDA Adverse Event Reporting System (FAERS). <a href="https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-e2br3-data-standards">E2B(R3) data standards</a>.</li>
+      <li>21 CFR 314.80, Postmarketing reporting of adverse drug experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">eCFR</a>.</li>
+    </ol>
+    <h2>On this site</h2>
+    <ul>
+      <li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+      <li><a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">AE reporter forms</a></li>
+      <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+      <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></li>
+      <li><a href="https://aeconnect.io/learn/what-late-intake-does/">What late intake does</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a> · <a href="mailto:info@qfsnow.com">info@qfsnow.com</a></span>
+</footer>
+</body>
+</html>
