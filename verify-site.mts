@@ -2,9 +2,6 @@ import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { prisma } from './netlify/functions/_lib/prisma.js';
-import { verifyAuditChain } from './netlify/functions/_lib/audit.js';
-import { currentBillingMonth } from './netlify/functions/_lib/billing.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 
@@ -172,6 +169,18 @@ async function main() {
   const contact = await page('/contact/');
   check('trailing slash: /contact → /contact/', contactBare.status === 301 && contactBare.loc === '/contact/' && contact.status === 200);
 
+  const e2bBare = await page('/blog/ich-e2b-r3-deadline-biotech-guide');
+  const e2b = await page('/blog/ich-e2b-r3-deadline-biotech-guide/');
+  const e2bCanon = 'rel="canonical" href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/"';
+  check(
+    '301 /blog/ich-e2b-r3-deadline-biotech-guide to the slashed canonical',
+    e2bBare.status === 301 &&
+      e2bBare.loc === '/blog/ich-e2b-r3-deadline-biotech-guide/' &&
+      e2b.status === 200 &&
+      e2b.text.includes(e2bCanon),
+    `${e2bBare.status} ${e2bBare.loc}`,
+  );
+
   const legacy = [
     ['/blog/meddra-coding-at-intake-ai-pharmacovigilance', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
     ['/adverse-event-intake-system/', '/solutions/pv-case-intake/'],
@@ -206,7 +215,7 @@ async function main() {
   const sitemap = await page('/sitemap.xml');
   const locs = sitemap.text.match(/<loc>/g)?.length || 0;
   check('robots disallows /api/', robots.status === 200 && robots.text.includes('Disallow: /api/'));
-  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 51 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 51 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/') && !sitemap.text.includes('/pricing') && !sitemap.text.includes('https://aeconnect.io/trial/'));
+  check('sitemap lists every public URL with lastmod', sitemap.status === 200 && locs === 56 && (sitemap.text.match(/<lastmod>/g)?.length || 0) === 56 && !sitemap.text.includes('/beta/') && !sitemap.text.includes('/about/') && !sitemap.text.includes('/pricing') && !sitemap.text.includes('https://aeconnect.io/trial/'));
 
   const keyNames = fs.readdirSync(ROOT).filter((name) => /^[a-f0-9]{32}\.txt$/.test(name));
   const keyName = keyNames[0] || '';
@@ -288,6 +297,16 @@ async function main() {
     staleTrial.join(', '),
   );
 
+  if (!process.env.DATABASE_URL) {
+    console.log('SKIP  database checks because DATABASE_URL is not set');
+    console.log(`\n${pass} passed, ${fail} failed`);
+    process.exit(fail === 0 ? 0 : 1);
+  }
+
+  const { prisma } = await import('./netlify/functions/_lib/prisma.js');
+  const { verifyAuditChain } = await import('./netlify/functions/_lib/audit.js');
+  const { currentBillingMonth } = await import('./netlify/functions/_lib/billing.js');
+
   const weak = await api('/api/signup', 'POST', undefined, { email: 'not-an-email', password: 'short', name: 'A' });
   check('signup weak password + bad email → 400', weak.status === 400 && !!weak.body.fields?.password && !!weak.body.fields?.email && weak.robots.includes('noindex'));
   const loginBad = await api('/api/login', 'POST', undefined, { email: 'also-bad', password: '' });
@@ -364,4 +383,4 @@ async function main() {
   await prisma.$disconnect();
   process.exit(fail === 0 ? 0 : 1);
 }
-main().catch(async (e) => { console.error(e); await prisma.$disconnect(); process.exit(1); });
+main().catch((e) => { console.error(e); process.exit(1); });
