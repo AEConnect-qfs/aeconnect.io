@@ -22,7 +22,7 @@
   "description": "A SUSAR is serious, unexpected, and suspected. How 7-day and 15-day reporting relates to case intake, AE Connect integrates the case with any safety database, which remains the system of record.",
   "url": "https://aeconnect.io/blog/susar-reporting-ind-sponsors/",
   "datePublished": "2026-10-23",
-  "dateModified": "2026-10-23",
+  "dateModified": "2026-11-02",
   "author": {
     "@type": "Organization", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png",
     "name": "QORO Intelligence Inc.",
@@ -59,10 +59,18 @@
     },
     {
       "@type": "Question",
+      "name": "What is SUSAR reporting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SUSAR reporting is the expedited clinical report for a suspected unexpected serious adverse reaction. Under 21 CFR 312.32 the sponsor reports a suspected adverse reaction that is both serious and unexpected. An unexpected fatal or life-threatening case goes to FDA on the 7 calendar day clock. Other qualifying IND safety reports use the 15 calendar day clock. The SUSAR timelines table on this page lists who is told and when each clock starts."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "What are the SUSAR timelines?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For a US IND, an unexpected fatal or life-threatening suspected adverse reaction goes to FDA as soon as possible and no later than 7 calendar days after initial receipt. Other serious and unexpected suspected adverse reactions go as soon as possible and no later than 15 calendar days after the sponsor determines the information qualifies. EU expedited SUSAR reporting uses a 7-day and 15-day shape as well. Your SOP should cite the text you follow. This page is not that SOP."
+        "text": "For a US IND, 21 CFR 312.32 sends an unexpected fatal or life-threatening suspected adverse reaction to FDA as soon as possible and no later than 7 calendar days after the sponsor's initial receipt. Other serious and unexpected suspected adverse reactions, and the other potential serious risks in 312.32(c)(1), go to FDA and participating investigators as soon as possible and no later than 15 calendar days after the sponsor determines the information qualifies. The SUSAR timelines table on this page is that rule. Your SOP should cite the text you follow. This page is not that SOP."
       }
     },
     {
@@ -95,6 +103,11 @@
     h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
     p, li { margin-bottom: 12px; }
     ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .table-wrap { overflow-x: auto; margin: 12px 0 18px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 0; }
+    th, td { border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; padding: 10px 8px; }
+    th { color: var(--white); font-size: 13px; }
+    caption { caption-side: top; text-align: left; color: var(--slate); font-size: 13px; margin-bottom: 8px; padding-bottom: 8px; }
     .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
     .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
     .cta h2 { margin-top: 0; }
@@ -153,7 +166,7 @@
 <header class="brand-hero">
 <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / SUSAR reporting</p>
   <h1>SUSAR reporting: serious, unexpected, and suspected</h1>
-  <p class="by">QORO Team · 23 October 2026 · about 6 minutes</p>
+  <p class="by">QORO Team · 2 November 2026 · about 8 minutes</p>
 </header>
 <main>
   <p>SUSAR reporting is the expedited clinical-trial case that sponsors are afraid of missing. The word is an acronym, not a vibe. A SUSAR is a suspected unexpected serious adverse reaction: serious by criterion, unexpected against the reference safety information, and suspected because there is a reasonable possibility the investigational product caused it. Miss any one of the three and you may still have an adverse event worth keeping. You do not have a SUSAR.</p>
@@ -174,8 +187,48 @@
 
   <p>Unexpected means the event is not consistent with the investigator's brochure, or with the company core data sheet if that is the reference your protocol names. Specificity matters. "Gastrointestinal disorder" in the brochure does not list every hepatic failure. The case should name the document version the reviewer used. AE Connect does not hold that document. Expectedness in the workspace is a suggestion to go and check it.</p>
   <p>Suspected means a reasonable possibility of a causal relationship, not proof. WHO-UMC categories are one way teams talk about that possibility: certain, probable, possible, unlikely, or unassessable. A possible relationship is enough, in ordinary sponsor practice, to treat the event as suspected for expedited reporting. Unlikely is not. The judgment belongs to a qualified reviewer, and it has to be written down.</p>
-  <h2>Clocks, without pretending the regions are the same</h2>
-  <p>Under 21 CFR 312.32, the sponsor notifies FDA and participating investigators of potential serious risks. Unexpected fatal or life-threatening suspected adverse reactions are reported as soon as possible and in no case later than 7 calendar days after the sponsor's initial receipt of the information. Other serious and unexpected suspected adverse reactions are reported as soon as possible and no later than 15 calendar days after the sponsor determines that the information qualifies for reporting. Follow-up is sent as the new information arrives, on the expedited schedule your procedure names.</p>
+  <h2 id="susar-timelines">SUSAR timelines</h2>
+  <p>SUSAR timelines for a US IND are the clocks in <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.32">21 CFR 312.32</a>. The 7 day clock starts at the sponsor's initial receipt. The 15 day clock starts when the sponsor determines the information qualifies. This table is the US rule in that section. EU reporting and the company SOP are separate documents. How the electronic file is shaped, once the case qualifies, is on the <a href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/">E2B R3 FDA guide</a>.</p>
+  <div class="table-wrap">
+  <table>
+    <caption>SUSAR timelines under 21 CFR 312.32. In that section, life-threatening means the occurrence placed the subject at immediate risk of death.</caption>
+    <thead>
+      <tr>
+        <th scope="col">What you report</th>
+        <th scope="col">Who is told</th>
+        <th scope="col">Outer limit</th>
+        <th scope="col">Clock starts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Unexpected fatal or life-threatening suspected adverse reaction</th>
+        <td>FDA</td>
+        <td>As soon as possible, and no later than 7 calendar days</td>
+        <td>The sponsor's initial receipt of the information</td>
+      </tr>
+      <tr>
+        <th scope="row">Serious and unexpected suspected adverse reaction, and the other potential serious risks in 312.32(c)(1)</th>
+        <td>FDA and all participating investigators</td>
+        <td>As soon as possible, and no later than 15 calendar days</td>
+        <td>After the sponsor determines that the information qualifies</td>
+      </tr>
+      <tr>
+        <th scope="row">A case that was not reportable at first, and later is</th>
+        <td>FDA, in an IND safety report</td>
+        <td>As soon as possible, and no later than 15 calendar days</td>
+        <td>After the sponsor determines that it qualifies</td>
+      </tr>
+      <tr>
+        <th scope="row">Extra data FDA requests</th>
+        <td>FDA</td>
+        <td>As soon as possible, and no later than 15 calendar days</td>
+        <td>After the sponsor receives the request</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Relevant followup to an IND safety report goes out as soon as the information is available and is identified as a followup IND safety report. The regulation does not add a second 7 day cap to that followup. Participating investigators are the investigators to whom the sponsor is providing the drug under its INDs or under any investigator's IND.</p>
   <p>EU SUSAR reporting to the relevant authorities and ethics committees uses the same 7-day and 15-day outline for fatal or life-threatening SUSARs and for other SUSARs. The portal, the unblinding rules, and who else must be told are not the US procedure. A sponsor with sites in both places needs both paths. This page will not invent a combined workflow.</p>
   <p>Day 0 is where intake fails. If the first email arrived Friday and nobody opened it until Monday, the receipt date is not Monday. The <a href="https://aeconnect.io/blog/pv-case-intake-forms/">intake form</a> has to show when the sponsor, or the CRO acting for the sponsor, first had the report. A later data-entry date in a safety database does not reset the clock.</p>
   <h2>Investigators, blinding, and the letter that is not the case</h2>
@@ -196,8 +249,10 @@
     <p>SUSAR means suspected unexpected serious adverse reaction. The event is serious, it is unexpected against the reference safety information, and there is a reasonable possibility the investigational product caused it. A serious adverse event that is expected, or that has no plausible link to the product, is not a SUSAR.</p>
     <h3>Is a SUSAR the same as an IND safety report?</h3>
     <p>They are the same idea in US and ICH clinical practice, with different procedure around them. US IND safety reports under 21 CFR 312.32 cover serious and unexpected suspected adverse reactions. EU clinical-trial SUSAR reporting has its own submission path and recipients. Do not assume one filing satisfies every region.</p>
+    <h3>What is SUSAR reporting?</h3>
+    <p>SUSAR reporting is the expedited clinical report for a suspected unexpected serious adverse reaction. Under 21 CFR 312.32 the sponsor reports a suspected adverse reaction that is both serious and unexpected. An unexpected fatal or life-threatening case goes to FDA on the 7 calendar day clock. Other qualifying IND safety reports use the 15 calendar day clock. The SUSAR timelines table on this page lists who is told and when each clock starts.</p>
     <h3>What are the SUSAR timelines?</h3>
-    <p>For a US IND, an unexpected fatal or life-threatening suspected adverse reaction goes to FDA as soon as possible and no later than 7 calendar days after initial receipt. Other serious and unexpected suspected adverse reactions go as soon as possible and no later than 15 calendar days after the sponsor determines the information qualifies. EU expedited SUSAR reporting uses a 7-day and 15-day shape as well. Your SOP should cite the text you follow. This page is not that SOP.</p>
+    <p>For a US IND, 21 CFR 312.32 sends an unexpected fatal or life-threatening suspected adverse reaction to FDA as soon as possible and no later than 7 calendar days after the sponsor's initial receipt. Other serious and unexpected suspected adverse reactions, and the other potential serious risks in 312.32(c)(1), go to FDA and participating investigators as soon as possible and no later than 15 calendar days after the sponsor determines the information qualifies. The SUSAR timelines table on this page is that rule. Your SOP should cite the text you follow. This page is not that SOP.</p>
     <h3>Can AE Connect file a SUSAR?</h3>
     <p>No. The workspace can draft seriousness, expectedness, causality, and a timeline from the narrative so a reviewer can see that the case may be a SUSAR. It does not unblind a study, notify investigators, or transmit a report to FDA or EMA.</p>
   </section>
@@ -209,6 +264,7 @@
 <li>SUSAR reporting (this page)</li>
 <li><a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">Product quality complaint reporting</a></li>
 <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+<li><a href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/">E2B R3 FDA guide</a></li>
 <li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
 <li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
 <li><a href="https://aeconnect.io/blog/oracle-argus/">Works with Oracle Argus</a></li>

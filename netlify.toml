@@ -12,6 +12,12 @@ package = "./netlify/plugins/indexnow"
   NODE_VERSION = "20"
 
 # Directory indexes are the canonical URLs (`/blog/`, `/contact/`).
+# Pretty URLs are the 301 from a directory path with no trailing slash to the
+# slash form. That includes /blog/ich-e2b-r3-deadline-biotech-guide, which
+# 301s to /blog/ich-e2b-r3-deadline-biotech-guide/. The canonical link on
+# that page is the slashed URL. Do not add a [[redirects]] rule for that
+# pair: Netlify matches the slash and non-slash paths as one rule, and a
+# force 301 loops the canonical URL onto itself.
 [build.processing.html]
   pretty_urls = true
 

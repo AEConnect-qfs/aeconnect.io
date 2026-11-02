@@ -172,6 +172,18 @@ async function main() {
   const contact = await page('/contact/');
   check('trailing slash: /contact → /contact/', contactBare.status === 301 && contactBare.loc === '/contact/' && contact.status === 200);
 
+  const e2bBare = await page('/blog/ich-e2b-r3-deadline-biotech-guide');
+  const e2b = await page('/blog/ich-e2b-r3-deadline-biotech-guide/');
+  const e2bCanon = 'rel="canonical" href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/"';
+  check(
+    '301 /blog/ich-e2b-r3-deadline-biotech-guide to the slashed canonical',
+    e2bBare.status === 301 &&
+      e2bBare.loc === '/blog/ich-e2b-r3-deadline-biotech-guide/' &&
+      e2b.status === 200 &&
+      e2b.text.includes(e2bCanon),
+    `${e2bBare.status} ${e2bBare.loc}`,
+  );
+
   const legacy = [
     ['/blog/meddra-coding-at-intake-ai-pharmacovigilance', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
     ['/adverse-event-intake-system/', '/solutions/pv-case-intake/'],
