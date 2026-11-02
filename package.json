@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx dev-server.mts",
+    "verify": "tsx verify-site.mts",
     "prisma:push": "prisma db push",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
