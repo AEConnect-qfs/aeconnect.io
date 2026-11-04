@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Follow up reports and missing information | AE Connect</title>
+  <meta name="description" content="When missing case facts and later follow up start a new reporting clock. US followup rules, ICH E2D(R1) day zero, EU GVP Module VI, and the E2B(R3) case number." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/follow-up-reports-missing-information/" />
+  <meta property="og:title" content="Follow up reports and missing information" />
+  <meta property="og:description" content="When missing case facts and later follow up start a new reporting clock. US followup rules, ICH E2D(R1) day zero, EU GVP Module VI, and the E2B(R3) case number." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/follow-up-reports-missing-information/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Follow up reports and missing information | AE Connect" />
+  <meta name="twitter:description" content="When missing case facts and later follow up start a new reporting clock. US followup rules, ICH E2D(R1) day zero, EU GVP Module VI, and the E2B(R3) case number." />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Follow up reports and missing information: when the next clock starts",
+  "description": "When missing case facts and later follow up start a new reporting clock. US followup rules, ICH E2D(R1) day zero, EU GVP Module VI, and the E2B(R3) case number.",
+  "url": "https://aeconnect.io/blog/follow-up-reports-missing-information/",
+  "datePublished": "2026-11-04",
+  "dateModified": "2026-11-04",
+  "author": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/"},
+  "publisher": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/", "logo": {"@type": "ImageObject", "url": "https://aeconnect.io/brand/logo/logo-horizontal-light.png"}},
+  "image": "https://aeconnect.io/brand/og/default.png",
+  "mainEntityOfPage": "https://aeconnect.io/blog/follow-up-reports-missing-information/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When does a US followup report have to go to FDA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a marketed drug, 21 CFR 314.80(c)(1)(ii) says the applicant must submit followup reports on a 15 calendar day alert within 15 calendar days of receipt of new information, or when FDA asks. 21 CFR 600.80(c)(1)(ii) uses the same rule for a licensed biological product. If the information cannot be obtained, the applicant keeps a record of the unsuccessful steps. Followup on an experience that was submitted in a periodic report may go in the next periodic report."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is day zero when the first message is still missing a minimum criterion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under E2D(R1) section 5.2, in the ICH guideline and in the FDA guidance for industry, day zero is the date any personnel of the marketing authorisation holder, including a service provider or other contractor, first has enough information to determine that the minimum criteria in section 2.2 are met, unless a region specifies another date. A case missing a criterion is not eligible for ICSR reporting until follow up supplies it. EU GVP Module VI starts that clock when the minimum criteria come to the attention of the company, including on a weekend or a public holiday. The US alert rule in 21 CFR 314.80(c)(1)(i) is different. It runs from initial receipt of the information for an experience that is both serious and unexpected. Record the receipt date and the date the case met the minimum criteria. They are often different days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does an internal correction restart the reporting clock?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ICH E2D(R1) section 5.2 says an amendment based on an internal quality review, with no new information received, does not get a new day zero. In the E2B(R3) file described in the FDA implementation guide, that kind of correction is an amendment in data element C.1.11.1, value 2, and the date of most recent information in C.1.5 stays as it was. EU GVP Module VI treats updated assessment comments and corrections of typographical errors as not significant, so they do not start the follow up clock again. New medical or administrative information that could change the assessment, the management of the case, or the seriousness does start that clock from the date it was received."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What case number goes on a follow up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "21 CFR 314.80(f)(5)(viii) requires a unique case identification number that is the same on the initial report and on later followup reports. In E2B(R3), the worldwide unique case identification in C.1.8.1, and the first sender in C.1.8.2, are not changed on a later transmission. A second email about the same patient and product should be attached to that case, not given a new worldwide number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will AE Connect send the follow up to FDA or EudraVigilance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. AE Connect is customizable electronic intake with AI triage. A person accepts or overrides the draft. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which remain the system of record, or it can hold the full ICSR and the E2B(R3) file. It does not transmit the report to the FDA Adverse Event Monitoring System, formerly FAERS, or to EudraVigilance."
+      }
+    }
+  ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #4A6FA5); color: var(--navy, #F3F5F4); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #14202C); border: 1px solid #5E6873; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Follow up reports and missing information: when the next clock starts", "item": "https://aeconnect.io/blog/follow-up-reports-missing-information/"}
+    ]
+  }
+  </script>
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="Follow up reports and missing information | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/product/">Product</a></li>
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+    <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+    <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
+  </ul>
+</nav>
+<header class="brand-hero">
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / Follow up and missing information</p>
+  <h1>Follow up reports and missing information: when the next clock starts</h1>
+  <p class="by">QORO Team · 4 November 2026 · about 20 minutes</p>
+</header>
+<main>
+  <p>A follow up is either the message that finally makes an incomplete report into a case, or a later message about a case you already have. At a small biotech both messages usually arrive by email. The first one names a rash and a product and leaves out the patient. The reply, a few days later, adds an age, a hospital admission, or a lot number, and the subject line does not name the case. If those two messages are not stored as one case, with the date of each one, the company cannot tell which clock started, or whether it started at all.</p>
+  <p>That is a patient safety problem, not a filing inconvenience. A serious unexpected reaction that stays incomplete is a reaction nobody has fully evaluated. A receipt date that lives only in a mailbox is a clock nobody can defend. The <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">drug safety inbox</a> is where those messages get lost. This page is about what to do with the second message, and with the questions that never get an answer. It is not a standard operating procedure. The procedure should cite the text the company actually follows.</p>
+
+  <h2>A missing criterion is not the same as a thin case</h2>
+  <p><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e2dr1-post-approval-safety-data-definitions-and-standards-management-and-reporting-individual-case">FDA's E2D(R1) guidance for industry</a> (March 2026) is the agency's current thinking on postapproval individual case safety reports. The notice of availability is <a href="https://www.federalregister.gov/documents/2026/03/04/2026-04252/e2dr1-postapproval-safety-data-definitions-and-standards-for-management-and-reporting-of-individual">91 FR 10619</a>, published on 4 March 2026. The guidance says it does not establish rights, it is not binding on FDA or the public, and a different approach is acceptable if it meets the applicable statutes and regulations. The <a href="https://database.ich.org/sites/default/files/ICH_E2D(R1)_Step4_FinalGuideline_2025_0819.pdf">ICH Step 4 text</a> was adopted on 15 September 2025. Section 2.2 in both documents lists the minimum criteria: at least one adverse event or adverse drug reaction, or another observation the document covers; at least one suspect or interacting medicinal product; an identifiable patient; and an identifiable reporter. A case missing any of those does not qualify for ICSR reporting. The same section says the company should exercise due diligence to collect the missing criterion, and it points that work to section 6.4.</p>
+  <p><a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">EU GVP Module VI (Rev 2)</a> section VI.B.2 uses a related list, and it is not a copy of the ICH sentence. A valid ICSR needs an identifiable reporter, one identifiable patient, at least one suspected adverse reaction, and at least one suspect medicinal product. The module also says a report is not valid if the primary source has explicitly excluded a causal relationship and the company agrees, or if the reaction is unspecified. Read that section before you treat an ICH "other observation" as an EU ICSR. What a patient or healthcare professional has to be asked in the first place is on the <a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">reporter forms</a> page. This page does not repeat that form.</p>
+  <p>A case can meet those criteria and still be thin. Outcome, dose, lot, labs, and medical history can all be absent. Those gaps do not, by themselves, keep the case from being an ICSR under the texts above. They are the reason you ask follow up questions. The <a href="https://www.fda.gov/media/81904/download">FDA E2B(R3) implementation guide</a> section 3.3.1 uses the same four items as the minimum for a valid safety report (an identifiable patient, an identifiable reporter, one adverse event or reaction or outcome, and one suspect or interacting drug) and then says that for most reports a number of data elements will be unknown and therefore not transmitted. Unknown is allowed. A missing minimum criterion is not.</p>
+
+  <h2>Write down two dates, because the rules do not share one</h2>
+  <p>Teams collapse three different start dates into one phrase, "day zero." The documents do not.</p>
+  <ul>
+    <li><strong>ICH day zero.</strong> E2D(R1) section 5.2 says the reporting clock starts on the date when any personnel of the marketing authorisation holder obtains enough information to determine that the case meets the minimum criteria. Personnel includes third parties such as service providers and other contractual partners acting for the company. That date is day zero unless a region specifies otherwise. For literature and for digital platforms, the guideline has separate sentences in sections 4.2 and 4.3. Use those sections for those sources. Do not reuse the spontaneous rule without reading them.</li>
+    <li><strong>EU day zero.</strong> GVP Module VI.B.7 says the clock starts as soon as the information containing the minimum criteria has been brought to the attention of any personnel of the marketing authorisation holder, including medical representatives and contractors. That is day zero even when the information arrives on a weekend or a public holiday. Only a valid ICSR is submitted. The timelines are calendar days.</li>
+    <li><strong>US initial receipt.</strong> <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80(c)(1)(i)</a> says each adverse drug experience that is both serious and unexpected is reported as soon as possible and no later than 15 calendar days from initial receipt of the information by the applicant. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">21 CFR 600.80(c)(1)(i)</a> uses the same initial receipt rule for a licensed biological product. Neither sentence says the clock waits until the four minimum criteria exist. The content of the ICSR is a different paragraph. The <a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a> guide and the <a href="https://aeconnect.io/blog/fda-adverse-event-reporting-requirements/">FDA reporting requirements</a> guide walk through that content list.</li>
+  </ul>
+  <p>The day zero sentence in E2D(R1) section 5.2 is also the sentence in the FDA guidance. It does not rewrite 21 CFR 314.80. Where the two dates differ, keep both. The regulation is what the applicant has to meet. A Friday email that names the product and the rash, and does not identify the patient, has a US receipt date of Friday if the applicant received it on Friday. It may not have an ICH or EU day zero until a later call supplies an age or initials. The procedure should record both dates. The date someone retypes the thread on Monday is a third date, and it is the wrong one for either clock. <a href="https://aeconnect.io/learn/what-late-intake-does/">What late intake does</a> is the process description of the work that waits on a valid case. It is not a mortality estimate, and this page does not add one.</p>
+
+  <aside class="lead-cta">
+    <h2>Start a 14 day trial, or book a demo</h2>
+    <p>The problem is email intake. AE Connect is a customizable electronic intake form with AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or it can be the safety database for the full ICSR and the E2B(R3) file. A person accepts or overrides the draft. The original receipt date and the later message stay on the same case.</p>
+    <p class="actions"><a class="btn" href="https://app.aeconnect.io/register">Start a 14 day trial</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+  </aside>
+  <aside class="lead-cta">
+    <h2>AE intake checklist</h2>
+    <p>A short checklist for AE and SAE intake, and for the case data to have in hand before an E2B(R3) file is prepared in the safety database. AE Connect drafts the case. The safety database remains the system of record when you use one.</p>
+    <p class="actions"><a class="btn" href="https://aeconnect.io/resources/ae-intake-checklist/">Get the checklist</a></p>
+  </aside>
+
+  <h2>When later information starts a new clock</h2>
+  <p>Once a case exists, new information is not a new case, and it is not always the same kind of clock.</p>
+  <h3>Marketed drugs and biologics in the United States</h3>
+  <p>21 CFR 314.80(c)(1)(ii) says the applicant must promptly investigate all adverse drug experiences that are the subject of these 15 calendar day alerts and must submit followup reports within 15 calendar days of receipt of new information, or as requested by FDA. If additional information is not obtainable, records should be maintained of the unsuccessful steps taken to seek it. 21 CFR 600.80(c)(1)(ii) is the same followup rule for a licensed biological product. The paragraph says "new information." It does not use the EU word "significant." A team that waits to decide whether a fact is significant enough can miss the US date. The procedure should say which text it is applying, and it should not paste the EU filter onto the US sentence.</p>
+  <p>Followup on an experience that was submitted in a periodic report may go in the next periodic report. That is 21 CFR 314.80(c)(2)(i). The periodic report is the US periodic adverse drug experience report. It is not a PSUR or a PBRER. How those aggregate documents differ, and why an intake workspace does not write them, is on the <a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">aggregate reports</a> page. The case data still has to be clean enough for whoever writes the periodic report. A follow up that never gets attached to the case is missing from that report too.</p>
+  <p>Two smaller US duties are easy to lose in the same mailbox. 21 CFR 314.80(b) says applicants are not required to resubmit adverse drug experience reports that FDA forwarded to them, and that they must submit all followup information on those reports. And if a person whose name is on the label, other than the applicant, chooses to send serious reports to the applicant instead of to FDA, 21 CFR 314.80(c)(1)(iii) gives that person 5 calendar days from their own initial receipt. The applicant then follows the applicant clock. The split belongs in the agreement. The <a href="https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/">pharmacovigilance agreement</a> page is the note on this site for that contract. The contract does not erase 21 CFR 314.80.</p>
+  <h3>An IND</h3>
+  <p>Investigational follow up is <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.32">21 CFR 312.32(d)</a>, not 21 CFR 314.80. The sponsor must promptly investigate all safety information it receives. Relevant followup information to an IND safety report must be submitted as soon as the information is available and must be identified as a followup IND safety report. The regulation uses the label "Followup IND Safety Report." Paragraph (d)(2) does not add a second 7 calendar day cap. If the investigation shows that an event not initially determined to be reportable is reportable, paragraph (d)(3) requires an IND safety report as soon as possible and no later than 15 calendar days after the determination. A separate sentence, 21 CFR 312.32(c)(1)(v), covers additional data FDA requests: as soon as possible and no later than 15 calendar days after the sponsor receives the request. The initial 7 calendar day and 15 calendar day IND clocks are the subject of the <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a> guide. This page does not restate them.</p>
+  <h3>ICH and the EU, after the first report</h3>
+  <p>E2D(R1) section 5.2 says that when additional medically relevant information is received for a previously reported case, the clock begins again for the follow up report. Day zero for that follow up is the date the company receives the additional information. A case that was not expedited becomes expedited if the follow up shows it should be reclassified, for example from not serious to serious, and day zero is the date that follow up was received. An amendment to a previously submitted report, such as a correction from an internal quality review, with no receipt of additional information, does not get a new day zero.</p>
+  <p>GVP Module VI.B.7 draws a line the US followup paragraph does not draw. Significant follow up is new medical or administrative information that could affect the assessment or management of a case, or could change its seriousness. Information that is not significant includes updated comments on the case assessment, or corrections of typographical errors. When significant follow up is received for a case already submitted, the clock starts again from the date of receipt. Serious valid ICSRs, initial and follow up, are submitted as soon as possible and no later than 15 calendar days after initial receipt of the information by company personnel, including contractors. If a case sent as serious becomes not serious on the new information, that information is still submitted within 15 days. Later follow up then uses the time frame for reports that are not serious.</p>
+  <p>Section VI.B.3 adds the work before that submission. Reports are often incomplete when they first arrive. They should be followed up as necessary to obtain supplementary detail that matters for the scientific evaluation. The module calls out monitored events of special interest, prospective pregnancy reports, deaths, and cases that report a new risk or a change in a known risk, in addition to the effort to collect any missing minimum criterion. Any attempt to obtain follow up information should be documented.</p>
+
+  <h2>The same case number, and two dates in the E2B(R3) file</h2>
+  <p>21 CFR 314.80(f)(5) says the ICSR includes whether the report is an initial report or a followup, and a unique case identification number which must be the same in the initial report and any subsequent followup report. A second email that is typed up under a new number splits that history. The person who opens the mail has to look for the existing case before a new number is minted. This page does not claim that a software product will find that duplicate for you.</p>
+  <p>The electronic shape of the case is E2B(R3). The FDA implementation guide, and the <a href="https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-e2br3-data-standards">AEMS E2B(R3) data standards</a> page that points sponsors at the regional guide, are the references for the file. Four elements decide whether the follow up is a new story or a correction of the old one:</p>
+  <ul>
+    <li><strong>C.1.8.1 and C.1.8.2.</strong> The worldwide unique case identification number, and the first sender of the case, are populated and are not changed on a later transmission.</li>
+    <li><strong>C.1.4.</strong> For an initial case, this is the date the information was received from the primary source and the four minimum criteria were met. When you retransmit information that came from another company or a regulator, C.1.4 is the date you first received that information. Do not overwrite it with the date of a later email.</li>
+    <li><strong>C.1.5.</strong> This is the date of the most recent information for this report. It changes each time follow up information is received from a primary source. On a first report, when that date and the C.1.4 date are the same, the guide says to enter the C.1.4 date in C.1.5.</li>
+    <li><strong>C.1.11.1.</strong> Use this when a previously transmitted ICSR is nullified or amended. The guide allows 1 for nullification, for example when the whole case was found to be erroneous, and 2 for an amendment, for example when an internal review or an expert opinion corrects the event term, the seriousness, or the causality. For an amendment or a nullification with no new information from a primary source, C.1.5 stays as it was. C.1.11.2 is the reason, and it is required when C.1.11.1 is filled in. If a report that was nullified has to be submitted again, the guide says to assign a new sender report identifier and a new worldwide unique case identification number.</li>
+  </ul>
+  <p>An internal spelling correction is an amendment. A hospital discharge summary that arrives on Thursday is follow up, and C.1.5 moves to Thursday. Calling both of them "an update" is how a clock gets restarted for a typo, or fails to restart for a death. How the file relates to the case, and who actually sends it, is on the <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a> page. Building the file is not the same job as capturing the Thursday email.</p>
+
+  <h2>What to ask, and what to keep when nobody answers</h2>
+  <p>E2D(R1) section 6.4 says initial reports often lack what a clinical evaluation needs, and that the company should seek more information, including when the reporter does not have first hand knowledge of the event. The highest priority is a case that is both serious and unexpected. Next are serious expected cases and unexpected cases that are not serious. Cases of special interest, including events under enhanced monitoring at the request of an authority, are prioritized as well. The company should ask specific questions, document every request and every attempt, and use a targeted questionnaire, preferably at the time of the first report. People with pharmacovigilance training and therapeutic expertise should be involved. Section 6.4 also says to be careful before following up a private message on a digital platform the company does not operate, because that contact can breach consent under local privacy law.</p>
+  <p>For pregnancy reports from a healthcare professional or a consumer, where the embryo or fetus could have been exposed through the mother or the father, section 6.4.1.2 says the company is expected to follow up and to collect the pregnancy outcome, the health of the newborn, and, where appropriate, the development of the child. That expectation does not apply to exposure during pregnancy for a product specifically indicated for use in pregnancy when there is no adverse event. GVP Module VI.B.3 names prospective pregnancy reports as one of the follow ups that matter for the scientific evaluation. This page is not a pregnancy procedure. It is a reminder that some follow up is still required after the first valid case, because the outcome does not exist yet.</p>
+  <p>The questions that change a clock or a code are usually short. Outcome and the date of the outcome. Whether the patient was hospitalised, and the dates. Dose, route, and the dates of therapy. Whether the event stopped when the product stopped or the dose was reduced, and whether it returned when the product was restarted. Relevant history and labs. A lot number and an expiration date when the story also sounds like a product defect. A lot plus a fever is still an adverse event until someone shows it is not, which is the subject of the <a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">product quality complaint</a> guide. Reporter qualification and country, if the EU file needs them and the first email omitted them. The <a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake form</a> is where those fields should already have a place, so the answer has somewhere to land.</p>
+  <p>When the answer never comes, the absence is part of the record. 21 CFR 314.80(c)(1)(ii) says to keep the unsuccessful steps. 21 CFR 314.80(j) says the applicant must maintain for 10 years records of all adverse drug experiences known to the applicant, including raw data and any correspondence. A query that lived only in a sent folder, and a reply that lived only in an inbox, are not that record. Email fails here in three ordinary ways. The reply does not carry the case number, so it is opened as a new case. The date the company treats as receipt is the date someone downloaded the mailbox, not the date the message arrived. The unanswered query is never stored, so the unsuccessful steps do not exist on paper either.</p>
+
+  <h2>Where the follow up has to live</h2>
+  <p><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a> is the place the first message and the later message should meet. If Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety is the system of record, it stays the system of record. The comparison tables are on the <a href="https://aeconnect.io/integrations/">integrations</a> page. AE Connect does not replace those products, and it is not an official partnership with Oracle, ArisGlobal, or Veeva. It can feed them. It can also be the safety database for the full ICSR and the E2B(R3) file when the company does not run one of those systems yet.</p>
+  <p>The workspace is customizable electronic intake plus AI triage. You paste the later narrative or you upload a PDF, a Word file, text, an email, a CSV, or an image. The draft covers seriousness, a suggested MedDRA preferred term and system organ class, an Uppsala Monitoring Centre causality category, expectedness, whether regulatory reporting looks required, and a reporting timeline, each with a short rationale. Expectedness is a suggestion to check against the current company core data sheet or the investigator brochure. AE Connect does not author or version that document. A reviewer accepts or overrides every field. The draft is decision support. This workspace does not collect an electronic signature, and it does not transmit the ICSR to the FDA Adverse Event Monitoring System (AEMS), formerly FAERS, or to EudraVigilance. Aggregate reports, including a PSUR, a PBRER, a DSUR, and the US periodic report, stay outside the workspace.</p>
+  <p>You create a 14 day sandbox at the registration page with your name, a company email, a password, your company name, and your role. After you verify the email, you are the admin of a new organization. The sandbox has unlimited cases. After the sandbox, the annual plans are Starter, Growth, and Scale. This page does not list prices. Questions go to <a href="mailto:info@qfsnow.com">info@qfsnow.com</a> or to the <a href="https://aeconnect.io/demo/">demo</a> form.</p>
+
+  <h2>A sequence a small team can run this week</h2>
+  <ol>
+    <li>Save the source and the date any person at the company, including a contractor, received it. Save the later message the same way. Do not replace the first date with the second.</li>
+    <li>Mark which minimum criterion is still missing, using the ICH list and, if you report in the EU, the GVP list. Mark the US receipt date separately when the experience may be serious and unexpected.</li>
+    <li>If a case number already exists for this patient and product, attach the new source to that number. Do not mint a worldwide case number for a reply.</li>
+    <li>Write the specific questions, send them, and file each attempt, including the attempts that get no answer.</li>
+    <li>A person decides whether the new material is US "new information," ICH medically relevant information, EU significant follow up, or an internal correction. That decision picks the clock, the C.1.5 date, and whether C.1.11.1 is an amendment.</li>
+    <li>The safety database, or AE Connect when it is the database, keeps the same case identifier on the E2B(R3) file. Submission to a regulator is a later step, in that system of record.</li>
+  </ol>
+
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload the later email, the discharge summary, or the first incomplete note. A company email starts a 14 day sandbox trial. You accept or override every field. Keep the original case number. AE Connect can feed a safety database, or it can hold the full ICSR and the E2B(R3) file. Sending the followup to a regulator is a later step, and this workspace does not take that step.</p>
+    <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
+  </div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>When does a US followup report have to go to FDA?</h3>
+    <p>For a marketed drug, 21 CFR 314.80(c)(1)(ii) says the applicant must submit followup reports on a 15 calendar day alert within 15 calendar days of receipt of new information, or when FDA asks. 21 CFR 600.80(c)(1)(ii) uses the same rule for a licensed biological product. If the information cannot be obtained, the applicant keeps a record of the unsuccessful steps. Followup on an experience that was submitted in a periodic report may go in the next periodic report.</p>
+    <h3>What is day zero when the first message is still missing a minimum criterion?</h3>
+    <p>Under E2D(R1) section 5.2, in the ICH guideline and in the FDA guidance for industry, day zero is the date any personnel of the marketing authorisation holder, including a service provider or other contractor, first has enough information to determine that the minimum criteria in section 2.2 are met, unless a region specifies another date. A case missing a criterion is not eligible for ICSR reporting until follow up supplies it. EU GVP Module VI starts that clock when the minimum criteria come to the attention of the company, including on a weekend or a public holiday. The US alert rule in 21 CFR 314.80(c)(1)(i) is different. It runs from initial receipt of the information for an experience that is both serious and unexpected. Record the receipt date and the date the case met the minimum criteria. They are often different days.</p>
+    <h3>Does an internal correction restart the reporting clock?</h3>
+    <p>ICH E2D(R1) section 5.2 says an amendment based on an internal quality review, with no new information received, does not get a new day zero. In the E2B(R3) file described in the FDA implementation guide, that kind of correction is an amendment in data element C.1.11.1, value 2, and the date of most recent information in C.1.5 stays as it was. EU GVP Module VI treats updated assessment comments and corrections of typographical errors as not significant, so they do not start the follow up clock again. New medical or administrative information that could change the assessment, the management of the case, or the seriousness does start that clock from the date it was received.</p>
+    <h3>What case number goes on a follow up?</h3>
+    <p>21 CFR 314.80(f)(5)(viii) requires a unique case identification number that is the same on the initial report and on later followup reports. In E2B(R3), the worldwide unique case identification in C.1.8.1, and the first sender in C.1.8.2, are not changed on a later transmission. A second email about the same patient and product should be attached to that case, not given a new worldwide number.</p>
+    <h3>Will AE Connect send the follow up to FDA or EudraVigilance?</h3>
+    <p>No. AE Connect is customizable electronic intake with AI triage. A person accepts or overrides the draft. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which remain the system of record, or it can hold the full ICSR and the E2B(R3) file. It does not transmit the report to the FDA Adverse Event Monitoring System, formerly FAERS, or to EudraVigilance.</p>
+  </section>
+
+  <div class="related">
+    <h2>Sources</h2>
+    <ol>
+      <li>21 CFR 314.80, Postmarketing reporting of adverse drug experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">eCFR</a>.</li>
+      <li>21 CFR 600.80, Postmarketing reporting of adverse experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">eCFR</a>.</li>
+      <li>21 CFR 312.32, IND safety reporting. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.32">eCFR</a>.</li>
+      <li>ICH E2D(R1), Postapproval safety data: definitions and standards for management and reporting of individual case safety reports. Final version adopted on 15 September 2025. <a href="https://database.ich.org/sites/default/files/ICH_E2D(R1)_Step4_FinalGuideline_2025_0819.pdf">ICH</a>.</li>
+      <li>U.S. Food and Drug Administration. E2D(R1) Postapproval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports, Guidance for Industry, March 2026. <a href="https://www.fda.gov/media/176977/download">FDA guidance PDF</a>. Notice of availability, 91 FR 10619 (4 March 2026). <a href="https://www.federalregister.gov/documents/2026/03/04/2026-04252/e2dr1-postapproval-safety-data-definitions-and-standards-for-management-and-reporting-of-individual">Federal Register</a>. Guidance page: <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e2dr1-post-approval-safety-data-definitions-and-standards-management-and-reporting-individual-case">FDA</a>.</li>
+      <li>European Medicines Agency. Guideline on good pharmacovigilance practices (GVP) Module VI, collection, management and submission of reports of suspected adverse reactions to medicinal products (Rev 2). <a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">EMA</a>.</li>
+      <li>U.S. Food and Drug Administration. E2B(R3) Electronic Transmission of Individual Case Safety Reports (ICSRs) Implementation Guide, Data Elements and Message Specification. <a href="https://www.fda.gov/media/81904/download">FDA</a>.</li>
+      <li>U.S. Food and Drug Administration. FDA Adverse Event Monitoring System (AEMS) E2B(R3) Data Standards. Formerly the FDA Adverse Event Reporting System (FAERS). <a href="https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-e2br3-data-standards">AEMS E2B(R3) data standards</a>.</li>
+    </ol>
+    <h2>On this site</h2>
+    <ul>
+      <li><a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">The drug safety inbox</a></li>
+      <li><a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a></li>
+      <li><a href="https://aeconnect.io/blog/fda-adverse-event-reporting-requirements/">FDA adverse event reporting requirements</a></li>
+      <li><a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a></li>
+      <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+      <li><a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">AE reporter forms</a></li>
+      <li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+      <li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
+      <li><a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">Product quality complaint reporting</a></li>
+      <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+      <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
+      <li><a href="https://aeconnect.io/learn/what-late-intake-does/">What late intake does</a></li>
+      <li><a href="https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/">Pharmacovigilance agreements</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a> · <a href="mailto:info@qfsnow.com">info@qfsnow.com</a></span>
+</footer>
+</body>
+</html>
