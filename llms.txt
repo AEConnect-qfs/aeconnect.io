@@ -8,16 +8,18 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 
 - PV case intake: an intake form where you paste a narrative or upload PDF, Word, text, email, CSV, or an image. Files are parsed in the browser. Only the extracted text is sent for assessment.
 - The draft covers seriousness, a suggested MedDRA preferred term and system organ class, WHO-UMC causality, expectedness, whether regulatory reporting looks required, and a reporting timeline, each with a short rationale.
-- A reviewer accepts or overrides every field. The draft is decision support. AE Connect can feed any safety database, or it can be the safety database for the full ICSR and the E2B(R3) file. The draft is organized around ICSR concepts (seriousness, coding, causality, expectedness, timeline, narrative). This workspace has no e-signature sign-off.
+- A reviewer accepts or overrides every field. The draft is decision support. AE Connect can feed any safety database, or it can be the safety database for the full ICSR and the E2B(R3) file. The draft is organized around ICSR concepts (seriousness, coding, causality, expectedness, timeline, narrative).
 - Expectedness is a suggestion to check against the current company core data sheet or Investigator's Brochure. AE Connect does not author or version the CCDS.
 - Product quality complaint (PQC) narratives that include an adverse event can be pasted into the same intake. This is not a QMS or a complaint-handling system.
 - Aggregate reports (IND annual report, DSUR, PSUR, PBRER) are out of scope. Those stay with the safety database or the PV partner.
+- Supports signal detection with structured, coded case data. Your safety team uses that case data for signal detection in your safety database.
+- E2B(R3) ready ICSR case data you can feed to your safety database.
 
 ## What it does not do
 
 - It is not an official certification or partnership with Oracle, ArisGlobal, or Veeva. Product names belong to their owners.
 - It is not an "AI governance and compliance layer" inside Argus or Veeva. Read https://aeconnect.io/integrations/ and https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/.
-- It does not claim GAMP 5 certification, 21 CFR Part 11 certification, SOC 2, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail. Validation status is a question for QORO, not a claim on this page.
+- It does not claim GAMP 5 certification, 21 CFR Part 11 certification, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail. Validation status is a question for QORO, not a claim on this page.
 
 ## Trial
 
@@ -37,7 +39,7 @@ AE Connect is a full app sold to biotech companies. You create a 14-day sandbox 
 - [Features](https://aeconnect.io/features/): longer feature narrative published on the marketing site
 - [E2B(R3) checklist](https://aeconnect.io/e2b-r3-checklist/): readiness checklist with a Netlify lead form
 - [AE Intake Readiness Checklist](https://aeconnect.io/resources/ae-intake-checklist/): two-page checklist for AE and SAE intake and for the case data to have ready before an E2B(R3) file is prepared. The PDF is on the thank-you page after the form. AE Connect integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.
-- [Learn](https://aeconnect.io/learn/): index of notes on case intake and the reporting clock. AE Connect does not submit or transmit ICSRs, and the notes do not claim a mortality effect.
+- [Learn](https://aeconnect.io/learn/): index of notes on case intake and the reporting clock. E2B(R3) ready case data you can feed to your safety database. The notes do not claim a mortality effect.
 - [Six cited facts](https://aeconnect.io/learn/underreporting-facts/): ADR underreporting, Day 0, the 15-day expedited clock, onset-to-report lag, the openFDA death-outcome flag, and VigiBase. Each figure is sourced and limited on the page.
 - [Why many reactions never become a report](https://aeconnect.io/learn/why-reactions-are-never-reported/): the 2023 review of why healthcare professionals do not report, with the limit that those percentages are the share of studies, not an official rate.
 - [What late intake does](https://aeconnect.io/learn/what-late-intake-does/): Day 0 and the work that starts only after a valid case. A process description, not a mortality estimate.
