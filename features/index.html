@@ -624,9 +624,9 @@
 <!-- HERO -->
 <div class="hero">
   <div class="eyebrow">Product Features</div>
-  <h1>Everything you need for <span>compliant AE intake</span></h1>
+  <h1>Intake, a draft, and a <span>reviewer decision</span></h1>
   <p class="hero-sub">
-    AE Connect handles the intake layer end-to-end: AI-assisted triage, MedDRA coding, E2B narrative generation, and a validated 7-state case workflow. Your PV team can focus on science, not paperwork.
+    AE Connect is electronic intake and AI triage. The draft covers seriousness, a MedDRA suggestion, causality, expectedness, a reporting clock, and a narrative. A reviewer accepts or overrides every field. AE Connect does not submit or transmit ICSRs.
   </p>
   <div class="hero-actions">
     <a href="https://app.aeconnect.io" class="btn-primary">Launch App →</a>
@@ -637,8 +637,8 @@
 <!-- STAT BAR -->
 <div class="stat-bar">
   <div class="stat-item">
-    <div class="stat-num"><span>7</span>-State</div>
-    <div class="stat-label">Validated case workflow</div>
+    <div class="stat-num"><span>7</span></div>
+    <div class="stat-label">Case states, from receipt through close</div>
   </div>
   <div class="stat-item">
     <div class="stat-num"><span>10</span></div>
@@ -646,15 +646,15 @@
   </div>
   <div class="stat-item">
     <div class="stat-num">E2B<span>(R3)</span></div>
-    <div class="stat-label">ICH-compliant narrative output</div>
+    <div class="stat-label">File kept here or in the safety database</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">GAMP<span> 5</span></div>
-    <div class="stat-label">Category 5 validated system</div>
+    <div class="stat-num">Review</div>
+    <div class="stat-label">A person accepts or overrides every field</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num"><span>21</span> CFR</div>
-    <div class="stat-label">Part 11 electronic records</div>
+    <div class="stat-num">Record</div>
+    <div class="stat-label">Field decisions stored on the account</div>
   </div>
 </div>
 
@@ -665,41 +665,41 @@
   <div class="feature-block">
     <div class="block-tag">AI-Assisted Triage</div>
     <div class="block-header">
-      <h2>Intelligent case processing from first receipt</h2>
-      <p>The moment a case enters AE Connect, the AI triage engine runs a full analysis before a human reviewer touches it. Every assessment is auditable and reviewer-editable.</p>
+      <h2>A draft from the first assessment</h2>
+      <p>When you create a case or run an assessment, the workspace returns a draft. A reviewer accepts or overrides every field. The draft is decision support.</p>
     </div>
     <div class="cards-grid">
       <div class="feat-card wide">
         <div class="feat-icon">🧠</div>
         <div>
-          <h3>Automated MedDRA Coding</h3>
-          <p>AI maps reported symptoms and events to the correct MedDRA Preferred Term and System Organ Class using the current MedDRA dictionary. Suggestions are presented with confidence indicators. Reviewers confirm, override, or add additional terms directly in the case record.</p>
+          <h3>MedDRA suggestion</h3>
+          <p>The draft suggests a MedDRA preferred term and system organ class, with a short reason. A reviewer accepts or overrides it. AE Connect does not grant a MedDRA license, and the suggestion is not a coding certificate. The term in Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety is the one your MedDRA subscription and your coder stand behind.</p>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-icon">⚖️</div>
-        <h3>Causality Assessment</h3>
-        <p>Automated assessment using WHO-UMC criteria. The engine evaluates temporal relationship, dechallenge/rechallenge data, and alternative explanations to generate an initial causality rating.</p>
+        <h3>Causality suggestion</h3>
+        <p>The draft includes an Uppsala Monitoring Centre causality category. A reviewer accepts or overrides it.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">🚨</div>
-        <h3>Seriousness &amp; Expectedness</h3>
-        <p>Each case is automatically classified as serious or non-serious per ICH E2A criteria and expected or unexpected against the current Reference Safety Information on file.</p>
+        <h3>Seriousness and expectedness</h3>
+        <p>The draft suggests seriousness and expectedness. Expectedness is a suggestion to check against the current company core data sheet or the investigator brochure. AE Connect does not author or version that document.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">⏱️</div>
-        <h3>Regulatory Timeline Alerts</h3>
-        <p>15-day and 7-day clock alerts are triggered automatically based on seriousness and expectedness classification. Your team sees submission deadlines the moment a case is triaged.</p>
+        <h3>Reporting clock</h3>
+        <p>The draft includes a reporting clock and whether reporting looks required. A reviewer accepts or overrides it. AE Connect does not submit or transmit the ICSR.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">📡</div>
-        <h3>Signal Detection Flagging</h3>
-        <p>Cases involving potential signals, including disproportionality patterns and cluster events, are flagged for PV team review before entering the submission queue.</p>
+        <h3>No signal detection</h3>
+        <p>AE Connect does not flag disproportionality patterns or cluster events, and it does not run signal detection. The draft is for the single case in front of the reviewer.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">📝</div>
-        <h3>E2B Narrative Generation</h3>
-        <p>The AI generates a structured ICH E2B(R3)-compliant case narrative automatically. Reviewers edit inline and approve. No manual drafting from scratch.</p>
+        <h3>Narrative and E2B(R3) file</h3>
+        <p>The draft can include a narrative. You can keep the full ICSR and the E2B(R3) file in AE Connect, or send the reviewed case to the safety database. AE Connect is not a certified connector and does not submit or transmit ICSRs.</p>
       </div>
     </div>
   </div>
@@ -708,8 +708,8 @@
   <div class="feature-block">
     <div class="block-tag">Case Workflow</div>
     <div class="block-header">
-      <h2>A validated 7-state workflow built for GxP</h2>
-      <p>Every case moves through a defined, auditable lifecycle. State transitions are role-gated, timestamped, and logged, satisfying 21 CFR Part 11 and GAMP 5 requirements out of the box.</p>
+      <h2>Seven case states, from receipt through close</h2>
+      <p>Each case moves through these states. Reviewed means a person has accepted or overridden the draft. Recorded means the case is kept in AE Connect or sent to the safety database you already run. Neither state submits or transmits an ICSR. These states are not a validated system, and they do not satisfy 21 CFR Part 11 or GAMP 5.</p>
     </div>
     <div class="workflow-strip">
       <div class="wf-state">
@@ -730,11 +730,11 @@
       </div>
       <div class="wf-state">
         <div class="wf-dot" style="background:#4A6FA5;"></div>
-        <div class="wf-label">Ready to Submit</div>
+        <div class="wf-label">Reviewed</div>
       </div>
       <div class="wf-state">
         <div class="wf-dot" style="background:#3A5A88;"></div>
-        <div class="wf-label">Submitted</div>
+        <div class="wf-label">Recorded</div>
       </div>
       <div class="wf-state">
         <div class="wf-dot" style="background:#5E6873;"></div>
@@ -744,18 +744,18 @@
     <div class="cards-grid" style="margin-top:24px;">
       <div class="feat-card">
         <div class="feat-icon">🔒</div>
-        <h3>Role-Gated Transitions</h3>
-        <p>State changes require the appropriate role. Reporters can submit; only Reviewers and above can approve. Admins can override with a documented reason.</p>
+        <h3>Role gated transitions</h3>
+        <p>State changes follow the role. A reporter can add a report. A reviewer can accept or override the draft and move the case. An admin can override with a documented reason.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">📋</div>
-        <h3>Full Audit Trail</h3>
-        <p>Every action including field edits, state transitions, comments, and attachments is logged with user identity and timestamp. Audit logs are immutable and exportable.</p>
+        <h3>Field decisions</h3>
+        <p>Each field decision is stored on the account: what the draft said, whether you accepted it or overrode it, and the value you kept. Cases are scoped to that account.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">📄</div>
-        <h3>Case PDF Export</h3>
-        <p>Generate a formatted case summary PDF at any workflow stage. Suitable for regulatory submission packages, sponsor review, and archive.</p>
+        <h3>Case PDF export</h3>
+        <p>A formatted case summary PDF for the team record. AE Connect does not submit or transmit that PDF as an ICSR.</p>
       </div>
     </div>
   </div>
@@ -765,7 +765,7 @@
     <div class="block-tag">Global Intake</div>
     <div class="block-header">
       <h2>Collect reports in any language, process in one</h2>
-      <p>AE Connect supports 10 languages with full RTL rendering. Reporters in any geography can submit in their native language while your PV team works in English.</p>
+      <p>AE Connect supports 10 languages with full RTL rendering. A reporter can enter a report in their language. The PV team works in English.</p>
     </div>
     <div class="lang-grid">
       <div class="lang-pill"><span class="flag">🇺🇸</span>English</div>
@@ -783,7 +783,7 @@
       <div class="feat-card">
         <div class="feat-icon">🌐</div>
         <h3>Auto-Translation to English</h3>
-        <p>Submitted reports in non-English languages are auto-translated into English for PV team review, with the original preserved in the case record.</p>
+        <p>Reports entered in another language are translated into English for review, and the original stays in the case record.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon">↔️</div>
@@ -809,8 +809,8 @@
       <div class="role-card">
         <div class="role-name">Reporter</div>
         <ul class="role-perms">
-          <li>Submit new AE reports</li>
-          <li>View own submissions</li>
+          <li>Add a new AE report</li>
+          <li>View own reports</li>
           <li>Upload attachments</li>
         </ul>
       </div>
@@ -819,8 +819,8 @@
         <ul class="role-perms">
           <li>All Reporter permissions</li>
           <li>Review &amp; triage cases</li>
-          <li>Edit MedDRA coding</li>
-          <li>Approve state transitions</li>
+          <li>Edit the MedDRA suggestion</li>
+          <li>Move a case to the next state</li>
         </ul>
       </div>
       <div class="role-card">
@@ -863,36 +863,26 @@
 
   <!-- ── 5. COMPLIANCE & VALIDATION ── -->
   <div class="feature-block">
-    <div class="block-tag">Compliance &amp; Validation</div>
+    <div class="block-tag">Not claimed</div>
     <div class="block-header">
-      <h2>GxP-ready out of the box</h2>
-      <p>AE Connect is validated as GAMP 5 Category 5 by QORO. Clients qualify it as Category 3 (COTS). A complete validation documentation package is included with every account.</p>
+      <h2>Not a validated system</h2>
+      <p>This page does not claim 21 CFR Part 11, GAMP 5, SOC 2, ISO 27001, or a HIPAA business associate agreement. The sandbox is a product workspace, not a validated computerized system environment, and not an environment we claim is qualified. IQ, OQ, and PQ have not been run. Ask QORO if you need a validation statement, and do not infer one from this page.</p>
     </div>
-    <div class="compliance-badges">
-      <div class="comp-badge"><span class="check">✓</span>ICH E2B(R3) Compliant</div>
-      <div class="comp-badge"><span class="check">✓</span>21 CFR Part 11</div>
-      <div class="comp-badge"><span class="check">✓</span>GAMP 5 Category 5</div>
-      <div class="comp-badge"><span class="check">✓</span>ICH E6(R3) GCP</div>
-      <div class="comp-badge"><span class="check">✓</span>ICH E2A Safety Reporting</div>
-      <div class="comp-badge"><span class="check">✓</span>FDA 21 CFR 312.32</div>
-      <div class="comp-badge"><span class="check">✓</span>EMA GVP Module VI</div>
-      <div class="comp-badge"><span class="check">✓</span>MedDRA Current Version</div>
-    </div>
-    <div class="cards-grid" style="margin-top:24px;">
+    <div class="cards-grid">
       <div class="feat-card">
         <div class="feat-icon gold-bg">📦</div>
-        <h3>Validation Documentation Package</h3>
-        <p>12 GxP documents included: URS, TDD, FRS, IQ/OQ Protocol with 70 test cases, RTM, Supplier Qualification Package, Customer Validation Toolkit, Change Control SOP, and Regulatory Compliance Assessment.</p>
+        <h3>No validation package</h3>
+        <p>A validation documentation package is not included with an account. IQ, OQ, and PQ have not been run. A validation statement is a question for QORO.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon gold-bg">🔐</div>
-        <h3>Electronic Signatures &amp; Records</h3>
-        <p>All approvals and sign-offs are captured as compliant electronic signatures with user identity, timestamp, and meaning, meeting 21 CFR Part 11 Subpart C requirements.</p>
+        <h3>No electronic signature step</h3>
+        <p>This site has no electronic signature step. If your quality system requires a signature, that step belongs in the safety database your process names.</p>
       </div>
       <div class="feat-card">
         <div class="feat-icon gold-bg">🏗️</div>
-        <h3>AWS Infrastructure &amp; Security Controls</h3>
-        <p>Hosted on AWS with encrypted data at rest (AES-256) and in transit (TLS 1.3). PostgreSQL on RDS with automated backups, isolated by workspace. SOC 2 audit in planning.</p>
+        <h3>Data handling</h3>
+        <p>You paste a narrative or upload a file. The file is parsed in your browser. The file itself is not uploaded. The extracted text is sent to the API when you create a case or run an assessment. Cases are scoped to the account. This page does not claim PostgreSQL backups, encryption algorithm details, or SOC 2.</p>
       </div>
     </div>
   </div>
@@ -902,7 +892,7 @@
     <div class="block-tag">Integrations</div>
     <div class="block-header">
       <h2>Integrates with the safety database you already run</h2>
-      <p>AE Connect integrates with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record. A reviewer accepts or overrides the draft, and the case integrates with that database.</p>
+      <p>AE Connect can feed any safety database, including Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety. On that path, those products remain the system of record. You can also keep the full ICSR and the E2B(R3) file in AE Connect. A reviewer accepts or overrides the draft. AE Connect does not submit or transmit ICSRs.</p>
     </div>
     <div class="cards-grid">
       <div class="feat-card">
@@ -922,8 +912,8 @@
       </div>
       <div class="feat-card">
         <div class="feat-icon">🧾</div>
-        <h3>E2B(R3) stays with the system of record</h3>
-        <p>AE Connect integrates the case with the safety database. That database remains the system of record for the E2B(R3) file. Read <a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3) case preparation</a>.</p>
+        <h3>E2B(R3) file</h3>
+        <p>AE Connect can send the reviewed case to the safety database, which remains the system of record on that path. You can also keep the full ICSR and the E2B(R3) file in AE Connect. AE Connect does not submit or transmit ICSRs. Read <a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3) case preparation</a>.</p>
       </div>
     </div>
   </div>
@@ -933,7 +923,7 @@
 <!-- CTA -->
 <div class="cta-section">
   <div>
-    <h2>Ready to run compliant AE intake?</h2>
+    <h2>Ready to try the intake workspace?</h2>
     <p>You create the account with your name, a company email, a password, your company name, and your role. After you verify the email, you are the admin of a new organization. The sandbox is 14 days with unlimited cases.</p>
   </div>
   <div class="cta-btns">
@@ -947,7 +937,7 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-wordmark"><img class="brand-logo brand-logo-dark" src="/brand/logo/logo-horizontal-dark.svg" alt="AE Connect" width="143" height="32"></div>
-      <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
+      <p>Electronic intake and AI triage for drug safety teams. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
     </div>
     <div class="footer-col">
       <h5>Product</h5>
