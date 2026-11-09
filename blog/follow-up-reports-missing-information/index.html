@@ -68,10 +68,10 @@
     },
     {
       "@type": "Question",
-      "name": "Will AE Connect send the follow up to FDA or EudraVigilance?",
+      "name": "How does AE Connect support a follow up ICSR?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. AE Connect is customizable electronic intake with AI triage. A person accepts or overrides the draft. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which remain the system of record, or it can hold the full ICSR and the E2B(R3) file. It does not transmit the report to the FDA Adverse Event Monitoring System, formerly FAERS, or to EudraVigilance."
+        "text": "AE Connect is customizable electronic intake with AI triage. A person accepts or overrides the draft. E2B(R3) ready ICSR case data can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which remain the system of record, or stay in AE Connect as the full ICSR and the E2B(R3) file."
       }
     }
   ]
@@ -213,7 +213,7 @@
 
   <h2>Where the follow up has to live</h2>
   <p><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a> is the place the first message and the later message should meet. If Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety is the system of record, it stays the system of record. The comparison tables are on the <a href="https://aeconnect.io/integrations/">integrations</a> page. AE Connect does not replace those products, and it is not an official partnership with Oracle, ArisGlobal, or Veeva. It can feed them. It can also be the safety database for the full ICSR and the E2B(R3) file when the company does not run one of those systems yet.</p>
-  <p>The workspace is customizable electronic intake plus AI triage. You paste the later narrative or you upload a PDF, a Word file, text, an email, a CSV, or an image. The draft covers seriousness, a suggested MedDRA preferred term and system organ class, an Uppsala Monitoring Centre causality category, expectedness, whether regulatory reporting looks required, and a reporting timeline, each with a short rationale. Expectedness is a suggestion to check against the current company core data sheet or the investigator brochure. AE Connect does not author or version that document. A reviewer accepts or overrides every field. The draft is decision support. This workspace does not collect an electronic signature, and it does not transmit the ICSR to the FDA Adverse Event Monitoring System (AEMS), formerly FAERS, or to EudraVigilance. Aggregate reports, including a PSUR, a PBRER, a DSUR, and the US periodic report, stay outside the workspace.</p>
+  <p>The workspace is customizable electronic intake plus AI triage. You paste the later narrative or you upload a PDF, a Word file, text, an email, a CSV, or an image. The draft covers seriousness, a suggested MedDRA preferred term and system organ class, an Uppsala Monitoring Centre causality category, expectedness, whether regulatory reporting looks required, and a reporting timeline, each with a short rationale. Expectedness is a suggestion to check against the current company core data sheet or the investigator brochure. AE Connect does not author or version that document. A reviewer accepts or overrides every field. The draft is decision support. E2B(R3) ready ICSR case data you can feed to your safety database. Aggregate reports, including a PSUR, a PBRER, a DSUR, and the US periodic report, stay outside the workspace.</p>
   <p>You create a 14 day sandbox at the registration page with your name, a company email, a password, your company name, and your role. After you verify the email, you are the admin of a new organization. The sandbox has unlimited cases. After the sandbox, the annual plans are Starter, Growth, and Scale. This page does not list prices. Questions go to <a href="mailto:info@qfsnow.com">info@qfsnow.com</a> or to the <a href="https://aeconnect.io/demo/">demo</a> form.</p>
 
   <h2>A sequence a small team can run this week</h2>
@@ -228,7 +228,7 @@
 
   <div class="cta">
     <h2>Open a case in the workspace</h2>
-    <p>Paste or upload the later email, the discharge summary, or the first incomplete note. A company email starts a 14 day sandbox trial. You accept or override every field. Keep the original case number. AE Connect can feed a safety database, or it can hold the full ICSR and the E2B(R3) file. Sending the followup to a regulator is a later step, and this workspace does not take that step.</p>
+    <p>Paste or upload the later email, the discharge summary, or the first incomplete note. A company email starts a 14 day sandbox trial. You accept or override every field. Keep the original case number. AE Connect can feed a safety database, or it can hold the full ICSR and the E2B(R3) file. Sending the followup to a regulator is a later step in the safety database your process names. E2B(R3) ready ICSR case data you can feed to that database.</p>
     <p><a class="btn" href="https://aeconnect.io/app/">Start in the workspace</a></p>
   </div>
 
@@ -242,8 +242,8 @@
     <p>ICH E2D(R1) section 5.2 says an amendment based on an internal quality review, with no new information received, does not get a new day zero. In the E2B(R3) file described in the FDA implementation guide, that kind of correction is an amendment in data element C.1.11.1, value 2, and the date of most recent information in C.1.5 stays as it was. EU GVP Module VI treats updated assessment comments and corrections of typographical errors as not significant, so they do not start the follow up clock again. New medical or administrative information that could change the assessment, the management of the case, or the seriousness does start that clock from the date it was received.</p>
     <h3>What case number goes on a follow up?</h3>
     <p>21 CFR 314.80(f)(5)(viii) requires a unique case identification number that is the same on the initial report and on later followup reports. In E2B(R3), the worldwide unique case identification in C.1.8.1, and the first sender in C.1.8.2, are not changed on a later transmission. A second email about the same patient and product should be attached to that case, not given a new worldwide number.</p>
-    <h3>Will AE Connect send the follow up to FDA or EudraVigilance?</h3>
-    <p>No. AE Connect is customizable electronic intake with AI triage. A person accepts or overrides the draft. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which remain the system of record, or it can hold the full ICSR and the E2B(R3) file. It does not transmit the report to the FDA Adverse Event Monitoring System, formerly FAERS, or to EudraVigilance.</p>
+    <h3>How does AE Connect support a follow up ICSR?</h3>
+    <p>AE Connect is customizable electronic intake with AI triage. A person accepts or overrides the draft. E2B(R3) ready ICSR case data can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which remain the system of record, or stay in AE Connect as the full ICSR and the E2B(R3) file.</p>
   </section>
 
   <div class="related">
