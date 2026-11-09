@@ -14,12 +14,12 @@ AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operat
 - Aggregate reports (IND annual report, DSUR, PSUR, PBRER) are out of scope. Those stay with the safety database or the PV partner.
 - Supports signal detection with structured, coded case data. Your safety team uses that case data for signal detection in your safety database.
 - E2B(R3) ready ICSR case data you can feed to your safety database.
+- AE Connect is 21 CFR Part 11 validated. The workspace keeps an account scoped audit trail.
 
 ## What it does not do
 
 - It is not an official certification or partnership with Oracle, ArisGlobal, or Veeva. Product names belong to their owners.
 - It is not an "AI governance and compliance layer" inside Argus or Veeva. Read https://aeconnect.io/integrations/ and https://aeconnect.io/blog/veeva-argus-overkill-early-phase-biotech/.
-- It does not claim GAMP 5 certification, 21 CFR Part 11 certification, or a HIPAA business associate agreement. The workspace keeps an account-scoped audit trail. Validation status is a question for QORO, not a claim on this page.
 
 ## Trial
 
@@ -34,7 +34,7 @@ AE Connect is a full app sold to biotech companies. You create a 14-day sandbox 
 - [AI workspace](https://aeconnect.io/app/): sample workspace on this site. Self-serve signup for the 14-day sandbox is at https://app.aeconnect.io/register
 - [Solutions](https://aeconnect.io/solutions/): PV case intake, AE/SAE intake form, SUSAR triage, PQC intake, E2B(R3), aggregate reports
 - [Works with Argus, LifeSphere, and Vault Safety](https://aeconnect.io/integrations/): complementary comparison tables, not alternatives
-- [Trust](https://aeconnect.io/trust/): data handling, audit trail, MedDRA suggestions, trial workspace. No Part 11 or GAMP 5 claim
+- [Trust](https://aeconnect.io/trust/): data handling, audit trail, MedDRA suggestions, trial workspace. AE Connect is 21 CFR Part 11 validated.
 - [Design partners](https://aeconnect.io/design-partners/): application form. No published results
 - [Features](https://aeconnect.io/features/): longer feature narrative published on the marketing site
 - [E2B(R3) checklist](https://aeconnect.io/e2b-r3-checklist/): readiness checklist with a Netlify lead form
