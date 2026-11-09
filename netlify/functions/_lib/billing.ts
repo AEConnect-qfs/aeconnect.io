@@ -73,13 +73,12 @@ export async function recordCaseProcessed(userId: string, c: MeterableCase): Pro
       update: { casesProcessed: { increment: 1 } },
     });
 
+    // Overage is counted only. Checkout is a flat $20 subscription, so amountDueCents
+    // is not increased and the usage API does not present a per-case charge.
     if ((user.plan as Plan) === 'core' && usage.casesProcessed > PRICING.includedCasesPerMonth) {
       await tx.billingUsage.update({
         where: { userId_billingMonth: { userId, billingMonth: month } },
-        data: {
-          overageCases: { increment: 1 },
-          amountDueCents: { increment: PRICING.overagePerCaseCents },
-        },
+        data: { overageCases: { increment: 1 } },
       });
     }
   });
@@ -99,8 +98,7 @@ export async function getUsage(userId: string) {
   const plan = user.plan as Plan;
   const casesProcessed = usage?.casesProcessed ?? 0;
   const overageCases = usage?.overageCases ?? 0;
-  const estimatedAmountDueCents =
-    plan === 'core' ? PRICING.coreMonthlyCents + overageCases * PRICING.overagePerCaseCents : 0;
+  const estimatedAmountDueCents = plan === 'core' ? PRICING.coreMonthlyCents : 0;
 
   return {
     plan,
@@ -116,6 +114,7 @@ export async function getUsage(userId: string) {
     casesProcessed,
     includedPerMonth: PRICING.includedCasesPerMonth,
     overageCases,
+    overageBilled: false,
     monthlyBaseCents: PRICING.coreMonthlyCents,
     estimatedAmountDueCents,
     estimatedAmountDue: centsToUSD(estimatedAmountDueCents),

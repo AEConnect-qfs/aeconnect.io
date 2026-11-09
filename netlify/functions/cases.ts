@@ -1,10 +1,10 @@
 import { prisma } from './_lib/prisma.js';
 import { writeAudit } from './_lib/audit.js';
-import { getSession, parseBody, ok, bad, unauthorized, notFound, json, type FnEvent } from './_lib/http.js';
+import { requireSession, isResponse, parseBody, ok, bad, notFound, json, type FnEvent } from './_lib/http.js';
 
 export async function handler(event: FnEvent) {
-  const session = getSession(event);
-  if (!session) return unauthorized();
+  const session = await requireSession(event);
+  if (isResponse(session)) return session;
   const userId = session.id;
 
   // GET /api/cases            → list

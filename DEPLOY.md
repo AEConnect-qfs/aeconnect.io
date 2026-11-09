@@ -15,7 +15,7 @@ are added.
 ## What you need
 
 - A **Netlify** account (you already host aeconnect.io there).
-- A **Neon** account (free) — serverless Postgres, https://neon.tech. SQLite is local-dev only.
+- A **Neon** account (free) — serverless Postgres, https://neon.tech. The schema is PostgreSQL; local Postgres works for development.
 - An **Anthropic API key** — the AI engine. Without it, the app runs a deterministic
   *mock* assessment (fine for a demo, not for production).
 
@@ -32,32 +32,31 @@ are added.
    postgresql://USER:PASSWORD@ep-xxxx.REGION.aws.neon.tech/DB?sslmode=require
    ```
 
-## 2. Switch Prisma to Postgres (one code change)
+## 2. The database is already PostgreSQL
 
-Edit `prisma/schema.prisma` — change the datasource block from `sqlite` to:
+`prisma/schema.prisma` uses `provider = "postgresql"`. There is no SQLite path and no `directUrl`. Point `DATABASE_URL` at Neon, or at a local Postgres for development.
 
-```prisma
-datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")   // pooled — runtime
-  directUrl = env("DIRECT_URL")     // direct — migrations
-}
-```
+(`binaryTargets` in the generator already includes `rhel-openssl-3.0.x` for Netlify's runtime — leave it.)
 
-(`binaryTargets` in the generator already includes `rhel-openssl-3.0.x` for Netlify's
-runtime — leave it.)
+## 3. Create or update the tables (run from your machine before deploy)
 
-> Local dev after this change: point `DATABASE_URL` at a Neon **dev branch** (Neon →
-> Branches → create `dev`) or a local Postgres. The old `dev.db` SQLite file is no longer used.
-
-## 3. Create the tables in Neon (run once, from your machine)
+Use the **direct** Neon URL (host without `-pooler`) for this command. The functions keep using the pooled URL at runtime.
 
 ```bash
-cd "QORO Intelligence Inc/aeconnect-site"
-DATABASE_URL="<neon-pooled-url>" DIRECT_URL="<neon-direct-url>" npx prisma db push
+DATABASE_URL="<neon-direct-url>" npx prisma db push
 ```
 
-This creates all tables (User, Case, Assessment, FieldDecision, AuditLog, BillingUsage).
+This creates or alters every table. Columns added on top of the original model:
+
+| Table | Column | Notes |
+|---|---|---|
+| `Assessment` | `promptVersion` | which prompt produced the draft |
+| `User` | `sessionVersion` | bumped to invalidate JWTs |
+| `User` | `failedLoginCount`, `lockedUntil` | login lockout |
+| `FieldDecision` | `assessmentId` | which draft an accept/override belongs to |
+| `PasswordReset` | *(new table)* | single-use hashed reset tokens and rate-limit rows |
+
+Run the same command again whenever a pull request says the schema changed. Do it before the deploy that contains that code.
 
 ## 4. Point Netlify at this repo
 
@@ -87,19 +86,19 @@ Site configuration → Environment variables. Add:
 | Key | Value |
 |---|---|
 | `DATABASE_URL` | Neon **pooled** URL (append `&pgbouncer=true&connection_limit=1`) |
-| `DIRECT_URL` | Neon **direct** URL (only needed if you run migrations from Netlify; safe to include) |
 | `JWT_SECRET` | a long random string — generate with `openssl rand -hex 32` |
 | `ANTHROPIC_API_KEY` | your Anthropic key (server-side only; never shipped to the browser) |
 | `ANTHROPIC_MODEL` | *(optional)* defaults to `claude-sonnet-5`. See [Switching the AI provider](#switching-the-ai-provider). |
-| `STRIPE_SECRET_KEY` | Stripe secret key (`sk_live_...`) |
-| `STRIPE_PRICE_ID` | the recurring Core price id (`price_...`) |
-| `STRIPE_WEBHOOK_SECRET` | signing secret of your webhook endpoint (`whsec_...`) |
-| `SITE_URL` | `https://aeconnect.io` (Checkout redirect base) |
+| `STRIPE_SECRET_KEY` | Stripe secret key (`sk_live_...`). Required for paid Checkout. |
+| `STRIPE_WEBHOOK_SECRET` | **Required.** Signing secret of the webhook endpoint (`whsec_...`). The webhook refuses every call when this is unset. |
+| `SITE_URL` | `https://aeconnect.io` (Checkout and password-reset links) |
+| `EMAIL_PROVIDER` | `resend` or `postmark` |
+| `EMAIL_API_KEY` | Resend API key, or Postmark server token |
+| `EMAIL_FROM` | verified sender, e.g. `AE Connect <noreply@aeconnect.io>` |
 
 `NODE_VERSION` is already pinned to 20 in `netlify.toml`.
 
-> If the Stripe vars are omitted, the Subscribe button **activates Core directly**
-> (dev convenience) instead of charging — so don't ship to production without them.
+Do **not** set `ALLOW_DEV_SUBSCRIBE` on Netlify. Without Stripe keys, Subscribe returns an error and does not grant Core. Without `EMAIL_PROVIDER` on Netlify, password reset is refused (the link is not written to the function logs).
 
 Trigger a redeploy after setting these.
 
@@ -129,30 +128,56 @@ LLM_API_KEY=...
 
 The workspace header shows the model id that ran and the prompt version (`pv-draft-2`). A draft that fails the schema (enums, 8-digit MedDRA code, required rationale) is not stored and does not consume a trial case.
 
-This build adds `Assessment.promptVersion`. Apply it to the database before deploying, from a machine that can reach Neon:
+Apply schema changes to Neon **before** deploying, using the direct URL as `DATABASE_URL` (see section 3):
 
 ```bash
-DATABASE_URL="<neon-url>" npx prisma db push
+DATABASE_URL="<neon-direct-url>" npx prisma db push
 ```
 
-Local `DATABASE_URL` must be a `postgresql://` URL. The schema is already Postgres; the old SQLite file URL will not connect.
+Local `DATABASE_URL` must be a `postgresql://` URL.
 
 `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` still work. Leave `LLM_*` unset on Netlify to keep production on Claude.
 
 ## 5b. Configure Stripe (payments)
 
-1. **Product + price:** Stripe Dashboard → Products → create "AE Connect Core",
-   add a **recurring $20/month** price. Copy its id (`price_...`) → `STRIPE_PRICE_ID`.
-2. **Secret key:** Developers → API keys → copy the secret key → `STRIPE_SECRET_KEY`.
-3. **Webhook:** Developers → Webhooks → Add endpoint:
+1. **Secret key:** Developers → API keys → copy the secret key → `STRIPE_SECRET_KEY`.
+   Checkout creates the $20/month price itself. A dashboard price id is not used.
+2. **Webhook (required):** Developers → Webhooks → Add endpoint:
    - URL: `https://aeconnect.io/api/stripe-webhook`
    - Events: `checkout.session.completed`, `customer.subscription.updated`,
      `customer.subscription.deleted`
    - Copy the signing secret (`whsec_...`) → `STRIPE_WEBHOOK_SECRET`.
-4. Set `SITE_URL=https://aeconnect.io` so Checkout redirects back correctly.
+3. Set `SITE_URL=https://aeconnect.io` so Checkout and password-reset links use the public origin.
 
 The Subscribe button → `create-checkout-session` → Stripe Checkout → on success the
-webhook flips the account to Core. Cancellations/expiries downgrade it back to trial.
+webhook flips the account to Core. Returning to the app also confirms the paid
+Checkout session. Cancellations downgrade the account back to trial. The $20
+price is the whole charge: cases past 25 are counted in the app and are not
+invoiced. If the webhook secret or the Stripe client is missing, the webhook
+returns 503 and does not change any plan.
+
+## 5c. Password reset email
+
+The login form has **Forgot password?**. The request endpoint always returns the same sentence whether or not the address has an account. The link is single-use, expires in 30 minutes, and is stored only as a hash. Using it sets a new password and signs out existing sessions.
+
+Set on Netlify:
+
+| Key | Value |
+|---|---|
+| `EMAIL_PROVIDER` | `resend` or `postmark` |
+| `EMAIL_API_KEY` | that provider's API key / server token |
+| `EMAIL_FROM` | a sender the provider has verified |
+| `SITE_URL` | `https://aeconnect.io` |
+
+Locally, leave `EMAIL_PROVIDER` unset. The dev server prints the reset link in its log (`[mail] ...`) and the browser only sees the generic sentence.
+
+To set a password for an existing account from your machine (for example a forgotten password), with the production or local `DATABASE_URL` in the environment:
+
+```bash
+npm run reset-password -- person@example.com
+```
+
+A terminal prompts twice and does not print the password. Add `--generate` (or run it without a terminal) to create one and print it a single time as `NEW_PASSWORD=...` on stdout. It is not written to a file or the audit log. The command says whether that email has an account. This also signs out existing sessions.
 
 ## 6. Verify the live deploy
 
@@ -160,15 +185,15 @@ webhook flips the account to Core. Cancellations/expiries downgrade it back to t
 2. Create a case, paste an adverse-event narrative, **Run AI assessment**.
    - With `ANTHROPIC_API_KEY` set, this is a real Claude assessment; the header trial
      counter should tick up.
-3. Accept/override fields → set an e-signature PIN → **Sign off & clear** (locks the case).
-4. Netlify → Functions tab shows invocation logs for `assess`, `signoff`, etc.
-5. Confirm the trial gate: process 5 cases; the 6th should be blocked with a
-   "subscribe" prompt (HTTP 402) — no Claude call is made for the blocked request.
+3. Accept or override fields on the current draft. Re-run the assessment and confirm the new draft has no previous decisions.
+4. Netlify → Functions tab shows invocation logs for `assess`, `stripe-webhook`, `request-password-reset`, and the rest.
+5. Confirm the trial gate: process 5 cases; the 6th should be blocked with a subscribe prompt (HTTP 402).
 
-Local smoke test (against a local/dev DB) still works with:
+Local smoke test (against a local/dev DB, with `LLM_PROVIDER=mock` and without Stripe keys or `ALLOW_DEV_SUBSCRIBE`):
+
 ```bash
 npm run dev          # http://localhost:8787/app
-npx tsx verify-site.mts   # 12 end-to-end checks
+npx tsx verify-site.mts   # exits 0
 ```
 
 ---
@@ -179,17 +204,15 @@ The workspace extracts text from uploads **in the browser** (PHI never leaves th
 user's machine until the extracted text is submitted): plain text/email/CSV directly,
 PDF via pdf.js, Word via mammoth, and images / scanned PDFs via tesseract.js OCR.
 These libraries load lazily from public CDNs (cdnjs, jsDelivr) only when a matching
-file is chosen.
-
-> **If you add a Content-Security-Policy** to the site, allowlist `cdnjs.cloudflare.com`
-> and `cdn.jsdelivr.net` (script/worker/wasm/connect) or OCR/PDF extraction will break.
-> There is no CSP today, so it works out of the box. First OCR downloads the ~10 MB
-> English model (cached thereafter).
+file is chosen. Each script tag is loaded with a `sha384` integrity hash.
+`/app` sends a Content-Security-Policy (`netlify.toml`) that allows those two
+hosts for scripts, workers, and connections, plus `tessdata.projectnaptha.com`
+for the OCR language data. It does not allow inline scripts. First OCR downloads
+the ~10 MB English model (cached thereafter). Marketing pages are outside that policy.
 
 ## Not yet wired (intentional stubs)
 
-- **Payments** — wired via Stripe Checkout + webhook (§5b). Until you set the
-  `STRIPE_*` env vars, Subscribe activates Core directly without charging.
+- **Payments** — Stripe Checkout + webhook (§5b). Without `STRIPE_SECRET_KEY`, Subscribe does not grant Core unless `ALLOW_DEV_SUBSCRIBE=true` (local only). Overage past 25 cases is counted and is not charged.
 - **Data retention / backups** — Neon handles Postgres durability; PV records often need
   ~25-year retention (spec §7). Plan a backup/retention policy before real cases.
 

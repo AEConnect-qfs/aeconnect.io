@@ -2,13 +2,13 @@ import { prisma } from './_lib/prisma.js';
 import { assertCanProcessCase, recordCaseProcessed, BillingBlocked } from './_lib/billing.js';
 import { assessCase, AssessmentError } from './_lib/assessment.js';
 import { writeAudit } from './_lib/audit.js';
-import { getSession, parseBody, requireMethod, ok, bad, unauthorized, notFound, paymentRequired, serverError, json, type FnEvent } from './_lib/http.js';
+import { requireSession, isResponse, parseBody, requireMethod, ok, bad, notFound, paymentRequired, serverError, json, type FnEvent } from './_lib/http.js';
 
 export async function handler(event: FnEvent) {
   const mth = requireMethod(event, 'POST');
   if (mth) return mth;
-  const session = getSession(event);
-  if (!session) return unauthorized();
+  const session = await requireSession(event);
+  if (isResponse(session)) return session;
   const userId = session.id;
 
   const { caseId } = parseBody<{ caseId?: string }>(event);

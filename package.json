@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "tsx dev-server.mts",
     "eval": "tsx eval-drafts.mts",
+    "reset-password": "tsx scripts/reset-password.mts",
     "prisma:push": "prisma db push",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"

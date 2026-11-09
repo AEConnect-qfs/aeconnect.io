@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Reset password — AE Connect</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: #0a1628; color: #ccd6f6; min-height: 100vh; }
+    a { color: #00d4c8; }
+    .wrap { max-width: 420px; margin: 10vh auto; padding: 0 20px; }
+    .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 32px; }
+    h1 { font-size: 22px; color: #e6f1ff; margin-bottom: 8px; }
+    p { font-size: 13.5px; color: #8892a4; margin-bottom: 18px; line-height: 1.5; }
+    label { display: block; font-size: 12px; font-weight: 600; color: #8892a4; margin: 14px 0 6px; }
+    input { width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); border-radius: 7px; color: #e6f1ff; font-size: 14px; }
+    button { font-family: inherit; cursor: pointer; width: 100%; margin-top: 20px; border: none; border-radius: 6px; padding: 10px 16px; font-size: 14px; font-weight: 700; background: #00d4c8; color: #0a1628; }
+    .err { color: #ff6b6b; font-size: 12.5px; margin-top: 12px; min-height: 16px; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Choose a new password</h1>
+      <p>This link works once and expires quickly. After you update, sign in again on any device.</p>
+      <form id="resetForm">
+        <label for="password">New password</label>
+        <input id="password" type="password" autocomplete="new-password" minlength="8" required />
+        <label for="confirm">Confirm password</label>
+        <input id="confirm" type="password" autocomplete="new-password" minlength="8" required />
+        <button type="submit">Update password</button>
+        <div class="err" id="err"></div>
+      </form>
+      <div id="done" class="hidden">
+        <p>Password updated. Existing sessions were signed out.</p>
+        <p><a href="/app">Log in</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="/app/reset.js"></script>
+</body>
+</html>

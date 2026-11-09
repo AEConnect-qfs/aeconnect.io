@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { CONTENT_SECURITY_POLICY } from './netlify/functions/_lib/csp.js';
 
 /**
  * Local dev server. Serves the static site and routes /api/<name> to the
@@ -15,6 +16,16 @@ const PORT = Number(process.env.PORT || 8787);
 
 const app = express();
 app.use(express.json({ limit: '5mb' }));
+
+app.use((req, res, next) => {
+  const p = req.path;
+  if (p === '/app' || p === '/app/' || p.startsWith('/app/')) {
+    res.setHeader('Content-Security-Policy', CONTENT_SECURITY_POLICY);
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+  }
+  if (p === '/app/reset.html') res.setHeader('Referrer-Policy', 'no-referrer');
+  next();
+});
 
 const NAME_RE = /^[a-z0-9-]+$/;
 

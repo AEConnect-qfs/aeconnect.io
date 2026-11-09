@@ -1,8 +1,7 @@
 // aeconnect.io self-serve AI case-processing — data model.
 //
-// SQLite for local dev; switch `provider` to "postgresql" + a Neon URL for the
-// Netlify deploy (serverless-friendly). binaryTargets makes the client bundle
-// runnable on Netlify's Lambda runtime.
+// PostgreSQL (local Postgres or Neon). binaryTargets makes the client bundle
+// runnable on Netlify's Lambda runtime. Apply with `npx prisma db push`.
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
@@ -27,12 +26,17 @@ model User {
   stripeSubscriptionId String?
   subscriptionStatus   String? // active | past_due | canceled | ...
   esignaturePinHash String?
+  // Bumped to invalidate outstanding JWTs (logout, password reset, admin reset).
+  sessionVersion    Int           @default(0)
+  failedLoginCount  Int           @default(0)
+  lockedUntil       DateTime?
   createdAt         DateTime      @default(now())
   cases             Case[]
   assessments       Assessment[]
   fieldDecisions    FieldDecision[]
   auditLogs         AuditLog[]
   billingUsages     BillingUsage[]
+  passwordResets    PasswordReset[]
 }
 
 model Case {
@@ -46,7 +50,7 @@ model Case {
   status          String          @default("pending")
   // Metering (spec §2): first AI assessment per case is the billable unit.
   firstAssessedAt DateTime?
-  // Human e-signature sign-off (spec §6 hard gate). Locks the record.
+  // Retained from an earlier sign-off design. The workspace does not set these.
   signedOffAt     DateTime?
   esignatureMeta  String?
   lockedAt        DateTime?
@@ -82,6 +86,7 @@ model Assessment {
   createdAt          DateTime @default(now())
   case               Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
   user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fieldDecisions     FieldDecision[]
 
   @@index([caseId])
 }
@@ -95,11 +100,31 @@ model FieldDecision {
   aiValue      String
   finalValue   String
   reason       String?
+  // Which assessment this accept/override belongs to. Null on rows from before the column existed.
+  assessmentId String?
   decidedAt    DateTime @default(now())
   case         Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assessment   Assessment? @relation(fields: [assessmentId], references: [id], onDelete: SetNull)
 
   @@index([caseId])
+  @@index([assessmentId])
+}
+
+// Single-use password reset. Rows with a null tokenHash only count toward the
+// per-email rate limit (including addresses that have no account).
+model PasswordReset {
+  id        String    @id @default(uuid())
+  userId    String?
+  emailKey  String
+  tokenHash String?   @unique
+  expiresAt DateTime?
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([emailKey, createdAt])
+  @@index([userId])
 }
 
 // Append-only, hash-chained audit log (spec §7, 21 CFR Part 11). Per-user chain.
