@@ -444,7 +444,7 @@
 
     <div class="callout">
       <div class="callout-title">What Early-Phase IND Sponsors Actually Need</div>
-      <p>Structured adverse event intake with documented clock-start dates. Initial seriousness and expectedness triage. Case workflow management through medical review and narrative preparation. E2B(R3) compliant ICSR output for FDA submission. A validated system of record with audit trail. That is it. No signal detection across 50,000 spontaneous reports. No PSUR generation. No multi-country submission infrastructure.</p>
+      <p>Structured adverse event intake with a receipt date. A draft of seriousness and expectedness that a reviewer accepts or overrides, including the narrative. Submission of an ICSR to FDA stays with the safety database or the process the pharmacovigilance plan names. AE Connect does not submit or transmit ICSRs and it is not a validated system of record. No signal detection across 50,000 spontaneous reports. No PSUR generation. No multi country submission infrastructure.</p>
     </div>
 
     <p>The problem is not that Veeva and Argus cannot do what early-phase sponsors need. They can. The problem is that they come with significant overhead that is disproportionate to the task:</p>
@@ -486,10 +486,10 @@
     <p>At minimum, your safety infrastructure needs to deliver:</p>
 
     <ul>
-      <li><strong>A structured, validated intake process</strong> that captures minimum valid case criteria and required E2B(R3) data elements at the time of first report receipt, with documented clock-start dates</li>
-      <li><strong>A case workflow</strong> that moves reports from intake through triage, medical review, MedDRA coding, narrative preparation, and submission with clear accountability at each step</li>
-      <li><strong>E2B(R3) compliant ICSR output</strong> suitable for submission to FDA via the Electronic Submissions Gateway or Safety Reporting Portal</li>
-      <li><strong>A validated system of record</strong> with complete audit trail, user access controls, and 21 CFR Part 11 compliant electronic records</li>
+      <li><strong>A structured intake record</strong> that keeps the receipt date and the first report</li>
+      <li><strong>A reviewer path</strong> from receipt through triage, a MedDRA suggestion, and a narrative. Submission to a regulator stays with the safety database or the partner the plan names</li>
+      <li><strong>An E2B(R3) file</strong> for the authority path. AE Connect can hold that file or feed the safety database. It is not a certified connector and it does not submit or transmit the ICSR</li>
+      <li><strong>A system of record named in the pharmacovigilance plan.</strong> Whether that system is validated, and whether 21 CFR Part 11 applies to it, is the sponsor question. This page does not claim that AE Connect is that validated system or that it meets Part 11</li>
       <li><strong>SOPs</strong> governing every step of the case lifecycle from receipt through submission, reconciliation, and follow-up</li>
     </ul>
 
@@ -497,9 +497,9 @@
 
     <h2 id="the-right-model">The Right Model for Small Biotech Programs</h2>
 
-    <p>The model that works best for most early-phase IND sponsors is a combination of a purpose-built intake and case management platform plus an outsourced pharmacovigilance partner for medical review and submission.</p>
+    <p>The model many early phase IND sponsors use is an intake workspace plus an outsourced pharmacovigilance partner for medical review and submission.</p>
 
-    <p>A purpose-built intake platform handles the structured receipt, triage, and initial case processing in a validated, E2B(R3)-aligned workflow. It is configurable without requiring enterprise-level implementation resources, validated for GxP use without requiring a dedicated validation team, and priced proportionately to the volume and complexity of early-phase case management.</p>
+    <p>An intake workspace handles receipt and a draft of the case. A reviewer accepts or overrides every field. It does not claim GAMP 5, 21 CFR Part 11, or a validated workflow. It is not a certified connector and it does not submit or transmit ICSRs. This site does not list a price.</p>
 
     <p>Your outsourced PV partner, whether a CRO safety team or a specialized pharmacovigilance service provider, handles the medical review, causality assessment, narrative preparation, and regulatory submission. They bring the licensed safety physicians and submission infrastructure you need without requiring you to build and maintain that capability in-house.</p>
 
@@ -522,12 +522,12 @@
         <tr>
           <td>Annual cost</td>
           <td><span class="red-text">$150K to $300K+</span></td>
-          <td><span class="teal-text">Proportionate to case volume</span></td>
+          <td>Not listed on this site.</td>
         </tr>
         <tr>
           <td>Validation burden</td>
           <td><span class="red-text">High, requires dedicated team</span></td>
-          <td><span class="teal-text">Pre-validated, maintained by vendor</span></td>
+          <td>Not a validated system. The sponsor decides qualification.</td>
         </tr>
         <tr>
           <td>Operational overhead</td>
@@ -537,22 +537,22 @@
         <tr>
           <td>E2B(R3) compliance</td>
           <td><span class="teal-text">Yes</span></td>
-          <td><span class="teal-text">Yes</span></td>
+          <td>Not a certified connector. Does not submit or transmit ICSRs.</td>
         </tr>
         <tr>
           <td>21 CFR Part 11 audit trail</td>
           <td><span class="teal-text">Yes</span></td>
-          <td><span class="teal-text">Yes</span></td>
+          <td>No Part 11 claim. Field decisions are stored on the account.</td>
         </tr>
         <tr>
           <td>Signal detection across large datasets</td>
           <td><span class="teal-text">Yes</span></td>
-          <td>Not needed at IND stage</td>
+          <td>No. This workspace does not run signal detection.</td>
         </tr>
         <tr>
           <td>Multi-country submission infrastructure</td>
           <td><span class="teal-text">Yes</span></td>
-          <td>Not needed at IND stage</td>
+          <td>No. AE Connect does not submit or transmit ICSRs.</td>
         </tr>
         <tr>
           <td>Right for early-phase IND sponsor</td>
@@ -571,7 +571,7 @@
       <li>You have multiple products or programs requiring consolidated safety database management</li>
       <li>You have submission obligations across multiple regulatory jurisdictions requiring jurisdiction-specific ICSR formatting</li>
       <li>You have a dedicated pharmacovigilance team with the expertise and capacity to implement, validate, and operate the system</li>
-      <li>Your case volume and signal detection requirements have genuinely outgrown what a purpose-built intake platform can support</li>
+      <li>You need signal detection across a large case database. AE Connect does not run signal detection.</li>
     </ul>
 
     <p>If you are at that stage, Veeva Vault Safety and Oracle Argus are worth serious evaluation. The investment is proportionate to the problem you are solving.</p>
@@ -580,8 +580,8 @@
 
     <div class="callout" style="border-color: rgba(74,111,165,0.25); background: linear-gradient(135deg, rgba(74,111,165,0.08), rgba(74,111,165,0.04));">
       <div class="callout-title">About AE Connect</div>
-      <p>AE Connect by QORO Intelligence Inc. is a purpose-built adverse event intake and case management platform designed specifically for small and mid-size biotech IND sponsors. It provides validated, E2B(R3)-aligned intake forms in 10 languages, AI-assisted triage and MedDRA coding, complete audit trail, and structured case output designed to integrate with your outsourced PV partner or submit directly via FDA ESG.</p>
-      <p>It is not an enterprise pharmacovigilance database. It is the right-sized infrastructure for where most early-phase programs actually are, at a fraction of the cost and operational overhead.</p>
+      <p>AE Connect by QORO Intelligence Inc. is customizable electronic intake plus AI triage for small and mid size biotech IND sponsors. You paste a narrative or upload a file. The file is parsed in the browser. The draft suggests a MedDRA preferred term and system organ class, with a short reason. A reviewer accepts or overrides every field. Field decisions are stored on the account. AE Connect can feed a safety database or hold the full ICSR and the E2B(R3) file. It is not a certified connector and it does not submit or transmit ICSRs.</p>
+      <p>It is not an enterprise pharmacovigilance database. It is the intake workspace for an early phase program. This site does not list a price.</p>
       <a href="https://qorosystems.com#demo" style="display:inline-block; margin-top:12px; background:var(--teal); color:var(--navy); font-weight:700; font-size:13px; padding:10px 20px; border-radius:8px; text-decoration:none;">Request a Demo</a>
     </div>
 
@@ -626,7 +626,7 @@
 <!-- BOTTOM CTA -->
 <div class="bottom-cta">
   <h2>Right-sized PV infrastructure for where you actually are</h2>
-  <p>AE Connect gives early-phase IND sponsors validated, E2B(R3)-compliant adverse event intake without the enterprise overhead.</p>
+  <p>AE Connect is customizable electronic intake plus AI triage for early phase IND sponsors. It is not a certified connector and it does not submit or transmit ICSRs.</p>
   <div class="bottom-cta-btns">
     <a href="https://qorosystems.com#demo" class="btn-primary">Request a Demo</a>
     <a href="https://aeconnect.io/e2b-r3-checklist/" class="btn-secondary">Download Free Checklist</a>
@@ -653,7 +653,7 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-wordmark"><img class="brand-logo brand-logo-dark" src="/brand/logo/logo-horizontal-dark.svg" alt="AE Connect" width="143" height="32"></div>
-      <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
+      <p>Electronic intake and AI triage for drug safety teams. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
     </div>
     <div class="footer-col">
       <h5>Product</h5>
