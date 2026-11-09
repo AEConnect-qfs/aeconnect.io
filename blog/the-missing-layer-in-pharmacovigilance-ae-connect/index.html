@@ -52,7 +52,7 @@
       "drug safety intake",
       "pharmacovigilance gap",
       "IND adverse event reporting",
-      "E2B R3 compliant intake"
+      "E2B(R3) file"
     ],
     "wordCount": 1200,
     "inLanguage": "en-US"
@@ -312,54 +312,54 @@
 
     <p>Enterprise PV databases are priced and scoped for marketing authorization holders. Implementation timelines run six to twelve months. Annual licensing costs are measured in hundreds of thousands of dollars. The validation burden requires dedicated IT and quality resources that a ten-person biotech does not have. And critically, they solve the case processing and submission problem — they do not solve the intake problem. You still need to get structured data into the system, and most enterprise platforms assume that data arrives from a clinical database or a CRO, not from an unstructured phone call with a site coordinator.</p>
 
-    <p>Small biotech programs need something different. They need a structured intake layer that captures the right data at first contact, manages the case through a compliant workflow, and produces E2B(R3) ready output — without requiring a six-month implementation or a dedicated PV IT team to maintain it.</p>
+    <p>Small biotech programs need something different. They need a place to put the first narrative, a draft a reviewer can accept or override, and a path into the safety database. AE Connect can feed that database or hold the full ICSR and the E2B(R3) file. It is not a certified connector and it does not submit or transmit ICSRs.</p>
 
     <h2 id="what-ae-connect-does">What AE Connect Does</h2>
 
-    <p>AE Connect is an AI-powered adverse event intake and ICSR preparation platform built specifically for small and mid-size biotech companies with active IND programs. It was designed from the ground up around the actual workflow of a small drug safety team, not the workflow of a large pharmaceutical company's global safety organization.</p>
+    <p>AE Connect is customizable electronic intake plus AI triage for small and mid size biotech companies with active IND programs.</p>
 
-    <p>The platform covers the full intake-to-submission workflow in one validated system:</p>
+    <p>The workspace covers intake and a reviewer decision. It is not a validated system, and it does not submit or transmit ICSRs:</p>
 
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-icon">📋</div>
-        <h4>Structured Intake Forms</h4>
-        <p>Guided intake forms capture all minimum E2B(R3) data elements at first contact — reporter qualification, patient demographics, event details, product information, and seriousness criteria. Available in 10 languages with RTL support.</p>
+        <h4>Structured Intake</h4>
+        <p>You paste a narrative or upload a PDF, Word file, text, email, CSV, or image. The file is parsed in the browser. The file itself is not uploaded.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🤖</div>
-        <h4>AI-Assisted MedDRA Coding</h4>
-        <p>Adverse event descriptions are automatically mapped to MedDRA preferred terms and system organ classes, with confidence scoring and human review workflow. Eliminates manual lookup and reduces coding inconsistency across cases.</p>
+        <h4>MedDRA Suggestion</h4>
+        <p>The draft suggests a MedDRA preferred term and system organ class, with a short reason. A reviewer accepts or overrides it. The suggestion is not a coding certificate. AE Connect does not grant a MedDRA license.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">⏱️</div>
-        <h4>Timeline Tracking and Alerts</h4>
-        <p>Clock-start is captured at intake and 7-day and 15-day regulatory deadlines are tracked automatically. Escalation alerts fire before deadlines are missed — not after.</p>
+        <h4>Reporting Timeline</h4>
+        <p>The draft includes a reporting timeline. AE Connect does not submit or transmit the ICSR.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔄</div>
-        <h4>7-State Case Workflow</h4>
-        <p>Cases move through a structured workflow from intake through triage, medical review, causality assessment, narrative generation, and submission preparation — with role-based access controls at every stage.</p>
+        <h4>Reviewer Decision</h4>
+        <p>A reviewer accepts or overrides every field. Each field decision is stored on the signed-in account: what the draft said, whether you accepted it or overrode it, and the value you kept. There is no Ready to Submit state and no Submitted state.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📄</div>
-        <h4>E2B Narrative Generation</h4>
-        <p>AI-generated case narratives structured for Section H of the ICSR, built from the structured data captured at intake. Reduces narrative drafting time from hours to minutes while maintaining the medical precision required for regulatory submission.</p>
+        <h4>Narrative in the Draft</h4>
+        <p>The draft includes a short narrative. Keep the full ICSR and the E2B(R3) file in AE Connect, or send the reviewed case to the safety database. AE Connect is not a certified connector and does not submit or transmit ICSRs.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔍</div>
         <h4>Signal Detection</h4>
-        <p>Aggregate signal detection across cases in the system, surfacing patterns in adverse event frequency, severity, and MedDRA clustering that warrant medical review — without requiring a dedicated signal management team.</p>
+        <p>AE Connect does not run signal detection. It does not flag patterns in frequency, severity, or MedDRA clustering.</p>
       </div>
     </div>
 
-    <p>The platform is validated as GAMP 5 Category 5 and fully compliant with 21 CFR Part 11, with electronic audit trails, role-based access controls, and complete validation documentation — User Requirements Specifications, Functional Requirements Specifications, Installation and Operational Qualification protocols, and a Risk and Traceability Matrix — available to client organizations to support their own IQ/OQ qualification activities.</p>
+    <p>This page does not claim 21 CFR Part 11, GAMP 5, SOC 2, ISO 27001, or a HIPAA business associate agreement. The sandbox is a product workspace, not a validated computerized-system environment. A validation package is not included. This site has no electronic signature step. Sign-off, if your quality system requires one, belongs in the safety database your process names.</p>
 
     <h2 id="who-its-for">Who It Is Built For</h2>
 
     <p>AE Connect is designed for three types of organizations:</p>
 
-    <p><strong>Early-phase biotech companies with active INDs</strong> that are handling adverse event intake through ad hoc processes and need a validated, compliant system of record before their next FDA inspection or audit. These organizations often have one or two people handling all drug safety functions and cannot afford to spend six months implementing an enterprise platform.</p>
+    <p><strong>Early phase biotech companies with active INDs</strong> that are handling adverse event intake through ad hoc processes and need a place for the narrative and the reviewer decision. These organizations often have one or two people handling all drug safety functions and cannot spend months implementing an enterprise platform.</p>
 
     <p><strong>Clinical-stage biotechs transitioning from CRO-managed pharmacovigilance</strong> to an in-house function. As programs mature, sponsors frequently bring PV in-house to reduce cost and improve oversight — and need a platform that can support an internal team without the infrastructure overhead of enterprise software.</p>
 
@@ -368,16 +368,16 @@
     <div class="callout" style="border-color: rgba(74,111,165,0.25); background: linear-gradient(135deg, rgba(74,111,165,0.08), rgba(74,111,165,0.04));">
       <div class="callout-title">AE Connect at a Glance</div>
       <ul>
-        <li>Structured adverse event intake in 10 languages</li>
-        <li>AI-assisted MedDRA coding with human review workflow</li>
-        <li>7-state case management with role-based access (5 roles)</li>
-        <li>Automated 7-day and 15-day timeline tracking and alerts</li>
-        <li>AI-generated E2B(R3) case narratives</li>
-        <li>Signal detection across case portfolio</li>
-        <li>PDF case export for case record documentation</li>
-        <li>GAMP 5 Category 5 validated, 21 CFR Part 11 compliant</li>
-        <li>Full validation documentation package included</li>
-        <li>Hosted on AWS with SOC 2-aligned security controls</li>
+        <li>Paste a narrative or upload a file. Parsing happens in the browser. The file itself is not uploaded.</li>
+        <li>MedDRA preferred term and system organ class suggestion. A reviewer accepts or overrides it. Not a coding certificate.</li>
+        <li>Field decisions stored on the account.</li>
+        <li>A reporting timeline in the draft. AE Connect does not submit or transmit ICSRs.</li>
+        <li>A short narrative in the draft. The full ICSR and the E2B(R3) file can stay here or go to the safety database.</li>
+        <li>No signal detection.</li>
+        <li>You can download the case. The download is not submitted or transmitted as an ICSR.</li>
+        <li>No 21 CFR Part 11, GAMP 5, or SOC 2 claim.</li>
+        <li>No validation package included.</li>
+        <li>No electronic signature step.</li>
       </ul>
     </div>
 
@@ -385,13 +385,13 @@
 
     <p>The pharmacovigilance software market has had an unaddressed gap for years. Enterprise tools are too large, too expensive, and too operationally complex for early-phase biotech programs. Nothing purpose-built for small sponsors existed between those platforms and a shared spreadsheet. That gap is where compliance risk lives — in the unstructured intake process, the missing audit trail, the reconstructed case narrative, and the missed 7-day clock.</p>
 
-    <p>AE Connect was built by pharmacovigilance practitioners who have worked in that gap firsthand. It is not a scaled-down enterprise platform. It is a purpose-built intake and case management system designed for the actual resource constraints and compliance obligations of a small biotech drug safety program.</p>
+    <p>AE Connect was built by pharmacovigilance practitioners who have worked in that gap firsthand. It is not a scaled down enterprise platform. It is customizable electronic intake plus AI triage for a small biotech drug safety program. It is not a certified connector and it does not submit or transmit ICSRs.</p>
 
     <p>If your team is managing adverse event intake through email, spreadsheets, or an ad hoc process, and you have an active IND and E2B(R3) submission obligations, we would be glad to show you how AE Connect works in practice.</p>
 
     <div class="callout" style="border-color: rgba(74,111,165,0.25); background: linear-gradient(135deg, rgba(74,111,165,0.08), rgba(74,111,165,0.04)); margin-top: 40px;">
       <div class="callout-title">Request a Demo</div>
-      <p>We walk through the full intake-to-submission workflow with your team. No slides, no sales pitch — just the platform and your actual use case.</p>
+      <p>We walk through the intake workspace with your team. No slides and no sales pitch. Just the workspace and your actual use case.</p>
       <a href="https://qorosystems.com#demo" style="display:inline-block; margin-top:12px; background:var(--teal); color:var(--navy); font-weight:700; font-size:13px; padding:10px 20px; border-radius:8px; text-decoration:none;">Request a Demo</a>
     </div>
 
@@ -412,7 +412,7 @@
 
     <div class="cta-card">
       <h4>See AE Connect in Action</h4>
-      <p>We walk through the full intake-to-submission workflow live. No slides. Just the platform.</p>
+      <p>We walk through the intake workspace live. No slides. Just the workspace.</p>
       <a href="https://qorosystems.com#demo" class="cta-btn">Request a Demo</a>
       <a href="https://aeconnect.io/e2b-r3-checklist/" class="cta-secondary">Free E2B(R3) Checklist →</a>
     </div>
@@ -432,7 +432,7 @@
 
 <div class="bottom-cta">
   <h2>Stop managing adverse events in a spreadsheet.</h2>
-  <p>AE Connect gives small biotech teams a validated, E2B(R3) compliant intake and case management platform from day one.</p>
+  <p>AE Connect is customizable electronic intake plus AI triage. It is not a certified connector and it does not submit or transmit ICSRs.</p>
   <div class="bottom-cta-btns">
     <a href="https://qorosystems.com#demo" class="btn-primary">Request a Demo</a>
     <a href="https://aeconnect.io/blog/" class="btn-secondary">Read More Articles</a>
@@ -458,7 +458,7 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-wordmark"><img class="brand-logo brand-logo-dark" src="/brand/logo/logo-horizontal-dark.svg" alt="AE Connect" width="143" height="32"></div>
-      <p>AI-powered adverse event reporting for small to mid-size biotech. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
+      <p>Electronic intake and AI triage for drug safety teams. A product of <a href="https://qorosystems.com">QORO Intelligence Inc.</a></p>
     </div>
     <div class="footer-col">
       <h5>Product</h5>

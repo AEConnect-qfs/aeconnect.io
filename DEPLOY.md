@@ -114,7 +114,7 @@ Do not publish plan prices on the marketing site. The 14-day sandbox is self-ser
 1. Visit `https://aeconnect.io/` (marketing page, 200) and `https://aeconnect.io/app/` → sign up.
 2. Create a case, paste an adverse-event narrative, **Run AI assessment**.
    - With `ANTHROPIC_API_KEY` set, this is a real Claude assessment and returns a structured draft.
-3. Accept or override fields, then **Download case**. E-signature sign-off is not part of this site; it stays on `app.aeconnect.io`.
+3. Accept or override fields, then **Download case**. This site has no electronic signature step. Sign-off, if a quality system requires one, belongs in the safety database the process names.
 4. Netlify → Functions tab shows invocation logs for `assess`, `cases`, and so on.
 5. The public trial is the 14-day sandbox at https://app.aeconnect.io/register. https://aeconnect.io/trial/ redirects there. It is not a capped case allowance.
 
