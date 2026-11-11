@@ -66,6 +66,7 @@ Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQP
 - [PV case intake forms](https://aeconnect.io/blog/pv-case-intake-forms/): what an intake form captures before the clock starts
 - [AE reporter forms for patients and healthcare professionals](https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/): what a patient or HCP report must contain before Day 0. Spontaneous versus solicited, MedWatch versus the company record, ICH E2D(R1), GVP Module VI, and 21 CFR 314.80. AE Connect is the case screen, not a patient portal and not MedWatch.
 - [Follow up reports and missing information](https://aeconnect.io/blog/follow-up-reports-missing-information/): when a later message starts a new reporting clock, and when an internal correction does not. US followup rules, ICH E2D(R1) day zero, EU GVP Module VI, and the E2B(R3) case number that stays the same.
+- [Duplicate ICSR detection at case intake](https://aeconnect.io/blog/duplicate-icsr-detection/): how to tell one case reported twice from a follow up or a linked report. GVP Module VI Addendum I, ICH E2D(R1) section 6.6, and the E2B(R3) identifiers C.1.1, C.1.8.1, C.1.9.1, and C.1.10.r. A person confirms the match. AE Connect does not run that comparison.
 - [Adverse event reporting: AE and SAE](https://aeconnect.io/blog/adverse-event-reporting-ae-sae/)
 - [SUSAR reporting](https://aeconnect.io/blog/susar-reporting-ind-sponsors/)
 - [Product quality complaint reporting](https://aeconnect.io/blog/product-quality-complaint-reporting/): not a QMS, and not a Field Alert Report
