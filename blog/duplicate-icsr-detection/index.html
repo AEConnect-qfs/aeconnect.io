@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Duplicate ICSR detection at case intake | AE Connect</title>
+  <meta name="description" content="How to detect and manage duplicate ICSRs at case intake. What to compare, which E2B(R3) identifiers to keep, and how GVP Module VI and ICH E2D(R1) treat the extra case." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/duplicate-icsr-detection/" />
+  <meta property="og:title" content="Duplicate ICSR detection at case intake" />
+  <meta property="og:description" content="How to detect and manage duplicate ICSRs at case intake. What to compare, which E2B(R3) identifiers to keep, and how GVP Module VI and ICH E2D(R1) treat the extra case." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/duplicate-icsr-detection/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Duplicate ICSR detection at case intake | AE Connect" />
+  <meta name="twitter:description" content="How to detect and manage duplicate ICSRs at case intake. What to compare, which E2B(R3) identifiers to keep, and how GVP Module VI and ICH E2D(R1) treat the extra case." />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Duplicate adverse event reports: how to detect and manage them at case intake",
+  "description": "How to detect and manage duplicate ICSRs at case intake. What to compare, which E2B(R3) identifiers to keep, and how GVP Module VI and ICH E2D(R1) treat the extra case.",
+  "url": "https://aeconnect.io/blog/duplicate-icsr-detection/",
+  "datePublished": "2026-11-11",
+  "dateModified": "2026-11-11",
+  "author": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/"},
+  "publisher": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/", "logo": {"@type": "ImageObject", "url": "https://aeconnect.io/brand/logo/logo-horizontal-light.png"}},
+  "image": "https://aeconnect.io/brand/og/default.png",
+  "mainEntityOfPage": "https://aeconnect.io/blog/duplicate-icsr-detection/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a duplicate ICSR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GVP Module VI Addendum I defines a duplicate as the same individual case reported by a primary source to describe suspected adverse reactions related to one or more medicinal products given to an individual patient at a particular point in time. The same case can arrive from different senders and through different routes, and the processor can code it differently, which is why the two records may not look identical. ICH E2D(R1) section 6.6 says duplicates negatively impact signal detection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do a follow up, a linked report, and a duplicate differ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A follow up is later information about a case you already hold, and it keeps the same worldwide unique case identification number in E2B(R3) element C.1.8.1. A linked report, element C.1.10.r, is a different case that should be evaluated with this one, such as a mother and child pair, siblings, or a cluster from the same reporter. A duplicate is a second record of the same case. The addendum says other case identifiers in C.1.9.1 help confirm a duplicate, and C.1.10.r helps confirm that two cases are distinct."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should a small team compare when a new report arrives?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The addendum says every newly received ICSR should be treated as a potential duplicate and checked against cases already in the database at data entry. For a small dataset, sort by age, sex, suspected or interacting product, and reaction, and add country when it helps. Then check the case identifiers: C.1.1, C.1.8.1, and C.1.9.1.r. Compare the medical concept, because a rash in one report can be Stevens-Johnson syndrome in another. A person confirms the match from the narrative."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to the extra case after a duplicate is confirmed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The addendum manages confirmed duplicates by a master case: either one existing case is allocated as the master and the others are kept for the audit trail, or a new master is created. The master keeps every reference number. C.1.4 and C.1.5 stay as they were unless new information arrived. When the same sender has already transmitted two copies, GVP Module VI says nullify one entire case, update the remaining case as a follow up, and put the nullified identifier in C.1.9.1. Only the original sender can nullify, and a nullified case cannot be reactivated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AE Connect find duplicate cases for you?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A person looks for the existing case. AE Connect is customizable electronic intake with AI triage. The draft covers seriousness, a suggested MedDRA term, causality, expectedness, and a timeline, and a reviewer accepts or overrides every field. The intake record is where patient, product, reaction, reporter, dates, and any case number already on the message can sit, so that comparison has fields to use. E2B(R3) ready case data can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which remain the system of record, or stay in AE Connect as the full ICSR and the E2B(R3) file."
+      }
+    }
+  ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #4A6FA5); color: var(--navy, #F3F5F4); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #14202C); border: 1px solid #5E6873; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Duplicate adverse event reports: how to detect and manage them at case intake", "item": "https://aeconnect.io/blog/duplicate-icsr-detection/"}
+    ]
+  }
+  </script>
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="Duplicate ICSR detection at case intake | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/product/">Product</a></li>
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+    <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+    <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
+  </ul>
+</nav>
+<header class="brand-hero">
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / Duplicate ICSR detection</p>
+  <h1>Duplicate adverse event reports: how to detect and manage them at case intake</h1>
+  <p class="by">QORO Team · 11 November 2026 · about 26 minutes</p>
+</header>
+<main>
+  <p>A patient emails that she was admitted with a rash after the first two doses. Three days later a hospital physician sends a shorter note about the same admission, with a different spelling of the surname and no mention of the email. If both messages are typed up as new cases, the safety database holds two stories about one patient. One of those stories can be counted twice in a signal review. The other can hide the hospital course, because the follow up never lands on the first case.</p>
+  <p>That is a patient safety problem. A serious reaction that is split across two records is a reaction nobody has fully evaluated. A case that is counted twice can make a known reaction look new, or can bury a rare one. At a small biotech both messages usually arrive in the same <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">drug safety inbox</a>. This page is about how to look for the existing case at intake, and what to do when the match is real. It is not a standard operating procedure. The procedure should cite the text the company actually follows.</p>
+
+  <h2>A duplicate is one case, reported more than once</h2>
+  <p><a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-addendum-i-duplicate-management-suspected-adverse-reaction-reports_en.pdf">GVP Module VI Addendum I</a> (EMA/405655/2016) is the European Medicines Agency guidance on duplicate management of suspected adverse reaction reports. It has been in force since 22 November 2017, and it replaced the CHMP guideline of 7 November 2011. The addendum defines a duplicate as the same individual case reported by a primary source to describe suspected adverse reactions related to the administration of one or more medicinal products to an individual patient at a particular point in time. That case may be reported by different senders, through different routes. The processor may code it differently, obtain different follow up, or handle personal data differently. Those differences are why two records of one case often fail an exact match.</p>
+  <p>Three neighbours get confused with that definition, and each one has its own data element.</p>
+  <ul>
+    <li><strong>A follow up</strong> is later information about a case you already hold. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80(f)(5)(viii)</a> requires a unique case identification number that is the same on the initial report and on any subsequent followup report. In E2B(R3), the worldwide unique case identification number in C.1.8.1 stays the same. How the clock behaves when the later message arrives is the subject of the <a href="https://aeconnect.io/blog/follow-up-reports-missing-information/">follow up and missing information</a> guide. A second case number on that later message is how a follow up becomes a duplicate in the database.</li>
+    <li><strong>A linked report</strong> is a different case that should be read with this one. The FDA <a href="https://www.fda.gov/media/81904/download">E2B(R3) implementation guide</a> says C.1.10.r holds the identifier of another report that warrants being evaluated together with this ICSR. The guide's examples include a mother and child pair in which both had reactions, siblings with a common exposure, several reports involving the same patient, a paper ICSR that never received a conformant worldwide unique case identification number, and several similar reports from the same reporter (a cluster). The reason for the link goes in H.4. When both cases have an E2B number, put C.1.10.r on both.</li>
+    <li><strong>Another identifier of this same case</strong> goes in C.1.9.1, other case identifiers in previous transmissions. The addendum says that field is a practical way to detect and confirm duplicates. C.1.10.r is a practical way to record that two cases share something and remain distinct. Putting a second case in the wrong element is how a mother and child pair gets merged, or how a true duplicate stays invisible to the next reviewer.</li>
+  </ul>
+
+  <h2>Why a second copy changes the safety picture</h2>
+  <p><a href="https://database.ich.org/sites/default/files/ICH_E2D(R1)_Step4_FinalGuideline_2025_0819.pdf">ICH E2D(R1)</a> section 6.6, adopted on 15 September 2025, says detection and handling of duplicate reports is an important element of good case management. Regulatory authorities and marketing authorisation holders should consider and manage duplicates when reviewing pharmacovigilance data, because duplicates negatively impact signal detection. The FDA <a href="https://www.fda.gov/media/176977/download">E2D(R1) guidance for industry</a> (March 2026) includes that section. The guidance says it represents FDA's current thinking, it does not establish rights, and it is not binding on FDA or the public. A different approach is acceptable if it meets the applicable statutes and regulations.</p>
+  <p>The addendum is blunt about the size of the problem in a small count. It says duplicates can artificially inflate signals of disproportionate reporting and can mask them. It illustrates the point with a published evaluation of quinine-induced thrombocytopenia in the US FDA Adverse Event Reporting System database, which the paper and the addendum call AERS: researchers identified 20 percent of 141 reports as duplicates. The addendum cites Hauben, Reich, DeMicco, and Kim, Drug Safety, 2007, volume 30, issue 6, pages 551 to 554. It also cites Norén, Orre, Bate, and Edwards, Data Mining and Knowledge Discovery, 2007, volume 14, pages 305 to 328, for the observation that commonly used data-mining procedures may highlight an association with as few as three reports, so one or two duplicates may severely affect their utility. Those figures describe those studies. They are not a rate for your mailbox. The <a href="https://aeconnect.io/blog/faers-is-now-aems/">FAERS and AEMS</a> page is where the later name of the FDA database is explained. This page does not carry the 2007 percentage forward to AEMS.</p>
+  <p>The addendum also says the reporting rules themselves cannot avoid duplicate reporting, so databases should be screened routinely. Directive 2001/83/EC, as the addendum quotes it, requires marketing authorisation holders (Article 107(5)) and Member States (Article 107a(3)) to collaborate with the Agency in the detection of duplicates of suspected adverse reaction reports. <a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">GVP Module VI (Rev 2)</a> section VI.B.4 says a procedure should cover identification and management of duplicate cases at data entry and again when aggregated reports are prepared. The <a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">aggregate reports</a> page describes those documents. An intake workspace does not write them. The second screen, at the time the periodic report is built, still depends on the fields captured on day one.</p>
+
+  <h2>Where the second copy comes from</h2>
+  <p>E2D(R1) section 6.6 lists common causes. The addendum's list is the same idea in EU wording. At intake they look like ordinary mail.</p>
+  <ul>
+    <li>A consumer and a healthcare professional report the same reaction occurrence. The patient email and the physician letter are one case.</li>
+    <li>More than one healthcare professional treating the same patient reports the same occurrence. The emergency physician and the specialist can each write to the company.</li>
+    <li>The original reporter sends the case to the company and to a regulator. GVP Module VI.B.2 says that when a company learns the primary source may also have reported to another party, the valid report is still submitted. The ICSR has to include the information needed to detect the duplicate. Section VI.C.6.2.2.6 puts other known case identifiers in C.1.9.1.</li>
+    <li>Literature reports the same occurrence again, including the same case written up for more than one generic product. E2D(R1) section 4.2 says duplicate detection should be performed when articles are identified, to establish whether the event was already reported. If the article refers to a case you already hold, add the citation and any new medical detail to that case, and report a follow up when the new detail calls for one.</li>
+  </ul>
+  <p>Two more paths show up in a small company before any of those lists are opened. E2D(R1) section 6.5 says contractual agreements should set out how ICSRs are managed and reported, including timelines and who reports, and that processes should avoid duplicate reporting to regulatory authorities. The marketing authorisation holder remains responsible for the timelines. A sponsor and a contract safety team who both type the same email will each create a case unless the <a href="https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/">pharmacovigilance agreement</a> says which desk owns the case number. And a forwarded thread, opened on Monday by someone who did not see Friday's message, is the same failure with no partner involved.</p>
+  <p>The US rules that use the word duplication decide which company sends the report to FDA. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80(c)(1)(iii)</a> applies the 15 calendar day alert, and the followup to it, to a nonapplicant whose name appears on the label as a manufacturer, packer, or distributor. To avoid unnecessary duplication in the submission to FDA, that nonapplicant may meet those obligations by sending all reports of serious adverse drug experiences to the applicant within 5 calendar days of the nonapplicant's own initial receipt, and by keeping a copy, both dates, and the applicant's name and address. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">21 CFR 600.80(c)(1)(iii)</a> is the parallel path for a licensed biological product. A person whose name appears on the label, other than the applicant of the final product, may send all reports of serious adverse experiences to that applicant within 5 calendar days. Those sentences assign the sender. The match between two emails about one patient still happens in the company's own file. The <a href="https://aeconnect.io/blog/fda-adverse-event-reporting-requirements/">FDA reporting requirements</a> guide walks through who must report.</p>
+
+  <aside class="lead-cta">
+    <h2>Start a 14 day trial, or book a demo</h2>
+    <p>The problem is email intake. AE Connect is a customizable electronic intake form with AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or it can be the safety database for the full ICSR and the E2B(R3) file. A person accepts or overrides the draft. A person also looks for the case you already hold before a new worldwide number is assigned.</p>
+    <p class="actions"><a class="btn" href="https://app.aeconnect.io/register">Start a 14 day trial</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+  </aside>
+  <aside class="lead-cta">
+    <h2>AE intake checklist</h2>
+    <p>A short checklist for AE and SAE intake, and for the case data to have in hand before an E2B(R3) file is prepared in the safety database. AE Connect drafts the case. The safety database remains the system of record when you use one.</p>
+    <p class="actions"><a class="btn" href="https://aeconnect.io/resources/ae-intake-checklist/">Get the checklist</a></p>
+  </aside>
+
+  <h2>Check every new report before a new number exists</h2>
+  <p>The addendum's general rule is that every newly received ICSR should be treated as a potential duplicate and checked thoroughly against the cases already in the database. The screen happens when the report arrives, during data entry, or when an electronic ICSR is loaded. Some systems offer a lookup at entry. The addendum describes that as assistance. A person still confirms the match. This page describes the comparison a procedure should run. It does not describe an automatic check inside a product.</p>
+  <p>For a pharmacovigilance system that does not hold a large dataset, the addendum says a simple table can be enough. Sort by age, sex, suspected or interacting medicinal products, and adverse reactions. Adding country can help, depending on the set. For a case that arrives already in E2B form, start with the case identifiers. The addendum's quick-identification list for E2B(R3) is:</p>
+  <ul>
+    <li><strong>C.1.1</strong>, the sender's (case) safety report unique identifier. In the FDA implementation guide this is a concatenation of three segments separated by a hyphen: country code, company or regulator name, and report number. The country code is the ISO 3166 two-letter code of the primary source country. When the same sender retransmits the case, C.1.1 usually stays constant. A retransmitter replaces it with their own identifier. The guide lists exceptions, including a merger or a name change, and a change in the country code of the primary source or of the country where the reaction occurred.</li>
+    <li><strong>C.1.8.1</strong>, the worldwide unique case identification number, with C.1.8.2, the first sender of the case. Both are always populated, and neither is changed on a later retransmission. When the sender creates the first electronic ICSR from paper, a CIOMS form, or a journal article, C.1.1 and C.1.8.1 are identical. How those elements sit on a submission is on the <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a> page.</li>
+    <li><strong>C.1.9.1.r.1 and C.1.9.1.r.2</strong>, the source of another case identifier and the identifier itself. The implementation guide says to list them, and to set C.1.9.1 to true, when the case was exchanged before under a different identifier or is exchanged at the same time under a different identifier. A retransmitter records the previous sender's C.1.1 here as well, and keeps its own identifier in C.1.1. In every other situation the guide says to send the null flavor.</li>
+  </ul>
+  <p>The search is for similarity, and then a person reviews the hits. If the first pass finds nothing, the addendum says to widen it, including to unknown values. A new report about a female patient is checked against other female patients and against cases where sex is unknown. Reaction start and end dates make a candidate more or less likely. They are not a requirement for the first sort.</p>
+  <p>MedDRA coding will not be identical across the two reports. The addendum says the medical concepts need to be consistent, and an exact term match is the wrong test. A reaction can become more serious as it develops. The example in the addendum is a rash that develops into Stevens-Johnson syndrome. A search can start at preferred term and move up to the higher level term, or to the higher level group term, when the preferred terms differ and the story might still be one patient. The <a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake form</a> is where the reporter's words and the coded term both need a place. The verbatim is what you search when the codes diverge.</p>
+  <p>Cases from a clinical trial are usually better documented. The addendum says the search can then use a research centre identifier and study details such as the EudraCT number and the protocol number. A vaccine report needs extra caution even when several fields match. The addendum's example is injection-site reaction in a neonate: administration dates, primary source, medical history, and concomitant drugs can all match, and the reports can still be different infants from the same clinic, because the reaction is common. Judgement stays with the reviewer.</p>
+  <p>A duplicate can be a cluster of more than two cases. If case A matches case B, and case B matches case C, the addendum calls that a duplicate cluster. The search has to follow the chain. Stopping at the first pair leaves the third record in the signal count.</p>
+
+  <h2>A person confirms the match, and the clock still runs</h2>
+  <p>The addendum says manual confirmation is always necessary. A well documented case, including a narrative, is a prerequisite. If the first review cannot decide, ask the reporter or the sender for the missing detail, and keep a record of the investigation. Keep that record when the decision is that the cases are different. The next person who sees the same pair should be able to read why they were left apart.</p>
+  <p>If you cannot confirm the individuality of the cases without missing a legal expedited timeline, the addendum recommends entering the potential duplicate into the database as a valid case, and continuing the investigation. Once the case is confirmed as a duplicate, or confirmed as distinct, manage it under the addendum's section on management. Entering the case is what protects the clock. Leaving it in the inbox until someone is sure is what misses the clock. The <a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a> guide is the note on this site for what the case has to contain once it is a report. Minimum criteria and day zero are on the follow up page. This page does not restate them.</p>
+  <p>What you are allowed to store, and what you are allowed to send, are different lists. GVP Module VI.B.4 says patient and reporter identifiers are confidential, access is limited to authorised personnel, and transmission between parties follows local data protection law. 21 CFR 314.80(i) says the applicant should not include the names and addresses of individual patients in reports under that section, and should assign a unique code. The reporter's name is still part of the initial reporter information, including when the reporter is the patient. The addendum notes that patient detail will differ in specificity from one sender to another because of those rules. That is one reason the search has to tolerate a missing initial, a missing age, or a masked name. Build the comparison from the descriptors your procedure is allowed to hold. Do not invent a match from a field you are not permitted to keep.</p>
+
+  <h2>After the match is confirmed</h2>
+  <p>The addendum manages confirmed duplicates through one master case. Two approaches are both acceptable, and the one you use has to be written down.</p>
+  <ul>
+    <li><strong>Allocation.</strong> One of the existing cases stays the valid master. Information from the others is added where the master does not already have the same fact, or a more precise fact. The other cases stay in the database for the audit trail and are taken out of signal detection and medical review. The addendum says this fits organisations that mostly enter cases by hand from a format other than E2B, and it fits detection at the time of data entry. That is the usual small-company inbox. The worldwide unique case identification number of the case you allocate as master is the one you keep. The other reference numbers are not reused. They are recorded in C.1.9.1.</li>
+    <li><strong>Creation.</strong> A new master is created, with a new worldwide unique case identification number, from the information in the subordinate cases. The subordinates are flagged as duplicates and linked to the master. They remain valid for receiving later information. Only the master is used for signal detection and medical evaluation.</li>
+  </ul>
+  <p>In either approach the master holds every case reference number, so the subordinates can be traced, and it holds the most accurate and up-to-date information the organisation has. The date the report was first received from the source (C.1.4) and the date of the most recent information (C.1.5) on the duplicate records stay unchanged unless new information is received. Proper records still let you track every ICSR as the primary source, the reporter, and the sender gave it.</p>
+  <p>Conflicting facts are common once two senders are involved. The addendum says to try to clarify them. If you cannot, the narrative states both versions. Structured fields should carry one value. Entering both doses, or both dates, in the structured fields gets in the way of a cumulative dose. Where the reactions are the same concept at two levels of detail, the addendum's example is liver injury and fulminant hepatitis: medical judgement may keep the more specific term. Where one case lists a concomitant medicine and the other is silent, include the medicine, unless the later case clearly says the patient was not taking it. Overdose and underdose need that judgement in particular. The addendum says an average, or a choice of one value, can be appropriate in some fields, with the conflict written in the narrative, and that it will not always be appropriate.</p>
+  <p>Transmission is a separate decision from the internal merge. If there is no significant new information, the addendum says the master does not have to be sent to external partners. It also says case identifiers from cases that were already transmitted should always be treated as significant new information. Identifiers from cases that were never transmitted need not be. GVP Module VI.C.6.2.2.7 treats new case identifiers that may have been used in previous submissions as administrative information that can affect case management, and it points that information at C.1.9.1. Read the module's own test of significant follow up before you decide the clock. This page does not restate that test.</p>
+  <p>When the same sender has already transmitted two copies, GVP Module VI Appendix 5 gives a concrete action. One case is nullified. The remaining valid case is updated with the additional relevant information from the nullified case, and that update is a follow up. The identifier of the nullified case goes in C.1.9.1. Section VI.C.6.2.2.9 is the general nullification rule, and it names duplicate reports as one example of a previously transmitted report that should be considered completely void. The principles that go with that example:</p>
+  <ul>
+    <li>The reason has to say why the case is no longer a valid report. The module says that "the report no longer meets the criteria for submission" and "report sent previously in error" are not detailed enough.</li>
+    <li>Only the original sending organisation can nullify the case.</li>
+    <li>A nullified case cannot be reactivated. If it has to be submitted again, the FDA implementation guide and GVP Module VI both say to assign a new sender's case safety report unique identifier (C.1.1) and a new worldwide unique case identification (C.1.8.1).</li>
+    <li>Individual versions cannot be nullified. The whole case is nullified.</li>
+    <li>The nullified case is out of scientific evaluation. The sender and the receiver both keep it for audit.</li>
+  </ul>
+  <p>In the E2B(R3) file, C.1.11.1 is 1 for nullification and 2 for an amendment. C.1.11.2 is the reason, and the FDA implementation guide requires it when C.1.11.1 is filled in. On an amendment or a nullification with no new information from a primary source, that guide says to leave C.1.5 as it was, and to keep the same C.1.1 and C.1.8 on an amendment. GVP Module VI says C.1.5 on a nullification either reflects the date the information warranting nullification was received, or otherwise stays unchanged, and that C.1.1, C.1.4, and C.1.8 stay unchanged. A procedure should say which text it is applying when those sentences are both in front of the file. An internal correction with no new information from a primary source is an amendment, which is covered on the follow up page. A duplicate that was transmitted is the nullification case above.</p>
+  <p>If duplicates are found, the addendum says to analyse the root cause and to take corrective action where it is appropriate. Two emails opened as two cases is a root cause you can fix at intake: the second opener has to see the first case. The addendum also says duplicate detection and management belong in the pharmacovigilance system master file. That pointer is to GVP Module II. This page does not summarise Module II.</p>
+  <p>There is a separate path when the duplicate is spotted in EudraVigilance. The addendum says a reviewer who suspects a cluster in cases obtained from EudraVigilance should email duplicates@ema.europa.eu with the worldwide unique case safety identifiers, the safety report identifiers, or the local report numbers that start with EU-EC. Each suspected cluster is one row. The Agency does not routinely reply on whether the cases are duplicates. Ask in the email if you want that reply. If the Agency confirms the cluster and creates a master, the addendum says the awareness date of that confirmed duplication coincides with day zero for the master, for marketing authorisation holders and for competent authorities in Member States. Appendix 7 of GVP Module VI is the process map for duplicates the Agency's own algorithm flags. Read that appendix before you treat an Agency email as the whole of your procedure. Your own screen at data entry is still required.</p>
+
+  <h2>What the intake record has to hold so the search can work</h2>
+  <p>The fields the addendum sorts on are ordinary intake fields, and an email often omits them. A <a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a> record that can support a later duplicate search has, at least:</p>
+  <ul>
+    <li>Patient descriptors your procedure may store: age or age group, sex, and any initials or patient code you are allowed to keep. GVP Module VI.B.2 lists the qualifying descriptors for a valid EU case, including initials, a medical record number, date of birth, age, age group, gestation period, or gender. Capture the one you have. Record that another is missing.</li>
+    <li>The suspect or interacting product, in the reporter's words, and the batch when the product is a biological. GVP Module VI.B.3 says the name and the batch matter for a biological, and that the narrative should say when a missing batch was requested.</li>
+    <li>The reaction in the reporter's words, with start and end dates if they were given, plus the coded term once a person has accepted it.</li>
+    <li>The reporter: qualification, country, and the name your privacy rules allow. E2D(R1) section 6.1 says patient and reporter identifiability matters for avoiding case duplication, for authenticity, and for follow up.</li>
+    <li>Every case number already on the message: the sender's number, a worldwide number, a partner's number, a literature citation, and any statement that the reporter also notified a regulator.</li>
+    <li>The source itself and the date any person at the company, including a contractor, received it. 21 CFR 314.80(j) and 21 CFR 600.80(k) each require the applicant to keep, for 10 years, records of adverse experiences known to the applicant, including raw data and correspondence. A sent folder is not that record.</li>
+  </ul>
+  <p>21 CFR 314.80(f) is the content list for a marketed-drug ICSR: patient, the experience and its dates, the suspect product including lot and expiration, the initial reporter, and applicant information that includes whether the report is initial or followup and the unique case identification number. 21 CFR 600.80(f) and 600.80(g) are the content lists for a nonvaccine biological product and for a vaccine. The <a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">reporter forms</a> page is about what a patient or a healthcare professional is asked. This list is about what the company file needs before anyone can tell two messages apart.</p>
+  <p>Two further US sentences limit double submission without doing the match for you. 21 CFR 314.80(b) says applicants are not required to resubmit adverse drug experience reports that FDA forwarded to them, and that they must submit all followup information on those reports. 21 CFR 600.80(b) says the same for reports FDA forwarded about a biological product. 21 CFR 314.80(c)(2)(ii)(B) says the ICSRs that belong in the periodic report must only be submitted to FDA once. 21 CFR 600.80(c)(2)(ii)(B) says the same for a licensed biological product. 21 CFR 314.80(h) says an applicant should not include, in reports under that section, adverse drug experiences from clinical trials that were already submitted in the approved application. If the applicant holds more than one approved application for the drug, the report goes to the application that was approved first. If the report names more than one drug the applicant markets, it goes to the application for the drug listed first. 21 CFR 600.80(i) says clinical trial experiences already submitted in the biologics license application stay out of these reports, and a report that names more than one biological product goes to the license application for the product listed first. Those are filing rules. They assume you already know which case you hold.</p>
+
+  <h2>Where the comparison has to live</h2>
+  <p>If Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety is the system of record, it stays the system of record. The comparison tables are on the <a href="https://aeconnect.io/integrations/">integrations</a> page. AE Connect does not replace those products, and it is not an official partnership with Oracle, ArisGlobal, or Veeva. It can feed them. It can also be the safety database for the full ICSR and the E2B(R3) file when the company does not run one of those systems yet.</p>
+  <p>The workspace is customizable electronic intake plus AI triage. You paste the narrative or you upload a PDF, a Word file, text, an email, a CSV, or an image. Parsing runs in the browser. The draft covers seriousness, a suggested MedDRA preferred term and system organ class, an Uppsala Monitoring Centre causality category, expectedness, whether regulatory reporting looks required, and a reporting timeline, each with a short rationale. Expectedness is a suggestion to check against the current company core data sheet or the investigator brochure. AE Connect does not author or version that document. A reviewer accepts or overrides every field. The draft is decision support. The duplicate comparison is a separate look, by a person, at the case you already hold. E2B(R3) ready ICSR case data you can feed to your safety database. Aggregate reports stay outside the workspace.</p>
+  <p>You create a 14 day sandbox at the registration page with your name, a company email, a password, your company name, and your role. After you verify the email, you are the admin of a new organization. The sandbox has unlimited cases. After the sandbox, the annual plans are Starter, Growth, and Scale. This page does not list prices. Questions go to <a href="mailto:info@qfsnow.com">info@qfsnow.com</a> or to the <a href="https://aeconnect.io/demo/">demo</a> form.</p>
+
+  <h2>A sequence a small team can run this week</h2>
+  <ol>
+    <li>Save the source and the date any person at the company, including a contractor, received it. Copy every case number, literature citation, and regulator reference that is already on the message.</li>
+    <li>Before you assign a worldwide case number, search the cases you already hold. On a small set, sort by age, sex, suspect or interacting product, reaction, and country. Then search C.1.1, C.1.8.1, and C.1.9.1. If nothing hits, search again with unknown sex and with the higher level MedDRA term.</li>
+    <li>A person confirms or rejects the match from the narrative, and writes down the investigation, including a decision that the cases are different. If the expedited clock would expire first, enter a valid case and keep the investigation open.</li>
+    <li>If you confirm a duplicate at entry, allocate one case as the master, or create a master, under the written procedure. Keep every reference number. Leave C.1.4 and C.1.5 unchanged unless new information arrived. Put other identifiers of this case in C.1.9.1. Put a distinct related case in C.1.10.r, with the reason in H.4.</li>
+    <li>If the same sender already transmitted two copies, nullify one whole case with a specific reason, and update the remaining case as a follow up that carries the nullified identifier in C.1.9.1.</li>
+    <li>Write down the root cause. A second opener who cannot see the first case is an intake fix. The safety database, or AE Connect when it is the database, keeps the master. Submission to a regulator is a later step in the system of record your process names.</li>
+  </ol>
+
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload the email, the physician note, or the article. A company email starts a 14 day sandbox trial. You accept or override every field. Look up the case you already hold before you assign a worldwide number. AE Connect can feed a safety database, or it can hold the full ICSR and the E2B(R3) file. Sending the case to a regulator is a later step in the safety database your process names.</p>
+    <p><a class="btn" href="https://app.aeconnect.io/register">Start a 14 day trial</a> <a class="btn" href="https://aeconnect.io/demo/">Book a demo</a></p>
+  </div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What is a duplicate ICSR?</h3>
+    <p>GVP Module VI Addendum I defines a duplicate as the same individual case reported by a primary source to describe suspected adverse reactions related to one or more medicinal products given to an individual patient at a particular point in time. The same case can arrive from different senders and through different routes, and the processor can code it differently, which is why the two records may not look identical. ICH E2D(R1) section 6.6 says duplicates negatively impact signal detection.</p>
+    <h3>How do a follow up, a linked report, and a duplicate differ?</h3>
+    <p>A follow up is later information about a case you already hold, and it keeps the same worldwide unique case identification number in E2B(R3) element C.1.8.1. A linked report, element C.1.10.r, is a different case that should be evaluated with this one, such as a mother and child pair, siblings, or a cluster from the same reporter. A duplicate is a second record of the same case. The addendum says other case identifiers in C.1.9.1 help confirm a duplicate, and C.1.10.r helps confirm that two cases are distinct.</p>
+    <h3>What should a small team compare when a new report arrives?</h3>
+    <p>The addendum says every newly received ICSR should be treated as a potential duplicate and checked against cases already in the database at data entry. For a small dataset, sort by age, sex, suspected or interacting product, and reaction, and add country when it helps. Then check the case identifiers: C.1.1, C.1.8.1, and C.1.9.1.r. Compare the medical concept, because a rash in one report can be Stevens-Johnson syndrome in another. A person confirms the match from the narrative.</p>
+    <h3>What happens to the extra case after a duplicate is confirmed?</h3>
+    <p>The addendum manages confirmed duplicates by a master case: either one existing case is allocated as the master and the others are kept for the audit trail, or a new master is created. The master keeps every reference number. C.1.4 and C.1.5 stay as they were unless new information arrived. When the same sender has already transmitted two copies, GVP Module VI says nullify one entire case, update the remaining case as a follow up, and put the nullified identifier in C.1.9.1. Only the original sender can nullify, and a nullified case cannot be reactivated.</p>
+    <h3>Does AE Connect find duplicate cases for you?</h3>
+    <p>A person looks for the existing case. AE Connect is customizable electronic intake with AI triage. The draft covers seriousness, a suggested MedDRA term, causality, expectedness, and a timeline, and a reviewer accepts or overrides every field. The intake record is where patient, product, reaction, reporter, dates, and any case number already on the message can sit, so that comparison has fields to use. E2B(R3) ready case data can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which remain the system of record, or stay in AE Connect as the full ICSR and the E2B(R3) file.</p>
+  </section>
+
+  <div class="related">
+    <h2>Sources</h2>
+    <ol>
+      <li>European Medicines Agency. Guideline on good pharmacovigilance practices (GVP) Module VI Addendum I, Duplicate management of suspected adverse reaction reports. EMA/405655/2016. Legal effective date 22 November 2017. <a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-addendum-i-duplicate-management-suspected-adverse-reaction-reports_en.pdf">EMA</a>.</li>
+      <li>European Medicines Agency. Guideline on good pharmacovigilance practices (GVP) Module VI, collection, management and submission of reports of suspected adverse reactions to medicinal products (Rev 2). EMA/873138/2011 Rev 2. <a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">EMA</a>.</li>
+      <li>ICH E2D(R1), Postapproval safety data: definitions and standards for management and reporting of individual case safety reports. Final version adopted on 15 September 2025. <a href="https://database.ich.org/sites/default/files/ICH_E2D(R1)_Step4_FinalGuideline_2025_0819.pdf">ICH</a>.</li>
+      <li>U.S. Food and Drug Administration. E2D(R1) Postapproval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports, Guidance for Industry, March 2026. <a href="https://www.fda.gov/media/176977/download">FDA guidance PDF</a>.</li>
+      <li>U.S. Food and Drug Administration. E2B(R3) Electronic Transmission of Individual Case Safety Reports (ICSRs) Implementation Guide, Data Elements and Message Specification. <a href="https://www.fda.gov/media/81904/download">FDA</a>.</li>
+      <li>21 CFR 314.80, Postmarketing reporting of adverse drug experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">eCFR</a>.</li>
+      <li>21 CFR 600.80, Postmarketing reporting of adverse experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">eCFR</a>.</li>
+      <li>Hauben M, Reich L, DeMicco J, Kim K. Extreme duplication in the US FDA Adverse Events Reporting System database. Drug Safety. 2007;30(6):551-554. Cited by GVP Module VI Addendum I. <a href="https://doi.org/10.2165/00002018-200730060-00009">DOI</a>.</li>
+      <li>Norén GN, Orre R, Bate A, Edwards IR. Duplicate detection in adverse drug reaction surveillance. Data Mining and Knowledge Discovery. 2007;14:305-328. Cited by GVP Module VI Addendum I.</li>
+    </ol>
+    <h2>On this site</h2>
+    <ul>
+      <li><a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a></li>
+      <li><a href="https://aeconnect.io/blog/follow-up-reports-missing-information/">Follow up reports and missing information</a></li>
+      <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+      <li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+      <li><a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">AE reporter forms</a></li>
+      <li><a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">The drug safety inbox</a></li>
+      <li><a href="https://aeconnect.io/blog/fda-adverse-event-reporting-requirements/">FDA adverse event reporting requirements</a></li>
+      <li><a href="https://aeconnect.io/blog/faers-is-now-aems/">FAERS is now AEMS</a></li>
+      <li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
+      <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+      <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
+      <li><a href="https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/">Pharmacovigilance agreements</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a> · <a href="mailto:info@qfsnow.com">info@qfsnow.com</a></span>
+</footer>
+</body>
+</html>
