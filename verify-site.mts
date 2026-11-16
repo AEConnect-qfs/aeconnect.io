@@ -94,31 +94,36 @@ function checkNetlifyRedirects() {
     ['/blog/arisglobal-lifesphere-alternative/', '/blog/arisglobal-lifesphere/'],
     ['/blog/veeva-vault-safety-alternative', '/blog/veeva-vault-safety/'],
     ['/blog/veeva-vault-safety-alternative/', '/blog/veeva-vault-safety/'],
-    ['/beta', '/trial/'],
-    ['/beta/', '/trial/'],
+    ['/beta', 'https://app.aeconnect.io/register'],
+    ['/beta/', 'https://app.aeconnect.io/register'],
     ['/about', '/'],
     ['/about/', '/'],
-    ['/pricing', '/trial/'],
-    ['/pricing/', '/trial/'],
-    ['/pricing.html', '/trial/'],
-    ['/pricing/index.html', '/trial/'],
-    ['/Pricing', '/trial/'],
-    ['/Pricing/', '/trial/'],
-    ['/prices', '/trial/'],
-    ['/prices/', '/trial/'],
-    ['/plans', '/trial/'],
-    ['/plans/', '/trial/'],
+    ['/pricing', 'https://app.aeconnect.io/register'],
+    ['/pricing/', 'https://app.aeconnect.io/register'],
+    ['/pricing.html', 'https://app.aeconnect.io/register'],
+    ['/pricing/index.html', 'https://app.aeconnect.io/register'],
+    ['/Pricing', 'https://app.aeconnect.io/register'],
+    ['/Pricing/', 'https://app.aeconnect.io/register'],
+    ['/prices', 'https://app.aeconnect.io/register'],
+    ['/prices/', 'https://app.aeconnect.io/register'],
+    ['/plans', 'https://app.aeconnect.io/register'],
+    ['/plans/', 'https://app.aeconnect.io/register'],
   ];
   for (const [from, to] of legacy) {
     const r = follow(from);
-    const dest = follow(to);
-    const destExternal = dest.final.startsWith('http');
-    const destOk = destExternal
-      ? !dest.loop && (dest.status === 301 || dest.status === 302)
-      : !dest.loop && dest.status === 200 && dest.hops === 0;
-    const fromOk = destExternal
-      ? !r.loop && r.final === dest.final
-      : !r.loop && r.hops === 1 && r.final === to;
+    const directExternal = to.startsWith('http');
+    const dest = directExternal ? { status: 301, hops: 1, final: to, loop: false } : follow(to);
+    const destExternal = directExternal || dest.final.startsWith('http');
+    const destOk = directExternal
+      ? true
+      : destExternal
+        ? !dest.loop && (dest.status === 301 || dest.status === 302) && dest.hops === 1
+        : !dest.loop && dest.status === 200 && dest.hops === 0;
+    const fromOk = directExternal
+      ? !r.loop && r.hops === 1 && r.status === 301 && r.final === to
+      : destExternal
+        ? !r.loop && r.hops === 1 && r.status === 301 && r.final === dest.final
+        : !r.loop && r.hops === 1 && r.final === to;
     if (!fromOk || !destOk) {
       ok = false;
       bad.push(`legacy ${from} → ${r.final} hops=${r.hops}; dest ${dest.status} ${dest.final}`);
@@ -185,24 +190,25 @@ async function main() {
     ['/blog/meddra-coding-at-intake-ai-pharmacovigilance', '/blog/the-missing-layer-in-pharmacovigilance-ae-connect/'],
     ['/adverse-event-intake-system/', '/solutions/pv-case-intake/'],
     ['/blog/safety-database-comparison-argus-veeva-reportum-ae-connect', '/blog/veeva-argus-overkill-early-phase-biotech/'],
-    ['/beta/', '/trial/'],
-    ['/beta', '/trial/'],
+    ['/beta/', 'https://app.aeconnect.io/register'],
+    ['/beta', 'https://app.aeconnect.io/register'],
     ['/about/', '/'],
     ['/about', '/'],
-    ['/pricing/', '/trial/'],
-    ['/pricing', '/trial/'],
-    ['/pricing.html', '/trial/'],
-    ['/pricing/index.html', '/trial/'],
-    ['/Pricing/', '/trial/'],
-    ['/Pricing', '/trial/'],
-    ['/prices/', '/trial/'],
-    ['/prices', '/trial/'],
-    ['/plans/', '/trial/'],
-    ['/plans', '/trial/'],
+    ['/pricing/', 'https://app.aeconnect.io/register'],
+    ['/pricing', 'https://app.aeconnect.io/register'],
+    ['/pricing.html', 'https://app.aeconnect.io/register'],
+    ['/pricing/index.html', 'https://app.aeconnect.io/register'],
+    ['/Pricing/', 'https://app.aeconnect.io/register'],
+    ['/Pricing', 'https://app.aeconnect.io/register'],
+    ['/prices/', 'https://app.aeconnect.io/register'],
+    ['/prices', 'https://app.aeconnect.io/register'],
+    ['/plans/', 'https://app.aeconnect.io/register'],
+    ['/plans', 'https://app.aeconnect.io/register'],
   ] as const;
   for (const [from, to] of legacy) {
     const r = await page(from);
-    check(`301 ${from}`, r.status === 301 && r.loc === to, r.loc);
+    const got = to.startsWith('http') ? r.location : r.loc;
+    check(`301 ${from}`, r.status === 301 && got === to, got);
   }
 
   for (const p of ['/blog/ae-intake-vs-pharmacovigilance/', '/blog/drug-safety-inbox-small-biotech-reality/', '/blog/pv-plan-first-ind-what-small-biotechs-get-wrong/', '/blog/pv-case-intake-forms/', '/blog/oracle-argus/', '/demo/', '/solutions/pv-case-intake/', '/integrations/oracle-argus/', '/trust/', '/privacy/', '/terms/', '/app/', '/resources/ae-intake-checklist/']) {
@@ -249,7 +255,7 @@ async function main() {
       !home.text.includes('We set up the account') &&
       home.text.includes('href="https://aeconnect.io/demo/"'),
   );
-  for (const p of ['/trial', '/trial/', '/trial/thanks', '/trial/thanks/']) {
+  for (const p of ['/trial', '/trial/', '/trial/index.html', '/trial/thanks', '/trial/thanks/', '/trial/thanks/index.html']) {
     const r = await page(p);
     check(`301 ${p} → app signup`, r.status === 301 && r.location === APP_SIGNUP, `${r.status} ${r.location}`);
   }

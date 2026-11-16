@@ -212,24 +212,25 @@ package = "./netlify/plugins/indexnow"
   status = 301
   force = true
 
-# The beta program page is gone. Send the old URL to the 14-day sandbox.
+# The beta program page is gone. One 301 to signup. Do not hop through /trial/.
 [[redirects]]
   from = "/beta"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/beta/"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 # Self-serve signup is the live app register page. /trial is no longer a
-# Netlify form. Both slash forms go to the same external URL, so this does
-# not loop. 301 because signup is the permanent destination. force is
-# required because trial/index.html remains as a fallback. /beta and
-# /pricing still 301 to /trial/, which then 301s here.
+# Netlify form. Each path below 301s straight to that URL. force is required
+# because trial/index.html remains as a fallback. Pretty URLs do not redirect
+# /trial/index.html or /trial/thanks/index.html (those files return 200), so
+# they have their own rules. Do not send another old path to /trial/ first:
+# that second 301 is a chain.
 [[redirects]]
   from = "/trial"
   to = "https://app.aeconnect.io/register"
@@ -243,6 +244,12 @@ package = "./netlify/plugins/indexnow"
   force = true
 
 [[redirects]]
+  from = "/trial/index.html"
+  to = "https://app.aeconnect.io/register"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/trial/thanks"
   to = "https://app.aeconnect.io/register"
   status = 301
@@ -250,6 +257,12 @@ package = "./netlify/plugins/indexnow"
 
 [[redirects]]
   from = "/trial/thanks/"
+  to = "https://app.aeconnect.io/register"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/trial/thanks/index.html"
   to = "https://app.aeconnect.io/register"
   status = 301
   force = true
@@ -267,66 +280,66 @@ package = "./netlify/plugins/indexnow"
   status = 301
   force = true
 
-# The pricing page is unpublished. Old URLs go to the 14-day sandbox.
+# The pricing page is unpublished. Each old URL 301s once, to signup.
 # Destinations differ from the source path, so the slash and non-slash
-# rules do not loop a pretty URL onto itself.
+# rules do not loop a pretty URL onto itself. Do not point these at /trial/.
 [[redirects]]
   from = "/pricing"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pricing/"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pricing.html"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pricing/index.html"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/Pricing"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/Pricing/"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/prices"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/prices/"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/plans"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
 [[redirects]]
   from = "/plans/"
-  to = "/trial/"
+  to = "https://app.aeconnect.io/register"
   status = 301
   force = true
 
@@ -393,6 +406,11 @@ package = "./netlify/plugins/indexnow"
 
 [[headers]]
   for = "/trial/thanks/"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/404.html"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 

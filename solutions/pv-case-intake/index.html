@@ -80,6 +80,14 @@
             "@type": "Answer",
             "text": "Yes. After a reviewer accepts the draft, AE Connect integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "What is pharmacovigilance case intake?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is electronic capture of a report the company already received: who reported it, which patient, which product, which event, and the receipt date. ICH E2D(R1) section 2.2 lists those four as the minimum criteria for a valid case. 21 CFR 314.80(c) starts the 15 calendar day alert from initial receipt when the experience is both serious and unexpected. Intake is not a patient portal and it is not the send to AEMS, formerly FAERS."
+          }
         }
       ]
     }
@@ -179,6 +187,9 @@
   <p>Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record for the official case, the submission, and the aggregate report. AE Connect integrates with any safety database, including those three. See <a href="https://aeconnect.io/integrations/">how the integration works</a>.</p>
   <p>The same step is electronic intake for the database the plan names: <a href="https://aeconnect.io/integrations/oracle-argus/">Argus AE and ICSR intake</a>, <a href="https://aeconnect.io/integrations/arisglobal/">LifeSphere AE and ICSR intake</a>, and <a href="https://aeconnect.io/integrations/veeva-vault-safety/">AE intake for Veeva Vault Safety</a>. The collect and intake job beside IQVIA Vigilance Collect and Intake is a <a href="https://aeconnect.io/integrations/iqvia-vigilance/">separate page</a>, and it is not an IQVIA Vigilance Platform alternative. When a CRO or PV partner receives the case, use <a href="https://aeconnect.io/solutions/pv-partner-intake/">PV partner intake</a>.</p>
   <p>Expectedness in the draft is a suggestion to check against the current company core data sheet or Investigator's Brochure. AE Connect does not author that document.</p>
+  <h2>What pharmacovigilance case intake has to capture</h2>
+  <p>Pharmacovigilance case intake is the first record of a report the company has received. Write down the date it arrived. Then see whether you have an identifiable reporter, an identifiable patient, a suspect product, and an event. <a href="https://database.ich.org/sites/default/files/ICH_E2D(R1)_Step4_FinalGuideline_2025_0819.pdf">ICH E2D(R1)</a> section 2.2 uses those four as the minimum criteria for a valid case. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80(f)</a> is the content list for a drug ICSR once the case is submitted: patient, adverse drug experience, suspect product, initial reporter, and applicant information including the receipt date. The 15 calendar day alert in 21 CFR 314.80(c)(1)(i) runs from initial receipt for an experience that is both serious and unexpected. Intake does not wait for a coded term to store the receipt date.</p>
+  <p>The same screen is where a trial report and a marketed product report should land, with the clock named in the procedure. IND safety reports are <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.32">21 CFR 312.32</a>. Marketed drugs are 21 CFR 314.80. Licensed biological products are <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">21 CFR 600.80</a>. The longer field list is <a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a>. What to ask a patient or a health care professional is the <a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">reporter forms page</a>. A defect that may also be an event is <a href="https://aeconnect.io/solutions/pqc-intake/">product complaint intake</a>. The file that comes after a reviewed case is <a href="https://aeconnect.io/solutions/e2b-r3/">E2B(R3) case preparation</a>.</p>
   <aside class="lead-cta">
   <h2>Start a 14-day trial, or book a demo</h2>
   <p>The problem is email intake. AE Connect is customizable electronic intake plus AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or it can be the safety database for the full ICSR and the E2B(R3) file.</p>
@@ -197,6 +208,8 @@
   <p>No. It is the case screen a drug-safety reviewer uses for a source they already received.</p>
 <h3>Does intake integrate with the safety database?</h3>
   <p>Yes. After a reviewer accepts the draft, AE Connect integrates the case with any safety database. Oracle Argus, ArisGlobal LifeSphere, and Veeva Vault Safety remain the system of record.</p>
+<h3>What is pharmacovigilance case intake?</h3>
+  <p>It is electronic capture of a report the company already received: who reported it, which patient, which product, which event, and the receipt date. ICH E2D(R1) section 2.2 lists those four as the minimum criteria for a valid case. 21 CFR 314.80(c) starts the 15 calendar day alert from initial receipt when the experience is both serious and unexpected. Intake is not a patient portal and it is not the send to AEMS, formerly FAERS. The longer note is <a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a>.</p>
 </section>
 </main>
 <footer>
