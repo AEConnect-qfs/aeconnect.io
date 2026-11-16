@@ -22,7 +22,7 @@
   "description": "What an ICSR has to contain under 21 CFR 314.80, how intake channels differ, and how a reviewed case reaches a safety database before an E2B(R3) file for AEMS, formerly FAERS.",
   "url": "https://aeconnect.io/blog/icsr-intake/",
   "datePublished": "2026-10-31",
-  "dateModified": "2026-10-31",
+  "dateModified": "2026-11-16",
   "author": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/"},
   "publisher": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/", "logo": "https://aeconnect.io/brand/logo/logo-horizontal-light.png"},
   "mainEntityOfPage": "https://aeconnect.io/blog/icsr-intake/"
@@ -55,6 +55,14 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. Count whether reporter, patient, suspect product, and event were identifiable on the day of receipt, whether the receipt date was stored, and how long it took a person to accept or override the draft. Those are operating counts for your own cases. They are not FDA metrics and they are not a published study."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is pharmacovigilance case intake?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the capture of a report as a case: reporter, patient, suspect product, event, and the date the company received the information. It is not the E2B(R3) transmission to AEMS, formerly FAERS. 21 CFR 314.80(f) lists what a drug ICSR includes once you submit. ICH E2D(R1) uses the four elements before day zero. The workspace page is PV case intake."
       }
     }
   ]
@@ -133,7 +141,7 @@
 <header class="brand-hero">
   <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / ICSR intake</p>
   <h1>ICSR intake before the case is a submission</h1>
-  <p class="by">QORO Team · 31 October 2026 · about 8 minutes</p>
+  <p class="by">QORO Team · 16 November 2026 · about 11 minutes</p>
 </header>
 <main>
   <p>ICSR intake is the hour a report becomes a case your company can stand behind. An individual case safety report, in <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80</a>, is a description of an adverse drug experience related to an individual patient or subject. Intake is not the transmission of that description to the FDA Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). Transmission is a later file, described on the <a href="https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-e2br3-data-standards">FDA E2B(R3) data standards page</a>.</p>
@@ -186,6 +194,11 @@
   </ul>
   <p>If one of those databases is your system of record, it remains the system of record. AE Connect drafts the case from the source and a person accepts or overrides each field. The E2B(R3) file those databases produce is what a gateway submission uses. Building that file, and sending it to AEMS, formerly FAERS, is outside the intake hour. FDA’s data standards page is the reference for the file. It does not name AE Connect, Argus, Vault Safety, LifeSphere, or IQVIA as a preferred tool.</p>
 
+  <h2>Pharmacovigilance case intake is this step</h2>
+  <p>Pharmacovigilance case intake is the work of turning a report into a case the company can follow. <a href="https://database.ich.org/sites/default/files/ICH_E2D(R1)_Step4_FinalGuideline_2025_0819.pdf">ICH E2D(R1)</a> section 2.2 lists the minimum criteria for a valid case: an identifiable reporter, an identifiable patient, a suspect drug, and an adverse event or adverse reaction. Section 5.2 says day zero is the date any personnel of the marketing authorisation holder, including a service provider, first has enough information to determine that those criteria are met, unless a region specifies another date. The FDA <a href="https://www.fda.gov/media/176977/download">E2D(R1) guidance for industry</a> (March 2026) includes that text and says it is not binding. 21 CFR 314.80 does not use the words day zero. It starts the 15 calendar day alert from initial receipt of the information by the applicant for an experience that is both serious and unexpected. Keep both dates. The difference is spelled out on the <a href="https://aeconnect.io/blog/follow-up-reports-missing-information/">follow up page</a>. The screen for the capture on this site is <a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a>.</p>
+  <p>A trial case uses a different section. 21 CFR 312.32(c)(2) gives 7 calendar days from initial receipt for an unexpected fatal or life-threatening suspected adverse reaction. 21 CFR 312.32(c)(1) gives 15 calendar days after the sponsor determines the information qualifies for the other IND safety reports. Those clocks are explained on the <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR page</a>. A marketed drug uses 21 CFR 314.80. A licensed biological product uses <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">21 CFR 600.80</a>. The regulation walkthrough is <a href="https://aeconnect.io/blog/fda-adverse-event-reporting-requirements/">FDA adverse event reporting requirements</a>.</p>
+  <p>If the source is a defect and a patient event in one message, do not drop the defect. <a href="https://aeconnect.io/solutions/pqc-intake/">Product complaint intake</a> is a separate page because the quality file is not the ICSR. The case, if there is one, still starts here. The file you may build later is covered on <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a> and the <a href="https://aeconnect.io/e2b-r3-checklist/">E2B(R3) checklist</a>.</p>
+
   <h2>Measuring intake quality</h2>
   <p>There is no FDA score on the sources for this page, and this site does not publish a white paper of benchmark rates. You can still count your own cases. Useful counts, taken from the fields above, are:</p>
   <ul>
@@ -210,6 +223,8 @@
     <p>Intake records the case. Submission is later. The FDA E2B(R3) data standards page is the technical reference for electronic ICSRs sent to the FDA Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS), using E2B(R3). The gateway steps, including registration on the Unified Submission Portal, are on the <a href="https://aeconnect.io/blog/ich-e2b-r3-deadline-biotech-guide/">E2B R3 FDA guide</a>. A trial case that meets the three tests is <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a>. The gateway and the Safety Reporting Portal are also described on the <a href="https://aeconnect.io/blog/faers-is-now-aems/">FAERS and AEMS guide</a>, which cites the AEMS electronic submissions page.</p>
     <h3>Can intake quality be measured without a published benchmark?</h3>
     <p>Yes. Count whether reporter, patient, suspect product, and event were identifiable on the day of receipt, whether the receipt date was stored, and how long it took a person to accept or override the draft. Those are operating counts for your own cases. They are not FDA metrics and they are not a published study.</p>
+    <h3>What is pharmacovigilance case intake?</h3>
+    <p>It is the capture of a report as a case: reporter, patient, suspect product, event, and the date the company received the information. It is not the E2B(R3) transmission to AEMS, formerly FAERS. 21 CFR 314.80(f) lists what a drug ICSR includes once you submit. ICH E2D(R1) uses the four elements before day zero. The workspace page is <a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a>.</p>
   </section>
 
   <div class="related">
@@ -217,6 +232,8 @@
     <ol>
       <li>U.S. Food and Drug Administration. FDA Adverse Event Monitoring System (AEMS) E2B(R3) Data Standards. Formerly the FDA Adverse Event Reporting System (FAERS). <a href="https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-e2br3-data-standards">E2B(R3) data standards</a>.</li>
       <li>21 CFR 314.80, Postmarketing reporting of adverse drug experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">eCFR</a>.</li>
+      <li>21 CFR 312.32, IND safety reporting. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.32">eCFR</a>.</li>
+      <li>ICH E2D(R1), Postapproval safety data. Final version adopted on 15 September 2025. <a href="https://database.ich.org/sites/default/files/ICH_E2D(R1)_Step4_FinalGuideline_2025_0819.pdf">ICH</a>. FDA guidance for industry, March 2026. <a href="https://www.fda.gov/media/176977/download">FDA PDF</a>.</li>
     </ol>
     <h2>On this site</h2>
     <ul>
@@ -225,6 +242,11 @@
       <li><a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR reporting</a></li>
       <li><a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">AE reporter forms</a></li>
       <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+      <li><a href="https://aeconnect.io/solutions/pqc-intake/">Product complaint intake</a></li>
+      <li><a href="https://aeconnect.io/blog/fda-adverse-event-reporting-requirements/">FDA adverse event reporting requirements</a></li>
+      <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+      <li><a href="https://aeconnect.io/e2b-r3-checklist/">E2B(R3) checklist</a></li>
+      <li><a href="https://aeconnect.io/blog/medwatch-3500a-alternative/">Form FDA 3500A</a></li>
       <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></li>
       <li><a href="https://aeconnect.io/learn/what-late-intake-does/">What late intake does</a></li>
     </ul>

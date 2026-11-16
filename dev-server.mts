@@ -15,8 +15,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
  * Legacy 301s below must stay in sync with the "previously indexed" rules in
  * netlify.toml. Trailing-slash canonicals are the directory indexes themselves;
  * express.static 301s a non-slash directory request to the slash form.
- * /beta still 301s to /trial/, and /trial (plus /trial/thanks) 301s to
- * https://app.aeconnect.io/register. There is no sandbox-trial form.
+ * /beta, /pricing, /plans, and /prices 301 straight to
+ * https://app.aeconnect.io/register. /trial, /trial/thanks, and the
+ * index.html URLs for those two folders do the same. There is no
+ * sandbox-trial form and no hop through /trial/.
  */
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const FUNCTIONS_DIR = path.join(__dirname, 'netlify', 'functions');
@@ -39,24 +41,26 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   '/blog/arisglobal-lifesphere-alternative/': '/blog/arisglobal-lifesphere/',
   '/blog/veeva-vault-safety-alternative': '/blog/veeva-vault-safety/',
   '/blog/veeva-vault-safety-alternative/': '/blog/veeva-vault-safety/',
-  '/beta': '/trial/',
-  '/beta/': '/trial/',
+  '/beta': 'https://app.aeconnect.io/register',
+  '/beta/': 'https://app.aeconnect.io/register',
   '/about': '/',
   '/about/': '/',
-  '/pricing': '/trial/',
-  '/pricing/': '/trial/',
-  '/pricing.html': '/trial/',
-  '/pricing/index.html': '/trial/',
-  '/Pricing': '/trial/',
-  '/Pricing/': '/trial/',
-  '/prices': '/trial/',
-  '/prices/': '/trial/',
-  '/plans': '/trial/',
-  '/plans/': '/trial/',
+  '/pricing': 'https://app.aeconnect.io/register',
+  '/pricing/': 'https://app.aeconnect.io/register',
+  '/pricing.html': 'https://app.aeconnect.io/register',
+  '/pricing/index.html': 'https://app.aeconnect.io/register',
+  '/Pricing': 'https://app.aeconnect.io/register',
+  '/Pricing/': 'https://app.aeconnect.io/register',
+  '/prices': 'https://app.aeconnect.io/register',
+  '/prices/': 'https://app.aeconnect.io/register',
+  '/plans': 'https://app.aeconnect.io/register',
+  '/plans/': 'https://app.aeconnect.io/register',
   '/trial': 'https://app.aeconnect.io/register',
   '/trial/': 'https://app.aeconnect.io/register',
+  '/trial/index.html': 'https://app.aeconnect.io/register',
   '/trial/thanks': 'https://app.aeconnect.io/register',
   '/trial/thanks/': 'https://app.aeconnect.io/register',
+  '/trial/thanks/index.html': 'https://app.aeconnect.io/register',
 };
 
 const CSP = [
