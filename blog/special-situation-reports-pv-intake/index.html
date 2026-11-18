@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Special situation reports at AE intake | AE Connect</title>
+  <meta name="description" content="What PV case intake should capture for pregnancy exposure, medication errors, overdose, and lack of efficacy, and when each one becomes an ICSR in the US or the EU." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/special-situation-reports-pv-intake/" />
+  <meta property="og:title" content="Special situation reports at AE intake" />
+  <meta property="og:description" content="What PV case intake should capture for pregnancy exposure, medication errors, overdose, and lack of efficacy, and when each one becomes an ICSR in the US or the EU." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/special-situation-reports-pv-intake/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Special situation reports at AE intake | AE Connect" />
+  <meta name="twitter:description" content="What PV case intake should capture for pregnancy exposure, medication errors, overdose, and lack of efficacy, and when each one becomes an ICSR in the US or the EU." />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Special situation reports in pharmacovigilance: an intake guide",
+  "description": "What PV case intake should capture for pregnancy exposure, medication errors, overdose, and lack of efficacy, and when each one becomes an ICSR in the US or the EU.",
+  "url": "https://aeconnect.io/blog/special-situation-reports-pv-intake/",
+  "datePublished": "2026-11-18",
+  "dateModified": "2026-11-18",
+  "author": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/"},
+  "publisher": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/", "logo": {"@type": "ImageObject", "url": "https://aeconnect.io/brand/logo/logo-horizontal-light.png"}},
+  "image": "https://aeconnect.io/brand/og/default.png",
+  "mainEntityOfPage": "https://aeconnect.io/blog/special-situation-reports-pv-intake/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is a pregnancy exposure an ICSR if nobody reports an adverse event?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only if the region requires it. A product indicated in pregnancy, with no event, need not be recorded. In the EU, no outcome and a normal outcome go to the PSUR unless the authorisation, the risk management plan, or a product such as thalidomide or isotretinoin requires a submission. Abnormal outcomes are reported."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should intake capture when a medication error never reached a patient?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Where the process failed, and that no dose reached a patient. A near miss is an ICSR only where the region requires it, and then the patient criterion is waived. In the EU it is not submitted without a suspected reaction, but it is recorded for the PSUR because the definition includes potential harm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is lack of efficacy an adverse drug experience under FDA rules?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. 21 CFR 314.80(a) and 21 CFR 600.80(a) include any failure of expected pharmacological action. The 15 calendar day alert still requires serious and unexpected. In the EU it is normally not an ICSR without a suspected reaction, with a 15 day path for critical conditions, life threatening diseases, vaccines, and contraceptives, unless the reporter states disease progression."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What follow up does a pregnancy report need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The outcome, newborn health, and child development where appropriate, after exposure through the mother or the father. Not when the product is indicated in pregnancy and there is no event. Keep the later news on the same case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a structured intake form keep a special situation that email drops?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It asks which situation applies, then the fields for that situation. AE Connect is customizable electronic intake with AI triage. A person accepts or overrides the draft. The case can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or stay as the full ICSR and the E2B(R3) file."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 15px; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { color: var(--white); }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #4A6FA5); color: var(--navy, #F3F5F4); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #14202C); border: 1px solid #5E6873; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Special situation reports in pharmacovigilance: an intake guide", "item": "https://aeconnect.io/blog/special-situation-reports-pv-intake/"}
+    ]
+  }
+  </script>
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="Special situation reports at AE intake | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/product/">Product</a></li>
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+    <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+    <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
+  </ul>
+</nav>
+<header class="brand-hero">
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / Special situation reports</p>
+  <h1>Special situation reports in pharmacovigilance: an intake guide</h1>
+  <p class="by">QORO Team · 18 November 2026 · about 10 minutes</p>
+</header>
+<main>
+  <p>A special situation does not look like an adverse event, and it is still a case to keep. A double dose with no symptoms, exposure before conception, a wrong strength caught in the pharmacy, and a vaccine that did not work are easy to close in email, because the note says there was no reaction. Closing them drops the outcome, the near miss, and the lack of effect. That puts patient safety at risk. The <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">drug safety inbox</a> is where these messages get lost. This page is what <a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake</a> should capture, when the record becomes an ICSR, and what follow up is still due. It is not a standard operating procedure. The <a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">reporter forms</a> page names these observations in brief.</p>
+
+  <h2>Other observations, and the four minimum criteria</h2>
+  <p><a href="https://database.ich.org/sites/default/files/ICH_E2D%28R1%29_Step4_FinalGuideline_2025_0819.pdf">ICH E2D(R1)</a>, adopted on 15 September 2025, section 2.1.5 lists other observations: exposure in pregnancy or breastfeeding, lack of efficacy or lack of effect, overdose, abuse, misuse, medication error, occupational exposure, and off label use. Each can arrive with an adverse event or with none. Section 2.2 says an ICSR needs one adverse event or other observation, one suspect or interacting product, an identifiable patient, and an identifiable reporter. Missing a criterion, collect it before you submit. Section 5.1.3 says to record the observation and follow it up anyway, and to submit an ICSR with no adverse event only if the region requires it. Discuss that record in the periodic report under the ICH E2C guidelines where those apply. The <a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a> guide is the field list once a case exists.</p>
+
+  <h2>The US definition is not the ICH list</h2>
+  <p><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80(a)</a> includes, in an adverse drug experience, an event from overdose whether accidental or intentional, from drug abuse, from drug withdrawal, and any failure of expected pharmacological action. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">21 CFR 600.80(a)</a> uses the same list for a biological product. A double dose with no event is an other observation. It is not, on that wording, an adverse event occurring from overdose. "It did not work" is the failure limb, so it sits inside the US definition. The 15 calendar day alert still requires serious and unexpected, from initial receipt. A lack of effect that is not serious can sit in the US periodic report. See <a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">aggregate reports</a> and the <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">AE and SAE</a> page. An event after the product is stopped is the withdrawal limb. A defect in the same email is also a <a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">product quality complaint</a>.</p>
+
+  <h2>Pregnancy, breastfeeding, and paternal exposure</h2>
+  <p>Section 5.1.3.3 covers exposure through a parent, including paternal exposure and breastfeeding. With no adverse event in the parent or the child, it is an ICSR only if the region requires it. The company is not expected to record uneventful exposure for a product indicated in pregnancy. Abnormal outcomes are reported: congenital anomalies, potential epigenetic responses, developmental disorders, fetal death, spontaneous abortion, and events in the mother or the newborn.</p>
+  <p><a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">EU GVP Module VI (Rev 2)</a> section VI.B.6.1 follows exposure through the mother or the father for the outcome and the child's development. A long half life means use before conception can still count. Do not submit an exposure with no outcome, a normal outcome, or an induced termination with no malformation detail. Collect those for the PSUR. Submit a no reaction exposure when the authorisation or the risk management plan requires it, including thalidomide or isotretinoin. Section 6.4.1.2 collects the outcome, newborn health, and child development where appropriate, unless the product is indicated in pregnancy and there is no event. GVP recommends a structured questionnaire. The later news stays on the same case. The <a href="https://aeconnect.io/blog/follow-up-reports-missing-information/">follow up guide</a> is that clock, and a new number for the birth is a <a href="https://aeconnect.io/blog/duplicate-icsr-detection/">duplicate</a>.</p>
+
+  <h2>Overdose, abuse, misuse, medication error, occupational exposure</h2>
+  <p>GVP section VI.A.1.2 keeps the terms apart. Overdose is a quantity above the maximum recommended dose in the authorised product information. Off label use is intentional use for a medical purpose outside the marketing authorisation. Misuse is intentional and inappropriate use outside those terms. Abuse is persistent or sporadic, intentional excessive use, with harmful physical or psychological effects. Occupational exposure comes from occupation, not from an ingredient before the finished product is released. A medication error is an unintended failure in the drug treatment process that leads to, or has the potential to lead to harm to the patient.</p>
+  <p>With no event, section 5.1.3.2 says submit only if the region requires it. A near miss that never reached a patient may still be required, and then the minimum criteria apply except an identifiable patient. In the EU, section VI.B.6.3 says not to submit when there is no suspected reaction. Record it for the PSUR, and follow up a report that does have a reaction. GVP points to the medication error guide EMA/762563/2014. Off label use with no event, in section 5.1.3.4, is the same regional test.</p>
+
+  <h2>Lack of efficacy</h2>
+  <p>With no event, lack of efficacy is an ICSR only if the region requires it. The US definition already includes any failure of expected pharmacological action, and the 15 day alert still needs serious and unexpected. In the EU, collect the report for the PSUR and do not submit it without a suspected reaction, unless the product is for a critical condition, a life threatening disease, a vaccine, or a contraceptive, and the reporter has not blamed disease progression. That 15 day path does not apply to a post authorisation efficacy study that is not interventional. Submit lack of prophylactic effect for a vaccine. Do not submit an antibiotic that was the wrong match for the organism.</p>
+
+  <h2>Age</h2>
+  <p>GVP section VI.B.6.2: make a reasonable attempt to obtain age or age group, including when there is no event. Age can also identify the patient.</p>
+
+  <h2>What to capture before the thread is closed</h2>
+  <p>Every row also needs the reporter, a way to reach them, the product in their words, the receipt date, and whether an event is present.</p>
+  <table>
+    <thead>
+      <tr><th>Situation</th><th>Ask at intake</th><th>Then what</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pregnancy, paternal exposure, breastfeeding</td>
+        <td>Who was exposed, dates, use before conception if the half life is long, dose, indication, outcome if known.</td>
+        <td>Report abnormal outcomes. Otherwise only where required. EU: keep the PSUR copy and follow the outcome on the same case.</td>
+      </tr>
+      <tr>
+        <td>Medication error, including a near miss</td>
+        <td>Where the process failed, intended versus actual, and whether a dose reached a patient.</td>
+        <td>With an event, an ICSR. EU with no reaction: record, do not submit. A required near miss waives only the patient.</td>
+      </tr>
+      <tr>
+        <td>Overdose, abuse, misuse, occupational exposure</td>
+        <td>Quantity against the labelled maximum, intent, occupation, and any event.</td>
+        <td>An event from overdose, abuse, or withdrawal is a US adverse drug experience. No event is an other observation.</td>
+      </tr>
+      <tr>
+        <td>Off label use</td>
+        <td>Labelled use, the use described, and that it was intentional.</td>
+        <td>Keep the use on the ICSR when an event is present. With none, only where required.</td>
+      </tr>
+      <tr>
+        <td>Lack of efficacy</td>
+        <td>What failed, the class, any event, and any disease progression statement.</td>
+        <td>US: inside the definition. A 15 day alert only if serious and unexpected. EU: usually the PSUR.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Two start dates</h2>
+  <p>Section 5.2: an expedited ICSR goes no later than 15 calendar days after day zero, the date any company personnel, including a contractor, first has the minimum criteria, unless the region sets another date. The US alert uses initial receipt for a serious unexpected experience. Keep both. A pregnancy note with no problems can have a receipt date and no submission day zero, and it still needs a follow up date.</p>
+
+  <aside class="lead-cta">
+    <h2>Start a 14 day trial, or book a demo</h2>
+    <p>The problem is email intake. AE Connect is a customizable electronic intake form with AI triage. It can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or it can be the safety database for the full ICSR and the E2B(R3) file. A person accepts or overrides the draft.</p>
+    <p class="actions"><a class="btn" href="https://app.aeconnect.io/register">Start a 14 day trial</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+  </aside>
+  <h2>Put the next question on the form</h2>
+  <p>Ask the next question only when the answer calls for it. Pregnancy opens who, when, and outcome. A medication error opens where the process failed and whether a dose reached anyone. Lack of efficacy opens the class and disease progression. Email cannot force those branches, which is how a special situation gets lost.</p>
+  <p><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a> is that screen, and the <a href="https://aeconnect.io/solutions/ae-sae-intake-form/">AE and SAE intake form</a> is the seriousness step. AE Connect is customizable electronic intake with AI triage. A PV manager can configure the form. The draft covers seriousness, a suggested MedDRA preferred term and system organ class, an Uppsala Monitoring Centre causality category, expectedness, whether reporting looks required, and a timeline. A person accepts or overrides every field. <a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI case processing</a> is that draft. AE Connect is 21 CFR Part 11 validated. The case can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, which stay the system of record, or it can be the cheaper safety database for the full ICSR and the E2B(R3) file. See <a href="https://aeconnect.io/integrations/">integrations</a>. It is not an official partnership. The special situation has to be in the case, or the <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) file</a> will not contain it. A 14 day sandbox starts with your name, a company email, a password, your company name, and your role. After you verify the email, you are the admin of a new organization. Annual plans are Starter, Growth, and Scale.</p>
+
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste or upload the pregnancy note, the medication error, or the email that says the product did not work. A company email starts a 14 day sandbox trial. You accept or override every field. Questions go to <a href="mailto:info@qfsnow.com">info@qfsnow.com</a>.</p>
+    <p><a class="btn" href="https://app.aeconnect.io/register">Start a 14 day trial</a> <a class="btn" href="https://aeconnect.io/demo/">Book a demo</a></p>
+  </div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>Is a pregnancy exposure an ICSR if nobody reports an adverse event?</h3>
+    <p>Only if the region requires it. A product indicated in pregnancy, with no event, need not be recorded. In the EU, no outcome and a normal outcome go to the PSUR unless the authorisation, the risk management plan, or a product such as thalidomide or isotretinoin requires a submission. Abnormal outcomes are reported.</p>
+    <h3>What should intake capture when a medication error never reached a patient?</h3>
+    <p>Where the process failed, and that no dose reached a patient. A near miss is an ICSR only where the region requires it, and then the patient criterion is waived. In the EU it is not submitted without a suspected reaction, but it is recorded for the PSUR because the definition includes potential harm.</p>
+    <h3>Is lack of efficacy an adverse drug experience under FDA rules?</h3>
+    <p>Yes. 21 CFR 314.80(a) and 21 CFR 600.80(a) include any failure of expected pharmacological action. The 15 calendar day alert still requires serious and unexpected. In the EU it is normally not an ICSR without a suspected reaction, with a 15 day path for critical conditions, life threatening diseases, vaccines, and contraceptives, unless the reporter states disease progression.</p>
+    <h3>What follow up does a pregnancy report need?</h3>
+    <p>The outcome, newborn health, and child development where appropriate, after exposure through the mother or the father. Not when the product is indicated in pregnancy and there is no event. Keep the later news on the same case.</p>
+    <h3>How does a structured intake form keep a special situation that email drops?</h3>
+    <p>It asks which situation applies, then the fields for that situation. AE Connect is customizable electronic intake with AI triage. A person accepts or overrides the draft. The case can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety, or stay as the full ICSR and the E2B(R3) file.</p>
+  </section>
+
+  <div class="related">
+    <h2>Sources</h2>
+    <ol>
+      <li>21 CFR 314.80, Postmarketing reporting of adverse drug experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">eCFR</a>.</li>
+      <li>21 CFR 600.80, Postmarketing reporting of adverse experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">eCFR</a>.</li>
+      <li>ICH E2D(R1), Postapproval safety data: definitions and standards for management and reporting of individual case safety reports. Final version adopted on 15 September 2025. <a href="https://database.ich.org/sites/default/files/ICH_E2D%28R1%29_Step4_FinalGuideline_2025_0819.pdf">ICH</a>.</li>
+      <li>European Medicines Agency. Guideline on good pharmacovigilance practices (GVP) Module VI, collection, management and submission of reports of suspected adverse reactions to medicinal products (Rev 2), EMA/873138/2011 Rev 2. <a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">EMA</a>.</li>
+    </ol>
+    <h2>On this site</h2>
+    <ul>
+      <li><a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">The drug safety inbox</a></li>
+      <li><a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">AE reporter forms</a></li>
+      <li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+      <li><a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a></li>
+      <li><a href="https://aeconnect.io/blog/follow-up-reports-missing-information/">Follow up reports and missing information</a></li>
+      <li><a href="https://aeconnect.io/blog/duplicate-icsr-detection/">Duplicate ICSR detection</a></li>
+      <li><a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">Adverse event reporting: AE and SAE</a></li>
+      <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+      <li><a href="https://aeconnect.io/blog/aggregate-reports-psur-pbrer-dsur/">PSUR, PBRER, and DSUR</a></li>
+      <li><a href="https://aeconnect.io/blog/product-quality-complaint-reporting/">Product quality complaint reporting</a></li>
+      <li><a href="https://aeconnect.io/blog/ai-pharmacovigilance-case-processing/">AI pharmacovigilance case processing</a></li>
+      <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+      <li><a href="https://aeconnect.io/solutions/ae-sae-intake-form/">AE and SAE intake form</a></li>
+      <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
+      <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a> · <a href="mailto:info@qfsnow.com">info@qfsnow.com</a></span>
+</footer>
+</body>
+</html>
