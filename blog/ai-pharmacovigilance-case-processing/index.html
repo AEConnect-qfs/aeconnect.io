@@ -168,7 +168,7 @@
   <ul>
     <li><strong>Seriousness.</strong> Serious or not, and which ICH criterion if it is serious. Severity grades are not a substitute.</li>
     <li><strong>Coding.</strong> A MedDRA preferred term that matches the reporter's words, sitting in a system organ class. The verbatim stays visible next to the term.</li>
-    <li><strong>Causality.</strong> A WHO-UMC style call — certain, probable, possible, unlikely, or unassessable — with the time course and the obvious alternative causes.</li>
+    <li><strong>Causality.</strong> A WHO-UMC style call (certain, probable, possible, unlikely, or unassessable) with the time course and the obvious alternative causes.</li>
     <li><strong>Expectedness.</strong> Listed or not in the Investigator's Brochure or company core data sheet, at the right specificity, on a named version.</li>
     <li><strong>Reporting.</strong> Whether an expedited report looks required, to whom, and on a 7-day clock, a 15-day clock, or neither.</li>
     <li><strong>Narrative.</strong> A few sentences that match the structured fields.</li>
@@ -177,7 +177,6 @@
   <h2>What the workspace actually drafts</h2>
   <p>You open the <a href="https://aeconnect.io/app/">AE Connect workspace</a>, paste the narrative, or upload a PDF, Word file, text, email, CSV, or image. The file is parsed in your browser. The model sees extracted text, not the original file. It returns the fields above, each with a confidence and a short reason, plus references it thinks apply. You accept or override. You can download the case.</p>
   <p>When the model is unsure, the draft should look unsure. Expectedness is the clearest example. The workspace does not contain your brochure. A suggestion of "unexpected" means "go check the document," not "the core data sheet has been consulted." MedDRA suggestions are the same kind of aid. Confirm the term. Do not paste a suggested code into an official case without looking it up in the MedDRA version you are licensed to use.</p>
-  <p>If no API key is configured, the workspace falls back to a deterministic mock so the screens can be tried. A mock is not a medical assessment. Production use needs the real model and a reviewer who knows that.</p>
   <h2>What stays human</h2>
   <p>The reviewer is the drug-safety decision. The draft can be faster than a blank form and still be wrong about hospitalization, about which product was suspect, or about a second event buried in paragraph four. Override is the product working, not the product failing. A team that accepts every field without reading the source has automated a risk, not a process.</p>
   <p>The same limit applies to <a href="https://aeconnect.io/blog/susar-reporting-ind-sponsors/">SUSAR</a> calls and to <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3)</a> content. The draft can show that a 7-day clock might apply. It cannot start the clock, unblind the subject, or send the file. <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">AE and SAE reporting</a> remains the sponsor's duty.</p>

@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy (Draft) | AE Connect</title>
-  <meta name="description" content="Draft privacy policy for AE Connect, the pharmacovigilance case-processing workspace. Needs legal review. Covers case text, accounts, and Stripe." />
+  <title>Privacy Policy | AE Connect</title>
+  <meta name="description" content="Privacy policy for AE Connect, the pharmacovigilance case-processing workspace. Covers case text, accounts, and Stripe." />
   <link rel="canonical" href="https://aeconnect.io/privacy/" />
-  <meta property="og:title" content="Privacy Policy (Draft) | AE Connect" />
-  <meta property="og:description" content="Working draft of how AE Connect handles account data, adverse-event narratives, and payments. Not a final policy." />
+  <meta property="og:title" content="Privacy Policy | AE Connect" />
+  <meta property="og:description" content="How AE Connect handles account data, adverse-event narratives, and payments." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aeconnect.io/privacy/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Privacy Policy (Draft) | AE Connect" />
-  <meta name="twitter:description" content="Working draft. Needs legal review before it is treated as QORO Intelligence's privacy policy." />
+  <meta name="twitter:title" content="Privacy Policy | AE Connect" />
+  <meta name="twitter:description" content="How AE Connect handles account data, adverse-event narratives, and payments." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; }
@@ -44,7 +44,7 @@
   <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="627">
-  <meta property="og:image:alt" content="Privacy Policy (Draft) | AE Connect">
+  <meta property="og:image:alt" content="Privacy Policy | AE Connect">
   <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
   <link rel="stylesheet" href="/assets/tokens.css">
   <link rel="stylesheet" href="/assets/brand.css">
@@ -67,20 +67,16 @@
 </ul>
 </nav>
 <main>
-  <div class="banner" role="note">
-    <strong>Draft — needs legal review.</strong>
-    This is a working draft for transparency. It is not legal advice, it has not been reviewed by counsel, and it is not QORO Intelligence's final privacy policy. Do not rely on it as a binding notice until a reviewed version replaces it.
-  </div>
   <h1>Privacy Policy</h1>
-  <p class="meta">Draft dated 23 October 2026 · AE Connect at aeconnect.io · QORO Intelligence Inc.</p>
+  <p class="meta">Dated 23 October 2026 · AE Connect at aeconnect.io · QORO Intelligence Inc.</p>
 
   <h2>Who we are</h2>
-  <p>AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operating from the San Francisco Bay Area. This draft covers the public site at aeconnect.io and the self-serve workspace at aeconnect.io/app/. The sign-in application at app.aeconnect.io is a separate service; this draft does not describe it. A street address is not published here and still needs to be confirmed.</p>
+  <p>AE Connect is a product of QORO Intelligence Inc., a Delaware corporation operating from the San Francisco Bay Area. This policy covers the public site at aeconnect.io and the self-serve workspace at aeconnect.io/app/. The sign-in application at app.aeconnect.io is a separate service; this policy does not describe it. A street address is not published here and still needs to be confirmed.</p>
   <p>Privacy questions: <a href="mailto:info@qfsnow.com">info@qfsnow.com</a>.</p>
 
   <h2>What the product does with case text</h2>
   <p>The workspace is for pharmacovigilance case processing. Narratives you paste or extract from a file may include patient health information, reporter details, product details, and other information about an adverse event. Treat that text as sensitive even when it is not labeled as such.</p>
-  <p>Files are parsed in your browser. The file itself is not uploaded. The extracted text is sent to our API when you create a case or run an assessment. When an Anthropic API key is configured, that text is sent to Anthropic to produce a draft assessment. If the key is not set, the server returns a deterministic mock and does not call the model.</p>
+  <p>Files are parsed in your browser. The file itself is not uploaded. The extracted text is sent to our API when you create a case or run an assessment. When an Anthropic API key is configured, that text is sent to Anthropic to produce a draft assessment.</p>
 
   <h2>Information we collect</h2>
   <ul>
@@ -98,16 +94,16 @@
   <h2>Who else processes it</h2>
   <p>This list is based on how the site is built and needs confirmation:</p>
   <ul>
-    <li>Netlify — hosting, serverless functions, and form submissions.</li>
-    <li>Neon — hosted Postgres for accounts and cases, when production is configured that way.</li>
-    <li>Anthropic — source text for the draft assessment, when the API key is set.</li>
-    <li>Stripe — subscription checkout and payment status.</li>
-    <li>Google Fonts — the browser requests font files; Google may see the requesting IP. Case text is not sent to Google.</li>
-    <li>jsDelivr — if you run OCR, the browser downloads a pinned Tesseract language file and recognition engine. The document stays on your machine. The download itself is a request to that network.</li>
+    <li>Netlify: hosting, serverless functions, and form submissions.</li>
+    <li>Neon: hosted Postgres for accounts and cases, when production is configured that way.</li>
+    <li>Anthropic: source text for the draft assessment, when the API key is set.</li>
+    <li>Stripe: subscription checkout and payment status.</li>
+    <li>Google Fonts: the browser requests font files; Google may see the requesting IP. Case text is not sent to Google.</li>
+    <li>jsDelivr: if you run OCR, the browser downloads a pinned Tesseract language file and recognition engine. The document stays on your machine. The download itself is a request to that network.</li>
   </ul>
 
   <h2>Health-privacy laws</h2>
-  <p>This draft does not say that AE Connect is a HIPAA-covered service, and it does not offer a business associate agreement. If you would put protected health information into the workspace, talk to us before you do. Customers who are controllers of pharmacovigilance data remain responsible for their own notices, lawful basis, and vendor reviews.</p>
+  <p>This policy does not say that AE Connect is a HIPAA-covered service, and it does not offer a business associate agreement. If you would put protected health information into the workspace, talk to us before you do. Customers who are controllers of pharmacovigilance data remain responsible for their own notices, lawful basis, and vendor reviews.</p>
 
   <h2>Retention</h2>
   <p>A retention schedule is not finalized. Case records may need to be kept for a long time under pharmacovigilance rules that apply to you, not automatically to us. Until counsel sets a schedule, assume we keep account and case data for the life of the account and for a limited period after a deletion request, except where we have to keep a record for security, billing, or legal reasons. There is no self-serve delete button yet. Email us to ask for access, correction, or deletion.</p>
@@ -125,11 +121,11 @@
   <p>Depending on where you live, you may have rights to access, correct, delete, or export personal information, or to appeal a refusal. Email <a href="mailto:info@qfsnow.com">info@qfsnow.com</a>. We will need to know which account you mean. This paragraph is a placeholder for the rights counsel decides to honor and the timelines that apply. It is not a statement that a formal GDPR or CCPA program is in place.</p>
 
   <h2>Changes</h2>
-  <p>When a reviewed policy replaces this draft, we will change the date and the draft banner. Continued use of the workspace after that date is a question for the final terms, not for this draft.</p>
+  <p>When a reviewed policy replaces this one, we will change the date. Continued use of the workspace after that date is a question for the final terms, not for this policy.</p>
 </main>
 <footer>
   <span>© 2026 QORO Intelligence Inc.</span>
-  <span><a href="https://aeconnect.io/privacy/">Privacy (draft)</a> · <a href="https://aeconnect.io/terms/">Terms (draft)</a> · <a href="https://aeconnect.io/contact/">Contact</a> · <a href="mailto:info@qfsnow.com">info@qfsnow.com</a> · <a href="https://aeconnect.io/learn/">Learn</a> · <a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/contact/">Contact</a> · <a href="mailto:info@qfsnow.com">info@qfsnow.com</a> · <a href="https://aeconnect.io/learn/">Learn</a> · <a href="https://aeconnect.io/resources/ae-intake-checklist/">AE intake checklist</a></span>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ab1964ff4f094aefa751d8207c50f059"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

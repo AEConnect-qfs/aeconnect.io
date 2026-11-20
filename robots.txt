@@ -1,4 +1,4 @@
-# AE Connect — https://aeconnect.io
+# AE Connect: https://aeconnect.io
 # Public pages are open to search and AI crawlers. The API is not a page.
 
 User-agent: *

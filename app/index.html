@@ -212,7 +212,7 @@
         <label for="f_password">Password</label>
         <input id="f_password" name="password" type="password" autocomplete="new-password" required minlength="10" maxlength="128" placeholder="At least 10 characters, with a letter and a number" aria-describedby="f_password_err" />
         <p class="field-err" id="f_password_err" role="alert"></p>
-        <p class="legal" id="authLegal">Creating an account is subject to the <a href="/terms/">Terms of Service</a> and <a href="/privacy/">Privacy Policy</a>. Both are drafts pending legal review.</p>
+        <p class="legal" id="authLegal">Creating an account is subject to the <a href="/terms/">Terms of Service</a> and <a href="/privacy/">Privacy Policy</a>. The Terms of Service are pending legal review.</p>
         <button class="btn btn-primary full" id="authBtn" type="submit">Create account</button>
         <div class="err" id="authErr" role="alert"></div>
       </form>
@@ -232,8 +232,8 @@
   <footer class="app-foot">
     <a href="/">Home</a>
     <a href="/product/">Product</a>
-    <a href="/privacy/">Privacy Policy (draft)</a>
-    <a href="/terms/">Terms of Service (draft)</a>
+    <a href="/privacy/">Privacy Policy</a>
+    <a href="/terms/">Terms of Service</a>
     <a href="/contact/">Contact</a>
     <a href="/demo/">Book a demo</a>
     <a href="mailto:info@qfsnow.com">info@qfsnow.com</a>
@@ -457,7 +457,7 @@
     document.getElementById('nc_err').textContent = '';
     let bad = false;
     if (title.length > LIMITS.titleMax) { setFieldErr('nc_title', 'Title must be 200 characters or fewer.'); bad = true; }
-    if (!sourceText) { setFieldErr('nc_text', 'Source text is required — paste a narrative or upload a supported file.'); bad = true; }
+    if (!sourceText) { setFieldErr('nc_text', 'Source text is required. Paste a narrative or upload a supported file.'); bad = true; }
     else if (sourceText.length < LIMITS.sourceMin) { setFieldErr('nc_text', 'Source text must be at least 10 characters.'); bad = true; }
     else if (sourceText.length > LIMITS.sourceMax) { setFieldErr('nc_text', 'Source text must be 100,000 characters or fewer.'); bad = true; }
     if (bad) return null;
@@ -485,7 +485,7 @@
     await refreshUsage();
     await loadCases();
     await selectCase(c.data.id);
-    if (a.status === 402) alert(a.data.error || 'Trial exhausted — subscribe to continue.');
+    if (a.status === 402) alert(a.data.error || 'Trial exhausted. Subscribe to continue.');
   }
 
   function newCase() {
@@ -495,7 +495,7 @@
       <form class="card" onsubmit="event.preventDefault(); createCase();">
         ${caseFormHtml({
           heading: 'New case',
-          hint: 'Upload a source document — PDF, Word, image/scan, email or text — or paste the text. Files are read in your browser; only the extracted text is sent. The maximum file size is 10 MB. The AI then drafts a structured assessment you review.',
+          hint: 'Upload a source document (PDF, Word, image/scan, email or text) or paste the text. Files are read in your browser; only the extracted text is sent. The maximum file size is 10 MB. The AI then drafts a structured assessment you review.',
           textPlaceholder: 'Paste the narrative, or upload a file above to auto-extract...',
           button: 'Create case',
         })}
@@ -517,14 +517,14 @@
     ['regulatoryRequired','Regulatory Reporting Required'], ['regulatoryTimeline','Reporting Timeline'], ['narrative','Narrative'],
   ];
   const GLOSSARY = {
-    seriousness: 'Does the event meet a regulatory "serious" criterion — death, life-threatening, hospitalization or its prolongation, persistent/significant disability, congenital anomaly, or otherwise medically important. Drives reporting urgency.',
+    seriousness: 'Does the event meet a regulatory "serious" criterion: death, life-threatening, hospitalization or its prolongation, persistent/significant disability, congenital anomaly, or otherwise medically important. Drives reporting urgency.',
     meddraPt: 'The standardized medical term for the event from MedDRA (the dictionary regulators require for coding adverse events), e.g. "Anaphylactic reaction".',
     meddraCode: 'The numeric MedDRA code for the Preferred Term.',
-    soc: 'System Organ Class — the top-level MedDRA category the term rolls up to, e.g. "Immune system disorders".',
+    soc: 'System Organ Class: the top-level MedDRA category the term rolls up to, e.g. "Immune system disorders".',
     causality: 'How likely the product caused the event, on the WHO-UMC scale: certain / probable / possible / unlikely / unassessable.',
     expectedness: 'Whether the event is already described in the product\'s safety labeling (Expected) or not (Unexpected). Serious + Unexpected usually triggers expedited reporting.',
     regulatoryRequired: 'Whether this case must be reported to health authorities.',
-    regulatoryTimeline: 'The reporting deadline — typically 7 days for fatal/life-threatening and 15 days for other serious/unexpected cases.',
+    regulatoryTimeline: 'The reporting deadline: typically 7 days for fatal/life-threatening and 15 days for other serious/unexpected cases.',
     narrative: 'A concise clinical summary of the case.',
   };
   const rationaleFor = (a, key) => (a && a.rationale && a.rationale[key]) || '';
@@ -544,7 +544,7 @@
         <h2 style="font-size:19px;color:var(--white)">${esc(c.title)}</h2></div>
         <span class="badge b-${badgeClass(c.status)}">${statusLabel(c.status)}</span>
       </div>
-      <div class="disclaimer">⚠ Decision support only — the AI draft is not a regulatory action. A qualified reviewer reviews and approves every case before any downstream use.</div>
+      <div class="disclaimer">⚠ Decision support only. The AI draft is not a regulatory action. A qualified reviewer reviews and approves every case before any downstream use.</div>
       <div class="card"><h2>Source document</h2><div class="hint" style="margin:0">${esc(c.sourceText)}</div></div>`;
 
     if (!a) {
@@ -601,7 +601,7 @@
     const refs = (a.references || []);
     if (refs.length) {
       html += `<div class="card"><h2>Guideline &amp; regulatory references</h2>
-        <p class="hint">Standards the AI drew on for these decisions — verify against current versions.</p>
+        <p class="hint">Standards the AI drew on for these decisions. Verify against current versions.</p>
         <ul style="list-style:none;padding:0;margin:0">` +
         refs.map((r) => `<li style="padding:9px 0;border-bottom:1px solid var(--border)">
           <div style="font-size:13.5px;color:var(--white);font-weight:600">${esc(r.citation)}</div>
@@ -619,7 +619,7 @@
         <button class="btn btn-ghost" onclick="requestExport('MedWatch 3500A')">MedWatch 3500A →</button>
         <button class="btn btn-ghost" onclick="requestExport('PSUR / PBRER')">PSUR / PBRER →</button>
       </div>
-      <p style="font-size:11.5px;color:var(--slate);margin-top:10px">E2B(R3), CIOMS, MedWatch and PSUR are add-on modules in the full AE Connect platform — click to request access and we'll set you up.</p></div>`;
+      <p style="font-size:11.5px;color:var(--slate);margin-top:10px">E2B(R3), CIOMS, MedWatch and PSUR are add-on modules in the full AE Connect platform. Click to request access and we'll set you up.</p></div>`;
 
     mainPanel.innerHTML = html;
   }
@@ -632,12 +632,12 @@
       const aiVal = key === 'authorities' ? (a.authorities || []).join(', ') : a[key];
       const dec = decisionFor(key);
       const finalVal = dec ? dec.finalValue : aiVal;
-      const review = dec ? (dec.decisionType === 'override' ? 'Overridden' + (dec.reason ? ' — ' + dec.reason : '') : 'Accepted') : 'AI draft (not yet reviewed)';
+      const review = dec ? (dec.decisionType === 'override' ? 'Overridden' + (dec.reason ? ': ' + dec.reason : '') : 'Accepted') : 'AI draft (not yet reviewed)';
       const conf = (a.confidence && a.confidence[key]) || '';
       const rat = rationaleFor(a, key);
       return `<tr><th>${esc(label)}</th><td>${esc(finalVal)}${rat ? `<div style="color:#718096;font-size:11px;margin-top:4px">${esc(rat)}</div>` : ''}</td><td>${esc(review)}${conf ? ' · ' + esc(conf) + ' conf' : ''}</td></tr>`;
     }).join('');
-    const doc = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(c.caseRef)} — AE Connect</title>
+    const doc = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(c.caseRef)}: AE Connect</title>
 <style>body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1a202c;max-width:760px;margin:32px auto;padding:0 20px;line-height:1.5}
 h1{font-size:20px;margin:0 0 2px}.ref{color:#718096;font-size:12px;font-weight:700;letter-spacing:.03em}
 .meta{color:#718096;font-size:12px;margin-bottom:18px}h2{font-size:14px;margin:22px 0 6px}
@@ -653,8 +653,8 @@ thead th{color:#4a5568}tbody th{width:210px;color:#4a5568;font-weight:600}
 <div class="src">${esc(c.sourceText)}</div>
 <h2>Structured assessment</h2>
 <table><thead><tr><th>Field</th><th>Final value</th><th>Review</th></tr></thead><tbody>${rows}</tbody></table>
-${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory references</h2><ul>${a.references.map(function(r){return '<li><strong>' + esc(r.citation) + '</strong> — ' + esc(r.relevance) + '</li>';}).join('')}</ul>` : ''}
-<div class="disc">Decision support only — this AI-assisted draft is not a regulatory action; it was reviewed and approved by a qualified user. AE Connect by QORO Intelligence.</div>
+${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory references</h2><ul>${a.references.map(function(r){return '<li><strong>' + esc(r.citation) + '</strong>: ' + esc(r.relevance) + '</li>';}).join('')}</ul>` : ''}
+<div class="disc">Decision support only. This AI-assisted draft is not a regulatory action; it was reviewed and approved by a qualified user. AE Connect by QORO Intelligence.</div>
 </body></html>`;
     const url = URL.createObjectURL(new Blob([doc], { type: 'text/html' }));
     const link = document.createElement('a');
@@ -769,7 +769,7 @@ ${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory refere
       text = (text || '').trim();
       document.getElementById('nc_text').value = text;
       if (text.length > LIMITS.sourceMax) setFieldErr('nc_text', 'Extracted text is over 100,000 characters. Split the document and try again.');
-      fstatus(text ? 'Extracted ' + text.length + ' characters from ' + name : 'No text found — if this is a scan, upload it as an image for OCR.');
+      fstatus(text ? 'Extracted ' + text.length + ' characters from ' + name : 'No text found. If this is a scan, upload it as an image for OCR.');
     } catch (e) { fstatus('Extraction failed: ' + (e.message || e)); }
   }
 
@@ -784,7 +784,7 @@ ${(a.references && a.references.length) ? `<h2>Guideline &amp; regulatory refere
       parts.push(tc.items.map((i) => i.str).join(' '));
     }
     let text = parts.join('\n').trim();
-    if (text.length < 20) { fstatus('No embedded text — running OCR on scanned pages…'); text = await ocrPdf(pdf); }
+    if (text.length < 20) { fstatus('No embedded text. Running OCR on scanned pages…'); text = await ocrPdf(pdf); }
     return text;
   }
 
