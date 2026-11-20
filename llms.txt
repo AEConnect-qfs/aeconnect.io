@@ -83,12 +83,12 @@ Each guide has its own title, description, H1 and H2 structure, an FAQ with FAQP
 - [PQC intake](https://aeconnect.io/solutions/pqc-intake/)
 - [E2B(R3) case preparation](https://aeconnect.io/solutions/e2b-r3/)
 - [Aggregate reports](https://aeconnect.io/solutions/aggregate-reports/)
-- [Privacy Policy (draft)](https://aeconnect.io/privacy/)
-- [Terms of Service (draft)](https://aeconnect.io/terms/)
+- [Privacy Policy](https://aeconnect.io/privacy/)
+- [Terms of Service](https://aeconnect.io/terms/)
 - [Contact](https://aeconnect.io/contact/): info@qfsnow.com
 
 ## Contact
 
-QORO Intelligence Inc. — info@qfsnow.com — https://qorosystems.com
+QORO Intelligence Inc., info@qfsnow.com, https://qorosystems.com
 
-Privacy Policy and Terms of Service on this site are drafts and need legal review before anyone treats them as final.
+The Terms of Service need legal review before anyone treats them as final.

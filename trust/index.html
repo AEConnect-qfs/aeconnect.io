@@ -177,7 +177,7 @@
   <p class="lede">AE Connect is a reporter-facing adverse event e-Form for patients, HCPs and caregivers, which the company configures easily without IT or code. This page describes the controls that are actually in the workspace. AE Connect is 21 CFR Part 11 validated. Validated by QORO for its intended use. Validation summary available on request.</p>
   <h2>Data handling</h2>
   <p>You paste a narrative or upload a PDF, Word file, text, email, CSV, or image. The file is parsed in your browser. The file itself is not uploaded. The extracted text is sent to the AE Connect API when you create a case or run an assessment.</p>
-  <p>When an Anthropic API key is configured, that text is sent to Anthropic to produce the draft. If the key is not set, the server returns a deterministic mock and does not call the model. We do not sell personal information, and we do not use case narratives to train a public model of our own. The <a href="https://aeconnect.io/privacy/">Privacy Policy</a> is a draft and names the other processors (Netlify, the database host, Stripe, Google Fonts). A street address is not published.</p>
+  <p>When an Anthropic API key is configured, that text is sent to Anthropic to produce the draft. We do not sell personal information, and we do not use case narratives to train a public model of our own. The <a href="https://aeconnect.io/privacy/">Privacy Policy</a> names the other processors (Netlify, the database host, Stripe, Google Fonts). A street address is not published.</p>
   <h2>Audit trail</h2>
   <p>Each field decision is stored on the signed-in account: what the draft said, whether you accepted it or overrode it, and the value you kept. Cases are scoped to that account.</p>
   <h2>MedDRA</h2>
