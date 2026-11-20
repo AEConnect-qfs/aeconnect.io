@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AE Connect workspace — AI adverse-event case processing</title>
-  <meta name="description" content="Sign in to draft seriousness, MedDRA coding, causality, and a reporting timeline from an adverse-event source. A company email starts the 14-day sandbox at app.aeconnect.io." />
+  <title>AE Connect workspace | Reporter-facing adverse event e-Form</title>
+  <meta name="description" content="AE Connect is a reporter-facing adverse event e-Form for patients, HCPs and caregivers, which the company configures easily without IT or code. This workspace is where the company reviews a report it already has. A company email starts the 14 day sandbox." />
   <link rel="canonical" href="https://aeconnect.io/app/" />
-  <meta property="og:title" content="AE Connect workspace — AI adverse-event case processing" />
-  <meta property="og:description" content="Paste or upload a source document and review a structured pharmacovigilance draft. The 14-day sandbox is for a company email." />
+  <meta property="og:title" content="AE Connect workspace | Reporter-facing adverse event e-Form" />
+  <meta property="og:description" content="AE Connect is a reporter-facing adverse event e-Form for patients, HCPs and caregivers, which the company configures easily without IT or code. This workspace is the company review of a report already in hand." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aeconnect.io/app/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AE Connect workspace — AI adverse-event case processing" />
-  <meta name="twitter:description" content="Review an AI draft of an adverse-event case. A company email starts a 14-day sandbox with unlimited cases." />
+  <meta name="twitter:title" content="AE Connect workspace | Reporter-facing adverse event e-Form" />
+  <meta name="twitter:description" content="AE Connect is a reporter-facing adverse event e-Form for patients, HCPs and caregivers, which the company configures easily without IT or code. A company email starts a 14 day sandbox with unlimited cases." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -168,7 +168,7 @@
   <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="627">
-  <meta property="og:image:alt" content="AE Connect workspace — AI adverse-event case processing">
+  <meta property="og:image:alt" content="AE Connect workspace, a reporter-facing adverse event e-Form">
   <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
   <link rel="stylesheet" href="/assets/tokens.css">
   <link rel="stylesheet" href="/assets/brand.css">
@@ -435,18 +435,18 @@
     mainPanel.innerHTML = `
       <div class="landing">
         <div class="hero">
-          <div class="eyebrow">✦ AI-assisted pharmacovigilance</div>
-          <h1>From an adverse-event source document to a structured assessment — in seconds.</h1>
-          <p class="lede">Paste or upload an adverse-event report and the engine drafts a complete ICSR-style assessment — seriousness, MedDRA coding, causality, expectedness and reporting timeline — each with its clinical reasoning and guideline references. You review and approve every field. <strong>The 14-day sandbox takes a company email and does not cap cases.</strong></p>
+          <div class="eyebrow">Reporter-facing e-Form</div>
+          <h1>AE Connect is a reporter-facing adverse event e-Form for patients, HCPs and caregivers, which the company configures easily without IT or code.</h1>
+          <p class="lede">Patients, HCPs, and caregivers submit that form. This screen is the company review of a report the team already has. Paste or upload it, and AI triage drafts seriousness, MedDRA coding, causality, expectedness, and a reporting timeline. You accept or override every field. <strong>The 14 day sandbox takes a company email and does not cap cases.</strong></p>
         </div>
         <div class="features">
           <div class="feature"><div class="fi">🧬</div><h4>Structured PV draft</h4><p>Seriousness, MedDRA (LLT→PT→SOC), WHO-UMC causality, expectedness & the reporting clock.</p></div>
           <div class="feature"><div class="fi">📚</div><h4>Guideline-referenced</h4><p>Decisions cite ICH E2A / E2B(R3) / E2D, 21 CFR 314.80, EU GVP Module VI, WHO-UMC.</p></div>
-          <div class="feature"><div class="fi">🧑‍⚕️</div><h4>Human-in-the-loop</h4><p>Decision support only — you accept or override each field; the AI never files a report.</p></div>
+          <div class="feature"><div class="fi">🧑‍⚕️</div><h4>Human review</h4><p>Decision support only. You accept or override each field. The draft never files a report.</p></div>
           <div class="feature"><div class="fi">🔒</div><h4>Private by design</h4><p>Files are parsed in your browser; only the extracted text is sent for assessment.</p></div>
         </div>
         <form class="card" style="max-width:760px;margin:18px auto 0" onsubmit="event.preventDefault(); guestRun();">
-          ${caseFormHtml({ heading: 'Try it — process a case', textPlaceholder: 'Paste the adverse-event narrative, or upload a file above to auto-extract...', button: 'Run AI assessment' })}
+          ${caseFormHtml({ heading: 'Review a report the company already has', textPlaceholder: 'Paste the adverse event narrative, or upload a file above and the text is extracted...', button: 'Run AI assessment' })}
         </form>
       </div>`;
   }
