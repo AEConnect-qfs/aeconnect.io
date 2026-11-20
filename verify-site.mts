@@ -132,6 +132,58 @@ function checkNetlifyRedirects() {
   check('netlify redirects: slash 200, one hop, no loops', ok, bad.slice(0, 4).join('; '));
 }
 
+const BEACON_TOKEN = 'ab1964ff4f094aefa751d8207c50f059';
+
+/** Immediate meta-refresh documents with an empty body are redirect stubs, not public pages. */
+function isRefreshOnlyStub(html: string): boolean {
+  if (!/http-equiv\s*=\s*["']refresh["']/i.test(html)) return false;
+  const body = html.match(/<body\b[^>]*>([\s\S]*)<\/body>/i)?.[1] ?? '';
+  const text = body
+    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return text.length === 0;
+}
+
+function checkBeacon() {
+  const missing: string[] = [];
+  const extra: string[] = [];
+  let pages = 0;
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name === 'node_modules' || entry.name === 'vendor' || entry.name === '.git') continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name.endsWith('.html')) {
+        const text = fs.readFileSync(full, 'utf8');
+        if (isRefreshOnlyStub(text)) continue;
+        pages++;
+        const n = text.split(BEACON_TOKEN).length - 1;
+        const rel = path.relative(ROOT, full);
+        if (n === 0) missing.push(rel);
+        else if (n !== 1) extra.push(`${rel} x${n}`);
+      }
+    }
+  };
+  walk(ROOT);
+  const problems = [...missing.map((m) => `missing ${m}`), ...extra];
+  check(
+    'public HTML includes the Cloudflare beacon token once',
+    problems.length === 0 && pages > 0,
+    problems.length ? `${pages} pages; ${problems.slice(0, 4).join('; ')}` : `${pages} pages`,
+  );
+  const toml = fs.readFileSync(path.join(ROOT, 'netlify.toml'), 'utf8');
+  const csp = toml.match(/Content-Security-Policy = "([^"]*)"/)?.[1] || '';
+  check(
+    'CSP allows Cloudflare Web Analytics',
+    csp.includes('https://static.cloudflareinsights.com') &&
+      /script-src [^;]*https:\/\/static\.cloudflareinsights\.com/.test(csp) &&
+      /connect-src [^;]*https:\/\/cloudflareinsights\.com/.test(csp),
+  );
+}
+
 const B = `http://localhost:${process.env.PORT || 8787}`;
 const EMAIL = `verify-${Date.now()}@x.io`;
 let pass = 0, fail = 0;
@@ -166,6 +218,7 @@ async function page(path: string) {
 
 async function main() {
   checkNetlifyRedirects();
+  checkBeacon();
 
   const home = await page('/');
   check('home 200 with self-canonical', home.status === 200 && home.text.includes('rel="canonical" href="https://aeconnect.io/"') && !home.csp.includes('upgrade-insecure-requests'));
