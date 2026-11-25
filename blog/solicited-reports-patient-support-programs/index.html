@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicited reports from patient support programs | AE Connect</title>
+  <meta name="description" content="What counts as a solicited adverse event from a patient support program or market research, how intake should capture it, and how that differs from a spontaneous report." />
+  <meta name="author" content="QORO Team" />
+  <link rel="canonical" href="https://aeconnect.io/blog/solicited-reports-patient-support-programs/" />
+  <meta property="og:title" content="Solicited reports from patient support programs and market research" />
+  <meta property="og:description" content="What counts as a solicited adverse event from a patient support program or market research, how intake should capture it, and how that differs from a spontaneous report." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aeconnect.io/blog/solicited-reports-patient-support-programs/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Solicited reports from patient support programs | AE Connect" />
+  <meta name="twitter:description" content="What counts as a solicited adverse event from a patient support program or market research, how intake should capture it, and how that differs from a spontaneous report." />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Solicited reports from patient support programs and market research",
+  "description": "What counts as a solicited adverse event from a patient support program or market research, how intake should capture it, and how that differs from a spontaneous report.",
+  "url": "https://aeconnect.io/blog/solicited-reports-patient-support-programs/",
+  "datePublished": "2026-11-25",
+  "dateModified": "2026-11-25",
+  "author": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/"},
+  "publisher": {"@type": "Organization", "name": "QORO Intelligence Inc.", "url": "https://aeconnect.io/", "logo": {"@type": "ImageObject", "url": "https://aeconnect.io/brand/logo/logo-horizontal-light.png"}},
+  "image": "https://aeconnect.io/brand/og/default.png",
+  "mainEntityOfPage": "https://aeconnect.io/blog/solicited-reports-patient-support-programs/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a solicited report?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A solicited report is an adverse event that comes from an organised data collection system. ICH E2D(R1) section 3.2 defines solicited reports that way, and section 2.8 gives clinical trials, non interventional studies, patient support programs, and market research programs as examples. For reporting, the case is classified as a report from study in the ICH E2B format and it needs a causality assessment. The company's ordinary process for receiving spontaneous reports is outside that definition."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is a patient support program report spontaneous?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When the activity is only one way and it sits outside an organised program. ICH E2D(R1) section 2.9 says home delivery, vouchers, and coupons are outside the patient support program definition if the company does not request medical information about the patient's use of the product. Section 4.5 says adverse events from those standalone activities are managed as spontaneous reports. If delivery sits inside a program that also has a nurse visit or another two way medical activity, events from any part of that combined program are managed as solicited."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are market research adverse events spontaneous?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A market research program, as ICH E2D(R1) section 2.10 defines it, is planned collection of healthcare professional or consumer insights for marketing and business development. Section 4.6 says the company reviews all information from the program. A report that meets reporting requirements is managed as a solicited report with a causality assessment. In E2B the study type should show market research where the region accepts that value, and other studies where it does not yet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you flag a solicited case in E2B(R3)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set C.1.3, type of report, to 2, report from study. The ICH information paper adopted on 16 December 2025 says that value covers studies and other solicited sources. C.5.4, study type where the reaction was observed, is then required. The added values are 4 for a patient support program, 5 for a market research program, and 6 for an organised data collection system whose source data come from a digital platform. FDA AEMS accepts those values. In the EU they are not in EudraVigilance yet, so keep 3, other studies, until the new value is implemented. When a patient support program runs on a digital platform, select 4."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does FDA use the ICH causality rule for these reports?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "21 CFR 314.80 and 21 CFR 600.80 require review of adverse experience information from any source. The definition includes events whether or not they are considered product related. A 15 calendar day alert applies to an experience that is serious and unexpected, counted from the applicant's initial receipt. A reasonable possibility test in those regulations is written for a postmarketing study, and for biological products for a postmarketing clinical study. FDA's March 2026 E2D(R1) guidance repeats the ICH sentence that a solicited report is submitted when the reporter or the company sees at least a reasonable possibility, and the guidance says it is not binding. Keep the source, seriousness, expectedness, and both causality views on the case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What belongs in the vendor agreement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ICH E2D(R1) section 6.5 says the agreement covers how individual case safety reports are managed and reported, including exchange timelines and who reports to regulators, and that the process avoids duplicate reporting. The company remains responsible for the timeline, so the partner passes the case quickly. GVP Module VI section VI.B.7 counts day zero from the day any company personnel, including a contractor, first has a valid case, including a weekend. Record the vendor receipt date and the company receipt date. The US 15 calendar day alert runs from the applicant's initial receipt."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#F3F5F4; --teal:#4A6FA5; --slate:#5E6873; --light:#14202C; --white:#14202C; --border:#D5DBE0; }
+    body { font-family: var(--ae-font-body); background: var(--navy); color: var(--light); line-height: 1.7; }
+    a { color: var(--teal); }
+    nav { display:flex; justify-content:space-between; align-items:center; height:64px; padding:0 32px; border-bottom:1px solid var(--border); }
+    .nav-logo { color: var(--white); font-weight:700; text-decoration:none; font-size:18px; }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a { color: var(--slate); text-decoration:none; font-size:13px; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+    .crumb { color: var(--slate); font-size: 13px; margin-bottom: 18px; }
+    .crumb a { color: var(--slate); }
+    h1 { color: var(--white); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
+    .by { color: var(--slate); margin-bottom: 22px; font-size: 14px; }
+    h2 { color: var(--white); font-size: 24px; margin: 28px 0 8px; }
+    h3 { color: var(--white); font-size: 18px; margin: 18px 0 6px; }
+    p, li { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.2em; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 15px; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { color: var(--white); }
+    .related, .faq { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .cta { margin-top: 28px; padding: 18px 18px 6px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .cta h2 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    footer { border-top: 1px solid var(--border); padding: 22px 32px 32px; color: var(--slate); font-size: 13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    footer a { color: var(--light); }
+    @media (max-width: 800px) { .nav-links { display:none; } }
+    .lead-cta { margin: 28px 0; padding: 18px 18px 8px; border: 1px solid rgba(74,111,165,0.35); border-radius: 12px; background: rgba(74,111,165,0.06); }
+    .lead-cta h2 { margin-top: 0; }
+    .lead-cta .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lead-cta .btn { display: inline-block; background: var(--teal, #4A6FA5); color: var(--navy, #F3F5F4); font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; }
+    .lead-cta .btn-ghost { background: transparent; color: var(--white, #14202C); border: 1px solid #5E6873; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aeconnect.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aeconnect.io/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Solicited reports from patient support programs and market research", "item": "https://aeconnect.io/blog/solicited-reports-patient-support-programs/"}
+    ]
+  }
+  </script>
+  <meta name="theme-color" content="#F3F5F4">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/app-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:image" content="https://aeconnect.io/brand/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta property="og:image:alt" content="Solicited reports from patient support programs | AE Connect">
+  <meta name="twitter:image" content="https://aeconnect.io/brand/og/default.png">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/brand.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://aeconnect.io/"><img class="brand-logo" src="/brand/logo/logo-horizontal-light.svg" alt="AE Connect" width="143" height="32"></a>
+  <ul class="nav-links">
+    <li><a href="https://aeconnect.io/product/">Product</a></li>
+    <li><a href="https://aeconnect.io/features/">Features</a></li>
+    <li><a href="https://aeconnect.io/blog/">Blog</a></li>
+    <li><a href="https://aeconnect.io/contact/">Contact</a></li>
+    <li><a href="https://aeconnect.io/app/">Workspace</a></li>
+    <li><a href="https://aeconnect.io/demo/">Demo</a></li>
+    <li><a href="https://aeconnect.io/learn/">Learn</a></li>
+    <li><a href="https://aeconnect.io/pipeline/">Pipeline</a></li>
+    <li><a href="https://aeconnect.io/resources/ae-intake-checklist/">Checklist</a></li>
+  </ul>
+</nav>
+<header class="brand-hero">
+  <p class="crumb"><a href="https://aeconnect.io/">Home</a> / <a href="https://aeconnect.io/blog/">Blog</a> / Solicited reports</p>
+  <h1>Solicited reports from patient support programs and market research</h1>
+  <p class="by">QORO Team · 25 November 2026 · about 20 minutes</p>
+</header>
+<main>
+  <p>A nurse on a patient support program calls about the next injection and hears about a hospitalization. A market research interviewer asks about a product and is told about a rash. A courier leaves a shipment and the patient mentions feeling worse. All three notes can land in the same drug safety inbox. They are different reports. The program name, the vendor receipt date, and whether anyone asked about the event decide the causality test, the E2B(R3) report type, and sometimes whether an individual case safety report goes out at all. Biotechs that leave this in email miss those facts. A serious case can sit unlabeled while the clock runs. That puts patient safety at risk. The <a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">drug safety inbox</a> is where the thread gets lost. The <a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">reporter forms</a> page separates spontaneous from solicited in brief. This page is the intake work for patient support programs, market research, and the other organised sources around them.</p>
+
+  <h2>Solicited means an organised data collection system</h2>
+  <p><a href="https://database.ich.org/sites/default/files/ICH_E2D%28R1%29_Step4_FinalGuideline_2025_0819.pdf">ICH E2D(R1)</a>, adopted on 15 September 2025, section 3.2 defines solicited reports as those derived from an organised data collection system. For the purposes of reporting, solicited individual case safety reports should be classified as a report from study in the ICH E2B format, and they should have a causality assessment. Section 2.8 defines that system as an activity that gathers data relevant to a company's medicinal product, or to a medical disease area, in a planned manner, so that review can be performed. The examples in that section include clinical trials, non interventional studies, patient support programs, and market research programs. Social listening that the company runs in a planned way is also an example there.</p>
+  <p>The same section excludes the company's standard procedures for the surveillance, receipt, evaluation, and reporting of spontaneous postmarketing adverse events. A medical information address used as ordinary drug safety intake is spontaneous receipt. A public communication that increases reporting, such as a letter to healthcare professionals, litigation, or a media report, produces stimulated reports. Section 3.1 says stimulated reports should be considered spontaneous reports. Section 3.1 defines a spontaneous report as a direct communication by a healthcare professional or a consumer to the company, a regulator, or another organisation, describing an adverse event in a patient who was exposed to a medicinal product, and that was gathered outside an organised data collection system.</p>
+  <p>For activities that are organised and are run without a protocol, section 2.8 says the company should have documentation that at least describes the objective, the data sources, the dataset to be reviewed (including the look back period or the duration), the review method, and the process for any adverse events or other observations that turn up. A protocol, in that section, is the document regions may require for clinical trials and non interventional studies.</p>
+
+  <h2>What counts as a patient support program</h2>
+  <p>Section 2.9 defines a patient support program as an organised data collection system the company initiates. Patients enrol to support their use of the company's medicinal product, or to manage their medical condition, and the program has a mechanism for two way communication between the company (or a third party acting for the company) and patients or healthcare professionals. The examples are adherence support, disease management, and certain reimbursement and educational programs.</p>
+  <p>A program meets that definition in either of two ways. It solicits medical information about the patient's use of a medicinal product. Or the design is such that the company, or a third party acting for it, would foreseeably receive that medical information. The guideline's example of the second test is a healthcare professional interacting with a patient to administer medication or to give medical advice. Home delivery, vouchers, and coupons stay outside the definition when the company does not request medical information about use. Patient support programs also exclude clinical trials, non interventional studies such as post authorisation safety studies that have a scientific intent or test a hypothesis, all forms of compassionate use, and named patient supply.</p>
+  <p>Section 4.5 says the company reviews all information received in a patient support program for adverse events. Events the company becomes aware of in that context are recorded, managed, and assessed for reporting as regional or local requirements require. Programs vary. One program can combine nurse support, a chat room, and a delivery service. A delivery service on its own would fail the section 2.9 test. If that delivery sits in a program that also has an activity which meets the test, such as a nurse helping to administer the drug, the combined program is a patient support program. Adverse events from any part of that combined program are then managed as coming from the patient support program, which means they are solicited reports.</p>
+  <p>Adverse events from company activities that only allow one way interaction, such as delivery, vouchers, or coupons, and that are outside an organised data collection system, are managed as spontaneous reports. Section 4.5 says those standalone activities lack a mechanism for two way interaction. When a third party runs part or all of a patient support program, the company has a contract so that the third party reports adverse events to the company. Section 6.5 is the contract section, below.</p>
+  <p>If an adverse event from a patient support program meets reporting requirements, section 4.5 says it is managed as a solicited report, with a causality assessment. The ICH E2B data element for study type where the reaction was observed is used to show that the origin is a patient support program. A patient support program that uses a digital platform still uses the patient support program value for that element.</p>
+
+  <h2>Market research</h2>
+  <p>Section 2.10 defines a market research program as an organised data collection system used for planned collection of healthcare professional or consumer insights, by the company or a third party acting for it, on medicinal products or a disease area, for marketing and business development. Section 4.6 says the company reviews all information received in the program. Events the company becomes aware of are recorded, managed, and assessed for reporting under regional or local requirements. The section 2.8 documentation applies. A third party that runs part or all of the program is under a contract to report adverse events to the company.</p>
+  <p>If an adverse event from market research meets reporting requirements, it is managed as a solicited report with a causality assessment. The study type element shows market research, so these cases can be told apart from study cases and from other organised sources. Market research conducted on a digital platform still uses the market research value.</p>
+  <p>An interview script about preference, packaging, or access is still a safety source when the respondent describes an event. The interviewer needs a path that captures the event before the call ends. Closing the interview because the script was about marketing drops the case.</p>
+
+  <h2>Digital platforms, in short</h2>
+  <p>Section 4.3 splits digital platforms into those under the company's responsibility and those outside it. The company is responsible for content and communications on platforms it owns, controls, or operates, including through a third party. A donation to an organisation that owns a platform does not, by itself, create that responsibility if the company does not control the content. Platforms under the company's responsibility are screened on a schedule that allows reporting inside the required timeline. An adverse event a patient posts on the product website, outside an organised activity, is managed as a spontaneous report. An adverse event found inside an organised activity on that platform is solicited, and it follows the documentation for that activity. Day zero for a post on a company platform is the point at which enough information to meet the minimum criteria was posted.</p>
+  <p>The company is not expected to screen platforms outside its responsibility. If it does access such a platform in a planned way that matches an organised data collection system, that activity is an organised system, with the section 2.8 documentation, and the source list names the platforms. Day zero is the date the company, or a third party acting for it, identifies an adverse event during that review and has the minimum criteria. That date can differ from the date the data were accessed. A reportable event from that activity is solicited, and the study type shows a digital platform in the context of an organised system only when no other study type applies. A patient support program or a market research program on a digital platform keeps its own study type. An employee who happens to see an event while looking for an answer to a business question, outside an organised activity, manages a reportable event as spontaneous.</p>
+
+  <h2>How a solicited report differs from a spontaneous one</h2>
+  <p>Section 2.1.2 says that, for regulatory reporting purposes, an event that is spontaneously reported meets the definition of an adverse drug reaction even if the relationship is unknown or unstated. Section 5.1.1 repeats the point: spontaneous reports imply a suspected causal relationship. The same section says solicited reports are classified as a report from study in ICH E2B and should have a causality assessment. A solicited report should be submitted only if a causal relationship between the medicinal product and the adverse event is at least a reasonable possibility, as assessed by either the reporter or the company.</p>
+  <p>The intake consequence is concrete. A spontaneous email that never mentions causality is still a suspected reaction for reporting purposes. A solicited report needs the reporter's view, the company's view, or both, before anyone decides that a reasonable possibility exists. If that view is missing, the case is incomplete for the ICH submission test, and follow up is the next step. Record the event either way. Section 4.5 and section 4.6 both start with review and recording. Submission is the later decision, and it follows the region.</p>
+  <p><a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">EU GVP Module VI (Rev 2)</a> section VI.B.1.2, which cites the earlier ICH E2D text, says solicited reports of suspected adverse reactions are those derived from organised data collection systems. The list there includes clinical trials, non interventional studies, registries, post approval named patient use programmes, other patient support and disease management programmes, surveys of patients or healthcare professionals, compassionate use or named patient use, and information gathering on efficacy or patient compliance. Reports from those systems are classified as study reports for submission, with a causality assessment, so the company can tell whether they are suspected adverse reactions and therefore meet the validation criteria. Section VI.C.2.2.2 says the company seeks the primary source's view on the causal role of the product. Where that opinion is missing, the company uses its own judgement on the information it has, in order to decide whether the report is a valid individual case safety report.</p>
+  <p>Section VI.C.2.2.11 is the EU chapter on these programs. It describes a patient support programme as an organised system where the company receives and collects information relating to the use of its medicinal products. The examples include post authorisation patient support and disease management programmes, surveys, information gathering on compliance, and compensation or reimbursement schemes. A market research programme is the systematic collection, recording, and analysis of data and findings about the company's medicinal products, relevant for marketing and business development. Safety reports from those programmes are solicited. The company uses the same mechanisms as for other solicited reports, and it submits valid cases of adverse reactions suspected to be related to the product. That GVP wording is broader than E2D(R1) section 2.9. The EU implementation section below is how the two texts sit together after 18 September 2026.</p>
+
+  <h2>What the intake form has to capture</h2>
+  <p>Email from a call center or a research vendor usually arrives as a narrative and a name. The fields below are what <a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake</a> needs before the report type is guessed at submission. <a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a> is the field list once a case exists. Section 2.2 of E2D(R1) says an individual case safety report needs at least one adverse event or other observation, one suspect or interacting product, an identifiable patient, and an identifiable reporter. A case missing any of those is followed up. It is kept.</p>
+  <table>
+    <thead>
+      <tr><th>Source</th><th>Capture before the contact ends</th><th>How the case is managed</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nurse adherence call, disease management, or education with two way medical contact</td>
+        <td>Program name, enrolment, that the contact is two way, whether the event was asked for or volunteered, vendor receipt date, reporter contact and qualification, one patient descriptor, product, event in the caller's words, and the reporter's causality view.</td>
+        <td>Solicited. Causality assessment. Study type: patient support program, or the value the region still accepts.</td>
+      </tr>
+      <tr>
+        <td>Home delivery, voucher, or coupon, with no request for medical information and no other activity</td>
+        <td>That the activity is one way, that it is standalone, and the same patient, product, event, and receipt facts if an event is described.</td>
+        <td>Spontaneous, under E2D(R1) section 4.5. Report type spontaneous. Study type left empty.</td>
+      </tr>
+      <tr>
+        <td>Delivery plus a nurse visit, or any other qualifying activity, in one program</td>
+        <td>The combined program name, and which activity the event came from. Events from the delivery leg are included.</td>
+        <td>Solicited for every part of the program, under section 4.5.</td>
+      </tr>
+      <tr>
+        <td>Market research interview</td>
+        <td>Program name, whether the respondent is a healthcare professional or a consumer, and the same event, product, patient, and causality fields.</td>
+        <td>Solicited. Study type: market research, where that value is accepted.</td>
+      </tr>
+      <tr>
+        <td>Planned review of a digital platform</td>
+        <td>Whether the platform is under the company's responsibility, the activity name, and the date the minimum criteria were identified.</td>
+        <td>Solicited if the review is an organised activity. Spontaneous if a patient simply posted on the product website, or if someone saw the event outside an organised activity.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Other products and history can be follow up. They are written down when the caller knows them. They are left blank when the caller does not. A seriousness checkbox the caller ticks is a clue. Seriousness is a criterion a qualified person applies, using the outcomes in section 2.1.3 and in <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80(a)</a>. The <a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">AE and SAE</a> page is that classification.</p>
+
+  <h2>The vendor agreement, the two dates, and training</h2>
+  <p>Section 6.5 covers contractual agreements with third parties who would foreseeably receive safety information, and with companies that market a product under contract. The agreement specifies how individual case safety reports are managed and reported, including timelines and regulatory reporting responsibilities, in line with regional and local requirements. Processes identify responsibilities and avoid duplicate reporting to regulators. Whatever the contract says, the company is responsible for reporting inside the required timelines, so the partner keeps the data exchange period short. A <a href="https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/">pharmacovigilance agreement</a> (a PVA, about the same job as a safety data exchange agreement) is that contract. The case is still captured on a form. AE Connect does not replace the agreement, and it does not decide which party owns the clock.</p>
+  <p>GVP Module VI section VI.B.7 says the clock for a valid individual case safety report starts when the information containing the minimum criteria reaches a competent authority or any personnel of the company, including medical representatives and contractors. That date is day zero. It is the first day the authority or the company knows of a valid case, including a weekend or a public holiday. Timelines use calendar days. Where a contract exists, explicit procedures specify the exchange of safety information, the timelines, and who submits, and they are organised to avoid duplicate submissions.</p>
+  <p>E2D(R1) section 5.2 uses the same idea, with a regional exit. Day zero is the date any personnel of the company, including service providers and other contractual partners acting for the company, first has enough information to determine that the minimum criteria are met, unless the region specifies another date. Expedited reports go as soon as possible and no later than 15 calendar days after that date, for cases that meet the regional expedited criteria. The United States specifies another date for the alert: initial receipt by the applicant. Keep the vendor receipt date and the company receipt date. <a href="https://aeconnect.io/blog/follow-up-reports-missing-information/">Follow up</a> is a new clock when significant new information arrives. An internal correction is a different event.</p>
+  <p>Section VI.B.1 says the collection system should help ensure that reports are authentic, legible, accurate, consistent, verifiable, and as complete as possible for clinical assessment. Training is how a call center or a research vendor meets that sentence. The script asks the program questions before the contact ends. Staff record a volunteered event on a delivery call. A Friday night message keeps Friday as the receipt date. Reconciliation is the comparison of the vendor log (program name, vendor reference, vendor receipt date, whether an event was found) with the company case list that uses the same reference. E2D(R1) and GVP do not name a calendar frequency for that comparison. They do require an exchange short enough for the company's clock, and a process that avoids duplicate submissions. A comparison that waits for the periodic report is late for a 15 calendar day case. The same patient can be described by the nurse and by the patient. <a href="https://aeconnect.io/blog/duplicate-icsr-detection/">Duplicate detection</a> is that match, and a person confirms it. Section 6.6 says duplicates harm signal detection, and that a consumer and a healthcare professional reporting the same event is a common cause.</p>
+
+  <aside class="lead-cta">
+    <h2>Start a 14 day trial, or book a demo</h2>
+    <p>AE Connect is a reporter-facing adverse event e-Form for patients, HCPs and caregivers, which the company configures easily without IT or code. AI triage drafts seriousness, a MedDRA suggestion, causality, expectedness, and a reporting clock. A reviewer accepts or overrides every field. The reviewed case can feed Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety. Teams without a safety database can also keep cases and E2B(R3) files in AE Connect.</p>
+    <p class="actions"><a class="btn" href="https://app.aeconnect.io/register">Start a 14 day trial</a> <a class="btn btn-ghost" href="https://aeconnect.io/demo/">Book a demo</a></p>
+  </aside>
+
+  <h2>How the case is flagged in E2B(R3)</h2>
+  <p>The ICH E2B(R3) information paper on alignment with E2D(R1), adopted on 16 December 2025, updates two data elements. For C.1.3, type of report, the allowed values remain 1 spontaneous report, 2 report from study, 3 other, and 4 not available to sender (unknown). The user guidance now says value 2 is used for studies and for other solicited sources, as described in E2D(R1). C.5.4, study type where the reaction or event was observed, is optional in general and required when C.1.3 is 2. The values are:</p>
+  <ul>
+    <li>1, clinical trials.</li>
+    <li>2, individual patient use, for example compassionate use or named patient basis.</li>
+    <li>3, other studies, for example pharmacoepidemiology, pharmacoeconomics, intensive monitoring.</li>
+    <li>4, patient support program.</li>
+    <li>5, market research program.</li>
+    <li>6, organised data collection system with source data from a digital platform. The information paper uses that spelling of organised.</li>
+  </ul>
+  <p>Value 6 is used only when the case came from a digital platform and none of values 1 through 5 apply. The paper's example is social listening on a digital platform that is outside the company's responsibility. A patient support program on a digital platform uses 4. A market research program on a digital platform uses 5. The paper says the new values are used prospectively. Cases already submitted need no resubmission solely to change the code. A follow up or an amendment uses the new value where the region accepts it, including for a patient support program that has run for years. For a program that is now a one way service, and was previously submitted as a patient support program, a follow up sets C.1.3 to 1 and leaves C.5.4 empty, and the narrative says the case comes from a one way service. Where a region has not implemented values 4, 5, and 6, the paper says to use 3 for patient support programs, market research programs, and organised systems whose source is a digital platform.</p>
+  <p><a href="https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-e2br3-data-standards">FDA's AEMS E2B(R3) data standards page</a> says that on 6 March 2026 FDA announced availability of the E2D(R1) guidance (91 FR 10619), and that AEMS now accepts the new values for C.5.4. The page points to the same information paper for the user guidance on C.1.3 and C.5.4. Confirm the current code list in the file your safety database will send. <a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) submissions</a> are that file. <a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a> is where the source is stored while the case number is still new.</p>
+  <p>GVP Module VI section VI.C.6.2.3.7 still tells EU submitters to populate C.1.3 with report from study for patient support programmes and market research programmes, and to populate C.5.4 with other studies or individual patient use. The later EU strategy, below, is more specific for a patient support program: keep value 3 until EudraVigilance has value 4.</p>
+
+  <h2>United States: any source, and a study exception that is narrow</h2>
+  <p><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">21 CFR 314.80(b)</a> requires each applicant to promptly review all adverse drug experience information obtained or otherwise received from any source, foreign or domestic, including commercial marketing experience, postmarketing clinical investigations, postmarketing epidemiological or surveillance studies, scientific literature, and unpublished scientific papers. The applicant also develops written procedures for the surveillance, receipt, evaluation, and reporting of postmarketing adverse drug experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">21 CFR 600.80(b)</a> is the parallel sentence for a biological product. Paragraph (a) of each section defines the experience as any adverse event associated with use in humans, whether or not considered drug related or product related. A patient support call and a market research interview are sources. They are reviewed.</p>
+  <p>Paragraph (c)(1)(i) of each section requires a 15 calendar day alert for each experience that is both serious and unexpected, foreign or domestic, as soon as possible and no later than 15 calendar days from initial receipt of the information by the applicant. Paragraph (f)(5) of 314.80, and the matching applicant block in 600.80, includes the report source, with spontaneous, literature, or study given as examples, and the date the applicant received the report. Paragraph (j) of 314.80 and paragraph (k) of 600.80 require records of all adverse experiences known to the applicant, including raw data and correspondence, for 10 years. The <a href="https://aeconnect.io/blog/fda-adverse-event-reporting-requirements/">FDA reporting requirements</a> page walks the clocks. <a href="https://aeconnect.io/blog/postmarketing-safety-reporting-small-sponsors/">Postmarketing safety reporting for small sponsors</a> is the operating picture.</p>
+  <p>Paragraph (e) is a study rule. For a drug, 314.80(e) says the applicant submits a 15 calendar day alert for an adverse drug experience from a postmarketing study, whether or not under an investigational new drug application, when the applicant concludes there is a reasonable possibility that the drug caused the experience. The alert remains the serious and unexpected report in paragraph (c)(1)(i). For a biological product, 600.80(e) uses the words postmarketing clinical study. A patient support program and a market research program are organised sources in E2D(R1). Paragraph (e) is written for studies. Intake names the source so the safety database applies the paragraph that matches the source.</p>
+  <p>FDA's March 2026 guidance for industry, <a href="https://www.fda.gov/media/176977/download">E2D(R1) Postapproval Safety Data</a>, reproduces the ICH text, including the sentence that a solicited report is submitted when the reporter or the company assesses at least a reasonable possibility. The guidance says it represents FDA's current thinking, does not establish rights, and is not binding on FDA or the public. An alternative approach is acceptable if it satisfies the applicable statutes and regulations. The safety database, or the file the company prepares, has to be able to show which rule was applied. The guidance does not replace 314.80 or 600.80.</p>
+
+  <h2>European Union after 18 September 2026</h2>
+  <p>The <a href="https://www.ema.europa.eu/en/documents/scientific-guideline/eu-implementation-strategy-ich-e2dr1-guideline-post-approval-safety-data-definitions-standards-management-reporting-individual-case-safety-reports_en.pdf">EU implementation strategy</a> for E2D(R1), EMA/11141/2026, was adopted by the Pharmacovigilance Risk Assessment Committee on 20 February 2026. It says E2D(R1) came into effect in the EU on 18 March 2026, with an additional transition through 18 September 2026. After that date the definitions and guidance in E2D(R1) apply. Where E2D(R1) refers to regional or local requirements, GVP Module VI is those requirements, and the current version is followed as applicable. The strategy says revision of GVP Module VI will be initiated to integrate E2D(R1). The <a href="https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/pharmacovigilance-post-authorisation/good-pharmacovigilance-practices-gvp">EMA GVP index</a> still lists Module VI as Rev 2. Read Rev 2 together with the strategy.</p>
+  <p>The strategy is explicit about the change from VI.C.2.2.11. Under that GVP chapter, adverse reactions from patient support programmes were managed as solicited with no split by program design. E2D(R1) sections 2.9 and 4.5 leave out certain activities that may historically have been treated as patient support programs, including one way delivery, vouchers, and coupons, and those adverse reactions are managed as spontaneous. For program activities inside or outside the EU, a new program uses the section 2.9 definition no later than 18 September 2026. That date has passed. Adverse reactions from those new activities follow section 4.5: solicited when the activity is a patient support program, spontaneous when it is a standalone one way activity outside an organised system and outside a combined program. Until EudraVigilance implements value 4, C.5.4 stays at 3, other studies, for individual case safety reports from patient support programs. One way activities use C.1.3 value 1, spontaneous report.</p>
+  <p>For a program that started before 18 September 2026, the strategy says the company may apply the new definition on a voluntary basis. Switching a one way activity from solicited to spontaneous is documented in the organised data collection documentation. Once the switch is in place, new reports and follow up reports from that program are managed as spontaneous. The new E2B values for patient support programs, market research, and digital organised systems are a separate EudraVigilance change. The <a href="https://www.ema.europa.eu/en/scientific-guidelines/ich-e2d-post-approval-safety-data-management">EMA E2D page</a> says that EU implementation of those values will be addressed later. Do not send value 4, 5, or 6 to EudraVigilance until that change is in place. FDA AEMS is on a different schedule, as the data standards page states.</p>
+  <p>The same strategy sets the documentation date. Each new organised activity that is run without a protocol has the five items from E2D(R1) section 2.8 in place no later than 18 September 2026: objective, sources, dataset including look back or duration, review method, and the process for adverse events or other observations. Each ongoing activity has, by the same date, the objective, the sources, and the process for adverse events or other observations. The documentation is maintained with oversight by the qualified person responsible for pharmacovigilance and is available to national competent authorities and to the Agency on request.</p>
+
+  <h2>Put the source on the form while the case number is new</h2>
+  <p><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a> is the screen for this capture. <a href="https://aeconnect.io/solutions/pv-partner-intake/">PV partner intake</a> is the path when a vendor, a call center, or a contract safety group sends the case. AE Connect is a reporter-facing adverse event e-Form for patients, HCPs and caregivers, which the company configures easily without IT or code. The company can put the program questions on that form: program name, one way or two way contact, vendor receipt date, company receipt date, and the reporter's causality view. AI triage drafts seriousness, a MedDRA suggestion, causality, expectedness, and a reporting clock. A reviewer accepts or overrides every field. The draft is decision support. It does not choose the report type, and it does not replace the causality assessment the region requires.</p>
+  <p>The reviewed case can feed <a href="https://aeconnect.io/integrations/">Oracle Argus, ArisGlobal LifeSphere, or Veeva Vault Safety</a>, which remain the system of record. Teams without a safety database can also keep cases and E2B(R3) files in AE Connect. AE Connect is 21 CFR Part 11 validated. Validated by QORO for its intended use. Validation summary available on request. Product names belong to their owners. A 14 day sandbox starts with your name, a company email, a password, your company name, and your role. After you verify the email, you are the admin of a new organization. Annual plans are Starter, Growth, and Scale. Questions go to <a href="mailto:info@qfsnow.com">info@qfsnow.com</a>.</p>
+
+  <div class="cta">
+    <h2>Open a case in the workspace</h2>
+    <p>Paste the call center note or the market research excerpt, or send the reporter to a form the company configured. A company email starts a 14 day sandbox trial. You accept or override every field. Questions go to <a href="mailto:info@qfsnow.com">info@qfsnow.com</a>.</p>
+    <p><a class="btn" href="https://app.aeconnect.io/register">Start a 14 day trial</a> <a class="btn" href="https://aeconnect.io/demo/">Book a demo</a></p>
+  </div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <h3>What is a solicited report?</h3>
+    <p>A solicited report is an adverse event that comes from an organised data collection system. ICH E2D(R1) section 3.2 defines solicited reports that way, and section 2.8 gives clinical trials, non interventional studies, patient support programs, and market research programs as examples. For reporting, the case is classified as a report from study in the ICH E2B format and it needs a causality assessment. The company's ordinary process for receiving spontaneous reports is outside that definition.</p>
+    <h3>When is a patient support program report spontaneous?</h3>
+    <p>When the activity is only one way and it sits outside an organised program. ICH E2D(R1) section 2.9 says home delivery, vouchers, and coupons are outside the patient support program definition if the company does not request medical information about the patient's use of the product. Section 4.5 says adverse events from those standalone activities are managed as spontaneous reports. If delivery sits inside a program that also has a nurse visit or another two way medical activity, events from any part of that combined program are managed as solicited.</p>
+    <h3>Are market research adverse events spontaneous?</h3>
+    <p>A market research program, as ICH E2D(R1) section 2.10 defines it, is planned collection of healthcare professional or consumer insights for marketing and business development. Section 4.6 says the company reviews all information from the program. A report that meets reporting requirements is managed as a solicited report with a causality assessment. In E2B the study type should show market research where the region accepts that value, and other studies where it does not yet.</p>
+    <h3>How do you flag a solicited case in E2B(R3)?</h3>
+    <p>Set C.1.3, type of report, to 2, report from study. The ICH information paper adopted on 16 December 2025 says that value covers studies and other solicited sources. C.5.4, study type where the reaction was observed, is then required. The added values are 4 for a patient support program, 5 for a market research program, and 6 for an organised data collection system whose source data come from a digital platform. FDA AEMS accepts those values. In the EU they are not in EudraVigilance yet, so keep 3, other studies, until the new value is implemented. When a patient support program runs on a digital platform, select 4.</p>
+    <h3>Does FDA use the ICH causality rule for these reports?</h3>
+    <p>21 CFR 314.80 and 21 CFR 600.80 require review of adverse experience information from any source. The definition includes events whether or not they are considered product related. A 15 calendar day alert applies to an experience that is serious and unexpected, counted from the applicant's initial receipt. A reasonable possibility test in those regulations is written for a postmarketing study, and for biological products for a postmarketing clinical study. FDA's March 2026 E2D(R1) guidance repeats the ICH sentence that a solicited report is submitted when the reporter or the company sees at least a reasonable possibility, and the guidance says it is not binding. Keep the source, seriousness, expectedness, and both causality views on the case.</p>
+    <h3>What belongs in the vendor agreement?</h3>
+    <p>ICH E2D(R1) section 6.5 says the agreement covers how individual case safety reports are managed and reported, including exchange timelines and who reports to regulators, and that the process avoids duplicate reporting. The company remains responsible for the timeline, so the partner passes the case quickly. GVP Module VI section VI.B.7 counts day zero from the day any company personnel, including a contractor, first has a valid case, including a weekend. Record the vendor receipt date and the company receipt date. The US 15 calendar day alert runs from the applicant's initial receipt.</p>
+  </section>
+
+  <div class="related">
+    <h2>Sources</h2>
+    <ol>
+      <li>ICH E2D(R1), Post approval safety data: definitions and standards for management and reporting of individual case safety reports. Final version adopted on 15 September 2025. <a href="https://database.ich.org/sites/default/files/ICH_E2D%28R1%29_Step4_FinalGuideline_2025_0819.pdf">ICH</a>.</li>
+      <li>ICH E2B(R3) Expert Working Group / Implementation Working Group. Information paper regarding alignment with ICH E2D(R1). Adopted on 16 December 2025. <a href="https://admin.ich.org/sites/default/files/inline-files/E2B%28R3%29_InfoPaper_MCApproved_20251216.pdf">ICH</a>.</li>
+      <li>European Medicines Agency. Guideline on good pharmacovigilance practices (GVP) Module VI, collection, management and submission of reports of suspected adverse reactions to medicinal products (Rev 2), EMA/873138/2011 Rev 2. <a href="https://www.ema.europa.eu/en/documents/regulatory-procedural-guideline/guideline-good-pharmacovigilance-practices-gvp-module-vi-collection-management-submission-reports-suspected-adverse-reactions-medicinal-products-rev-2_en.pdf">EMA</a>. The <a href="https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/pharmacovigilance-post-authorisation/good-pharmacovigilance-practices-gvp">GVP index</a> lists this revision.</li>
+      <li>European Medicines Agency. EU implementation strategy of ICH E2D(R1), EMA/11141/2026, adopted by PRAC on 20 February 2026. <a href="https://www.ema.europa.eu/en/documents/scientific-guideline/eu-implementation-strategy-ich-e2dr1-guideline-post-approval-safety-data-definitions-standards-management-reporting-individual-case-safety-reports_en.pdf">EMA</a>. See also the <a href="https://www.ema.europa.eu/en/scientific-guidelines/ich-e2d-post-approval-safety-data-management">EMA E2D page</a>.</li>
+      <li>21 CFR 314.80, Postmarketing reporting of adverse drug experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314/subpart-B/section-314.80">eCFR</a>.</li>
+      <li>21 CFR 600.80, Postmarketing reporting of adverse experiences. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-600/subpart-D/section-600.80">eCFR</a>.</li>
+      <li>FDA. E2D(R1) Postapproval Safety Data: Definitions and Standards for Management and Reporting of Individual Case Safety Reports, Guidance for Industry, March 2026. <a href="https://www.fda.gov/media/176977/download">FDA</a>. Availability is noted on the <a href="https://www.fda.gov/drugs/fda-adverse-event-monitoring-system-aems/fda-adverse-event-monitoring-system-aems-e2br3-data-standards">AEMS E2B(R3) data standards page</a>.</li>
+    </ol>
+    <h2>On this site</h2>
+    <ul>
+      <li><a href="https://aeconnect.io/blog/patient-hcp-ae-reporter-forms/">AE reporter forms for patients and healthcare professionals</a></li>
+      <li><a href="https://aeconnect.io/blog/pv-case-intake-forms/">PV case intake forms</a></li>
+      <li><a href="https://aeconnect.io/blog/icsr-intake/">ICSR intake</a></li>
+      <li><a href="https://aeconnect.io/blog/drug-safety-inbox-small-biotech-reality/">The drug safety inbox</a></li>
+      <li><a href="https://aeconnect.io/blog/follow-up-reports-missing-information/">Follow up reports and missing information</a></li>
+      <li><a href="https://aeconnect.io/blog/duplicate-icsr-detection/">Duplicate ICSR detection</a></li>
+      <li><a href="https://aeconnect.io/blog/e2b-r3-icsr-submissions/">E2B(R3) ICSR submissions</a></li>
+      <li><a href="https://aeconnect.io/blog/fda-adverse-event-reporting-requirements/">FDA adverse event reporting requirements</a></li>
+      <li><a href="https://aeconnect.io/blog/postmarketing-safety-reporting-small-sponsors/">Postmarketing safety reporting for small sponsors</a></li>
+      <li><a href="https://aeconnect.io/blog/adverse-event-reporting-ae-sae/">Adverse event reporting: AE and SAE</a></li>
+      <li><a href="https://aeconnect.io/solutions/pv-case-intake/">PV case intake</a></li>
+      <li><a href="https://aeconnect.io/solutions/pv-partner-intake/">PV partner intake</a></li>
+      <li><a href="https://aeconnect.io/integrations/">Works with Argus, LifeSphere, and Vault Safety</a></li>
+      <li><a href="https://aeconnect.io/learn/pharmacovigilance-agreement-pva-sdea/">PVA and SDEA</a></li>
+      <li><a href="https://aeconnect.io/demo/">Book a demo</a></li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <span>© 2026 QORO Intelligence Inc.</span>
+  <span><a href="https://aeconnect.io/privacy/">Privacy</a> · <a href="https://aeconnect.io/terms/">Terms</a> · <a href="https://aeconnect.io/blog/">Blog</a> · <a href="mailto:info@qfsnow.com">info@qfsnow.com</a></span>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ab1964ff4f094aefa751d8207c50f059"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
